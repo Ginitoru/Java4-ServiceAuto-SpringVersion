@@ -4,7 +4,10 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -29,6 +32,9 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
+    @ElementCollection
+    private Set<String> authorities = new HashSet<>();
 
 
     public User() {
