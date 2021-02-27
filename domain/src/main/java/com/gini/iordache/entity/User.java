@@ -3,14 +3,13 @@ package com.gini.iordache.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Getter
 @Setter
+@Entity
+@Table(name = "users")
 public class User {
 
     @Id
