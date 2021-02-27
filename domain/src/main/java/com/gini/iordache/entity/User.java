@@ -9,11 +9,10 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.TABLE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "first_Name")
@@ -27,6 +26,9 @@ public class User {
 
     @Column(name = "email")
     private String email;
+
+    @Column(name = "password")
+    private String password;
 
 
     public User() {
@@ -43,6 +45,7 @@ public class User {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 
     @Override
     public boolean equals(Object o) {
