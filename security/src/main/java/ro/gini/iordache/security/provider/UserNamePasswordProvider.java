@@ -1,21 +1,41 @@
 package ro.gini.iordache.security.provider;
 
+import com.gini.iordache.services.UserSecurityService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationProvider;
+import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import ro.gini.iordache.security.authentication.UserNamePasswordAuthentication;
 
 public class UserNamePasswordProvider implements AuthenticationProvider {
 
+    private final UserSecurityService userSecurityService;
+    private final PasswordEncoder passwordEncoder;
 
+    @Autowired
+    public UserNamePasswordProvider(UserSecurityService userSecurityService, PasswordEncoder passwordEncoder) {
+        this.userSecurityService = userSecurityService;
+        this.passwordEncoder = passwordEncoder;
+    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
+        var usernameOrEmail = authentication.getName();
+        var password = authentication.getCredentials().toString();
+        UserDetails user = userSecurityService.loadUserByUsername(usernameOrEmail);
 
-
-        return null;
+        if(passwordEncoder.matches(password, user.getPassword())){
+            return new UserNamePasswordAuthentication(usernameOrEmail, password, user.getAuthorities());
+        }
+        
+        throw new BadCredentialsException("Bad Credential Exception");
     }
+
 
     @Override
     public boolean supports(Class<?> aClass) {

@@ -39,5 +39,5 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-    
+
 }
