@@ -12,12 +12,8 @@ import ro.gini.iordache.security.securityuser.SecurityUser;
 @Service
 public class UserSecurityService implements UserDetailsService {
 
-    private final UserDao userDao;
-
     @Autowired
-    public UserSecurityService(UserDao userDao) {
-        this.userDao = userDao;
-    }
+    private UserDao userDao;
 
     @Override
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {

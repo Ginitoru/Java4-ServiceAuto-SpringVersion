@@ -1,5 +1,6 @@
 package ro.gini.iordache.security.filter;
 
+import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.web.filter.OncePerRequestFilter;
 
 import javax.servlet.FilterChain;
@@ -10,9 +11,17 @@ import java.io.IOException;
 
 public class UsernameAndPasswordFilter extends OncePerRequestFilter {
 
+    private final AuthenticationManager authenticationManager;
+
+
+    public UsernameAndPasswordFilter(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
+    }
 
     @Override
-    protected void doFilterInternal(HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse, FilterChain filterChain) throws ServletException, IOException {
+    protected void doFilterInternal(HttpServletRequest httpServletRequest,
+                                    HttpServletResponse httpServletResponse,
+                                    FilterChain filterChain) throws ServletException, IOException {
 
     }
 }
