@@ -12,5 +12,5 @@ public interface UserDao {
     Optional<User> findUserByUsername(String username);
 
     Optional<User> findUserByEmail(String email);
-    
+
 }
