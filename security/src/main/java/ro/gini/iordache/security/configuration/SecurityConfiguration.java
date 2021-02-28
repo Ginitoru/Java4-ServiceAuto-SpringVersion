@@ -62,6 +62,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .mvcMatchers("/").permitAll()
+                .mvcMatchers("/create-user").permitAll()
                     .and()
                     .formLogin()
                     .loginPage("/login2").permitAll()
