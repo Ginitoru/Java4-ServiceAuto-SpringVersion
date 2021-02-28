@@ -1,5 +1,6 @@
 package com.gini.iordache.controllers;
 
+import com.gini.iordache.entity.Authorities;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,6 @@ public class UserController {
 
     @GetMapping("/login")
     public String showLoginPage(Model model){
-
         model.addAttribute("user", new User());
         return "user/login-user";
     }
@@ -33,19 +33,18 @@ public class UserController {
         return "redirect:/intra";
     }
 
+
     @GetMapping("/create-user")
     public String showCreateUserPage(Model model){
-
         model.addAttribute("newUser", new User());
-
+        model.addAttribute("authority", Authorities.values());
         return "user/create-user";
     }
 
+
     @PostMapping("/create-user")
     public String createUser(@ModelAttribute("newUser") User user){
-
         userService.createUser(user);
-
         return "redirect:/login";
     }
 

@@ -12,7 +12,7 @@
     <div class="container">
             <h1>Create new User</h1>
 
-        <form action="#" th:action="@{create-user}"
+        <form action="#" th:action="@{/create-user}"
               th:object="${newUser}" method="POST">
 
             <div>
@@ -36,8 +36,17 @@
             </div>
 
             <div>
-                <input type="submit" value="Create User">
+                <ul>
+                    <li th:each="auth : ${authority}">
+                        <input type="checkbox" th:field="*{authorities}" th:value="${auth.toString()}">
+                        <lable th:text="${auth}"/>
+
+                    </li>
+
+                </ul>
             </div>
+
+            <input type="submit" value="Create User">
         </form>
 
         <a th:href="@{login}">To login page</a>

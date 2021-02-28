@@ -10,10 +10,10 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
+import org.springframework.transaction.annotation.Transactional;
 import ro.gini.iordache.security.authentication.UserNamePasswordAuthentication;
 import ro.gini.iordache.security.service.UserSecurityService;
 
-import java.util.List;
 
 @Component
 public class UserNamePasswordProvider implements AuthenticationProvider {
@@ -27,24 +27,22 @@ public class UserNamePasswordProvider implements AuthenticationProvider {
         this.passwordEncoder = passwordEncoder;
     }
 
-
     @Override
+    @Transactional(readOnly = true) // FARA ADNOTAREA ASTA aici =>(failed to lazily initialize a collection of role) lazy bla bla bla exception si nu merge sa te loghezi => nu trage lista de autorizari desi e fetch=EAGER
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         var usernameOrEmail = authentication.getName();
         var password = authentication.getCredentials().toString();
 
-        System.out.println(usernameOrEmail + password + "  000000000000000");
         UserDetails user = userSecurityService.loadUserByUsername(usernameOrEmail);
 
         if(passwordEncoder.matches(password, user.getPassword())){
-
-
-            return new UserNamePasswordAuthentication(usernameOrEmail, password, List.of(() ->"read"));
+            return new UserNamePasswordAuthentication(usernameOrEmail, password, user.getAuthorities());
         }
 
         throw new BadCredentialsException("Bad Credential Exception");
     }
+
 
 
     @Override
