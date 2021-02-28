@@ -9,7 +9,6 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ro.gini.iordache.security.filter.UsernameAndPasswordFilter;
@@ -21,6 +20,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     private UserNamePasswordProvider userNamePasswordProvider;
 
+
     @Bean
     public UsernameAndPasswordFilter usernameAndPasswordFilter(){
         try {
@@ -29,7 +29,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             e.printStackTrace();
             throw new RuntimeException("Exception in: ----------------> AuthenticationManager");
         }
-
     }
 
 
@@ -45,16 +44,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     }
 
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class);
-//
-//        http.authorizeRequests()
-//                .mvcMatchers("/login").permitAll()
-//                .mvcMatchers("/").authenticated();
-//
-//
-//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -75,12 +64,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
-
     @Bean
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
-
-
-
 }

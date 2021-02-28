@@ -32,7 +32,7 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
         var usernameOrEmail = request.getParameter("username");
         var password = request.getParameter("password");
 
-        System.out.println(usernameOrEmail + " " + password);
+
         System.out.println(request.toString());
 
 

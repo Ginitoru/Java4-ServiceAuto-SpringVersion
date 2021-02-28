@@ -40,9 +40,7 @@
                     <li th:each="auth : ${authority}">
                         <input type="checkbox" th:field="*{authorities}" th:value="${auth.toString()}">
                         <lable th:text="${auth}"/>
-
                     </li>
-
                 </ul>
             </div>
 

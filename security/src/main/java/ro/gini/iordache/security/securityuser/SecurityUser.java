@@ -22,7 +22,6 @@ public class SecurityUser implements UserDetails {
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
-        System.out.println(user.getAuthorities().toString() + "fsdfsdfasdfsadfsdf");
 
         Set<GrantedAuthority> userAuthorities = user.getAuthorities().stream()
                                                                 .map( auth -> new SimpleGrantedAuthority(auth))

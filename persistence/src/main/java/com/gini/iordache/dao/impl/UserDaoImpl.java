@@ -11,7 +11,7 @@ import javax.persistence.EntityManager;
 import java.util.Optional;
 
 @Repository
-//@Transactional(propagation = Propagation.MANDATORY)
+@Transactional(propagation = Propagation.MANDATORY)
 public class UserDaoImpl implements UserDao {
 
     private final EntityManager entityManager;
