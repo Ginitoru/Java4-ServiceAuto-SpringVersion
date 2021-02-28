@@ -1,4 +1,4 @@
-package com.gini.iordache.services;
+package ro.gini.iordache.security.service;
 
 import com.gini.iordache.dao.UserDao;
 import com.gini.iordache.entity.User;
@@ -13,8 +13,12 @@ import ro.gini.iordache.security.securityuser.SecurityUser;
 @Service
 public class UserSecurityService implements UserDetailsService {
 
+    private final UserDao userDao;
+
     @Autowired
-    private UserDao userDao;
+    public UserSecurityService(UserDao userDao) {
+        this.userDao = userDao;
+    }
 
     @Override
     @Transactional
@@ -25,14 +29,13 @@ public class UserSecurityService implements UserDetailsService {
 
         if(usernameOrEmail.contains("@")){
 
-           User user = userDao.findUserByUsername(usernameOrEmail)
+           User user = userDao.findUserByEmail(usernameOrEmail)
                     .orElseThrow(() -> new  UsernameNotFoundException("Email not found"));
 
            return new SecurityUser(user);
         }
 
-
-        User user = userDao.findUserByEmail(usernameOrEmail)
+        User user = userDao.findUserByUsername(usernameOrEmail)
                     .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
 
 

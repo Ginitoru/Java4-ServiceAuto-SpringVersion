@@ -1,5 +1,6 @@
 package ro.gini.iordache.security.filter;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,7 +17,7 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
 
     private final AuthenticationManager authenticationManager;
 
-
+    @Autowired
     public UsernameAndPasswordFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
@@ -31,6 +32,9 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
         var usernameOrEmail = request.getParameter("username");
         var password = request.getParameter("password");
 
+        System.out.println(usernameOrEmail + " " + password);
+        System.out.println(request.toString());
+
 
         Authentication auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
 
@@ -39,5 +43,8 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
         filterChain.doFilter(request, response);
     }
 
-
+    @Override
+    protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
+        return !request.getServletPath().equals("/login-processing");
+    }
 }

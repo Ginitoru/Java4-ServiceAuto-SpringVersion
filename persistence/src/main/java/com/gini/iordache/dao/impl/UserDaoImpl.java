@@ -49,5 +49,6 @@ public class UserDaoImpl implements UserDao {
                             .setParameter("email", email)
                             .getResultStream()
                             .findFirst();
+
     }
 }

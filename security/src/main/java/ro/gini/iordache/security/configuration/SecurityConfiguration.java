@@ -1,24 +1,24 @@
 package ro.gini.iordache.security.configuration;
 
-import com.gini.iordache.dao.UserDao;
-import com.gini.iordache.dao.impl.UserDaoImpl;
-import com.gini.iordache.services.UserSecurityService;
+
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.UserDetailsService;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ro.gini.iordache.security.filter.UsernameAndPasswordFilter;
+import ro.gini.iordache.security.provider.UserNamePasswordProvider;
 
 @Configuration
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
-
+    @Autowired
+    private UserNamePasswordProvider userNamePasswordProvider;
 
     @Bean
     public UsernameAndPasswordFilter usernameAndPasswordFilter(){
@@ -40,18 +40,37 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        super.configure(auth);
+        auth.authenticationProvider(userNamePasswordProvider);
+
     }
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class);
+//
+//        http.authorizeRequests()
+//                .mvcMatchers("/login").permitAll()
+//                .mvcMatchers("/").authenticated();
+//
+//
+//    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        super.configure(http);
+        http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class);
+
+
+        http.authorizeRequests()
+                .mvcMatchers("/").permitAll()
+                    .and()
+                    .formLogin()
+                    .loginPage("/login2").permitAll()
+
+                .and()
+                .authorizeRequests()
+                        .mvcMatchers("/intra").authenticated();
     }
 
-    @Bean
-    public UserDetailsService userSecurityService(){
-        return new UserSecurityService();
-    }
 
 
     @Bean
