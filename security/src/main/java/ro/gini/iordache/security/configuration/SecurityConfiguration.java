@@ -66,6 +66,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .formLogin()
                     .loginPage("/login2").permitAll()
 
+
                 .and()
                 .authorizeRequests()
                         .mvcMatchers("/intra").authenticated();
