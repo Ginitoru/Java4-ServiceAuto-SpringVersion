@@ -5,6 +5,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.filter.OncePerRequestFilter;
+import ro.gini.iordache.security.authentication.EmailAuthentication;
 import ro.gini.iordache.security.authentication.UserNamePasswordAuthentication;
 
 import javax.servlet.FilterChain;
@@ -33,14 +34,35 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
         var password = request.getParameter("password");
 
 
+
+        if(usernameOrEmail.contains("@")){
+            Authentication auth = new EmailAuthentication(usernameOrEmail, password);
+
+            auth = authenticationManager.authenticate(auth);
+            SecurityContextHolder.getContext().setAuthentication(auth);
+            filterChain.doFilter(request, response);
+
+
+
+        }else{
+
+            Authentication auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
+
+            auth = authenticationManager.authenticate(auth);
+            SecurityContextHolder.getContext().setAuthentication(auth);
+            filterChain.doFilter(request, response);
+
+
+        }
+
+
+
+
+
         System.out.println(request.toString());
 
 
-        Authentication auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
 
-        auth = authenticationManager.authenticate(auth);
-        SecurityContextHolder.getContext().setAuthentication(auth);
-        filterChain.doFilter(request, response);
     }
 
     @Override

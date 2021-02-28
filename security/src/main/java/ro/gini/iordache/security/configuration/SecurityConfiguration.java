@@ -12,6 +12,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ro.gini.iordache.security.filter.UsernameAndPasswordFilter;
+import ro.gini.iordache.security.provider.EmailProvider;
 import ro.gini.iordache.security.provider.UserNamePasswordProvider;
 
 @Configuration
@@ -19,6 +20,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private UserNamePasswordProvider userNamePasswordProvider;
+
+    @Autowired
+    private EmailProvider emailProvider;
 
 
     @Bean
@@ -41,6 +45,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(userNamePasswordProvider);
+        auth.authenticationProvider(emailProvider);
 
     }
 
