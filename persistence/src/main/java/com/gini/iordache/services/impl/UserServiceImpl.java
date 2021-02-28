@@ -5,6 +5,7 @@ import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.NoSuchElementException;
 import java.util.Optional;
@@ -22,6 +23,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
+    @Transactional
     public void createUser(User user) {
 
         Optional<User> user1 = userDao.findUserByUsername(user.getUsername());
@@ -31,7 +33,6 @@ public class UserServiceImpl implements UserService {
             userDao.createUser(user);
 
         }else{
-
             throw new NoSuchElementException("User already exists");
         }
     }
