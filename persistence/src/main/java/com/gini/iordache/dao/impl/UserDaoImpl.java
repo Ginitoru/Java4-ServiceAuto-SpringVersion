@@ -31,6 +31,8 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> findUserByUsername(String username) {
 
+        //desi Set<String> authorities sunt fetch=eager nu le incarca in Privider cand setam autentificarea
+        //ca sa nu mai pun @Transactional in clasele de AuthenticationProvider am facut un JOIN FETCH
         String jpql = "SELECT u FROM User u JOIN FETCH u.authorities WHERE u.username =: username";
 
         return entityManager.createQuery(jpql, User.class)
