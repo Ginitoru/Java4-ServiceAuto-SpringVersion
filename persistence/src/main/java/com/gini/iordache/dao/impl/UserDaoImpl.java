@@ -31,7 +31,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> findUserByUsername(String username) {
 
-        String jpql = "SELECT u FROM User u WHERE u.username =: username";
+        String jpql = "SELECT u FROM User u JOIN FETCH u.authorities WHERE u.username =: username";
 
         return entityManager.createQuery(jpql, User.class)
                             .setParameter("username", username)

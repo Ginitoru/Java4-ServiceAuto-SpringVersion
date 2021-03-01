@@ -28,7 +28,6 @@ public class EmailProvider implements AuthenticationProvider {
 
 
     @Override
-    @Transactional(readOnly = true)
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         String email = authentication.getName();

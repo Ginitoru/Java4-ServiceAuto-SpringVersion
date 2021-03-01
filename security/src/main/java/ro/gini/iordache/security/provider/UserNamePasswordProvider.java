@@ -27,7 +27,6 @@ public class UserNamePasswordProvider implements AuthenticationProvider {
     }
 
     @Override
-    @Transactional(readOnly = true) // FARA ADNOTAREA ASTA aici =>(failed to lazily initialize a collection of role) lazy bla bla bla exception si nu merge sa te loghezi => nu trage lista de autorizari desi e fetch=EAGER
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
         var usernameOrEmail = authentication.getName();
