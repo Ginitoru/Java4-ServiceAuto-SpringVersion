@@ -9,6 +9,8 @@
         <module>web</module>
         <module>security</module>
         <module>email</module>
+        <module>untitled</module>
+        <module>web</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
