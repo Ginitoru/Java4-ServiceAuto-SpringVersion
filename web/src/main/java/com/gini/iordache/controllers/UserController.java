@@ -69,6 +69,8 @@ public class UserController {
         model.addAttribute("pacpac", request);
         System.out.println(request);
 
+
+
          return "user/activate-user";
     }
 }

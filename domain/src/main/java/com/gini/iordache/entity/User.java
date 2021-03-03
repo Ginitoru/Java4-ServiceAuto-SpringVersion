@@ -33,6 +33,9 @@ public class User {
     @ElementCollection(fetch = FetchType.EAGER)
     private Set<String> authorities = new HashSet<>();
 
+    @OneToOne(cascade = CascadeType.PERSIST)
+    private ActivationToken activationToken;
+
 
     public User() {
     }
