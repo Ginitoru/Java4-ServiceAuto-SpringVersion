@@ -26,7 +26,7 @@ public class EmailService implements EmailSender{
         MimeMessage mailMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mailMessage, "utf-8");
 
-        String link = "http://localhost:8080/";
+        String link = "http://localhost:8080/activate?token=" + "TOKEN + AAAAAAAAAAAAAAAAA";
                 //test page
         String email= "<h1>Boss you got mail</h1>" + "\n" +
                         "<hr>" + "\n" +
@@ -37,7 +37,7 @@ public class EmailService implements EmailSender{
                         "<br>" +
                              "<a href=\"" + link + "\">Activate Now</a>" +
                         "<form action=\"http://localhost:8080\">\n" +
-                        "<a href=\"http://localhost:8080\"><button type=\"button\">Activate account</button></a>\n";
+                        "<a href=\"" + link +"\"><button type=\"button\">Activate account</button></a>\n";
 
 
 

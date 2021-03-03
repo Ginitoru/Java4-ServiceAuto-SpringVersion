@@ -3,6 +3,7 @@ package com.gini.iordache.controllers;
 import com.gini.iordache.entity.Authorities;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
+import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
@@ -49,4 +53,22 @@ public class UserController {
         return "redirect:/login";
     }
 
+//    @GetMapping("/activate")
+//    public String activateAccount(HttpServletRequest request, Mode model){
+//
+//        var token = request.getParameter("token");
+//
+//        System.out.println( token);
+//
+//        return "user/activate-user";
+//    }
+
+    @GetMapping("/activate{token}")
+    public String activateAccount(@RequestParam("token") String request, Model model){
+
+        model.addAttribute("pacpac", request);
+        System.out.println(request);
+
+         return "user/activate-user";
+    }
 }
