@@ -53,24 +53,30 @@ public class UserController {
         return "redirect:/login";
     }
 
-//    @GetMapping("/activate")
-//    public String activateAccount(HttpServletRequest request, Mode model){
-//
-//        var token = request.getParameter("token");
-//
-//        System.out.println( token);
-//
-//        return "user/activate-user";
-//    }
+    @GetMapping("/activate")
+    public String activateAccount(HttpServletRequest request, Model model){
 
-    @GetMapping("/activate{token}")
-    public String activateAccount(@RequestParam("token") String request, Model model){
+        var token = request.getParameter("token");
+        var username = request.getParameter("username");
 
-        model.addAttribute("pacpac", request);
-        System.out.println(request);
+        System.out.println( "token " + token + " username " + username);
 
+        model.addAttribute("pacpac", token);
+        model.addAttribute("theuser", username);
 
+        userService.enableUserAccount(username, token);
 
-         return "user/activate-user";
+        return "user/activate-user";
     }
+
+//    @GetMapping("/activate{token}")
+//    public String activateAccount(@RequestParam("token") String request, Model model){
+//
+//        model.addAttribute("pacpac", request);
+//        System.out.println(request);
+//
+//
+//
+//         return "user/activate-user";
+//    }
 }

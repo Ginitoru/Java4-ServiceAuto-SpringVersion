@@ -30,10 +30,13 @@ public class User {
     @Column(name = "password")
     private String password;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    private boolean isEnabled = false;
+    private boolean isNonLoked = false;
+
+    @ElementCollection
     private Set<String> authorities = new HashSet<>();
 
-    @OneToOne(cascade = CascadeType.PERSIST)
+    @OneToOne(cascade = {CascadeType.PERSIST}, fetch = FetchType.LAZY) // lasa Lazy ca altfel imi face 3 selecuri cand ma loghez:D
     private ActivationToken activationToken;
 
 

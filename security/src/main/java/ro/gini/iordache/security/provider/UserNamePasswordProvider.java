@@ -33,7 +33,7 @@ public class UserNamePasswordProvider implements AuthenticationProvider {
         var password = authentication.getCredentials().toString();
 
         UserDetails user = userSecurityService.loadUserByUsername(usernameOrEmail);
-
+        System.out.println("Enabled:" + user.isEnabled() + " LOKED: " + user.isAccountNonLocked() + " xxxxxxxxxxxxxxxxxxxx");
         if(passwordEncoder.matches(password, user.getPassword())){
             return new UserNamePasswordAuthentication(usernameOrEmail, password, user.getAuthorities());
         }

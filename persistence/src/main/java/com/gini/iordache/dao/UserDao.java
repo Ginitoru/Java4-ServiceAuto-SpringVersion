@@ -13,4 +13,5 @@ public interface UserDao {
 
     Optional<User> findUserByEmail(String email);
 
+    int activateUserAccount(User user);
 }

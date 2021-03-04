@@ -26,7 +26,7 @@ public class EmailService implements EmailSender{
         MimeMessage mailMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mailMessage, "utf-8");
 
-        String link = "http://localhost:8080/activate?token=" + token;
+        String link = "http://localhost:8080/activate?token=" + token + "&username=" + username;
                 //test page
         String email= "<h1>Boss you got mail</h1>" + "\n" +
                         "<hr>" + "\n" +

@@ -5,6 +5,7 @@ import com.gini.iordache.entity.ActivationToken;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -47,12 +48,28 @@ public class UserServiceImpl implements UserService {
 
 
             //TODO: de vazut cum fac sa baga asta pe un thread separat deoarece imi blocheaza interfacta
-            //TODO: interfata grafica pana se conecteaza si trimite mailul
+            //TODO: grafica pana se conecteaza si trimite mailul
             emailSender.sendEmail(user.getEmail(), user.getUsername(), token);
 
         }else{
             throw new NoSuchElementException("User already exists");
         }
+    }
+
+    @Override
+    @Transactional
+    public int enableUserAccount(String username, String token){
+
+        //todo: de vazut aici la select ca face 3 selecturi si cred ca trebuie un jpql special sa iau daor token
+
+       int x =  userDao.findUserByUsername(username)                                       //gaseste un optional de User
+                    .filter(u -> u.getActivationToken().getToken().equals(token))       //face filtru sa vada daca exista token
+                    .map(userDao::activateUserAccount)                                  //face update la instanta de User (enable it)
+                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+
+
+       return x;
+
     }
 
 
