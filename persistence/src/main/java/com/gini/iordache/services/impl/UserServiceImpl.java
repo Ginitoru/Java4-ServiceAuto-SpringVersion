@@ -26,7 +26,7 @@ public class UserServiceImpl implements UserService {
     private final EmailSender emailSender;
 
 
-
+    //method 1
     @Override
     @Transactional()
     public void createUser(User user) {
@@ -56,23 +56,7 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    @Override
-    @Transactional
-    public int enableUserAccount(String username, String token){
-
-            int x = userDao.findUserWithToken(username)                                 //gaseste un optional de User
-                        .filter(u -> u.getActivationToken().getToken().equals(token))    //face filtru sa vada daca exista token
-                        .map(userDao::activateUserAccount)                               //face update la instanta de User (enable it)
-                        .orElseThrow(() -> new UsernameNotFoundException("Username Found"));
-
-
-       return x;
-
-    }
-
-
-
-
+    //method 2
     private ActivationToken createActivationToken(String token){
 
         ActivationToken activationToken = new ActivationToken();
@@ -83,4 +67,25 @@ public class UserServiceImpl implements UserService {
 
         return activationToken;
     }
+
+
+
+    @Override
+    @Transactional
+    public Optional<User> findUserWithToken(String username){
+        return userDao.findUserWithToken(username);
+    }
+
+    @Override
+    @Transactional
+    public int activateUserAccount(User user){
+
+        return userDao.activateUserAccount(user);
+
+    }
+
+
+
+
+
 }

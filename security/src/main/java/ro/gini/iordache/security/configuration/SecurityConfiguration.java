@@ -1,6 +1,7 @@
 package ro.gini.iordache.security.configuration;
 
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -11,18 +12,22 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
+import ro.gini.iordache.security.filter.TokenFilter;
 import ro.gini.iordache.security.filter.UsernameAndPasswordFilter;
 import ro.gini.iordache.security.provider.EmailProvider;
+import ro.gini.iordache.security.provider.TokenProvider;
 import ro.gini.iordache.security.provider.UserNamePasswordProvider;
 
 @Configuration
+
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
-    private UserNamePasswordProvider userNamePasswordProvider;
-
+    private  UserNamePasswordProvider userNamePasswordProvider;
     @Autowired
-    private EmailProvider emailProvider;
+    private  EmailProvider emailProvider;
+    @Autowired
+    private  TokenProvider tokenProvider;
 
 
     @Bean
@@ -33,6 +38,18 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             e.printStackTrace();
             throw new RuntimeException("Exception in: ----------------> AuthenticationManager");
         }
+    }
+
+    @Bean
+    public TokenFilter tokenFilter(){
+
+        try {
+            return new TokenFilter(authenticationManagerBean());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Exception in: ----------------> AuthenticationManager");
+        }
+
     }
 
 
@@ -46,13 +63,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
         auth.authenticationProvider(userNamePasswordProvider);
         auth.authenticationProvider(emailProvider);
+        auth.authenticationProvider(tokenProvider);
 
     }
 
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class);
+        http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class)
+                .addFilterBefore(tokenFilter(),BasicAuthenticationFilter.class);
 
 
         http.authorizeRequests()

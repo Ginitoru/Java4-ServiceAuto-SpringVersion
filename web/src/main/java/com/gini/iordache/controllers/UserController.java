@@ -69,14 +69,14 @@ public class UserController {
         return "user/activate-user";
     }
 
-//    @GetMapping("/activate{token}")
-//    public String activateAccount(@RequestParam("token") String request, Model model){
-//
-//        model.addAttribute("pacpac", request);
-//        System.out.println(request);
-//
-//
-//
-//         return "user/activate-user";
-//    }
+    @GetMapping("/activatex")
+    public String activateAccount(@RequestParam("token") String request, Model model){
+
+        model.addAttribute("pacpac", request);
+        System.out.println(request);
+
+
+
+         return "user/activate2";
+    }
 }
