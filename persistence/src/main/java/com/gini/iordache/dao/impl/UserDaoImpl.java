@@ -59,11 +59,11 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int activateUserAccount(User user){
 
-   //     //todo: nu pre pare ok, dar pt inceput merge-> de vazut daca pot sa o mai optimizez
+   //     //todo: nu prea pare ok, dar pt inceput merge-> de vazut daca pot sa o mai optimizez -> de facut doar 1 update nu 2
 
         String jpql = "UPDATE ActivationToken a SET a.activatedAt =: activatedAt WHERE a.id =: id ";
 
-        String jpql2 = "UPDATE User u SET u.isEnabled = 1, u.isNonLoked = 1 WHERE u.username =: username";
+        String jpql2 = "UPDATE User u SET u.isEnabled = TRUE, u.isNonLoked = TRUE WHERE u.username =: username";
 
         entityManager.createQuery(jpql)
                     .setParameter("id", user.getActivationToken().getId())
@@ -77,4 +77,17 @@ public class UserDaoImpl implements UserDao {
                         .executeUpdate();
 
     }
+
+    @Override
+    @Transactional
+    public Optional<User> findUserWithToken(String username){
+
+        String jpql = "SELECT u FROM User u JOIN FETCH u.activationToken WHERE u.username =: username";
+
+        return entityManager.createQuery(jpql, User.class)
+                    .setParameter("username", username)
+                    .getResultStream()
+                    .findFirst();
+    }
+
 }

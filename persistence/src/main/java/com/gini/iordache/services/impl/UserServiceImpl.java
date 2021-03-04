@@ -60,12 +60,10 @@ public class UserServiceImpl implements UserService {
     @Transactional
     public int enableUserAccount(String username, String token){
 
-        //todo: de vazut aici la select ca face 3 selecturi si cred ca trebuie un jpql special sa iau daor token
-
-       int x =  userDao.findUserByUsername(username)                                       //gaseste un optional de User
-                    .filter(u -> u.getActivationToken().getToken().equals(token))       //face filtru sa vada daca exista token
-                    .map(userDao::activateUserAccount)                                  //face update la instanta de User (enable it)
-                    .orElseThrow(() -> new UsernameNotFoundException("User not found"));
+            int x = userDao.findUserWithToken(username)                                 //gaseste un optional de User
+                        .filter(u -> u.getActivationToken().getToken().equals(token))    //face filtru sa vada daca exista token
+                        .map(userDao::activateUserAccount)                               //face update la instanta de User (enable it)
+                        .orElseThrow(() -> new UsernameNotFoundException("Username Found"));
 
 
        return x;

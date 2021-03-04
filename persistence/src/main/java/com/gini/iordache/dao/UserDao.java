@@ -2,6 +2,7 @@ package com.gini.iordache.dao;
 
 
 import com.gini.iordache.entity.User;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
@@ -14,4 +15,7 @@ public interface UserDao {
     Optional<User> findUserByEmail(String email);
 
     int activateUserAccount(User user);
+
+    @Transactional
+    Optional<User> findUserWithToken(String username);
 }
