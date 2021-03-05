@@ -56,14 +56,16 @@ public class UserServiceImpl implements UserService {
         }
     }
 
-    //method 2
+    //method 2 -> creem Activation Token
     private ActivationToken createActivationToken(String token){
 
         ActivationToken activationToken = new ActivationToken();
         var createdAt = LocalDateTime.now();
+        var expiredAt = LocalDateTime.now().plusMinutes(2);
 
         activationToken.setToken(token);
         activationToken.setCreatedAt(createdAt);
+        activationToken.setExpiredAt(expiredAt);
 
         return activationToken;
     }

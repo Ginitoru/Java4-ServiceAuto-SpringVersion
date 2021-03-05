@@ -20,6 +20,7 @@ public class ActivationToken {
     private String token;
     private LocalDateTime createdAt;
     private LocalDateTime activatedAt;
+    private LocalDateTime expiredAt;
 
     @OneToOne (mappedBy = "activationToken")
     private User user;

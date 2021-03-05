@@ -64,19 +64,19 @@ public class UserController {
         model.addAttribute("pacpac", token);
         model.addAttribute("theuser", username);
 
-        userService.enableUserAccount(username, token);
+      //  userService.enableUserAccount(username, token);
 
         return "user/activate-user";
     }
 
-    @GetMapping("/activatex")
-    public String activateAccount(@RequestParam("token") String request, Model model){
-
-        model.addAttribute("pacpac", request);
-        System.out.println(request);
-
-
-
-         return "user/activate2";
-    }
+//    @GetMapping("/activatex")
+//    public String activateAccount(@RequestParam("token") String request, Model model){
+//
+//        model.addAttribute("pacpac", request);
+//        System.out.println(request);
+//
+//
+//
+//         return "user/activate2";
+//    }
 }

@@ -36,7 +36,13 @@ public class EmailProvider implements AuthenticationProvider {
         UserDetails user = userSecurityService.loadUserByUsername(email);
 
         if(passwordEncoder.matches(password, user.getPassword())){
-            return new EmailAuthentication(user.getUsername(), password, user.getAuthorities());
+
+                if(user.isEnabled() && user.isAccountNonLocked()){
+                    return new EmailAuthentication(user.getUsername(), password, user.getAuthorities());
+                }
+
+                throw new IllegalArgumentException("Account is not activated");
+
         }
 
         throw new BadCredentialsException("Bad Credential Exception");
