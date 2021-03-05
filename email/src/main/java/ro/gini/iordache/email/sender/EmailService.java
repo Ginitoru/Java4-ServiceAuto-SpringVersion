@@ -4,6 +4,7 @@ package ro.gini.iordache.email.sender;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import javax.mail.MessagingException;
@@ -19,6 +20,7 @@ public class EmailService implements EmailSender{
 
 
     @Override
+    @Async
     public void sendEmail(String userEmail, String username, String token) {
 
 

@@ -42,7 +42,7 @@ public class TokenProvider implements AuthenticationProvider {
         }
 
 
-
+        //todo: to make an option to resend a token so that the account can be activated
         if(tokenFromDatabase.getExpiredAt().isBefore(LocalDateTime.now())){
             throw new IllegalArgumentException("Token has expired");
         }
