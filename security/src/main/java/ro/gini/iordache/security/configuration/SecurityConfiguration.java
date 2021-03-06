@@ -1,7 +1,6 @@
 package ro.gini.iordache.security.configuration;
 
 
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -75,12 +74,16 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .addFilterBefore(tokenFilter(),BasicAuthenticationFilter.class);
 
 
+
         http.authorizeRequests()
+
                 .mvcMatchers("/").permitAll()
                 .mvcMatchers("/create-user").permitAll()
                     .and()
                     .formLogin()
-                    .loginPage("/login2").permitAll()
+                    .loginPage("/login").permitAll()
+
+                    //.failureUrl("/login")
 
 
                 .and()

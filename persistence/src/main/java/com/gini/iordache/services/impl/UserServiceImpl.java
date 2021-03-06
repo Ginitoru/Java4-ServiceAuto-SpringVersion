@@ -45,10 +45,6 @@ public class UserServiceImpl implements UserService {
 
 
             userDao.createUser(user);
-
-
-            //TODO: de vazut cum fac sa baga asta pe un thread separat deoarece imi blocheaza interfacta
-            //TODO: grafica pana se conecteaza si trimite mailul
             emailSender.sendEmail(user.getEmail(), user.getUsername(), token);
 
         }else{

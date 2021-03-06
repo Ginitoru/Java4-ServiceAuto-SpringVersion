@@ -6,6 +6,9 @@ import com.gini.iordache.services.UserService;
 import org.dom4j.rule.Mode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,20 +30,27 @@ public class UserController {
     }
 
     @GetMapping("/login")
-    public String showLoginPage(Model model){
+    public String showLoginPage(Model model) {
         model.addAttribute("user", new User());
         return "user/login-user";
     }
 
 
     @PostMapping("/login-processing")
-    public String loginProcessing(){
+    public String loginProcessing() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+
+        if (authentication == null || authentication instanceof AnonymousAuthenticationToken) {
+
+            return "redirect:/login";
+        }
+
         return "redirect:/intra";
     }
 
 
     @GetMapping("/create-user")
-    public String showCreateUserPage(Model model){
+    public String showCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         model.addAttribute("authority", Authorities.values());
         return "user/create-user";
@@ -48,26 +58,28 @@ public class UserController {
 
 
     @PostMapping("/create-user")
-    public String createUser(@ModelAttribute("newUser") User user){
+    public String createUser(@ModelAttribute("newUser") User user) {
         userService.createUser(user);
         return "redirect:/login";
     }
 
     @GetMapping("/activate")
-    public String activateAccount(HttpServletRequest request, Model model){
+    public String activateAccount(HttpServletRequest request, Model model) {
 
         var token = request.getParameter("token");
         var username = request.getParameter("username");
 
-        System.out.println( "token " + token + " username " + username);
+        System.out.println("token " + token + " username " + username);
 
         model.addAttribute("pacpac", token);
         model.addAttribute("theuser", username);
 
-      //  userService.enableUserAccount(username, token);
+        //  userService.enableUserAccount(username, token);
 
         return "user/activate-user";
     }
+
+
 
 //    @GetMapping("/activatex")
 //    public String activateAccount(@RequestParam("token") String request, Model model){
@@ -79,4 +91,6 @@ public class UserController {
 //
 //         return "user/activate2";
 //    }
+
+
 }
