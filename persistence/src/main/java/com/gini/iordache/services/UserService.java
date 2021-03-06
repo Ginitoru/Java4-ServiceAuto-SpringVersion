@@ -11,6 +11,9 @@ public interface UserService {
 
   //  int enableUserAccount(String username, String token);
 
+    @Transactional
+    void updateUserToken(String email);
+
     Optional<User> findUserWithToken(String username);
 
     @Transactional

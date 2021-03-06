@@ -66,6 +66,15 @@ public class UserServiceImpl implements UserService {
         return activationToken;
     }
 
+    @Override
+    @Transactional
+    public void updateUserToken(String email){
+
+        userDao.findUserWithToken(email);
+
+
+    }
+
 
 
     @Override
@@ -77,7 +86,6 @@ public class UserServiceImpl implements UserService {
     @Override
     @Transactional
     public int activateUserAccount(User user){
-
         return userDao.activateUserAccount(user);
 
     }
