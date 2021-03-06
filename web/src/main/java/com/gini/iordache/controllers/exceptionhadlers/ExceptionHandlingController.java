@@ -1,6 +1,8 @@
-package com.gini.iordache.controllers;
+package com.gini.iordache.controllers.exceptionhadlers;
 
 
+import com.gini.errors.AccountAlreadyActive;
+import com.gini.errors.TokenHasExpired;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
@@ -10,11 +12,18 @@ import org.springframework.web.bind.annotation.*;
 public class ExceptionHandlingController {
 
 
-    @ExceptionHandler(IllegalArgumentException.class)
-    public String processRuntimeException(IllegalArgumentException e) {
+    @ExceptionHandler(AccountAlreadyActive.class)
+    public String processAccountAlreadyActive(AccountAlreadyActive e) {
 
         System.out.println("uuuuuuuuuuuuuuuuuuuuu");
-        return "username";
+        return "user/activate-user";
+    }
+
+    @ExceptionHandler(TokenHasExpired.class)
+    public String processTokenHasExpired(TokenHasExpired e) {
+
+        System.out.println("uuuuuuuuuuuuuuuuuuuuu");
+        return "user/activate-user";
     }
 
 
@@ -32,6 +41,9 @@ public class ExceptionHandlingController {
         System.out.println("uuuuuuuuuuuuuuuuuuuuu");
         return "redirect:/login?error";
     }
+
+
+
 
 
 

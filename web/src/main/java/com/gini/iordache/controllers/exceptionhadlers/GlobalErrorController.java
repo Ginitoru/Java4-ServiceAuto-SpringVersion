@@ -1,4 +1,4 @@
-package com.gini.iordache.controllers;
+package com.gini.iordache.controllers.exceptionhadlers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
-public class ExController implements ErrorController {
+public class GlobalErrorController implements ErrorController {
 
 
     @RequestMapping("/error")

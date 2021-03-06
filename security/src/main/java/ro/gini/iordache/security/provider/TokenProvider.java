@@ -1,9 +1,10 @@
 package ro.gini.iordache.security.provider;
 
+import com.gini.errors.AccountAlreadyActive;
+import com.gini.errors.TokenHasExpired;
 import com.gini.iordache.entity.ActivationToken;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.impl.UserServiceImpl;
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -25,10 +26,10 @@ public class TokenProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        var username = authentication.getName();
+        var email = authentication.getName();
         var token = authentication.getCredentials().toString();
 
-        Optional<User> user = userService.findUserWithToken(username);
+        Optional<User> user = userService.findUserWithToken(email);
 
 
         ActivationToken tokenFromDatabase = user
@@ -38,13 +39,13 @@ public class TokenProvider implements AuthenticationProvider {
 
 
         if(tokenFromDatabase.getActivatedAt() != null){
-            throw new IllegalArgumentException("Account was already activated");
+            throw new AccountAlreadyActive("Account was already activated");
         }
 
 
         //todo: to make an option to resend a token so that the account can be activated
         if(tokenFromDatabase.getExpiredAt().isBefore(LocalDateTime.now())){
-            throw new IllegalArgumentException("Token has expired");
+            throw new TokenHasExpired("Token has expired");
         }
 
 

@@ -26,10 +26,10 @@ public class TokenFilter extends OncePerRequestFilter {
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-        var username = request.getParameter("username");
+        var email = request.getParameter("email");
         var token = request.getParameter("token");
 
-        Authentication authentication = new TokenAuthentication(username, token);
+        Authentication authentication = new TokenAuthentication(email, token);
 
         authentication = authenticationManager.authenticate(authentication);
         SecurityContextHolder.getContext().setAuthentication(authentication);

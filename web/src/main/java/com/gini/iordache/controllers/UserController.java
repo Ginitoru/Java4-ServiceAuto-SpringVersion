@@ -3,9 +3,8 @@ package com.gini.iordache.controllers;
 import com.gini.iordache.entity.Authorities;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
-import org.dom4j.rule.Mode;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -67,30 +66,18 @@ public class UserController {
     public String activateAccount(HttpServletRequest request, Model model) {
 
         var token = request.getParameter("token");
-        var username = request.getParameter("username");
+        var email = request.getParameter("email");
 
-        System.out.println("token " + token + " username " + username);
+        System.out.println("token " + token + " username " + email);
 
         model.addAttribute("pacpac", token);
-        model.addAttribute("theuser", username);
+        model.addAttribute("email", email);
 
-        //  userService.enableUserAccount(username, token);
 
         return "user/activate-user";
     }
 
 
-
-//    @GetMapping("/activatex")
-//    public String activateAccount(@RequestParam("token") String request, Model model){
-//
-//        model.addAttribute("pacpac", request);
-//        System.out.println(request);
-//
-//
-//
-//         return "user/activate2";
-//    }
 
 
 }

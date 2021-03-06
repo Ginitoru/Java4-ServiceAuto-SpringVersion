@@ -80,12 +80,12 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     @Transactional
-    public Optional<User> findUserWithToken(String username){
+    public Optional<User> findUserWithToken(String email){
 
-        String jpql = "SELECT u FROM User u JOIN FETCH u.activationToken WHERE u.username =: username";
+        String jpql = "SELECT u FROM User u JOIN FETCH u.activationToken WHERE u.email =: email";
 
         return entityManager.createQuery(jpql, User.class)
-                    .setParameter("username", username)
+                    .setParameter("email", email)
                     .getResultStream()
                     .findFirst();
     }

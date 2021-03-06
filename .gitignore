@@ -2,4 +2,5 @@
 /.idea/
 /web/target/
 /domain/target/
-/persistence/target
+/persistence/target/
+/error/target/
