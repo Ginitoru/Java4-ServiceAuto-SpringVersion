@@ -16,14 +16,14 @@ public class ExceptionHandlingController {
     public String processAccountAlreadyActive(AccountAlreadyActive e) {
 
         System.out.println("uuuuuuuuuuuuuuuuuuuuu");
-        return "redirect:/token?activated";
+        return "redirect:/account-active";
     }
 
     @ExceptionHandler(TokenHasExpired.class)
     public String processTokenHasExpired(TokenHasExpired e) {
 
         System.out.println("uuuuuuuuuuuuuuuuuuuuu");
-        return "redirect:/token?expired";
+        return "redirect:/token";
     }
 
 

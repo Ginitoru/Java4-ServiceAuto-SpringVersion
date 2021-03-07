@@ -11,11 +11,12 @@ public interface UserService {
 
   //  int enableUserAccount(String username, String token);
 
-    @Transactional
-    void updateUserToken(String email);
 
-    Optional<User> findUserWithToken(String username);
+    void updateUserToken(User user);
 
-    @Transactional
+
+    Optional<User> findUserWithToken(String email);
+
+
     int activateUserAccount(User user);
 }

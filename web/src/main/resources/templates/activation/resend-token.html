@@ -15,20 +15,15 @@
     <br>
     <br>
 
-    <form action="#" th:action="@{/create-token}"
+    <form action="#" th:action="@{/resendToken}"
             th:object="${token}" method="POST">
 
-        <div th:if="${param.activated}">
-            <h2>ACCOUNT IS ALREADY ACTIVE</h2>
-        </div>
-
-        <div th:if="${param.expired}">
-
+        <div>
             <h3>Account is not active</h3>
             <br>
             <h3>Enter email to resend activation token</h3>
 
-            <input th:field="*{user.email}" placeholder="email">
+            <input type="text" id="email" name="email" placeholder="email">
 
             <input type="submit" value="Resend Token">
         </div>

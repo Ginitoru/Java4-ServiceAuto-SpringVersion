@@ -5,7 +5,6 @@ import com.gini.iordache.entity.ActivationToken;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
 import lombok.AllArgsConstructor;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -40,7 +39,7 @@ public class UserServiceImpl implements UserService {
             user.setPassword(encodedPassword);
             var token = UUID.randomUUID().toString();
 
-            ActivationToken activationToken = createActivationToken(token);
+            ActivationToken activationToken = createActivationToken(token, user);
             user.setActivationToken(activationToken);
 
 
@@ -53,7 +52,7 @@ public class UserServiceImpl implements UserService {
     }
 
     //method 2 -> creem Activation Token
-    private ActivationToken createActivationToken(String token){
+    private ActivationToken createActivationToken(String token, User user){
 
         ActivationToken activationToken = new ActivationToken();
         var createdAt = LocalDateTime.now();
@@ -62,16 +61,20 @@ public class UserServiceImpl implements UserService {
         activationToken.setToken(token);
         activationToken.setCreatedAt(createdAt);
         activationToken.setExpiredAt(expiredAt);
+        activationToken.setUser(user);
 
         return activationToken;
     }
 
     @Override
     @Transactional
-    public void updateUserToken(String email){
+    public void updateUserToken(User user){
 
-        userDao.findUserWithToken(email);
+        var token = UUID.randomUUID().toString();
 
+
+        userDao.updateToken(user.getId(),token);
+        emailSender.sendEmail(user.getEmail(),user.getUsername(),token);
 
     }
 
@@ -79,8 +82,8 @@ public class UserServiceImpl implements UserService {
 
     @Override
     @Transactional
-    public Optional<User> findUserWithToken(String username){
-        return userDao.findUserWithToken(username);
+    public Optional<User> findUserWithToken(String email){
+        return userDao.findUserWithToken(email);
     }
 
     @Override

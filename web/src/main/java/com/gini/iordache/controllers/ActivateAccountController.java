@@ -19,12 +19,19 @@ public class ActivateAccountController {
         return "activation/resend-token";
     }
 
-    @PostMapping("/token")
+    @PostMapping("/resendToken")
     public String activateExpiredToken(@ModelAttribute("token") ActivationToken activationToken){
 
 
 
         return "redirect:/login";
+    }
+
+    @GetMapping("/account-active")
+    public String accountActivePage(){
+
+        return "activation/account-active";
+
     }
 
 

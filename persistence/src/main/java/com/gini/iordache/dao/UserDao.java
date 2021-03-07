@@ -16,6 +16,7 @@ public interface UserDao {
 
     int activateUserAccount(User user);
 
-    @Transactional
-    Optional<User> findUserWithToken(String username);
+    Optional<User> findUserWithToken(String email);
+
+    int updateToken(int email, String token);
 }

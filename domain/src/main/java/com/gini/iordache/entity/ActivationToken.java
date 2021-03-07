@@ -22,7 +22,7 @@ public class ActivationToken {
     private LocalDateTime activatedAt;
     private LocalDateTime expiredAt;
 
-    @OneToOne (mappedBy = "activationToken")
+    @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
 }

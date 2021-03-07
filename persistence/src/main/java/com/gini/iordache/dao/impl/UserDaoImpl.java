@@ -3,6 +3,7 @@ package com.gini.iordache.dao.impl;
 import com.gini.iordache.dao.UserDao;
 import com.gini.iordache.entity.ActivationToken;
 import com.gini.iordache.entity.User;
+import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -79,7 +80,6 @@ public class UserDaoImpl implements UserDao {
     }
 
     @Override
-    @Transactional
     public Optional<User> findUserWithToken(String email){
 
         String jpql = "SELECT u FROM User u JOIN FETCH u.activationToken WHERE u.email =: email";
@@ -88,6 +88,23 @@ public class UserDaoImpl implements UserDao {
                     .setParameter("email", email)
                     .getResultStream()
                     .findFirst();
+    }
+
+    @Override
+    public int updateToken(int userId, String token){
+
+        String jpql = "UPDATE ActivationToken a SET a.token =: token, a.createdAt =: createdAt, a.expiredAt =: expiredAt WHERE a.user.id =: userId";
+
+        int x = entityManager.createQuery(jpql)
+                    .setParameter("token", token)
+                    .setParameter("createdAt", LocalDateTime.now())
+                    .setParameter("expiredAt", LocalDateTime.now().plusMinutes(2))
+                    .setParameter("userId", userId)
+                    .executeUpdate();
+
+        System.out.println("AM AJUNS IN DAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" + " " + x);
+
+        return x;
     }
 
 }
