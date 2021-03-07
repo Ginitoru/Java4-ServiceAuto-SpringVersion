@@ -1,5 +1,6 @@
 package ro.gini.iordache.security.provider;
 
+import com.gini.errors.AccountIsNotActive;
 import org.springframework.stereotype.Component;
 
 
@@ -42,7 +43,7 @@ public class UserNamePasswordProvider implements AuthenticationProvider {
                     return new UserNamePasswordAuthentication(usernameOrEmail, password, user.getAuthorities());
                 }
 
-                throw new IllegalArgumentException("Account is not activated");
+                throw new AccountIsNotActive("Account is not activated");
         }
 
 

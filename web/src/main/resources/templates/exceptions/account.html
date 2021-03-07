@@ -8,6 +8,12 @@
 
 </head>
 <body>
-        <h1>Account is active</h1>
+
+
+        <div th:if="${param.active}">
+            <h1>Account is active</h1>
+        </div>
+
+
 </body>
 </html>
