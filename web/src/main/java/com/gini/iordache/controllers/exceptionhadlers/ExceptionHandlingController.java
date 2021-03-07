@@ -1,10 +1,7 @@
 package com.gini.iordache.controllers.exceptionhadlers;
 
 
-import com.gini.errors.AccountAlreadyActive;
-import com.gini.errors.AccountIsNotActive;
-import com.gini.errors.EmailIsNotRegistered;
-import com.gini.errors.TokenHasExpired;
+import com.gini.errors.*;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.*;
@@ -46,6 +43,13 @@ public class ExceptionHandlingController {
     @ExceptionHandler(EmailIsNotRegistered.class)
     public String emailIsNotRegistered(EmailIsNotRegistered e){
         return "redirect:/token?error";
+    }
+
+
+    @ExceptionHandler(InvalidToken.class)
+    public String invalidToken(InvalidToken e){
+        return "redirect:/account?invalidToken";
+
     }
 
 

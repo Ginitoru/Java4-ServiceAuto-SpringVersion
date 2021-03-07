@@ -1,6 +1,8 @@
 package ro.gini.iordache.security.provider;
 
 import com.gini.errors.AccountAlreadyActive;
+import com.gini.errors.EmailIsNotRegistered;
+import com.gini.errors.InvalidToken;
 import com.gini.errors.TokenHasExpired;
 import com.gini.iordache.entity.ActivationToken;
 import com.gini.iordache.entity.User;
@@ -29,30 +31,31 @@ public class TokenProvider implements AuthenticationProvider {
         var email = authentication.getName();
         var token = authentication.getCredentials().toString();
 
-        Optional<User> user = userService.findUserWithToken(email);
+        User user = userService.findUserWithToken(email)
+                                        .orElseThrow(() -> new EmailIsNotRegistered("Email is not registered"));
+
+        ActivationToken userToken = user.getActivationToken();
 
 
-        ActivationToken tokenFromDatabase = user
-                                                .filter(u -> u.getActivationToken().getToken().equals(token))
-                                                .map(User::getActivationToken)
-                                                .orElseThrow(() -> new IllegalArgumentException("Username or token not found"));
+
+        Optional.of(userToken)
+                .filter(t -> t.getActivatedAt() == null)
+                .orElseThrow(() ->new AccountAlreadyActive("Account was already activated"));
 
 
-        if(tokenFromDatabase.getActivatedAt() != null){
-            throw new AccountAlreadyActive("Account was already activated");
-        }
+        Optional.of(userToken)
+                .filter(t -> !t.getExpiredAt().isBefore(LocalDateTime.now()))
+                .orElseThrow(() -> new TokenHasExpired("Token has expired"));
 
 
-        //todo: to make an option to resend a token so that the account can be activated
-        if(tokenFromDatabase.getExpiredAt().isBefore(LocalDateTime.now())){
-            throw new TokenHasExpired("Token has expired");
-        }
+        Optional.of(userToken)
+                .filter(t -> t.getToken().equals(token))
+                .orElseThrow(() -> new InvalidToken("Invalid Token"));
 
 
-        return user
-                    .map(this::authenticate)
-                    .orElseThrow(() -> new BadCredentialsException("Bad credentials"));
-
+        return Optional.of(user)
+                        .map(this::authenticate)
+                        .orElseThrow(() -> new BadCredentialsException("Bad credentials"));
     }
 
     //method 2

@@ -1,5 +1,6 @@
 package ro.gini.iordache.security.provider;
 
+import com.gini.errors.AccountAlreadyActive;
 import com.gini.errors.EmailIsNotRegistered;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
@@ -10,6 +11,9 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import ro.gini.iordache.security.authentication.ResendTokenAuthentication;
 
+import java.time.LocalDateTime;
+import java.util.Optional;
+
 
 @AllArgsConstructor
 @Component
@@ -18,6 +22,7 @@ public class ResendTokenProvider implements AuthenticationProvider {
 
     private final UserService userService;
 
+    //method 1
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
@@ -29,12 +34,20 @@ public class ResendTokenProvider implements AuthenticationProvider {
                                 .orElseThrow(() ->new EmailIsNotRegistered("Email is not registered"));
 
 
-        if(user.getActivationToken().getActivatedAt() == null){
-            userService.updateUserToken(user);
-        }
+
+       return Optional.of(user)
+                        .filter( u -> u.getActivationToken().getActivatedAt() == null )
+                        .map(u -> resendTokenAuthentication(u))
+                        .orElseThrow(() -> new AccountAlreadyActive("Account is already active"));
+
+    }
 
 
-        return new ResendTokenAuthentication(email, null, null);
+    //metod 2
+    private ResendTokenAuthentication resendTokenAuthentication(User user){
+        userService.updateUserToken(user);
+
+        return new ResendTokenAuthentication(user.getEmail(), null, null);
     }
 
 
