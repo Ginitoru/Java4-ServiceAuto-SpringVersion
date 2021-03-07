@@ -23,9 +23,16 @@
             <br>
             <h3>Enter email to resend activation token</h3>
 
+
+
             <input type="text" id="email" name="email" placeholder="email">
 
             <input type="submit" value="Resend Token">
+
+            <div th:if="${param.error}">
+                <h3>wrong email adress</h3>
+            </div>
+
         </div>
 
 

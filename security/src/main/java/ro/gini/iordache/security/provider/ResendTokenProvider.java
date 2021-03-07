@@ -1,5 +1,6 @@
 package ro.gini.iordache.security.provider;
 
+import com.gini.errors.EmailIsNotRegistered;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
 import lombok.AllArgsConstructor;
@@ -25,7 +26,7 @@ public class ResendTokenProvider implements AuthenticationProvider {
 
 
         User user = userService.findUserWithToken(email)
-                                .orElseThrow(() ->new RuntimeException("Email is not registered"));
+                                .orElseThrow(() ->new EmailIsNotRegistered("Email is not registered"));
 
 
         if(user.getActivationToken().getActivatedAt() == null){
