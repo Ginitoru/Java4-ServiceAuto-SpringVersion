@@ -90,21 +90,4 @@ public class UserDaoImpl implements UserDao {
                     .findFirst();
     }
 
-    @Override
-    public int updateToken(int userId, String token){
-
-        String jpql = "UPDATE ActivationToken a SET a.token =: token, a.createdAt =: createdAt, a.expiredAt =: expiredAt WHERE a.user.id =: userId";
-
-        int x = entityManager.createQuery(jpql)
-                    .setParameter("token", token)
-                    .setParameter("createdAt", LocalDateTime.now())
-                    .setParameter("expiredAt", LocalDateTime.now().plusMinutes(2))
-                    .setParameter("userId", userId)
-                    .executeUpdate();
-
-        System.out.println("AM AJUNS IN DAOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO" + " " + x);
-
-        return x;
-    }
-
 }

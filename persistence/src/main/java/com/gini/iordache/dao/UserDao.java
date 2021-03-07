@@ -18,5 +18,5 @@ public interface UserDao {
 
     Optional<User> findUserWithToken(String email);
 
-    int updateToken(int email, String token);
+ //   int updateToken(int email, String token);
 }

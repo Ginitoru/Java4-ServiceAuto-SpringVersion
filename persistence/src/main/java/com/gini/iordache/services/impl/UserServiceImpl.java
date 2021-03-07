@@ -1,6 +1,8 @@
 package com.gini.iordache.services.impl;
 
+import com.gini.iordache.dao.TokenDao;
 import com.gini.iordache.dao.UserDao;
+import com.gini.iordache.dao.impl.TokenDaoImpl;
 import com.gini.iordache.entity.ActivationToken;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
@@ -23,6 +25,7 @@ public class UserServiceImpl implements UserService {
     private final UserDao userDao;
     private final PasswordEncoder passwordEncoder;
     private final EmailSender emailSender;
+    private final TokenDao tokenDao;
 
 
     //method 1
@@ -45,11 +48,13 @@ public class UserServiceImpl implements UserService {
 
             userDao.createUser(user);
             emailSender.sendEmail(user.getEmail(), user.getUsername(), token);
-
-        }else{
-            throw new NoSuchElementException("User already exists");
+            return;
         }
+
+        throw new NoSuchElementException("User already exists");
     }
+
+
 
     //method 2 -> creem Activation Token
     private ActivationToken createActivationToken(String token, User user){
@@ -73,7 +78,7 @@ public class UserServiceImpl implements UserService {
         var token = UUID.randomUUID().toString();
 
 
-        userDao.updateToken(user.getId(),token);
+        tokenDao.updateToken(user.getId(),token);
         emailSender.sendEmail(user.getEmail(),user.getUsername(),token);
 
     }

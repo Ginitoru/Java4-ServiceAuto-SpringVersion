@@ -19,7 +19,7 @@ import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Component
-@AllArgsConstructor
+@AllArgsConstructor     //aici cred ca am cam exagerat cu Optional:D
 public class TokenProvider implements AuthenticationProvider {
 
     private final UserServiceImpl userService;
@@ -38,19 +38,19 @@ public class TokenProvider implements AuthenticationProvider {
 
 
 
-        Optional.of(userToken)
-                .filter(t -> t.getActivatedAt() == null)
-                .orElseThrow(() ->new AccountAlreadyActive("Account was already activated"));
+                    Optional.of(userToken)
+                            .filter(t -> t.getActivatedAt() == null)
+                            .orElseThrow(() ->new AccountAlreadyActive("Account was already activated"));
 
 
-        Optional.of(userToken)
-                .filter(t -> !t.getExpiredAt().isBefore(LocalDateTime.now()))
-                .orElseThrow(() -> new TokenHasExpired("Token has expired"));
+                    Optional.of(userToken)
+                            .filter(t -> !t.getExpiredAt().isBefore(LocalDateTime.now()))
+                            .orElseThrow(() -> new TokenHasExpired("Token has expired"));
 
 
-        Optional.of(userToken)
-                .filter(t -> t.getToken().equals(token))
-                .orElseThrow(() -> new InvalidToken("Invalid Token"));
+                    Optional.of(userToken)
+                            .filter(t -> t.getToken().equals(token))
+                            .orElseThrow(() -> new InvalidToken("Invalid Token"));
 
 
         return Optional.of(user)
@@ -58,9 +58,10 @@ public class TokenProvider implements AuthenticationProvider {
                         .orElseThrow(() -> new BadCredentialsException("Bad credentials"));
     }
 
+
+
     //method 2
     private Authentication authenticate(User user){
-
         userService.activateUserAccount(user);
         return new TokenAuthentication(user.getActivationToken().getToken(), null, null);
     }
