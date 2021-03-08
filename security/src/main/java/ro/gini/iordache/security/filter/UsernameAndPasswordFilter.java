@@ -46,7 +46,7 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
 
 
 
-        }else{
+        }else {
 
             Authentication auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
 
@@ -56,16 +56,10 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
 
 
         }
-
-
-
-
-
-        System.out.println(request.toString());
-
-
-
     }
+
+
+
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {

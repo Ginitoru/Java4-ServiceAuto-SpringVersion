@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.Objects;
 
 @Getter
 @Setter
@@ -25,4 +26,16 @@ public class ActivationToken {
     @OneToOne(cascade = CascadeType.ALL)
     private User user;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ActivationToken that = (ActivationToken) o;
+        return id == that.id && Objects.equals(token, that.token) && Objects.equals(createdAt, that.createdAt) && Objects.equals(activatedAt, that.activatedAt) && Objects.equals(expiredAt, that.expiredAt) && Objects.equals(user, that.user);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, token, createdAt, activatedAt, expiredAt, user);
+    }
 }

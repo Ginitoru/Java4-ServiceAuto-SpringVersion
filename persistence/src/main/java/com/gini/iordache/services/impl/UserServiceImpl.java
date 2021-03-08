@@ -30,7 +30,7 @@ public class UserServiceImpl implements UserService {
 
     //method 1
     @Override
-    @Transactional()
+    @Transactional
     public void createUser(User user) {
 
         Optional<User> user1 = userDao.findUserByUsername(user.getUsername());
@@ -86,7 +86,7 @@ public class UserServiceImpl implements UserService {
 
 
     @Override
-    @Transactional
+    @Transactional(readOnly = true)
     public Optional<User> findUserWithToken(String email){
         return userDao.findUserWithToken(email);
     }

@@ -1,9 +1,7 @@
 package com.gini.iordache.dao.impl;
 
 import com.gini.iordache.dao.UserDao;
-import com.gini.iordache.entity.ActivationToken;
 import com.gini.iordache.entity.User;
-import org.hibernate.tool.schema.internal.exec.ScriptTargetOutputToFile;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;

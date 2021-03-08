@@ -4,6 +4,7 @@ import com.gini.iordache.entity.Authorities;
 import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
 
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -19,18 +20,15 @@ import javax.servlet.http.HttpServletRequest;
 
 
 @Controller
+@AllArgsConstructor
 public class UserController {
 
     private final UserService userService;
 
-    @Autowired
-    public UserController(UserService userService) {
-        this.userService = userService;
-    }
+
 
     @GetMapping("/login")
-    public String showLoginPage(Model model) {
-        model.addAttribute("user", new User());
+    public String showLoginPage() {
         return "user/login-user";
     }
 
@@ -76,8 +74,4 @@ public class UserController {
 
         return "user/activate-user";
     }
-
-
-
-
 }

@@ -1,6 +1,7 @@
 package ro.gini.iordache.security.provider;
 
 import com.gini.errors.AccountIsNotActive;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
 
@@ -15,16 +16,12 @@ import ro.gini.iordache.security.service.UserSecurityService;
 
 
 @Component
+@AllArgsConstructor
 public class UserNamePasswordProvider implements AuthenticationProvider {
 
     private final UserSecurityService userSecurityService;
     private final PasswordEncoder passwordEncoder;
 
-
-    public UserNamePasswordProvider(UserSecurityService userSecurityService, PasswordEncoder passwordEncoder) {
-        this.userSecurityService = userSecurityService;
-        this.passwordEncoder = passwordEncoder;
-    }
 
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
@@ -33,8 +30,6 @@ public class UserNamePasswordProvider implements AuthenticationProvider {
         var password = authentication.getCredentials().toString();
 
         UserDetails user = userSecurityService.loadUserByUsername(usernameOrEmail);
-
-        System.out.println("Enabled:" + user.isEnabled() + " LOKED: " + user.isAccountNonLocked() + " xxxxxxxxxxxxxxxxxxxx");
 
 
         if(passwordEncoder.matches(password, user.getPassword())){

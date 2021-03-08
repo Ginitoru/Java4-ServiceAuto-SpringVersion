@@ -1,7 +1,7 @@
 package ro.gini.iordache.security.provider;
 
 import com.gini.errors.AccountIsNotActive;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
@@ -10,22 +10,16 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 import ro.gini.iordache.security.authentication.EmailAuthentication;
-import ro.gini.iordache.security.service.UserSecurityService;
+
 
 
 @Component
+@AllArgsConstructor
 public class EmailProvider implements AuthenticationProvider {
 
     private final UserDetailsService userSecurityService;
     private final PasswordEncoder passwordEncoder;
-
-    @Autowired
-    public EmailProvider(UserSecurityService userSecurityService, PasswordEncoder passwordEncoder) {
-        this.userSecurityService = userSecurityService;
-        this.passwordEncoder = passwordEncoder;
-    }
 
 
     @Override
