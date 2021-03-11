@@ -1,0 +1,178 @@
+body{
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+	background: -webkit-linear-gradient(left, #75dfff, #2438ef);
+    font-family:Arial, Helvetica, sans-serif;
+   
+
+}
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+}
+
+input {
+     border: none; 
+     outline: none; 
+     background: none; 
+ 
+    
+}
+
+.container{
+  background-color: white;
+  width: 900px;
+  height: 550px;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  overflow: hidden;
+  flex-wrap: wrap;
+  box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+	
+}
+
+.container .image-area{
+    flex: 1;
+    max-width: 30%;
+    position: relative;
+    overflow: hidden;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+   
+}
+
+
+.container .image-area .img{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('../images/carback.jpg');
+    background-size: cover;
+    background-position: right;
+
+}
+
+
+
+.container .form{
+    position: relative;
+    flex: 2;
+    max-width: 70%;
+    padding: 10px 200px 0 30px; 
+    order: 1; 
+}
+
+.container .image-area .img h1{
+    color: white;
+    position: absolute;
+    text-align: center;
+    font-weight: normal;
+    width: 100%;
+    padding: 0 20px;
+    top: 50px;
+}
+
+.container .image-area .img h2{
+    color: white;
+    position: absolute;
+    text-align: center;
+    font-weight: normal;
+    width: 100%;
+    padding: 0 20px;
+    top: 250px;
+}
+
+
+.container .image-area .img h3{
+    color: white;
+    position: absolute;
+    text-align: center;
+    font-weight:400;
+    font-size: 25px;
+    width: 100%;
+    padding:0 20px;
+    bottom: 50px;
+    
+}
+
+
+.container .form h1{
+    color: black;
+    font-size: 30px;
+    margin: 0 0 30px;
+    top: 10px;
+
+}
+
+.container .form .form-group .field{
+   
+  
+	width: 100%;
+	border:none;
+	border-bottom:1px solid #cccccc;
+	font-size: 15px;
+	color:#000000;
+    margin-bottom: 20px;
+    
+   
+}
+
+.container .form .btn{
+    width: 100%;
+    background-color: blue;
+    color: white;
+    height: 40px;
+    font-size: 20px;
+    margin-top: 75px;
+   
+}
+
+.container .form .btn:hover{
+    background-color: red;
+}
+
+
+
+
+.container .form .link{
+
+    color: blue;
+    text-align: center;
+    margin-top: 45px;
+
+    
+}
+
+
+.container .form .link:hover{
+    color: red;
+}
+
+
+@media(max-width: 767px){
+	.container{
+		width: calc(100% - 30px);
+	}
+	.container .img-area{
+		display: none;
+	}
+	.container .form{
+		flex: 0 0 100%;
+        max-width: 100%;
+	}
+}
+
+
+

@@ -37,8 +37,8 @@ public class User {
     private Set<String> authorities = new HashSet<>();
 
     @OneToOne(cascade = {CascadeType.ALL},
-                                            fetch = FetchType.LAZY, // lasa Lazy ca altfel imi face 3 selecuri cand ma loghez:D
-                                            mappedBy = "user")
+            fetch = FetchType.LAZY, // lasa Lazy ca altfel imi face 3 selecuri cand ma loghez:D
+            mappedBy = "user")
     private ActivationToken activationToken;
 
 

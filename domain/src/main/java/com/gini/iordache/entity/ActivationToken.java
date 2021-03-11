@@ -23,7 +23,7 @@ public class ActivationToken {
     private LocalDateTime activatedAt;
     private LocalDateTime expiredAt;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.MERGE)
     private User user;
 
     @Override

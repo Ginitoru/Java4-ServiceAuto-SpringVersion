@@ -46,7 +46,7 @@ public class UsernameAndPasswordFilter extends OncePerRequestFilter {
 
 
 
-        }else {
+        }else{
 
             Authentication auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
 

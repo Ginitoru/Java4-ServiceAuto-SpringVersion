@@ -5,7 +5,6 @@ import com.gini.iordache.entity.User;
 import com.gini.iordache.services.UserService;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -74,4 +73,19 @@ public class UserController {
 
         return "user/activate-user";
     }
+
+//    @GetMapping("/login2")
+//    public String showLoginPage2() {
+//        return "login2";
+//    }
+
+
+//    @GetMapping("/create-user2")
+//    public String showCreateUserPage2(Model model) {
+//        model.addAttribute("newUser", new User());
+//        model.addAttribute("authority", Authorities.values());
+//        return "user/create-user2";
+//    }
 }
+
+
