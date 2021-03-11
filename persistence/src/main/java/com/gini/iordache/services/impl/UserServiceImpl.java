@@ -2,9 +2,8 @@ package com.gini.iordache.services.impl;
 
 import com.gini.iordache.dao.TokenDao;
 import com.gini.iordache.dao.UserDao;
-import com.gini.iordache.dao.impl.TokenDaoImpl;
-import com.gini.iordache.entity.ActivationToken;
-import com.gini.iordache.entity.User;
+import com.gini.iordache.entity.user.ActivationToken;
+import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;

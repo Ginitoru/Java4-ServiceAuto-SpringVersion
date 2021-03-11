@@ -1,4 +1,4 @@
-package com.gini.iordache.entity;
+package com.gini.iordache.entity.user;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

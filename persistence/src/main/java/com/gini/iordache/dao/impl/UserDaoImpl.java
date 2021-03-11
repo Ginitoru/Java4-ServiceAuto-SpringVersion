@@ -1,7 +1,7 @@
 package com.gini.iordache.dao.impl;
 
 import com.gini.iordache.dao.UserDao;
-import com.gini.iordache.entity.User;
+import com.gini.iordache.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;

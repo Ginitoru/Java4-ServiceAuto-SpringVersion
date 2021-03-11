@@ -1,4 +1,4 @@
-package com.gini.iordache.entity;
+package com.gini.iordache.entity.user;
 
 public enum Authorities {
 

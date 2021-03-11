@@ -1,8 +1,7 @@
 package com.gini.iordache.dao;
 
 
-import com.gini.iordache.entity.User;
-import org.springframework.transaction.annotation.Transactional;
+import com.gini.iordache.entity.user.User;
 
 import java.util.Optional;
 

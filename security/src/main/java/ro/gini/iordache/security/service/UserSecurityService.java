@@ -1,7 +1,7 @@
 package ro.gini.iordache.security.service;
 
 import com.gini.iordache.dao.UserDao;
-import com.gini.iordache.entity.User;
+import com.gini.iordache.entity.user.User;
 import lombok.AllArgsConstructor;
 
 import org.springframework.security.core.userdetails.UserDetails;

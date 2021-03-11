@@ -1,6 +1,6 @@
 package com.gini.iordache.controllers;
 
-import com.gini.iordache.entity.ActivationToken;
+import com.gini.iordache.entity.user.ActivationToken;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

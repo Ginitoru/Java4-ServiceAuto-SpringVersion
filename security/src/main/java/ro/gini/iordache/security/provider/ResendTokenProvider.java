@@ -2,7 +2,7 @@ package ro.gini.iordache.security.provider;
 
 import com.gini.errors.AccountAlreadyActive;
 import com.gini.errors.EmailIsNotRegistered;
-import com.gini.iordache.entity.User;
+import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
@@ -11,7 +11,6 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.stereotype.Component;
 import ro.gini.iordache.security.authentication.ResendTokenAuthentication;
 
-import java.time.LocalDateTime;
 import java.util.Optional;
 
 

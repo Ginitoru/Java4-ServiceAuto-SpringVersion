@@ -1,7 +1,7 @@
 package com.gini.iordache.controllers;
 
-import com.gini.iordache.entity.Authorities;
-import com.gini.iordache.entity.User;
+import com.gini.iordache.entity.user.Authorities;
+import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.UserService;
 
 import lombok.AllArgsConstructor;
