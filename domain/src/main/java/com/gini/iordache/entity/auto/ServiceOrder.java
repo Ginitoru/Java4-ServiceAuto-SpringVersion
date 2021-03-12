@@ -1,6 +1,7 @@
 package com.gini.iordache.entity.auto;
 
 import com.gini.iordache.entity.user.User;
+import com.gini.iordache.utility.OrderStatus;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +35,9 @@ public class ServiceOrder {
 
     @ManyToOne
     private Vehicle vehicle;
+
+    @Enumerated(EnumType.STRING)
+    private OrderStatus orderStatus;
 
 
 

@@ -1,4 +1,4 @@
-package com.gini.iordache.entity.labor;
+package com.gini.iordache.utility;
 
 public enum LaborCategory {
 

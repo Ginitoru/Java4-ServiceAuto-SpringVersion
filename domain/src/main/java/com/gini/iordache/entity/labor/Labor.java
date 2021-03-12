@@ -1,6 +1,6 @@
 package com.gini.iordache.entity.labor;
 
-import com.gini.iordache.entity.labor.LaborCategory;
+import com.gini.iordache.utility.LaborCategory;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
