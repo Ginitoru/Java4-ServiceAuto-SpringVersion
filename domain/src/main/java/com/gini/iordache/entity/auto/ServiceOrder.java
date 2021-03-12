@@ -16,7 +16,7 @@ import java.util.Set;
 @Getter
 @Setter
 @Entity
-public class ServiceOrder {
+public abstract class ServiceOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -40,5 +40,7 @@ public class ServiceOrder {
     private OrderStatus orderStatus;
 
 
+    public abstract void createServiceOrder(ServiceOrder serviceOrder);
 
+    public abstract Set<ServiceOrder> findAllServiceOrders();
 }

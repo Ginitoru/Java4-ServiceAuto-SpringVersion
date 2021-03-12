@@ -15,7 +15,7 @@ import java.util.Optional;
 public class VehicleDaoImpl implements com.gini.iordache.dao.VehicleDao {
 
     private final EntityManager entityManager;
-    
+
 
     @Override
     public void createVehicle(Vehicle vehicle){
