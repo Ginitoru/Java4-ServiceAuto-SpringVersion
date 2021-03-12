@@ -5,11 +5,14 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.Objects;
 
-@Entity
+
 @NoArgsConstructor
 @Getter
 @Setter
+@Entity
+@Table(name = "parts")
 public class Part {
 
     @Id
@@ -25,5 +28,20 @@ public class Part {
     @Column(name = "count")
     private int count;
 
+    @Column(name = "price")
+    private double price;
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Part part = (Part) o;
+        return Objects.equals(partNumber, part.partNumber) && Objects.equals(partName, part.partName);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(partNumber, partName);
+    }
 }

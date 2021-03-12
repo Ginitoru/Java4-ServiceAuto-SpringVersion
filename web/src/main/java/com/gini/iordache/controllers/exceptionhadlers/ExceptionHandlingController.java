@@ -11,6 +11,10 @@ import org.springframework.web.bind.annotation.*;
 public class ExceptionHandlingController {
 
 
+
+    //todo: exception handler pt -> cand am user in baza de data si vreau sa creez unul la fel
+
+
     @ExceptionHandler(AccountAlreadyActive.class)
     public String processAccountAlreadyActive(AccountAlreadyActive e) {
         return "redirect:/account?active";

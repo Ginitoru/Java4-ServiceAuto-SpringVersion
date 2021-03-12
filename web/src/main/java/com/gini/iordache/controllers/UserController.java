@@ -74,18 +74,6 @@ public class UserController {
         return "user/activate-user";
     }
 
-//    @GetMapping("/login2")
-//    public String showLoginPage2() {
-//        return "login2";
-//    }
-
-
-//    @GetMapping("/create-user2")
-//    public String showCreateUserPage2(Model model) {
-//        model.addAttribute("newUser", new User());
-//        model.addAttribute("authority", Authorities.values());
-//        return "user/create-user2";
-//    }
 }
 
 
