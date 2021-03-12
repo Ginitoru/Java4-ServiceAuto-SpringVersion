@@ -1,4 +1,4 @@
-package com.gini.iordache.dao.impl;
+package com.gini.iordache.dao.impl.auto;
 
 import com.gini.iordache.dao.PartDao;
 import com.gini.iordache.entity.auto.Part;
