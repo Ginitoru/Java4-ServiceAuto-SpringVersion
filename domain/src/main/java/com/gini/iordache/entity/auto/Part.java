@@ -5,7 +5,10 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.security.Provider;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 
 @NoArgsConstructor
@@ -30,6 +33,9 @@ public class Part {
 
     @Column(name = "price")
     private double price;
+
+    @ManyToMany(mappedBy = "parts")
+    private Set<ServiceOrder> serviceOrderSet = new HashSet<>();
 
 
     @Override

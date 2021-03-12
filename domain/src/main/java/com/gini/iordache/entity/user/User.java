@@ -1,5 +1,6 @@
 package com.gini.iordache.entity.user;
 
+import com.gini.iordache.entity.auto.ServiceOrder;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -40,6 +41,9 @@ public class User {
             fetch = FetchType.LAZY, // lasa Lazy ca altfel imi face 3 selecuri cand ma loghez:D
             mappedBy = "user")
     private ActivationToken activationToken;
+
+    @OneToMany(mappedBy = "user")
+    private Set<ServiceOrder> serviceOrders = new HashSet<>();
 
 
     public User() {
