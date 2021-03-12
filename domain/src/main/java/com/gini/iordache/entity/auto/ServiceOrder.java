@@ -7,16 +7,13 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-public abstract class ServiceOrder {
+public class ServiceOrder {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -39,8 +36,16 @@ public abstract class ServiceOrder {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        ServiceOrder that = (ServiceOrder) o;
+        return id == that.id;
+    }
 
-    public abstract void createServiceOrder(ServiceOrder serviceOrder);
-
-    public abstract Set<ServiceOrder> findAllServiceOrders();
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
+    }
 }

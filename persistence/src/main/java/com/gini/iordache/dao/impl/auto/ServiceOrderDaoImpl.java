@@ -1,5 +1,6 @@
 package com.gini.iordache.dao.impl.auto;
 
+import com.gini.iordache.dao.ServiceOrderDao;
 import com.gini.iordache.entity.auto.ServiceOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -8,11 +9,12 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @AllArgsConstructor
 @Transactional(propagation = Propagation.MANDATORY)
 @Repository
-public class ServiceOrderDaoImpl implements ServiceOrder {
+public class ServiceOrderDaoImpl implements ServiceOrderDao {
 
 
     private final EntityManager entityManager;
@@ -28,11 +30,9 @@ public class ServiceOrderDaoImpl implements ServiceOrder {
 
         String jpql = "SELECT s FROM ServiceOrder s";
 
-        entityManager.createQuery(jpql, ServiceOrder.class)
-                        .getResultList();
+        return entityManager.createQuery(jpql, ServiceOrder.class)
+                        .getResultStream()
+                        .collect(Collectors.toSet());
+
     }
-
-
-
-
 }
