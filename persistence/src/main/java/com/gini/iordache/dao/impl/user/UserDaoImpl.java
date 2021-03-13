@@ -1,4 +1,4 @@
-package com.gini.iordache.dao.impl;
+package com.gini.iordache.dao.impl.user;
 
 import com.gini.iordache.dao.UserDao;
 import com.gini.iordache.entity.user.User;
