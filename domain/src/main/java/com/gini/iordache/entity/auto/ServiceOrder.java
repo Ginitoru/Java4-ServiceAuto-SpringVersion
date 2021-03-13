@@ -1,5 +1,6 @@
 package com.gini.iordache.entity.auto;
 
+import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.Getter;
@@ -27,14 +28,26 @@ public class ServiceOrder {
     @ManyToOne
     private User user;
 
-    @ManyToMany
-    private Set<Part> parts = new HashSet<>();
-
     @ManyToOne
     private Vehicle vehicle;
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+
+    @ManyToMany
+    private List<Part> parts = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "service_order_part_count")
+    private List<Integer> partCount = new ArrayList<>(); //retine nr de piese din comanda
+
+    @ManyToMany
+    private List<Labor> labors = new ArrayList<>();
+
+    @ElementCollection
+    @CollectionTable(name = "service_order_labor_price")
+    private List<Double> laborPrice = new ArrayList<>(); //retine pretul de pe fiecare manopera in comanda
+
 
     @Override
     public boolean equals(Object o) {
