@@ -8,4 +8,6 @@ public interface LaborDao {
     void createLabor(Labor labor);
 
     List<Labor> findLaborByName(String laborDescription);
+
+    int updateLaborTime(double timedLabor, int id);
 }

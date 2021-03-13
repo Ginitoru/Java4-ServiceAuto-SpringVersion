@@ -29,7 +29,22 @@ public class LaborDaoImpl implements com.gini.iordache.dao.LaborDao {
         String jpql = "SELECT l FROM Labor l WHERE l.laborDescription =:laborDescription";
 
         return entityManager.createQuery(jpql, Labor.class)
+                                .setParameter("laborDescription",laborDescription)
                                 .getResultList();
+
+    }
+
+
+    @Override
+    public int updateLaborTime(double timedLabor, int id){
+
+        String jpql = "UPDATE Labor l SET l.timedLabor =: timedLabor WHERE l.id =: id" ;
+
+
+        return entityManager.createQuery(jpql)
+                                .setParameter("timedLabor", timedLabor)
+                                .setParameter("id", id)
+                                .executeUpdate();
 
     }
 }
