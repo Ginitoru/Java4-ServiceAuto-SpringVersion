@@ -19,7 +19,7 @@ public class Labor {
     private int id;
     private String laborDescription;
     private double timedLabor;
-    
+
 
     @Enumerated(EnumType.STRING)
     private LaborCategory category;
