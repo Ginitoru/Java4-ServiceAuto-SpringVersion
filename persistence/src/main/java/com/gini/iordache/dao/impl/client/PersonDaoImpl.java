@@ -36,7 +36,7 @@ public class PersonDaoImpl implements com.gini.iordache.dao.PersonDao {
                                 .findFirst();
 
     }
-    
+
 
     //todo: de vazut daca merge jpql-ul -> nu sunt sigur 100%
     @Override
