@@ -1,5 +1,6 @@
 package com.gini.iordache.services.impl.auto;
 
+import com.gini.errors.auto.VehicleAlreadyExists;
 import com.gini.iordache.dao.VehicleDao;
 import com.gini.iordache.entity.auto.Vehicle;
 import lombok.AllArgsConstructor;
@@ -30,7 +31,7 @@ public class VehicleServiceImpl implements com.gini.iordache.services.VehicleSer
         }
 
 
-        throw new RuntimeException("Vehicle already exists");
+        throw new VehicleAlreadyExists("Vehicle already exists");
 
 
     }

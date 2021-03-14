@@ -12,6 +12,11 @@
             <form action="#" th:action="@{/vehicles/create-vehicle}"
                              th:object="${vehicle}" method="POST">
 
+                <div th:if="${param.exists}">
+                    Vehicle already exists
+                </div>
+
+
                 <div class="form-group">
                     <label class="label">Manufacturer</label>
                     <input type="text" class="field" th:field="*{carManufacturer}"/>
