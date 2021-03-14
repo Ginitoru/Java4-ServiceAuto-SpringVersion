@@ -1,10 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
         <h1>PartPage</h1>
+
+
+        <div class="form">
+            <form action="#" th:action="@{/parts/createPart}"
+                             th:object="${part}" method="POST">
+
+                <h2>Add Part to Warehouse</h2>
+
+
+                <div class="form-group">
+                    <label class="label">Part number</label>
+                    <input type="text" class="field" th:field="*{partNumber}"/>
+                </div>
+
+                    <br>
+
+                <div class="form-grup">
+                    <label>Part name</label>
+                    <input type="text" class="field" th:field="*{partName}"/>
+                </div>
+
+                    <br>
+
+                <div class="form-group">
+                    <span th:object="${partCount}">
+                    <label>Count</label>
+                    <input type="text" class="field" th:field="*{stockCount}"/>
+                    </span>
+                </div>
+
+                    <br>
+
+                <input type="submit" class="button" value="Add part"/>
+
+            </form>
+
+        </div>
+
+
+
+
 </body>
 </html>

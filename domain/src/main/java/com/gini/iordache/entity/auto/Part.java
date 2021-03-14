@@ -27,17 +27,17 @@ public class Part {
     @Column(name = "part_Name")
     private String partName;
 
-    @Column(name = "count")
-    private int count;
+//    @Column(name = "count")
+//    private int count;
 
     @Column(name = "price")
     private double price;
 
-    @Column(name = "part_count")
-    private int partCount;
+//    @Column(name = "part_count")
+//    private int partCount;
 
-//    @OneToOne(mappedBy = "part")
-//    private PartCount partCount;
+    @OneToOne(mappedBy = "part", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    private PartCount partCount;
 
     @ManyToMany(mappedBy = "parts")
     private Set<ServiceOrder> serviceOrderSet = new HashSet<>();
