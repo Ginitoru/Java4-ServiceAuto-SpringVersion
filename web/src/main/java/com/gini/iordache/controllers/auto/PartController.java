@@ -26,7 +26,7 @@ public class PartController {
         model.addAttribute("partCount", new PartCount());
 
 
-        return "app/part-page";
+        return "auto/part-page";
     }
 
     @PostMapping("/createPart")

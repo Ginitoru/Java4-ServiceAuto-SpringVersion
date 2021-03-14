@@ -24,7 +24,7 @@ public class VehicleController {
 
         model.addAttribute("vehicle", new Vehicle());
 
-        return "app/vehicle-page";
+        return "auto/vehicle-page";
     }
 
 

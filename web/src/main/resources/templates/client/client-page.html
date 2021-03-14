@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h1>Client page</h1>
+
+
+
+        <div class="container">
+
+            <div>
+                <a th:href="@{/clients/client?person}"><input type="button" class="btn" value="Create person"/></a>
+
+            </div>
+
+
+                <br>
+
+            <div>
+                <a th:href="@{/clients/client?company}"><input type="button" class="btn" value="Create company"/></a>
+            </div>
+
+
+
+                <br>
+                <br>
+
+            <div th:if="${param.person}" class="container-form">
+
+                <form action="#" th:action="@{/clients/create-person}" class="form"
+                                    th:object="${person}" method="POST">
+
+                        <div class="form-group">
+                            <label>First name</label>
+                            <input type="text" class="field" th:field="*{firstName}"/>
+                        </div>
+
+                            <br>
+
+                        <div class="form-group">
+                            <label class="label">Last name</label>
+                            <input type="text" class="field" th:field="*{lastName}"/>
+                        </div>
+
+                            <br>
+
+                        <div class="form-group">
+                            <label class="label">Street number</label>
+                            <input type="text" class="field" th:field="*{adress.streetNumber}"/>
+                        </div>
+
+                            <br>
+
+                        <div class="form-group">
+                            <label class="descfrm-type-label">Street name</label>
+                            <input type="text" class="field" th:field="*{adress.streetName}"/>
+                        </div>
+
+                        <br>
+
+                        <input type="submit" class="btn" value="Create person"/>
+                </form>
+            </div>
+
+
+
+
+
+
+
+            <div th:if="${param.company}" class="container-form">
+                <form action="#" th:action="@{/clients/create-company}" class="form"
+                                    th:object="${company}" method="POST">
+
+
+                        <div class="form-group">
+                            <label class="label"> Company name</label>
+                            <input type="text" class="field" th:field="*{name}"/>
+                        </div>
+
+                            <br>
+
+                        <div class="form-group">
+                            <label class="label">Cui</label>
+                            <input type="text" class="field" th:field="*{cui}"/>
+                        </div>
+
+                            <br>
+
+                        <div class="form-group">
+                            <label class="label"> Street number</label>
+                            <input type="text" class="field" th:field="*{adress.streetNumber}"/>
+                        </div>
+
+                            <br>
+
+                        <div class="form-group">
+                            <label class="label">Street name</label>
+                            <input type="text" class="field" th:field="*{adress.streetName}"/>
+                        </div>
+
+                            <br>
+
+                        <input type="submit" class="btn" value="Create company"/>
+                </form>
+            </div>
+
+
+
+        </div>
+
+
+
+</body>
+</html>

@@ -57,7 +57,7 @@
                                     <ul>
                                         <li th:each="auth : ${authority}">
                                             <input type="checkbox" class="check" th:field="*{authorities}" th:value="${auth.toString()}">
-                                            <lable th:text="${auth}"/>
+                                            <label th:text="${auth}"/>
                                         </li>
                                     </ul>
                                 </div>
