@@ -108,8 +108,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .authorizeRequests()
                         .mvcMatchers("/intra").authenticated()
-                        .mvcMatchers("/parts/part").authenticated()
-                        .mvcMatchers("/clients/client").authenticated();
+                        .mvcMatchers("/parts/**").authenticated()
+                        .mvcMatchers("/clients/**").authenticated()
+                        .mvcMatchers("/vehicles/**");
     }
 
 

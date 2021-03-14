@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+        <h1>Vehicle page</h1>
+
+
+        <div class="form">
+            <form action="#" th:action="@{/vehicles/create-vehicle}"
+                             th:object="${vehicle}" method="POST">
+
+                <div class="form-group">
+                    <label class="label">Manufacturer</label>
+                    <input type="text" class="field" th:field="*{carManufacturer}"/>
+                </div>
+
+                    <br>
+
+                <div class="form-group">
+                    <label class="label">Molde</label>
+                    <input type="text" class="field" th:field="*{carModel}"/>
+                </div>
+
+                    <br>
+
+                <div class="form-group">
+                    <label class="label">Serial number/VIN</label>
+                    <input type="text" class="field" th:field="*{serialNumber}">
+                </div>
+
+                    <br>
+
+                <div class="form-group">
+                    <input type="submit" class="button" value="Add vehicle"/>
+
+                </div>
+
+            </form>
+
+
+
+        </div>
+
+
+
+
+</body>
+</html>
