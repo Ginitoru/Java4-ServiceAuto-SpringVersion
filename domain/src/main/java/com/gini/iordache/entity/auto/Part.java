@@ -33,8 +33,11 @@ public class Part {
     @Column(name = "price")
     private double price;
 
-    @OneToOne(mappedBy = "part")
-    private PartCount partCount;
+    @Column(name = "part_count")
+    private int partCount;
+
+//    @OneToOne(mappedBy = "part")
+//    private PartCount partCount;
 
     @ManyToMany(mappedBy = "parts")
     private Set<ServiceOrder> serviceOrderSet = new HashSet<>();

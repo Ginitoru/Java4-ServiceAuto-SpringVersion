@@ -6,19 +6,19 @@ import lombok.Setter;
 
 import javax.persistence.*;
 
-@NoArgsConstructor
-@Getter
-@Setter
-@Entity
+//@NoArgsConstructor
+//@Getter
+//@Setter
+//@Entity
 public class PartCount {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private int id;
-
-    private int stockCount;
-
-    @OneToOne
-    private Part part;
+//    @Id
+//    @GeneratedValue(strategy = GenerationType.AUTO)
+//    private int id;
+//
+//    private int stockCount;
+//
+//    @OneToOne
+//    private Part part;
 
 }

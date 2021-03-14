@@ -1,10 +1,33 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
 <body>
         <h1>AM INTRAT</h1>
+
+
+   <div class="container">
+
+       <div class="buttons">
+
+               <div class="group-button">
+                   <a th:href="@{/parts/part}"><input type="button" class="btn" value="Parts"/></a>
+               </div>
+
+               <div class="group-button">
+                   <a th:href="@{/clients/client}"><input type="button" class="btn"value="Client"/></a>
+               </div>
+
+
+
+       </div>
+   </div>
+
+
+
+
+
 </body>
 </html>
