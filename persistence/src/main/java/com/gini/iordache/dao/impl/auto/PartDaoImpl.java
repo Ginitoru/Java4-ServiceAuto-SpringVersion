@@ -37,10 +37,10 @@ public class PartDaoImpl implements PartDao {
     @Override
     public Optional<Part> findPartByPartNumber(String partNumber){
 
-        String jpql = "SELECT p FROM Part p WHERE p.partName =: partName";
+        String jpql = "SELECT p FROM Part p WHERE p.partNumber =: partNumber";
 
         return entityManager.createQuery(jpql, Part.class)
-                                .setParameter("partName", partNumber)
+                                .setParameter("partNumber", partNumber)
                                 .getResultStream()
                                 .findFirst();
 
@@ -56,7 +56,17 @@ public class PartDaoImpl implements PartDao {
                                 .setParameter("price", price)
                                 .setParameter("partNumber", partNumber)
                                 .executeUpdate();
+    }
 
+    @Override
+    public int updatePartCount(int increment, String partNumber){
+
+        String jpql = "UPDATE Part p SET p.count = p.count + :increment WHERE p.partNumber =: partNumber";
+
+        return entityManager.createQuery(jpql)
+                                .setParameter("increment", increment)
+                                .setParameter("partNumber", partNumber)
+                                .executeUpdate();
 
     }
 

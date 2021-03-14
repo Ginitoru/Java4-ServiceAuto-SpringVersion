@@ -18,7 +18,7 @@ import java.util.Set;
 public class Part {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
     @Column(name = "part_Number")
@@ -27,8 +27,8 @@ public class Part {
     @Column(name = "part_Name")
     private String partName;
 
-//    @Column(name = "count")
-//    private int count;
+    @Column(name = "count")
+    private int count;
 
     @Column(name = "price")
     private double price;
@@ -36,8 +36,8 @@ public class Part {
 //    @Column(name = "part_count")
 //    private int partCount;
 
-    @OneToOne(mappedBy = "part", cascade = {CascadeType.PERSIST, CascadeType.MERGE})
-    private PartCount partCount;
+//    @OneToOne(mappedBy = "part", cascade = {CascadeType.ALL})
+//    private PartCount partCount;
 
     @ManyToMany(mappedBy = "parts")
     private Set<ServiceOrder> serviceOrderSet = new HashSet<>();
@@ -48,11 +48,11 @@ public class Part {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Part part = (Part) o;
-        return Objects.equals(partNumber, part.partNumber) && Objects.equals(partName, part.partName);
+        return Double.compare(part.price, price) == 0 && partNumber.equals(part.partNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(partNumber, partName);
+        return Objects.hash(partNumber, price);
     }
 }

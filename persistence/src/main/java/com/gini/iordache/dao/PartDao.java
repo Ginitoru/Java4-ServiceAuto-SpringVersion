@@ -14,4 +14,6 @@ public interface PartDao {
     Optional<Part> findPartByPartNumber(String partNumber);
 
     int updatePartPrice(double price, String partNumber);
+
+    int updatePartCount(int increment, String partNumber);
 }

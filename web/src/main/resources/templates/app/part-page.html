@@ -29,11 +29,17 @@
 
                     <br>
 
+
                 <div class="form-group">
-                    <span th:object="${partCount}">
+                    <label>Price</label>
+                    <input type="text" class="field" th:field="*{price}"/>
+                </div>
+
+                    <br>
+
+                <div class="form-group">
                     <label>Count</label>
-                    <input type="text" class="field" th:field="*{stockCount}"/>
-                    </span>
+                    <input type="text" class="field" th:field="*{count}"/>
                 </div>
 
                     <br>
