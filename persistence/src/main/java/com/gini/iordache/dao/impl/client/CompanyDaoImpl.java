@@ -1,7 +1,9 @@
 package com.gini.iordache.dao.impl.client;
 
+import com.gini.iordache.dao.CompanyDao;
 import com.gini.iordache.entity.clients.Company;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -11,7 +13,8 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Transactional(propagation = Propagation.MANDATORY)
-public class CompanyDaoImpl implements com.gini.iordache.dao.CompanyDao {
+@Repository
+public class CompanyDaoImpl implements CompanyDao {
 
     private final EntityManager entityManager;
 

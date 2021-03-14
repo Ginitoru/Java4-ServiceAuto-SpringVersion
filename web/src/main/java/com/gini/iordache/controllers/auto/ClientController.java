@@ -2,6 +2,9 @@ package com.gini.iordache.controllers.auto;
 
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.entity.clients.Person;
+import com.gini.iordache.services.CompanyService;
+import com.gini.iordache.services.PersonService;
+import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -9,9 +12,14 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+@AllArgsConstructor
 @Controller
 @RequestMapping("/clients")
 public class ClientController {
+
+
+    private final PersonService personService;
+    private final CompanyService companyService;
 
 
     @GetMapping("/client")
@@ -28,8 +36,7 @@ public class ClientController {
     @PostMapping("/create-person")
     public String createPerson(@ModelAttribute("person") Person person){
 
-
-
+        personService.createPerson(person);
 
         return "redirect:/clients/client";
     }
@@ -38,7 +45,7 @@ public class ClientController {
     @PostMapping("/create-company")
     public String createCompany(@ModelAttribute("company") Company company){
 
-
+        companyService.createCompany(company);
 
         return "redirect:/clients/client";
     }

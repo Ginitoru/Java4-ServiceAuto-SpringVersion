@@ -32,6 +32,7 @@ public class PersonDaoImpl implements com.gini.iordache.dao.PersonDao {
         String jpql = "SELECT p FROM Person p WHERE p.cnp =: cnp";
 
         return entityManager.createQuery(jpql, Person.class)
+                                .setParameter("cnp", cnp)
                                 .getResultStream()
                                 .findFirst();
 
