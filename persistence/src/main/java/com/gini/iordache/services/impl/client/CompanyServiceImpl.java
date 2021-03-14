@@ -1,5 +1,6 @@
 package com.gini.iordache.services.impl.client;
 
+import com.gini.errors.client.CompanyAlreadyExistsException;
 import com.gini.iordache.dao.CompanyDao;
 import com.gini.iordache.entity.clients.Company;
 import lombok.AllArgsConstructor;
@@ -27,7 +28,7 @@ public class CompanyServiceImpl implements com.gini.iordache.services.CompanySer
             return;
         }
 
-        throw new RuntimeException("Company Already exists");
+        throw new CompanyAlreadyExistsException("Company Already exists");
 
 
     }

@@ -1,5 +1,6 @@
 package com.gini.iordache.services.impl.client;
 
+import com.gini.errors.client.PersonAlreadyExistsException;
 import com.gini.iordache.dao.PersonDao;
 import com.gini.iordache.entity.clients.Person;
 import lombok.AllArgsConstructor;
@@ -25,6 +26,6 @@ public class PersonServiceImpl implements com.gini.iordache.services.PersonServi
             return;
         }
 
-        throw new RuntimeException("Person already exists");
+        throw new PersonAlreadyExistsException("Person already exists");
     }
 }

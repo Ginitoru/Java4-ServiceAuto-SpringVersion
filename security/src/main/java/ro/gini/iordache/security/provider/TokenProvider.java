@@ -1,9 +1,9 @@
 package ro.gini.iordache.security.provider;
 
-import com.gini.errors.AccountAlreadyActive;
-import com.gini.errors.EmailIsNotRegistered;
-import com.gini.errors.InvalidToken;
-import com.gini.errors.TokenHasExpired;
+import com.gini.errors.AccountAlreadyActiveException;
+import com.gini.errors.EmailIsNotRegisteredException;
+import com.gini.errors.InvalidTokenException;
+import com.gini.errors.TokenHasExpiredException;
 import com.gini.iordache.entity.user.ActivationToken;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.impl.UserServiceImpl;
@@ -32,7 +32,7 @@ public class TokenProvider implements AuthenticationProvider {
         var token = authentication.getCredentials().toString();
 
         User user = userService.findUserWithToken(email)
-                                        .orElseThrow(() -> new EmailIsNotRegistered("Email is not registered"));
+                                        .orElseThrow(() -> new EmailIsNotRegisteredException("Email is not registered"));
 
         ActivationToken userToken = user.getActivationToken();
 
@@ -40,17 +40,17 @@ public class TokenProvider implements AuthenticationProvider {
 
                     Optional.of(userToken)
                             .filter(t -> t.getActivatedAt() == null)
-                            .orElseThrow(() ->new AccountAlreadyActive("Account was already activated"));
+                            .orElseThrow(() ->new AccountAlreadyActiveException("Account was already activated"));
 
 
                     Optional.of(userToken)
                             .filter(t -> !t.getExpiredAt().isBefore(LocalDateTime.now()))
-                            .orElseThrow(() -> new TokenHasExpired("Token has expired"));
+                            .orElseThrow(() -> new TokenHasExpiredException("Token has expired"));
 
 
                     Optional.of(userToken)
                             .filter(t -> t.getToken().equals(token))
-                            .orElseThrow(() -> new InvalidToken("Invalid Token"));
+                            .orElseThrow(() -> new InvalidTokenException("Invalid Token"));
 
 
         return Optional.of(user)

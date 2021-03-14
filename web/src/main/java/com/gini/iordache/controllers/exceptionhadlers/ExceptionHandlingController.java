@@ -15,43 +15,50 @@ public class ExceptionHandlingController {
     //todo: exception handler pt -> cand am user in baza de data si vreau sa creez unul la fel
 
 
-    @ExceptionHandler(AccountAlreadyActive.class)
-    public String processAccountAlreadyActive(AccountAlreadyActive e) {
+    @ExceptionHandler(AccountAlreadyActiveException.class)
+    public String processAccountAlreadyActive(AccountAlreadyActiveException e) {
+        e.printStackTrace();
         return "redirect:/account?active";
     }
 
 
-    @ExceptionHandler(TokenHasExpired.class)
-    public String processTokenHasExpired(TokenHasExpired e) {
+    @ExceptionHandler(TokenHasExpiredException.class)
+    public String processTokenHasExpired(TokenHasExpiredException e) {
+        e.printStackTrace();
         return "redirect:/token";
     }
 
 
     @ExceptionHandler(UsernameNotFoundException.class)
     public String userNotFound(UsernameNotFoundException e) {
+        e.printStackTrace();
         return "redirect:/login?error";
     }
 
 
     @ExceptionHandler(BadCredentialsException.class)
     public String passwordNotValid(BadCredentialsException e) {
+        e.printStackTrace();
         return "redirect:/login?error";
     }
 
 
-    @ExceptionHandler(AccountIsNotActive.class)
-    public String accountIsNotActive(AccountIsNotActive e){
+    @ExceptionHandler(AccountIsNotActiveException.class)
+    public String accountIsNotActive(AccountIsNotActiveException e){
+        e.printStackTrace();
         return "redirect:/token";
     }
 
-    @ExceptionHandler(EmailIsNotRegistered.class)
-    public String emailIsNotRegistered(EmailIsNotRegistered e){
+    @ExceptionHandler(EmailIsNotRegisteredException.class)
+    public String emailIsNotRegistered(EmailIsNotRegisteredException e){
+        e.printStackTrace();
         return "redirect:/token?error";
     }
 
 
-    @ExceptionHandler(InvalidToken.class)
-    public String invalidToken(InvalidToken e){
+    @ExceptionHandler(InvalidTokenException.class)
+    public String invalidToken(InvalidTokenException e){
+        e.printStackTrace();
         return "redirect:/account?invalidToken";
 
     }

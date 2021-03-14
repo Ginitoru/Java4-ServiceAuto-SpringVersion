@@ -24,8 +24,6 @@ public class ClientController {
 
     @GetMapping("/client")
     public String getClientPage(Model model){
-
-
         model.addAttribute("person", new Person());
         model.addAttribute("company", new Company());
 
@@ -33,20 +31,32 @@ public class ClientController {
     }
 
 
+
+    @GetMapping("/personForm")
+    public String showPersonForm(Model model){
+        return "redirect:/clients/client?person";
+    }
+
+
+
+    @GetMapping("/companyForm")
+    public String showCompanyForm(){
+        return "redirect:/clients/client?company";
+    }
+
+
+
     @PostMapping("/create-person")
     public String createPerson(@ModelAttribute("person") Person person){
-
         personService.createPerson(person);
-
         return "redirect:/clients/client";
     }
 
 
+
     @PostMapping("/create-company")
     public String createCompany(@ModelAttribute("company") Company company){
-
         companyService.createCompany(company);
-
         return "redirect:/clients/client";
     }
 

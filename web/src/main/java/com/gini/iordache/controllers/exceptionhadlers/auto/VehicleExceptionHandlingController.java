@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class VehicleExceptionHandlingController {
 
 
-    @ExceptionHandler
+    @ExceptionHandler(VehicleAlreadyExists.class)
     public String vehicleAlreadyExists(VehicleAlreadyExists e){
+        e.printStackTrace();
         return "redirect:/vehicles/vehicle?exists";
 
     }

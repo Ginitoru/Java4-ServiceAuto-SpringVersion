@@ -1,6 +1,6 @@
 package ro.gini.iordache.security.provider;
 
-import com.gini.errors.AccountIsNotActive;
+import com.gini.errors.AccountIsNotActiveException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -36,7 +36,7 @@ public class EmailProvider implements AuthenticationProvider {
                     return new EmailAuthentication(user.getUsername(), password, user.getAuthorities());
                 }
 
-                throw new AccountIsNotActive("Account is not activated");
+                throw new AccountIsNotActiveException("Account is not activated");
 
         }
 

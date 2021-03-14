@@ -1,7 +1,7 @@
 package ro.gini.iordache.security.provider;
 
-import com.gini.errors.AccountAlreadyActive;
-import com.gini.errors.EmailIsNotRegistered;
+import com.gini.errors.AccountAlreadyActiveException;
+import com.gini.errors.EmailIsNotRegisteredException;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.UserService;
 import lombok.AllArgsConstructor;
@@ -30,14 +30,14 @@ public class ResendTokenProvider implements AuthenticationProvider {
 
 
         User user = userService.findUserWithToken(email)
-                                .orElseThrow(() ->new EmailIsNotRegistered("Email is not registered"));
+                                .orElseThrow(() ->new EmailIsNotRegisteredException("Email is not registered"));
 
 
 
        return Optional.of(user)
                         .filter( u -> u.getActivationToken().getActivatedAt() == null )
                         .map(u -> resendTokenAuthentication(u))
-                        .orElseThrow(() -> new AccountAlreadyActive("Account is already active"));
+                        .orElseThrow(() -> new AccountAlreadyActiveException("Account is already active"));
 
     }
 

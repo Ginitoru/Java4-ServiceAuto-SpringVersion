@@ -12,23 +12,22 @@
         <div class="container">
 
             <div>
-                <a th:href="@{/clients/client?person}"><input type="button" class="btn" value="Create person"/></a>
+                <a th:href="@{/clients/personForm}"><input type="button" class="btn" value="Create person"/></a>
 
             </div>
-
-
                 <br>
-
             <div>
-                <a th:href="@{/clients/client?company}"><input type="button" class="btn" value="Create company"/></a>
+                <a th:href="@{/clients/companyForm}"><input type="button" class="btn" value="Create company"/></a>
             </div>
-
-
 
                 <br>
                 <br>
 
             <div th:if="${param.person}" class="container-form">
+
+                <div th:if="${param.exists}">
+                    User Already exists.
+                </div>
 
                 <form action="#" th:action="@{/clients/create-person}" class="form"
                                     th:object="${person}" method="POST">
@@ -82,6 +81,9 @@
                 <form action="#" th:action="@{/clients/create-company}" class="form"
                                     th:object="${company}" method="POST">
 
+                    <div th:if="${param.exists}">
+                        Company already exists
+                    </div>
 
                         <div class="form-group">
                             <label class="label"> Company name</label>
