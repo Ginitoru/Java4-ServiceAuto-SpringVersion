@@ -7,8 +7,51 @@
 <body>
         <h1>LaborPage Create Labor</h1>
 
+            <br>
+
+        <div class="container">
+
+            <form action="#" th:action="@{/labors/create-labor}" class="form"
+                                th:object="${labor}" method="POST">
+
+                <div class="form-group">
+                    <label class="label">Description</label>
+                    <input type="text" class="field" th:field="*{laborDescription}"/>
+                </div>
+
+                    <br>
+
+                <div class="form-group">
+                    <label class="label" >Labour time</label>
+                    <input type="text" class="field" th:field="*{timedLabor}"/>
+                </div>
+
+                    <br>
+                <div class="selection">
+                        <div>
+                            <label class="label-category">Category</label>
+                        </div>
+
+                            <br>
+
+                        <select th:field="*{category}">
+
+                            <option th:each="cat : ${laborCategory}"
+                                    th:value="${cat.toString()}" th:text="${cat.toString()}"></option>
+                        </select>
+                </div>
+
+                    <br>
+
+                <div>
+                    <input type="submit" class="btn" value="Submit"/>
+                </div>
+            </form>
 
 
+
+
+        </div>
 
 
 </body>

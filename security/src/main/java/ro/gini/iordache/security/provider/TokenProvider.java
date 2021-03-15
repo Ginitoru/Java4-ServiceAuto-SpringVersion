@@ -6,7 +6,7 @@ import com.gini.errors.InvalidTokenException;
 import com.gini.errors.TokenHasExpiredException;
 import com.gini.iordache.entity.user.ActivationToken;
 import com.gini.iordache.entity.user.User;
-import com.gini.iordache.services.impl.UserServiceImpl;
+import com.gini.iordache.services.impl.user.UserServiceImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
