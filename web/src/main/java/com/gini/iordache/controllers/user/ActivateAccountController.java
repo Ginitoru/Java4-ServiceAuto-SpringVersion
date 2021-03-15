@@ -1,4 +1,4 @@
-package com.gini.iordache.controllers;
+package com.gini.iordache.controllers.user;
 
 import com.gini.iordache.entity.user.ActivationToken;
 import org.springframework.stereotype.Controller;
