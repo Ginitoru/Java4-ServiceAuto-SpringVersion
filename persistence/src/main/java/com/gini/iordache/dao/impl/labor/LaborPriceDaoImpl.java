@@ -2,22 +2,37 @@ package com.gini.iordache.dao.impl.labor;
 
 import com.gini.iordache.entity.labor.LaborPrice;
 import lombok.AllArgsConstructor;
+import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.swing.text.html.Option;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Transactional(propagation = Propagation.MANDATORY)
+@Service
 public class LaborPriceDaoImpl implements com.gini.iordache.dao.LaborPriceDao {
 
     private final EntityManager entityManager;
 
     @Override
-    public void createLaborPrices(LaborPrice laborPrice){
+    public void createAllLaborPrices(LaborPrice laborPrice){
         entityManager.persist(laborPrice);
 
     }
+
+    @Override
+    public Optional<LaborPrice> findAllLaborPrices(){
+
+        String jpql = "SELECT p FROM LaborPrice p";
+
+        return entityManager.createQuery(jpql, LaborPrice.class)
+                                .getResultStream()
+                                .findFirst();
+    }
+
 
     @Override
     public int updateMechanicalLaborPrice(double mechanicalLaborPrice, int id){

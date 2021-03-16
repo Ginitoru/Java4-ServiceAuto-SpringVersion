@@ -2,8 +2,12 @@ package com.gini.iordache.dao;
 
 import com.gini.iordache.entity.labor.LaborPrice;
 
+import java.util.Optional;
+
 public interface LaborPriceDao {
-    void createLaborPrices(LaborPrice laborPrice);
+    void createAllLaborPrices(LaborPrice laborPrice);
+
+    Optional<LaborPrice> findAllLaborPrices();
 
     int updateMechanicalLaborPrice(double mechanicalLaborPrice, int id);
 
