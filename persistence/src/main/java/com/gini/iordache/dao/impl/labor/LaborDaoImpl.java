@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Transactional(propagation = Propagation.MANDATORY)
@@ -36,15 +37,51 @@ public class LaborDaoImpl implements com.gini.iordache.dao.LaborDao {
 
 
     @Override
-    public int updateLaborTime(double timedLabor, int id){
+    public int updateLaborTimeAndDescription(double timedLabor, String laborDescription, int id){
 
-        String jpql = "UPDATE Labor l SET l.timedLabor =: timedLabor WHERE l.id =: id" ;
+        String jpql = "UPDATE Labor l SET l.timedLabor =: timedLabor, l.laborDescription =:laborDescription WHERE l.id =: id" ;
 
 
         return entityManager.createQuery(jpql)
                                 .setParameter("timedLabor", timedLabor)
+                                .setParameter("laborDescription", laborDescription)
                                 .setParameter("id", id)
                                 .executeUpdate();
 
     }
+
+    @Override
+    public List<Labor> findAllLabors(){
+
+        String jpql = "SELECT l FROM Labor l";
+
+        return entityManager.createQuery(jpql, Labor.class)
+                                .getResultList();
+
+    }
+
+
+    @Override
+    public Optional<Labor> findLaborById(int id){
+
+        String jpql = "SELECT l FROM Labor l WHERE l.id =: id";
+
+        return entityManager.createQuery(jpql, Labor.class)
+                                .setParameter("id", id)
+                                .getResultStream()
+                                .findFirst();
+
+    }
+
+    @Override
+    public int deleteLabor(int id){
+
+        String jpql = "DELETE FROM Labor l WHERE l.id =: id";
+
+        return entityManager.createQuery(jpql)
+                                .setParameter("id", id)
+                                .executeUpdate();
+
+    }
+
 }
