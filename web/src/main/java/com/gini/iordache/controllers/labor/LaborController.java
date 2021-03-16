@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 
+
 @AllArgsConstructor
 @Controller
 @RequestMapping("/labors")
@@ -33,34 +34,51 @@ public class LaborController {
     public String createLabor(@ModelAttribute("labor") Labor labor){
 
         laborService.createLabor(labor);
-
         return "redirect:/labors/labor";
     }
 
-        //todo: de vazut cum facem aici ca face select de fiecare data cand incarca pagina
+
     @GetMapping("/laborsList")
     public String getLabors(HttpServletRequest request, Model model){
+
+
+        if(request.getParameter("laborDescription") == null ||
+                request.getParameter("laborDescription").equals("")
+
+        ){
+
+                 model.addAttribute("laborList", laborService.findAllLabors());
+
+        }else{
+
+                 var laborDescription = request.getParameter("laborDescription");
+
+                 var labor = laborService.findLaborByName(laborDescription);
+
+                 model.addAttribute("laborList", labor);
+
+        }
 
 
 
         if(request.getParameter("laborId") == null){
 
-
         }else{
-            var id = Integer.parseInt(request.getParameter("laborId"));
 
-            var labor = laborService.findLaborById(id);
+                 var laborId = Integer.parseInt(request.getParameter("laborId"));
 
-            model.addAttribute("laborUpdate", labor);
+                 Labor labor = laborService.findLaborById(laborId);
+
+                 model.addAttribute("laborUpdate", labor);
+
         }
+
+
 
 
 
         model.addAttribute("labor", new Labor());
         model.addAttribute("laborCategory", LaborCategory.values());
-        model.addAttribute("laborList", laborService.findAllLabors());
-
-
 
       return "/labor/labor-page";
 

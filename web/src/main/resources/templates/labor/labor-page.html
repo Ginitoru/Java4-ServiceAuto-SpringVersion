@@ -54,11 +54,15 @@
                     <br>
                     <br>
 
+<!--TABLE-->
+
 
 
          <form action="#" th:action="@{/labors/laborsList}" class="form-table"  method="GET">
 
-             <input type="submit" class="btn" value="Search"/>
+             <input type="submit" class="btn" value="SearchAll"/>
+             <input type="text" th:name="laborDescription" class="search-field"/>
+
 
             <br>
              <br>
@@ -94,6 +98,9 @@
             <br>
 
         <div>
+
+
+<!--    UPDATE-->
 
 
 
