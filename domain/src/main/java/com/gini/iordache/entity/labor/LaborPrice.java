@@ -37,4 +37,18 @@ public class LaborPrice {
     @Column(nullable = false)
     private double itpTruckPrice;
 
+
+    @Override
+    public String toString() {
+        return "LaborPrice{" +
+                "id=" + id +
+                ", mechanicalLaborPrice=" + mechanicalLaborPrice +
+                ", electricalLaborPrice=" + electricalLaborPrice +
+                ", normalLaborPrice=" + normalLaborPrice +
+                ", itpDieselEnginePrice=" + itpDieselEnginePrice +
+                ", itpGasolineEnginePrice=" + itpGasolineEnginePrice +
+                ", itpSuvPrice=" + itpSuvPrice +
+                ", itpTruckPrice=" + itpTruckPrice +
+                '}';
+    }
 }

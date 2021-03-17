@@ -63,8 +63,11 @@ public class LaborPriceServiceImpl implements com.gini.iordache.services.LaborPr
     @Transactional
     public void createAllLaborPrices(LaborPrice laborPrice){
 
+        findLaborPrices();
+
         if(optLaborPrice.isEmpty()){
             laborPriceDao.createAllLaborPrices(laborPrice);
+            findLaborPrices();
             return;
         }
 

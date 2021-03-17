@@ -10,11 +10,130 @@
 
         <div class="container">
 
-            <form action="#" th:action="@{/prices/setPrice}" class="form" method="POST">
+
+            <div class="form-container">
+
+                <form action="#" th:action="@{/prices/setPrices}" class="form" method="POST">
+
+                    <div class="form-group">
+                        <label>Mechanical Price</label>
+                        <input type="text" name="mechanicalLaborPrice" class="field" />
+
+                        <span th:if="${laborPrices != null}">
+                            <label th:text="${laborPrices.mechanicalLaborPrice}"/>
+
+                        </span>
+
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label>Electrical Price</label>
+                        <input type="text" name="electricalLaborPrice" class="field"/>
+
+                        <span th:if="${laborPrices != null}">
+                            <label th:text="${laborPrices.electricalLaborPrice}"/>
+                        </span>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label>Normal Price</label>
+                        <input type="text" name="normalLaborPrice" class="field"/>
+                            <span th:if="${laborPrices != null}">
+                                <label th:text="${laborPrices.normalLaborPrice}"/>
+                            </span>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label>Itp Diesel Price</label>
+                        <input type="text" name="itpDieselEnginePrice" class="field"/>
+                            <span th:if="${laborPrices != null}">
+                                <label th:text="${laborPrices.itpDieselEnginePrice}"/>
+                            </span>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label>Itp Gasoline Price</label>
+                        <input type="text" name="itpGasolineEnginePrice" class="field"/>
+                        <span th:if="${laborPrices != null}">
+                                <label th:text="${laborPrices.itpGasolineEnginePrice}"/>
+                            </span>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label>Itp Suv Price</label>
+                        <input type="text" name="itpSuvPrice" class="field"/>
+                        <span th:if="${laborPrices != null}">
+                                <label th:text="${laborPrices.itpSuvPrice}"/>
+                            </span>
+                    </div>
+
+                    <br>
+
+                    <div class="form-group">
+                        <label>Itp Truck Price</label>
+                        <input type="text"  name="itpTruckPrice" class="field"/>
+                        <span th:if="${laborPrices != null}">
+                                <label th:text="${laborPrices.itpTruckPrice}"/>
+                            </span>
+                    </div>
+
+                    <br>
+
+                    <input type="submit" class="btn" value="Create Prices" />
+                </form>
+            </div>
 
 
 
-            </form>
+                                            <br>
+                                            <br>
+
+            <div class="refresh">
+                <a th:href="@{/prices/refresh}"><input type="button" value="Refresh" class="refresh-btn"/></a>
+
+            </div>
+
+
+            <div class="update-container">
+                <form action="#" th:action="@{/prices/update}" class="update-form" method="POST">
+
+                    <label>Update Price</label>
+                    <input th:type="text" th:name="updateField" class="update-field"/>
+
+                        <br>
+                        <br>
+
+                    <select th:name="category">
+                            <option th:each=" cat : ${category}"
+                                        th:value="${cat.toString()}" th:text="${cat.toString()}">
+
+                            </option>
+
+                    </select>
+
+
+                    <br>
+                    <br>
+
+                    <input type="submit" class="upt-button" value="Update"/>
+
+                </form>
+
+            </div>
+
+
+
+
 
 
 
