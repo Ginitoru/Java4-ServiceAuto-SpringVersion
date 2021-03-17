@@ -2,6 +2,7 @@ package com.gini.iordache.services.impl.labor;
 
 import com.gini.iordache.dao.LaborDao;
 import com.gini.iordache.entity.labor.Labor;
+import com.gini.iordache.services.LaborPriceService;
 import com.gini.iordache.services.LaborService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
