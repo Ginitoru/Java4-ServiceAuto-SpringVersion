@@ -70,6 +70,21 @@ public class LaborPriceController {
     }
 
 
+    @PostMapping("/updatePrice")
+    public String updatePrice(HttpServletRequest request){
+
+        var categoryPrice = request.getParameter("category");
+        var newPrice = Double.parseDouble(request.getParameter("updatePrice"));
+
+
+        System.out.println("category = " + categoryPrice + " price  = " + newPrice  + " hehehehehehehehe");
+
+        laborPriceService.updatePrices(newPrice, categoryPrice);
+
+        return "redirect:/prices/showPrices";
+    }
+
+
 
 
 

@@ -11,6 +11,8 @@ public interface LaborPriceDao {
 
     int updateMechanicalLaborPrice(double mechanicalLaborPrice, int id);
 
+    int updateBodyLaborPrice(double bodyLaborPrice, int id);
+
     int updateElectricalLaborPrice(double electricalLaborPrice, int id);
 
     int updateNormalLaborPrice(double normalLaborPrice, int id);

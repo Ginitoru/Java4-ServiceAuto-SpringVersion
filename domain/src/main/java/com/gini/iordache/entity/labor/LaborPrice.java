@@ -20,6 +20,9 @@ public class LaborPrice {
     private double mechanicalLaborPrice;
 
     @Column(nullable = false)
+    private double bodyLaborPrice;
+
+    @Column(nullable = false)
     private double electricalLaborPrice;
 
     @Column(nullable = false)

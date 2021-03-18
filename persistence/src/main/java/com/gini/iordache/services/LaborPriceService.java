@@ -19,23 +19,6 @@ public interface LaborPriceService {
     void createAllLaborPrices(LaborPrice laborPrice);
 
     @Transactional
-    int updateMechanicalLaborPrice(double mechanicalLaborPrice);
+    void updatePrices(double newPrice, String laborCategory);
 
-    @Transactional
-    int updateElectricalLaborPrice(double electricalLaborPrice);
-
-    @Transactional
-    int updateNormalLaborPrice(double normalLaborPrice);
-
-    @Transactional
-    int updateItpDieselEnginePrice(double itpDieselEnginePrice);
-
-    @Transactional
-    int updateItpGasolineEnginePrice(double itpGasolineEnginePrice);
-
-    @Transactional
-    int updateItpSuvPrice(double itpSuvPrice);
-
-    @Transactional
-    int updateItpTruckPrice(double itpTruckPrice);
 }

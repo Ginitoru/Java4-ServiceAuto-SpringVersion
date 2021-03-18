@@ -33,7 +33,6 @@ public class LaborPriceDaoImpl implements com.gini.iordache.dao.LaborPriceDao {
                                 .findFirst();
     }
 
-
     @Override
     public int updateMechanicalLaborPrice(double mechanicalLaborPrice, int id){
 
@@ -43,6 +42,19 @@ public class LaborPriceDaoImpl implements com.gini.iordache.dao.LaborPriceDao {
                                 .setParameter("mechanicalLaborPrice", mechanicalLaborPrice)
                                 .setParameter("id", id)
                                 .executeUpdate();
+    }
+
+
+    @Override
+    public int updateBodyLaborPrice(double bodyLaborPrice, int id){
+
+        String jpql = "UPDATE LaborPrice l SET l.bodyLaborPrice =: bodyLaborPrice WHERE l.id =: id";
+
+        return entityManager.createQuery(jpql)
+                                .setParameter("bodyLaborPrice",bodyLaborPrice)
+                                .setParameter("id", id)
+                                .executeUpdate();
+
     }
 
 

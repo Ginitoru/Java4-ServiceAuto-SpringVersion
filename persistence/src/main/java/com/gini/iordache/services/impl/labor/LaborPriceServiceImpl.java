@@ -2,17 +2,17 @@ package com.gini.iordache.services.impl.labor;
 
 import com.gini.iordache.dao.LaborPriceDao;
 import com.gini.iordache.entity.labor.LaborPrice;
+import com.gini.iordache.services.LaborPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import javax.annotation.PostConstruct;
 import java.util.Optional;
 
 
 @Service
-public class LaborPriceServiceImpl implements com.gini.iordache.services.LaborPriceService {
+public class LaborPriceServiceImpl implements LaborPriceService {
 
 
     private final LaborPriceDao laborPriceDao;
@@ -76,120 +76,58 @@ public class LaborPriceServiceImpl implements com.gini.iordache.services.LaborPr
     }
 
 
-
-    //TODO:
-    //TODO:
-    //TODO: DE VAZUT CUM FAC SA BAGA TOATE METODELE ASTEA INTR-UN SWITCH CA PREA SEAMANA INTRE ELE.
-
-
-
-
     @Override
     @Transactional
-    public int updateMechanicalLaborPrice(double mechanicalLaborPrice){
+    public void updatePrices(double newPrice, String categoryPrice){
 
-        if(optLaborPrice.isPresent()){
-
+        if(optLaborPrice.isPresent()) {
             var id = optLaborPrice.get().getId();
 
-           return laborPriceDao.updateMechanicalLaborPrice(mechanicalLaborPrice, id);
-        }
 
-        throw new RuntimeException("To update the the prices you have to create them first!");
-
-    }
+            switch (categoryPrice) {
 
 
-    @Override
-    @Transactional
-    public int updateElectricalLaborPrice(double electricalLaborPrice){
-
-        if(optLaborPrice.isPresent()){
-
-            var id = optLaborPrice.get().getId();
-
-            return laborPriceDao.updateElectricalLaborPrice(electricalLaborPrice, id);
-        }
-
-        throw new RuntimeException("To update the the prices you have to create them first!");
-    }
+                    case "MECHANICAL" ->
+                        laborPriceDao.updateMechanicalLaborPrice(newPrice, id);
 
 
-    @Override
-    @Transactional
-    public int updateNormalLaborPrice(double normalLaborPrice){
+                    case "BODY" ->
+                        laborPriceDao.updateBodyLaborPrice(newPrice, id);
 
-        if(optLaborPrice.isPresent()){
-
-            var id = optLaborPrice.get().getId();
-
-            return laborPriceDao.updateNormalLaborPrice(normalLaborPrice, id);
-        }
-
-        throw new RuntimeException("To update the the prices you have to create them first!");
-    }
+                    case "ELECTRIC" ->
+                        laborPriceDao.updateElectricalLaborPrice(newPrice, id);
 
 
-    @Override
-    @Transactional
-    public int updateItpDieselEnginePrice(double itpDieselEnginePrice){
+                    case "NORMAL" ->
+                        laborPriceDao.updateNormalLaborPrice(newPrice, id);
 
-        if(optLaborPrice.isPresent()){
 
-            var id = optLaborPrice.get().getId();
+                    case "ITP_DIESEL" ->
+                        laborPriceDao.updateItpDieselEnginePrice(newPrice, id);
 
-            return laborPriceDao.updateItpDieselEnginePrice(itpDieselEnginePrice, id);
+
+
+                    case "ITP_GASOLINE" ->
+                        laborPriceDao.updateItpGasolineEnginePrice(newPrice, id);
+
+
+                    case "ITP_SUV" ->
+                        laborPriceDao.updateItpSuvPrice(newPrice, id);
+
+
+                    case "ITP_TRUCK" ->
+                        laborPriceDao.updateItpTruckPrice(newPrice, id);
+
+
+                    default ->
+                        throw new RuntimeException("Price category invalid");
+            }
+
+            findLaborPrices();
+            return;
         }
 
         throw new RuntimeException("To update the the prices you have to create them first!");
     }
-
-
-    @Override
-    @Transactional
-    public int updateItpGasolineEnginePrice(double itpGasolineEnginePrice){
-
-        if(optLaborPrice.isPresent()){
-
-            var id = optLaborPrice.get().getId();
-
-            return laborPriceDao.updateItpGasolineEnginePrice(itpGasolineEnginePrice, id);
-        }
-
-        throw new RuntimeException("To update the the prices you have to create them first!");
-    }
-
-
-    @Override
-    @Transactional
-    public int updateItpSuvPrice(double itpSuvPrice){
-
-        if(optLaborPrice.isPresent()){
-
-            var id = optLaborPrice.get().getId();
-
-            return laborPriceDao.updateItpSuvPrice(itpSuvPrice, id);
-        }
-
-        throw new RuntimeException("To update the the prices you have to create them first!");
-    }
-
-
-    @Override
-    @Transactional
-    public int updateItpTruckPrice(double itpTruckPrice){
-
-        if(optLaborPrice.isPresent()){
-
-            var id = optLaborPrice.get().getId();
-
-            return laborPriceDao.updateItpTruckPrice(itpTruckPrice, id);
-        }
-
-        throw new RuntimeException("To update the the prices you have to create them first!");
-
-    }
-
-
 
 }
