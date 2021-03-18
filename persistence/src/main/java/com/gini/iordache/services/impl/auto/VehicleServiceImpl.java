@@ -32,7 +32,15 @@ public class VehicleServiceImpl implements com.gini.iordache.services.VehicleSer
 
 
         throw new VehicleAlreadyExists("Vehicle already exists");
+    }
 
+
+    @Override
+    @Transactional
+    public Vehicle findVehicleBySerialNumber(String serialNumber){
+
+       return  vehicleDao.findVehicleBySerialNumber(serialNumber)
+                                 .orElseThrow(() -> new RuntimeException("Vehicle not found"));
 
     }
 

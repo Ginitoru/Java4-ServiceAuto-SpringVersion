@@ -11,10 +11,85 @@
 
         <div class="container">
 
+<!--   SEARCH CAR         -->
 
 
-            
+            <div class="search-car">
+                <form action="#" th:action="@{/serviceOrder/searchCar}" class="form-search-car" method="GET">
 
+                                        <div class="form-group">
+                                            <label>Search car: VIN/Serial number:</label>
+                                            <input type="text" name="serialNumber" class="field"/>
+                                        </div>
+                        
+                                                    <br>
+                                        <div>
+                                            <label>VIN/Serial number: </label>
+                                            <label th:text="${vehicle.serialNumber}"/>
+                                        </div>
+
+                                                    <br>
+
+                                        <div>
+                                            <labe>Manufacturer: </labe>
+                                            <label th:text="${vehicle.carManufacturer}"/>
+                                        </div>
+
+                                                    <br>
+
+                                        <div>
+                                            <label>Car model: </label>
+                                            <label th:text="${vehicle.carModel}"/>
+                                        </div>
+
+                                                    <br>
+
+                                     <input type="submit" class="btn" value="Search car"/>
+                </form>
+            </div>
+
+                        <br>
+                        <br>
+
+
+<!--     SEARCH CLIENT-->
+
+
+
+
+            <div class="search-client">
+                <form action="#" th:action="@{/serviceOrder/searchPerson}" class="form-search-client" method="GET">
+
+                                        <div class="form-group">
+                                            <label>Search person</label>
+                                            <input type="text" name="cnp" class="field">
+                                        </div>
+
+
+                                            <br>
+
+                                        <div>
+                                            <label>cnp: </label>
+                                            <label th:text="${person.cnp}"/>
+                                        </div>
+
+                                            <br>
+
+                                        <div>
+                                            <label>First name: </label>
+                                            <label th:text="${person.firstName}"/>
+                                        </div>
+
+                                            <br>
+
+                                        <div>
+                                            <label>Last name: </label>
+                                            <label th:text="${person.lastName}"/>
+                                        </div>
+
+                                      <input type="submit" class="btn" value="Search person">
+                </form>
+            </div>
 
 
 

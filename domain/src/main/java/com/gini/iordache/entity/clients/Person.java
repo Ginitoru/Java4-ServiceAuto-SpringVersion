@@ -35,4 +35,15 @@ public class Person extends Client{
     public int hashCode() {
         return Objects.hash(cnp);
     }
+
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "id=" + id +
+                ", cnp='" + cnp + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                '}';
+    }
 }

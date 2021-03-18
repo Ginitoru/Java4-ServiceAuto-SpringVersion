@@ -6,4 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface VehicleService {
     @Transactional
     void createVehicle(Vehicle vehicle);
+
+    @Transactional
+    Vehicle findVehicleBySerialNumber(String serialNumber);
 }

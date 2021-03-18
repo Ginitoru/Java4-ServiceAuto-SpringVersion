@@ -46,4 +46,15 @@ public class Vehicle {
     public int hashCode() {
         return Objects.hash(serialNumber);
     }
+
+
+    @Override
+    public String toString() {
+        return "Vehicle{" +
+                "id=" + id +
+                ", carManufacturer='" + carManufacturer + '\'' +
+                ", carModel='" + carModel + '\'' +
+                ", serialNumber='" + serialNumber + '\'' +
+                '}';
+    }
 }
