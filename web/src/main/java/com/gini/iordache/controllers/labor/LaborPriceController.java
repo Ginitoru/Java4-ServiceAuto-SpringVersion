@@ -38,6 +38,8 @@ public class LaborPriceController {
     @PostMapping("/setPrices")
     public String setLaborPrices(HttpServletRequest request){
 
+        //todo: da stiu arata cam urat dar am vrut sa incerc si cu HttpServletRequest request: de revizuit la final
+
         var mechanicalLaborPrice = Double.parseDouble(request.getParameter("mechanicalLaborPrice"));
         var electricalLaborPrice = Double.parseDouble(request.getParameter("electricalLaborPrice"));
         var normalLaborPrice = Double.parseDouble(request.getParameter("normalLaborPrice"));
@@ -47,7 +49,6 @@ public class LaborPriceController {
         var itpTruckPrice = Double.parseDouble(request.getParameter("itpTruckPrice"));
 
 
-        System.out.println(mechanicalLaborPrice + " DDDDDDDDDDDDDDDDDDDDDDDDDD");
         LaborPrice laborPrice = new LaborPrice();
 
         laborPrice.setMechanicalLaborPrice(mechanicalLaborPrice);
@@ -60,7 +61,7 @@ public class LaborPriceController {
 
         laborPriceService.createAllLaborPrices(laborPrice);
 
-        return "/labor/labor-price";
+        return "redirect:/prices/showPrices";
     }
 
 
@@ -76,8 +77,6 @@ public class LaborPriceController {
         var categoryPrice = request.getParameter("category");
         var newPrice = Double.parseDouble(request.getParameter("updatePrice"));
 
-
-        System.out.println("category = " + categoryPrice + " price  = " + newPrice  + " hehehehehehehehe");
 
         laborPriceService.updatePrices(newPrice, categoryPrice);
 
