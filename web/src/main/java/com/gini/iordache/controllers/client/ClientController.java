@@ -1,4 +1,4 @@
-package com.gini.iordache.controllers.auto;
+package com.gini.iordache.controllers.client;
 
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.entity.clients.Person;
