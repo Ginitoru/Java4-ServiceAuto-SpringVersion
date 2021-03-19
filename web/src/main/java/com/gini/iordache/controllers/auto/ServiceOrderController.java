@@ -1,14 +1,17 @@
 package com.gini.iordache.controllers.auto;
 
-import com.gini.iordache.dao.CarProblemsDao;
+
 import com.gini.iordache.entity.auto.CarProblems;
+import com.gini.iordache.entity.auto.ServiceOrder;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.entity.clients.Person;
-import com.gini.iordache.services.CompanyService;
-import com.gini.iordache.services.PersonService;
-import com.gini.iordache.services.VehicleService;
+import com.gini.iordache.entity.user.User;
+import com.gini.iordache.services.*;
+import com.gini.iordache.utility.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +29,9 @@ public class ServiceOrderController {
     private final VehicleService vehicleService;
     private final PersonService personService;
     private final CompanyService companyService;
+    private final ServiceOrderService serviceOrderService;
+    private final UserService userService;
 
-    private final CarProblemsDao carProblemsDao;
 
 
 
@@ -36,12 +40,17 @@ public class ServiceOrderController {
     private Company company = new Company();
 
     @Autowired
-    public ServiceOrderController(VehicleService vehicleService, PersonService personService, CompanyService companyService, CarProblemsDao carProblemsDao) {
+    public ServiceOrderController(VehicleService vehicleService, PersonService personService, CompanyService companyService, ServiceOrderService serviceOrderService, UserService userService) {
         this.vehicleService = vehicleService;
         this.personService = personService;
         this.companyService = companyService;
-        this.carProblemsDao = carProblemsDao;
+        this.serviceOrderService = serviceOrderService;
+        this.userService = userService;
     }
+
+
+
+
 
 
 
@@ -52,12 +61,6 @@ public class ServiceOrderController {
         model.addAttribute("vehicle", vehicle);
         model.addAttribute("person", person);
         model.addAttribute("company", company);
-
-
-        System.out.println(vehicle);
-        System.out.println(person);
-        System.out.println(company);
-
 
         return "auto/serviceOrder-page";
     }
@@ -72,6 +75,7 @@ public class ServiceOrderController {
 
         return "redirect:/serviceOrder/serviceOrder";
     }
+
 
 
     @GetMapping("/findPerson")
@@ -99,19 +103,43 @@ public class ServiceOrderController {
 
 
     @PostMapping("/carProblems")
-    public String setCarProblems(HttpServletRequest request, Model model){
+    public String setCarProblems(HttpServletRequest request){
 
         var carProblems = request.getParameter("carProblems");
 
-        System.out.println(carProblems);
 
         CarProblems problems = new CarProblems();
         problems.setProblems(carProblems);
 
 
-        carProblemsDao.createCarProblems(problems);
+        String username = SecurityContextHolder
+                                        .getContext().
+                                            getAuthentication()
+                                                    .getPrincipal()
+                                                            .toString();
 
 
+
+        User user = userService.findUseByUsername(username);
+        
+
+
+        ServiceOrder serviceOrder = new ServiceOrder();
+                            serviceOrder.setVehicle(vehicle);
+                                serviceOrder.setOrderStatus(OrderStatus.OPEN);
+                                    serviceOrder.setCarProblems(problems);
+                                         serviceOrder.setUser(user);
+
+        if(person.getId() == 0){
+            serviceOrder.setClient(company);
+        }
+
+        if(company.getId() == 0){
+            serviceOrder.setClient(person);
+        }
+
+
+        serviceOrderService.createServiceOrder(serviceOrder);
 
         return "redirect:/serviceOrder/serviceOrder";
     }

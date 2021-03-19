@@ -1,5 +1,6 @@
 package com.gini.iordache.entity.auto;
 
+import com.gini.iordache.entity.clients.Client;
 import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.utility.OrderStatus;
@@ -27,6 +28,9 @@ public class ServiceOrder {
 
     @ManyToOne
     private User user;
+
+    @ManyToOne
+    private Client client;
 
     @ManyToOne
     private Vehicle vehicle;

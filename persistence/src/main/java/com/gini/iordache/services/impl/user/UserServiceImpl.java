@@ -98,6 +98,15 @@ public class UserServiceImpl implements UserService {
     }
 
 
+    @Override
+    @Transactional
+    public User findUseByUsername(String username){
+
+        return userDao.findUserByUsername(username)
+                            .orElseThrow(() -> new RuntimeException("User not Found in security context"));
+    }
+
+
 
 
 
