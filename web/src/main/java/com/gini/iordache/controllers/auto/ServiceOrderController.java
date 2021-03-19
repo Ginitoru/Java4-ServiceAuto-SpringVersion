@@ -1,5 +1,7 @@
 package com.gini.iordache.controllers.auto;
 
+import com.gini.iordache.dao.CarProblemsDao;
+import com.gini.iordache.entity.auto.CarProblems;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.entity.clients.Person;
@@ -25,20 +27,24 @@ public class ServiceOrderController {
     private final PersonService personService;
     private final CompanyService companyService;
 
+    private final CarProblemsDao carProblemsDao;
+
 
 
     private Vehicle vehicle = new Vehicle();
     private Person person = new Person();
     private Company company = new Company();
 
-
-
     @Autowired
-    public ServiceOrderController(VehicleService vehicleService, PersonService personService, CompanyService companyService) {
+    public ServiceOrderController(VehicleService vehicleService, PersonService personService, CompanyService companyService, CarProblemsDao carProblemsDao) {
         this.vehicleService = vehicleService;
         this.personService = personService;
         this.companyService = companyService;
+        this.carProblemsDao = carProblemsDao;
     }
+
+
+
 
     @GetMapping("/serviceOrder")
     public String showServiceOrderPage(Model model){
@@ -80,13 +86,32 @@ public class ServiceOrderController {
 
     }
 
-    @PostMapping("/findCompany")
+    @GetMapping("/findCompany")
     public String searchCompany(HttpServletRequest request, Model model){
 
         var cui = request.getParameter("cui");
         company = companyService.findCompanyByCui(cui);
         model.addAttribute("company", company);
         person = new Person();                                      // -> resetez person daca am dat search
+
+        return "redirect:/serviceOrder/serviceOrder";
+    }
+
+
+    @PostMapping("/carProblems")
+    public String setCarProblems(HttpServletRequest request, Model model){
+
+        var carProblems = request.getParameter("carProblems");
+
+        System.out.println(carProblems);
+
+        CarProblems problems = new CarProblems();
+        problems.setProblems(carProblems);
+
+
+        carProblemsDao.createCarProblems(problems);
+
+
 
         return "redirect:/serviceOrder/serviceOrder";
     }

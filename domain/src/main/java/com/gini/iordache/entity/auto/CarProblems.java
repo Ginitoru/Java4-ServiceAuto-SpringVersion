@@ -17,7 +17,8 @@ public class CarProblems {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(name = "problems_of_the_car_to_fix")
+    @Lob
+    @Column(name = "car_problems")
     private String problems;
 
 

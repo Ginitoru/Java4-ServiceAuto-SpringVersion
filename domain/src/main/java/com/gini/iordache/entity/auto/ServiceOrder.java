@@ -22,8 +22,8 @@ public class ServiceOrder {
 
     private double totalPrice;
 
-    @OneToMany
-    private List<CarProblems> carProblems = new ArrayList<>();
+    @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
+    private CarProblems carProblems;
 
     @ManyToOne
     private User user;
