@@ -89,6 +89,7 @@ public class ServiceOrder {
 
         public Builder withVehicle(Vehicle vehicle){
             serviceOrder.vehicle = vehicle;
+            return this;
         }
 
 

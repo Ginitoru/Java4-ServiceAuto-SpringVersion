@@ -3,15 +3,16 @@ package com.gini.iordache.controllers.labor;
 import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.services.LaborService;
 import com.gini.iordache.utility.LaborCategory;
-import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
+import java.util.List;
 
 
-@AllArgsConstructor
 @Controller
 @RequestMapping("/labors")
 public class LaborController {
@@ -19,12 +20,20 @@ public class LaborController {
 
     private final LaborService laborService;
 
+    private List<Labor> labors = new ArrayList<>();
+
+
+    @Autowired
+    public LaborController(LaborService laborService) {
+        this.laborService = laborService;
+    }
 
     @GetMapping("/labor")
     public String getLaborPage(Model model){
 
         model.addAttribute("labor", new Labor());
         model.addAttribute("laborCategory", LaborCategory.values());
+        model.addAttribute("laborList", labors);
 
         return "/labor/labor-page";
     }
@@ -47,15 +56,16 @@ public class LaborController {
 
         ){
 
-                 model.addAttribute("laborList", laborService.findAllLabors());
+                 labors = laborService.findAllLabors();
+                 model.addAttribute("laborList", labors);
 
         }else{
 
                  var laborDescription = request.getParameter("laborDescription");
 
-                 var labor = laborService.findLaborByName(laborDescription);
+                 labors = laborService.findLaborByName(laborDescription);
 
-                 model.addAttribute("laborList", labor);
+                 model.addAttribute("laborList", labors);
 
         }
 
@@ -80,7 +90,7 @@ public class LaborController {
         model.addAttribute("labor", new Labor());
         model.addAttribute("laborCategory", LaborCategory.values());
 
-      return "/labor/labor-page";
+      return "redirect:/labors/labor";
 
     }
 
