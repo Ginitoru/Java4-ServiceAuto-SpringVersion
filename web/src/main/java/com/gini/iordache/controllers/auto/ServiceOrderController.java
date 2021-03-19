@@ -33,14 +33,19 @@ public class ServiceOrderController {
     private final UserService userService;
 
 
-
-
     private Vehicle vehicle = new Vehicle();
     private Person person = new Person();
     private Company company = new Company();
 
+
+
     @Autowired
-    public ServiceOrderController(VehicleService vehicleService, PersonService personService, CompanyService companyService, ServiceOrderService serviceOrderService, UserService userService) {
+    public ServiceOrderController(VehicleService vehicleService,
+                                        PersonService personService,
+                                             CompanyService companyService,
+                                                         UserService userService,
+                                                                ServiceOrderService serviceOrderService) {
+
         this.vehicleService = vehicleService;
         this.personService = personService;
         this.companyService = companyService;
@@ -103,7 +108,7 @@ public class ServiceOrderController {
 
 
     @PostMapping("/carProblems")
-    public String setCarProblems(HttpServletRequest request){
+    public String createServiceOrder(HttpServletRequest request){
 
         var carProblems = request.getParameter("carProblems");
 
@@ -113,22 +118,23 @@ public class ServiceOrderController {
 
 
         String username = SecurityContextHolder
-                                        .getContext().
-                                            getAuthentication()
-                                                    .getPrincipal()
-                                                            .toString();
+                                        .getContext()
+                                                .getAuthentication()
+                                                        .getPrincipal()
+                                                                .toString();
 
 
+                                 User user = userService.findUseByUsername(username);
 
-        User user = userService.findUseByUsername(username);
+
+        ServiceOrder serviceOrder = new ServiceOrder.Builder()
+                        .withOrderStatus(OrderStatus.OPEN)
+                    .withCarProblems(problems)
+                .withVehicle(vehicle)
+            .withUser(user)
+        .build();
         
 
-
-        ServiceOrder serviceOrder = new ServiceOrder();
-                            serviceOrder.setVehicle(vehicle);
-                                serviceOrder.setOrderStatus(OrderStatus.OPEN);
-                                    serviceOrder.setCarProblems(problems);
-                                         serviceOrder.setUser(user);
 
         if(person.getId() == 0){
             serviceOrder.setClient(company);

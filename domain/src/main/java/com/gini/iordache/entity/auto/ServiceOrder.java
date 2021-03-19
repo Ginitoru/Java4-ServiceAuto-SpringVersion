@@ -2,6 +2,7 @@ package com.gini.iordache.entity.auto;
 
 import com.gini.iordache.entity.clients.Client;
 import com.gini.iordache.entity.labor.Labor;
+import com.gini.iordache.entity.labor.LaborPrice;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.Getter;
@@ -51,6 +52,76 @@ public class ServiceOrder {
     @ElementCollection
     @CollectionTable(name = "service_order_labor_price")
     private List<Double> laborPrice = new ArrayList<>(); //retine pretul de pe fiecare manopera in comanda
+
+
+
+
+    public static class Builder{
+
+        private ServiceOrder serviceOrder = new ServiceOrder();
+
+
+        public Builder withId(int id){
+            serviceOrder.id = id;
+            return this;
+        }
+
+
+        public Builder withTotalPrice(double totalPrice){
+            serviceOrder.totalPrice = totalPrice;
+            return this;
+        }
+
+        public Builder withCarProblems(CarProblems carProblems){
+            serviceOrder.carProblems = carProblems;
+            return this;
+        }
+
+        public Builder withUser(User user){
+            serviceOrder.user = user;
+            return this;
+        }
+
+        public Builder withClient(Client client){
+            serviceOrder.client = client;
+            return this;
+        }
+
+        public Builder withVehicle(Vehicle vehicle){
+            serviceOrder.vehicle = vehicle;
+        }
+
+
+        public Builder withOrderStatus(OrderStatus orderStatus){
+            serviceOrder.orderStatus = orderStatus;
+            return this;
+        }
+
+        public Builder withPart(List<Part> parts){
+            serviceOrder.parts = parts;
+            return this;
+        }
+
+        public Builder withPartCount(List<Integer> partCount){
+            serviceOrder.partCount = partCount;
+            return this;
+        }
+
+        public Builder withLabors(List<Labor> labors){
+            serviceOrder.labors = labors;
+            return this;
+        }
+
+        public Builder withLaborPrices(List<Double> laborPrices){
+            serviceOrder.laborPrice = laborPrices;
+            return this;
+        }
+
+        public ServiceOrder build(){
+            return serviceOrder;
+        }
+
+    }
 
 
     @Override
