@@ -35,4 +35,13 @@ public class Company extends Client {
     public int hashCode() {
         return Objects.hash(cui);
     }
+
+    @Override
+    public String toString() {
+        return "Company{" +
+                "id=" + id +
+                ", cui='" + cui + '\'' +
+                ", name='" + name + '\'' +
+                '}';
+    }
 }

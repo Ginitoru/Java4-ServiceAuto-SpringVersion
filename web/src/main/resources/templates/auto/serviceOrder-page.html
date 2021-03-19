@@ -48,50 +48,87 @@
                 </form>
             </div>
 
-                        <br>
-                        <br>
+                                                    <br>
+                                                    <br>
 
 
-<!--     SEARCH CLIENT-->
+<!--   FIND PERSON         -->
 
-
-
-
-            <div class="search-client">
-                <form action="#" th:action="@{/serviceOrder/searchPerson}" class="form-search-client" method="GET">
+            <div class="search-person" >
+                <form action="#" th:action="@{/serviceOrder/findPerson}" class="form-search-client" method="GET">
 
                                         <div class="form-group">
-                                            <label>Search person</label>
+                                            <input type="submit" class="btn" value="Find person">
                                             <input type="text" name="cnp" class="field">
                                         </div>
 
+                </form>
+            </div>
 
-                                            <br>
+                                             <br>
 
+
+
+            <div class="person-info">
                                         <div>
                                             <label>cnp: </label>
                                             <label th:text="${person.cnp}"/>
                                         </div>
 
-                                            <br>
+                                        <br>
 
                                         <div>
                                             <label>First name: </label>
                                             <label th:text="${person.firstName}"/>
                                         </div>
 
-                                            <br>
+                                        <br>
 
                                         <div>
                                             <label>Last name: </label>
                                             <label th:text="${person.lastName}"/>
                                         </div>
-
-                                      <input type="submit" class="btn" value="Search person">
-                </form>
             </div>
 
 
+
+
+                                                 <br>
+
+
+
+
+<!-- SEARCH COMPANY-->
+
+
+            <div class="search-company">
+                <form action="#" th:action="@{/serviceOrder/findCompany}" class="form-search-company" method="POST">
+
+                                <div class="form-group">
+                                    <input type="submit" class="btn" value="Find Company"/>
+                                    <input type="text" name="cui" class="field"/>
+                                </div>
+                </form>
+            </div>
+
+                                <br>
+
+            <div class="find-company">
+                            <div>
+                                <label>cui: </label>
+                                <label th:text="${company.cui}"/>
+                            </div>
+
+
+                            <br>
+
+                            <div>
+                                <label>Name: </label>
+                                <label th:text="${company.name}"/>
+                            </div>
+
+                            <br>
+            </div>
 
 
 

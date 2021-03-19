@@ -6,4 +6,7 @@ import org.springframework.transaction.annotation.Transactional;
 public interface CompanyService {
     @Transactional
     void createCompany(Company company);
+
+    @Transactional(readOnly = true)
+    Company findCompanyByCui(String cui);
 }

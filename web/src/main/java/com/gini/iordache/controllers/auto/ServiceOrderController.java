@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
@@ -25,9 +26,11 @@ public class ServiceOrderController {
     private final CompanyService companyService;
 
 
+
     private Vehicle vehicle = new Vehicle();
     private Person person = new Person();
     private Company company = new Company();
+
 
 
     @Autowired
@@ -37,8 +40,6 @@ public class ServiceOrderController {
         this.companyService = companyService;
     }
 
-
-
     @GetMapping("/serviceOrder")
     public String showServiceOrderPage(Model model){
 
@@ -46,8 +47,10 @@ public class ServiceOrderController {
         model.addAttribute("person", person);
         model.addAttribute("company", company);
 
+
         System.out.println(vehicle);
         System.out.println(person);
+        System.out.println(company);
 
 
         return "auto/serviceOrder-page";
@@ -65,15 +68,27 @@ public class ServiceOrderController {
     }
 
 
-    @GetMapping("/searchPerson")
+    @GetMapping("/findPerson")
     public String searchPersonByCnp(HttpServletRequest request, Model model){
 
         var cnp = request.getParameter("cnp");
         person = personService.findPersonByCnp(cnp);
         model.addAttribute("person", person);
+        company = new Company();                            //->resetez company daca am dat search
 
         return "redirect:/serviceOrder/serviceOrder";
 
+    }
+
+    @PostMapping("/findCompany")
+    public String searchCompany(HttpServletRequest request, Model model){
+
+        var cui = request.getParameter("cui");
+        company = companyService.findCompanyByCui(cui);
+        model.addAttribute("company", company);
+        person = new Person();                                      // -> resetez person daca am dat search
+
+        return "redirect:/serviceOrder/serviceOrder";
     }
 
 }

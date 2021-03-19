@@ -34,4 +34,14 @@ public class CompanyServiceImpl implements com.gini.iordache.services.CompanySer
     }
 
 
+    @Override
+    @Transactional(readOnly = true)
+    public Company findCompanyByCui(String cui){
+
+        return companyDao.findCompanyByCui(cui)
+                        .orElseThrow(() -> new RuntimeException("Company not found!"));
+
+    }
+
+
 }
