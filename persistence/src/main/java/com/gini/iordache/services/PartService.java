@@ -10,4 +10,7 @@ public interface PartService {
 
     @Transactional
     Part findPartByPartNumber(String partNumber);
+
+    @Transactional
+    int decreasePartCount(int decrement, String partNumber);
 }

@@ -56,4 +56,12 @@ public class PartServiceImpl implements com.gini.iordache.services.PartService {
 
     }
 
+    @Override
+    @Transactional
+    public int decreasePartCount(int decrement, String partNumber){
+
+        return partDao
+                    .decreasePartCount(decrement, partNumber);
+    }
+
 }

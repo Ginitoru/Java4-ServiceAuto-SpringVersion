@@ -68,7 +68,10 @@ public class ServiceOrderPartController {
         partCount.add(count);
         serviceOrder.setParts(parts);
         serviceOrder.setPartCount(partCount);
-        serviceOrderService.updateServiceOrder(serviceOrder);
+        serviceOrderService.updateServiceOrder(serviceOrder, count, part.getPartNumber());
+        parts.clear();
+        partCount.clear();
+
 
         return "redirect:/addPart-page";
     }

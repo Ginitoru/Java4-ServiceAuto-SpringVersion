@@ -71,4 +71,17 @@ public class PartDaoImpl implements PartDao {
     }
 
 
+    @Override
+    public int decreasePartCount(int decrement, String partNumber){
+
+        String jpql = "UPDATE Part p SET p.count = p.count - :decrement WHERE p.partNumber =: partNumber";
+
+        return entityManager.createQuery(jpql)
+                                .setParameter("decrement", decrement)
+                                .setParameter("partNumber", partNumber)
+                                .executeUpdate();
+
+    }
+
+
 }

@@ -16,4 +16,6 @@ public interface PartDao {
     int updatePartPrice(double price, String partNumber);
 
     int updatePartCount(int increment, String partNumber);
+
+    int decreasePartCount(int decrement, String partNumber);
 }
