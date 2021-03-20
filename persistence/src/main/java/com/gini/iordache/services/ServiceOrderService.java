@@ -16,4 +16,10 @@ public interface ServiceOrderService {
 
     @Transactional
     List<ServiceOrderIdAndStatusDto> allServiceOrderIdAndStatus();
+
+    @Transactional
+    ServiceOrder findServiceOrderById(int id);
+
+    @Transactional
+    ServiceOrder updateServiceOrder(ServiceOrder serviceOrder);
 }

@@ -41,6 +41,23 @@ public class ServiceOrderServiceImpl implements com.gini.iordache.services.Servi
     }
 
 
+    @Override
+    @Transactional
+    public ServiceOrder findServiceOrderById(int id){
+
+        return serviceOrderDao.findServiceOrderById(id)
+                              .orElseThrow(() -> new RuntimeException("Service order not found"));
+
+    }
+
+
+    @Override
+    @Transactional
+    public ServiceOrder updateServiceOrder(ServiceOrder serviceOrder){
+        return serviceOrderDao.updateServiceOrder(serviceOrder);
+    }
+
+
 
 
 }

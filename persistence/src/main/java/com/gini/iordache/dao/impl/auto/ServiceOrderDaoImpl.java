@@ -10,6 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import java.util.List;
+import java.util.Optional;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -45,6 +46,23 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
 
         return entityManager.createQuery(jpql, ServiceOrderIdAndStatusDto.class)
                         .getResultList();
+    }
+
+    @Override
+    public Optional<ServiceOrder> findServiceOrderById(int id){
+
+        String jpql = "SELECT s FROM ServiceOrder s WHERE s.id =: id";
+
+        return entityManager.createQuery(jpql, ServiceOrder.class)
+                                .setParameter("id", id)
+                                .getResultStream()
+                                .findFirst();
+
+    }
+
+    @Override
+    public ServiceOrder updateServiceOrder(ServiceOrder serviceOrder){
+        return entityManager.merge(serviceOrder);
     }
 
 

@@ -55,6 +55,7 @@
            <table class="table">
             <thead>
                 <tr>
+
                     <th>Orders</th>
                     <th>Status</th>
                 </tr>
@@ -62,20 +63,31 @@
 
            <tbody>
                 <tr th:each="IdStatus : ${serviceOrderIdAndStatus}">
-                    <td th:text="${IdStatus.id}">
+                    <td><a th:href="@{/order-stats/(orderId=${IdStatus.id})}" th:text="${IdStatus.id}"/></td>
                     <td th:text="${IdStatus.orderStatus}">
-                    </td>
                 </tr>
 
            </tbody>
-
-
-
-
-
            </table>
-
        </div>
+
+
+                            <br>
+                            <br>
+
+        <div>
+            <label>Order nr:</label>
+            <label th:text="${serviceOrder.id}"></label>
+        </div>
+
+
+                            <br>
+                            <br>
+
+
+       <a th:href="@{/addPart-page}"><input type="button" value="Add Parts to Order"/></a>
+
+
 
 
 

@@ -44,4 +44,16 @@ public class PartServiceImpl implements com.gini.iordache.services.PartService {
             partDao.createPart(part);
         }
     }
+
+
+    @Override
+    @Transactional
+    public Part findPartByPartNumber(String partNumber){
+
+        return partDao.findPartByPartNumber(partNumber)
+                        .orElseThrow(() -> new RuntimeException("Part does not exists!"));
+
+
+    }
+
 }

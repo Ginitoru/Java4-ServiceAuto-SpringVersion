@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+        <h1>ADD PARTS TO SERVICE ORDER</h1>
+
+                <br>
+                <br>
+
+       <div class="container">
+
+
+
+<!--SEARCH PART-->
+           <div class="from-1">
+               <form action="#" th:action="@{/findPart}" method="GET">
+                   <div class="form-group">
+                       <input type="submit" class="btn" value="Search"/>
+                       <input type="text", name="partNumber" class="field">
+                   </div>
+                              <br>
+
+               </form>
+           </div>
+
+                            <br>
+
+
+<!-- PART FIELDS-->
+
+           <div class="part-attributes">
+
+               <div>
+                   <labe>Part name:</labe>
+                   <label th:text="${part.partName}"></label>
+               </div>
+
+                            <br>
+
+               <div>
+                   <label>Part number:</label>
+                   <label th:text="${part.partNumber}"></label>
+               </div>
+                            <br>
+
+               <div>
+                   <label>Part count:</label>
+                   <label th:text="${part.count}"></label>
+               </div>
+
+                            <br>
+
+               <div>
+                   <labe>Part price:</labe>
+                   <label th:text="${part.price}"></label>
+               </div>
+           </div>
+
+                        <br>
+                        <br>
+
+
+<!--ADD PART TO SERVICE ORDER-->
+
+           <div class="add-part">
+            <form action="#" th:action="@{/addPartToOrder}" method="POST">
+
+                <div>
+                    <label>Part count: </label>
+                    <input type="text" name="count"/>
+                </div>
+                <br>
+                <div>
+                    <input type="submit" value="Add part">
+                </div>
+
+
+            </form>
+
+
+
+
+
+           </div>
+
+
+
+
+
+
+
+       </div>
+
+
+</body>
+</html>
