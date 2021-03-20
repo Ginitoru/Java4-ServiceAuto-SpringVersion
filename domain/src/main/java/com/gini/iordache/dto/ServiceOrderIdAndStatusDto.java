@@ -2,38 +2,25 @@ package com.gini.iordache.dto;
 
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.Setter;
 
 import java.util.Objects;
 
 @AllArgsConstructor
-public class ServiceOrderIdAndCategoryDto {
+@Getter
+@Setter
+public class ServiceOrderIdAndStatusDto {
 
     private int id;
     private OrderStatus orderStatus;
-
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public OrderStatus getOrderStatus() {
-        return orderStatus;
-    }
-
-    public void setOrderStatus(OrderStatus orderStatus) {
-        this.orderStatus = orderStatus;
-    }
 
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        ServiceOrderIdAndCategoryDto that = (ServiceOrderIdAndCategoryDto) o;
+        ServiceOrderIdAndStatusDto that = (ServiceOrderIdAndStatusDto) o;
         return id == that.id;
     }
 

@@ -34,6 +34,7 @@ public class LaborController {
         model.addAttribute("labor", new Labor());
         model.addAttribute("laborCategory", LaborCategory.values());
         model.addAttribute("laborList", labors);
+        model.addAttribute("laborUpdate", new Labor());
 
         return "/labor/labor-page";
     }
@@ -90,7 +91,7 @@ public class LaborController {
         model.addAttribute("labor", new Labor());
         model.addAttribute("laborCategory", LaborCategory.values());
 
-      return "redirect:/labors/labor";
+      return "/labor/labor-page";
 
     }
 

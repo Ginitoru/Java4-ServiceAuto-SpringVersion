@@ -1,7 +1,9 @@
 package com.gini.iordache.dao;
 
+import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.auto.ServiceOrder;
 
+import java.util.List;
 import java.util.Set;
 
 public interface ServiceOrderDao {
@@ -9,4 +11,6 @@ public interface ServiceOrderDao {
 
 
     Set<ServiceOrder> findAllServiceOrders();
+
+    List<ServiceOrderIdAndStatusDto> allServiceOrderIdAndStatus();
 }

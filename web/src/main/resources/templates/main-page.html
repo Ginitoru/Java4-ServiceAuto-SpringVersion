@@ -47,10 +47,42 @@
                     <a th:href="@{/serviceOrder/serviceOrder}"><input type="button" class="btn" value="Service Order"/></a>
 
                 </div>
+       </div>
+
+                <br>
+
+       <div class="tab">
+           <table class="table">
+            <thead>
+                <tr>
+                    <th>Orders</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+
+           <tbody>
+                <tr th:each="IdStatus : ${serviceOrderIdAndStatus}">
+                    <td th:text="${IdStatus.id}">
+                    <td th:text="${IdStatus.orderStatus}">
+                    </td>
+                </tr>
+
+           </tbody>
 
 
+
+
+
+           </table>
 
        </div>
+
+
+
+
+
+
+
    </div>
 
 
