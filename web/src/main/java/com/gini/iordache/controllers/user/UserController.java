@@ -41,7 +41,7 @@ public class UserController {
             return "redirect:/login";
         }
 
-        return "redirect:/intra";
+        return "redirect:/main";
     }
 
 
