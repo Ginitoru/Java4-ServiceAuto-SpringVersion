@@ -33,6 +33,9 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
         return entityManager.createQuery(jpql, ServiceOrder.class)
                         .getResultStream()
                         .collect(Collectors.toSet());
-
     }
+
+
+
+
 }
