@@ -35,15 +35,14 @@ public class PartServiceImpl implements PartService {
 
 
 
-        if(optionalPart.get().equals(part)){          //daca piesa exista si are acelasi pret face update la count in warehouse
-            partDao.updatePartCount(part.getCount(), part.getPartNumber());
-            return;
+        if(optionalPart.get().equals(part)){        //daca piesa exista si are acelasi pret face update la count si pret in depozit
+
+            partDao.updatePartCountAndPrice(
+                                            part.getCount(),
+                                                    part.getPrice(),
+                                                         part.getPartNumber());
         }
 
-
-        if(!optionalPart.get().equals(part)){        //daca piesa exista si are alt pret o creeaza iar
-            partDao.createPart(part);
-        }
     }
 
 

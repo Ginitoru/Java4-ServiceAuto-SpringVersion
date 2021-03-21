@@ -10,13 +10,13 @@ public class PartConvertor {
     }
 
 
-    public static PartServiceOrder convert(Part part, ServiceOrder serviceOrder, int count, double price){
+    public static PartServiceOrder convert(Part part, ServiceOrder serviceOrder, int count){
 
         PartServiceOrder partServiceOrder = new PartServiceOrder(
                                                 part.getPartNumber(),
                                                 part.getPartName(),
                                                 count,
-                                                price,
+                                                part.getPrice(),
                                                 serviceOrder);
 
 

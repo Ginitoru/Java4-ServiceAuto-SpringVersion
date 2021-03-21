@@ -35,18 +35,16 @@ public class Part {
     private double price;
 
 
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Part part = (Part) o;
-        return Double.compare(part.price, price) == 0 && partNumber.equals(part.partNumber);
+        return Objects.equals(partNumber, part.partNumber);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(partNumber, price);
+        return Objects.hash(partNumber);
     }
 }

@@ -13,9 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -28,8 +28,7 @@ public class ServiceOrderPartController {
     private final PartService partService;
 
     private Part part = new Part();
-    private List<Part> parts = new ArrayList<>();
-    private List<Integer> partCount = new ArrayList<>();
+
 
     @Autowired
     public ServiceOrderPartController(PartServiceOrderService partServiceOrderService, ServiceOrderService serviceOrderService, HomeController homeController, PartService partService) {
@@ -39,9 +38,6 @@ public class ServiceOrderPartController {
         this.partService = partService;
     }
 
-
-    //todo: selecturile sunt praf aici si mai face si Sesion in view aici ca nu reuseste sa ia lista de partCount din query
-    //todo: need to rethink all this shit
 
 
     @GetMapping("/addPart-page")
@@ -80,13 +76,17 @@ public class ServiceOrderPartController {
         var count = Integer.parseInt(request.getParameter("count"));
         ServiceOrder serviceOrder = homeController.getServiceOrder();
 
-            //todo: de facut aici pretul
-        partServiceOrderService.addPartToServiceOrder(part,serviceOrder,count, 20);
+        partServiceOrderService.addPartToServiceOrder(part,serviceOrder,count);
+        return "redirect:/addPart-page";
+    }
 
 
-//        int id = homeController.getServiceOrder().getId();
-//        PartDto partDto = serviceOrderService.getPartsFormServiceOrder(id);
-//        List<PartServiceOrder> partServiceOrders = partDto.getPartServiceOrders();
+    @GetMapping("/deletePart")
+    public String deletePartFromServiceOrder(@RequestParam("partNumber") String partNumber, @RequestParam("count") int count){
+
+        System.out.println(partNumber + " xxxxx " + count + "   hihihihihihihih");
+
+        partServiceOrderService.deletePartFromServiceOrder(partNumber, count);
 
         return "redirect:/addPart-page";
     }

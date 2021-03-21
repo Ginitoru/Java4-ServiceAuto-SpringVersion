@@ -85,48 +85,56 @@
                             <br>
                             <br>
 
-           <table class="table">
-               <thead>
-                    <tr>
-                        <th>Part name</th>
-                        <th>Part number</th>
-                        <th>Part price</th>
-                        <th>Part count</th>
-                    </tr>
-               </thead>
-
-               <tbody>
-
-                    <tr th:each="bau : ${serviceOrderParts}">
-                        <td th:text="${bau.partName}"></td>
-                        <td th:text="${bau.partNumber}"></td>
-                        <td th:text="${bau.price}"></td>
-                        <td th:text="${bau.count}"></td>
-                    </tr>
-               </tbody>
-           </table>
-
-           <table class="table">
-               <thead>
-               <tr>
-                   <th>Part count</th>
-               </tr>
-               </thead>
-
-               <tbody>
 
 
-
-               <tr th:each="nr : ${partCount}">
-                   <td th:text="${nr}"></td>
-
-               </tr>
-
-               </tbody>
+<!--   TABLE -->
 
 
+           <div>
+               <table class="table">
+                   <thead>
+                   <tr>
+                       <th>Part name</th>
+                       <th>Part number</th>
+                       <th>Part price</th>
+                       <th>Part count</th>
+                       <th>Action</th>
+                   </tr>
+                   </thead>
 
-           </table>
+                   <tbody>
+
+                   <tr th:each="bau : ${serviceOrderParts}">
+                       <td th:text="${bau.partName}"></td>
+                       <td th:text="${bau.partNumber}"></td>
+                       <td th:text="${bau.price}"></td>
+                       <td th:text="${bau.count}"></td>
+                       <td>
+
+                           <a th:href="@{/deletePart(partNumber=${bau.partNumber}, count =${bau.count})}">
+                               <input type="button" value="DELETE"
+                                      onclick=" return confirm('Do you really want to delete this part?')"/>
+                           </a>
+
+
+                       </td>
+                   </tr>
+                   </tbody>
+               </table>
+
+           </div>
+
+                <br>
+
+
+
+           <div>
+              <a th:href="@{/main}"><input type="button" value="Home"/></a>
+               <a th:href="@{/laborOrderPage}"><input type="button" value="Add Labor to Order"/></a>
+           </div>
+
+
+
 
 
 

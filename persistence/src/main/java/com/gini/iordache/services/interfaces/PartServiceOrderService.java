@@ -8,5 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface PartServiceOrderService {
 
     @Transactional
-    void addPartToServiceOrder(Part part, ServiceOrder serviceOrder, int count, double price);
+    void addPartToServiceOrder(Part part, ServiceOrder serviceOrder, int count);
+
+    @Transactional
+    int deletePartFromServiceOrder(String partNumber, int count);
 }

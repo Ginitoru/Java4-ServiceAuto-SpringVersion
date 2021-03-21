@@ -12,6 +12,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @AllArgsConstructor
 @Service
 public class PartServiceOrderServiceImpl implements PartServiceOrderService {
@@ -21,12 +23,40 @@ public class PartServiceOrderServiceImpl implements PartServiceOrderService {
 
     @Override
     @Transactional
-    public void addPartToServiceOrder(Part part, ServiceOrder serviceOrder, int count, double price){
+    public void addPartToServiceOrder(Part part, ServiceOrder serviceOrder, int count){
 
-        PartServiceOrder partServiceOrder = PartConvertor.convert(part,serviceOrder, count, price);
+        Optional<PartServiceOrder> optPartOrder = partServiceOrderDao.findPartOrderByPartName(part.getPartNumber(), serviceOrder);
+        PartServiceOrder partServiceOrder = PartConvertor.convert(part,serviceOrder, count);
 
-        partServiceOrderDao.createPartServiceOrder(partServiceOrder);
-        partDao.decreasePartCount(count, part.getPartNumber());
+
+        if(count <= part.getCount()){
+
+            if(optPartOrder.isEmpty()){
+
+                partServiceOrderDao.createPartServiceOrder(partServiceOrder);                //adauga piesa in comanda daca nu exista
+
+            }else{
+
+                partServiceOrderDao.updatePartOrderCount(optPartOrder.get().getId(), count); // daca piesa exista in comanda si o adaugam iar ii va creste
+            }                                                                                    // nr de bucati din comanda
+
+
+            partDao.decreasePartCount(count, part.getPartNumber());                              //scade nr de piese pe care le baga in comanda din magazie
+            return;
+
+        }
+
+        throw new RuntimeException("Not enough parts in WAREHOUSE!!! ");
+
+    }
+
+
+    @Override
+    @Transactional
+    public int deletePartFromServiceOrder(String partNumber, int count){
+
+        partDao.updatePartCount(count, partNumber);
+        return partServiceOrderDao.deletePartFromServiceOrder(partNumber);
 
     }
 

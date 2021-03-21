@@ -48,17 +48,6 @@ public class PartDaoImpl implements PartDao {
 
 
     @Override
-    public int updatePartPrice(double price, String partNumber){
-
-        String jpql = "UPDATE Part p SET p.price =: price WHERE p.partNumber =: partNumber";
-
-        return entityManager.createQuery(jpql)
-                                .setParameter("price", price)
-                                .setParameter("partNumber", partNumber)
-                                .executeUpdate();
-    }
-
-    @Override
     public int updatePartCount(int increment, String partNumber){
 
         String jpql = "UPDATE Part p SET p.count = p.count + :increment WHERE p.partNumber =: partNumber";
@@ -66,6 +55,18 @@ public class PartDaoImpl implements PartDao {
         return entityManager.createQuery(jpql)
                                 .setParameter("increment", increment)
                                 .setParameter("partNumber", partNumber)
+                                .executeUpdate();
+    }
+
+    @Override
+    public int updatePartCountAndPrice(int increment, double price, String partNumber){
+
+        String jpql = "UPDATE Part p SET p.count = p.count + :increment, p.price =: price WHERE p.partNumber =: partNumber";
+
+        return entityManager.createQuery(jpql)
+                                .setParameter("increment", increment)
+                                .setParameter("partNumber", partNumber)
+                                .setParameter("price", price)
                                 .executeUpdate();
 
     }
