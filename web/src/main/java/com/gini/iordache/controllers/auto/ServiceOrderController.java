@@ -1,7 +1,7 @@
 package com.gini.iordache.controllers.auto;
 
 
-import com.gini.iordache.entity.auto.CarProblems;
+import com.gini.iordache.entity.order.CarProblems;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Company;

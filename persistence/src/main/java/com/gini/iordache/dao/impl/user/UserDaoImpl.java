@@ -46,7 +46,7 @@ public class UserDaoImpl implements UserDao {
     @Override
     public Optional<User> findUserByEmail(String email) {
 
-        String jpql = "SELECT u FROM User u WHERE u.email =: email";
+        String jpql = "SELECT u FROM User u JOIN FETCH u.authorities WHERE u.email =: email";
 
         return entityManager.createQuery(jpql, User.class)
                             .setParameter("email", email)

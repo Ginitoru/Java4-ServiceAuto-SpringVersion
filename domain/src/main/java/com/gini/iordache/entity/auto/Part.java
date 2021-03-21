@@ -35,8 +35,6 @@ public class Part {
     private double price;
 
 
-    @ManyToMany(mappedBy = "parts")
-    private Set<ServiceOrder> serviceOrderSet = new HashSet<>();
 
 
     @Override

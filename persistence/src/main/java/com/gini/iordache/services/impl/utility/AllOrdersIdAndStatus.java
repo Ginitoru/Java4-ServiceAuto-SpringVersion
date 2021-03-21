@@ -2,7 +2,7 @@ package com.gini.iordache.services.impl.utility;
 
 
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
-import com.gini.iordache.services.impl.auto.ServiceOrderServiceImpl;
+import com.gini.iordache.services.impl.order.ServiceOrderServiceImpl;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.context.event.ContextRefreshedEvent;

@@ -1,6 +1,6 @@
 package com.gini.iordache.dao;
 
-import com.gini.iordache.entity.auto.CarProblems;
+import com.gini.iordache.entity.order.CarProblems;
 
 import java.util.List;
 

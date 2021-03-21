@@ -26,6 +26,9 @@ public class LaborServiceOrder {
 
     private double laborPrice;
 
+    @ManyToOne
+    private ServiceOrder serviceOrder;
+
     @Enumerated(EnumType.STRING)
     private LaborCategory category;
 

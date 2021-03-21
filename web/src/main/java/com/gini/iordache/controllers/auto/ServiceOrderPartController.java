@@ -48,7 +48,7 @@ public class ServiceOrderPartController {
 
         model.addAttribute("part", part);
         model.addAttribute("serviceOrderParts",serviceOrder.getParts());
-        model.addAttribute("partCount", serviceOrder.getPartCount());
+     //   model.addAttribute("partCount", serviceOrder.getPartCount());
 
         return "auto/serviceOrderPart-page";
     }
@@ -76,8 +76,8 @@ public class ServiceOrderPartController {
 
         parts.add(part);
         partCount.add(count);
-        serviceOrder.setParts(parts);
-        serviceOrder.setPartCount(partCount);
+      //  serviceOrder.setParts(parts);
+      //  serviceOrder.setPartCount(partCount);
         serviceOrderService.updateServiceOrder(serviceOrder, count, part.getPartNumber());
 
 

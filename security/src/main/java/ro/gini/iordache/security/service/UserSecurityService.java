@@ -34,7 +34,7 @@ public class UserSecurityService implements UserDetailsService {
            return new SecurityUser(user);
         }
 
-        User user = userDao.findUserByUsername(usernameOrEmail)
+            User user = userDao.findUserByUsername(usernameOrEmail)
                     .orElseThrow(() -> new UsernameNotFoundException("Username not found"));
 
 

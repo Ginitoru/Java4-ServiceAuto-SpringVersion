@@ -1,10 +1,9 @@
 package com.gini.iordache.dao.impl.auto;
 
 import com.gini.iordache.dao.CarProblemsDao;
-import com.gini.iordache.entity.auto.CarProblems;
+import com.gini.iordache.entity.order.CarProblems;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Propagation;
 
 
 import javax.persistence.EntityManager;

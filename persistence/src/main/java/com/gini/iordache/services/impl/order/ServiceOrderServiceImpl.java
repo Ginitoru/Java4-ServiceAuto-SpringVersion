@@ -1,4 +1,4 @@
-package com.gini.iordache.services.impl.auto;
+package com.gini.iordache.services.impl.order;
 
 import com.gini.iordache.dao.PartDao;
 import com.gini.iordache.dao.ServiceOrderDao;

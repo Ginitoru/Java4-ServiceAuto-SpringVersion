@@ -1,4 +1,4 @@
-package com.gini.iordache.entity.auto;
+package com.gini.iordache.entity.order;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;

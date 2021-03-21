@@ -1,6 +1,5 @@
 package com.gini.iordache.entity.order;
 
-import com.gini.iordache.entity.auto.CarProblems;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Client;
@@ -41,19 +40,14 @@ public class ServiceOrder {
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
 
-    @ManyToMany
-    private List<Part> parts = new ArrayList<>();
+    @OneToMany(mappedBy = "serviceOrder")
+    private List<PartServiceOrder> parts = new ArrayList<>();
 
-    @ElementCollection
-    @CollectionTable(name = "service_order_part_count")
-    private List<Integer> partCount = new ArrayList<>(); //retine nr de piese din comanda
 
-    @ManyToMany
-    private List<Labor> labors = new ArrayList<>();
+    @OneToMany(mappedBy = "serviceOrder")
+    private List<LaborServiceOrder> labors = new ArrayList<>();
 
-    @ElementCollection
-    @CollectionTable(name = "service_order_labor_price")
-    private List<Double> laborPrice = new ArrayList<>(); //retine pretul de pe fiecare manopera in comanda
+
 
 
 
@@ -100,25 +94,19 @@ public class ServiceOrder {
             return this;
         }
 
-        public Builder withPart(List<Part> parts){
+        public Builder withPart(List<PartServiceOrder> parts){
             serviceOrder.parts = parts;
             return this;
         }
 
-        public Builder withPartCount(List<Integer> partCount){
-            serviceOrder.partCount = partCount;
-            return this;
-        }
 
-        public Builder withLabors(List<Labor> labors){
+
+        public Builder withLabors(List<LaborServiceOrder> labors){
             serviceOrder.labors = labors;
             return this;
         }
 
-        public Builder withLaborPrices(List<Double> laborPrices){
-            serviceOrder.laborPrice = laborPrices;
-            return this;
-        }
+
 
         public ServiceOrder build(){
             return serviceOrder;

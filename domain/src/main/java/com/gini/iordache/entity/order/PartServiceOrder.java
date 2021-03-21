@@ -31,6 +31,9 @@ public class PartServiceOrder {
     @Column(name = "price")
     private double price;
 
+    @ManyToOne
+    private ServiceOrder serviceOrder;
+
 
     @Override
     public boolean equals(Object o) {
