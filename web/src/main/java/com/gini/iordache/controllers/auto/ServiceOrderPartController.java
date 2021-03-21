@@ -4,6 +4,7 @@ import com.gini.iordache.controllers.HomeController;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartService;
+import com.gini.iordache.services.interfaces.PartServiceOrderService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -19,7 +20,7 @@ import java.util.List;
 @Controller
 public class ServiceOrderPartController {
 
-    private final ServiceOrderService serviceOrderService;
+    private final PartServiceOrderService partServiceOrderService;
     private final HomeController homeController;
     private final PartService partService;
 
@@ -29,8 +30,8 @@ public class ServiceOrderPartController {
 
 
     @Autowired
-    public ServiceOrderPartController(ServiceOrderService serviceOrderService, HomeController homeController, PartService partService) {
-        this.serviceOrderService = serviceOrderService;
+    public ServiceOrderPartController(PartServiceOrderService partServiceOrderService, HomeController homeController, PartService partService) {
+        this.partServiceOrderService = partServiceOrderService;
         this.homeController = homeController;
         this.partService = partService;
     }
@@ -44,10 +45,10 @@ public class ServiceOrderPartController {
     public String addPartsToServiceOrder(Model model){
 
         int id = homeController.getServiceOrder().getId();
-        ServiceOrder serviceOrder = serviceOrderService.findServiceOrderParts(id);
+      //  ServiceOrder serviceOrder = serviceOrderService.findServiceOrderParts(id);
 
         model.addAttribute("part", part);
-        model.addAttribute("serviceOrderParts",serviceOrder.getParts());
+       // model.addAttribute("serviceOrderParts",serviceOrder.getParts());
      //   model.addAttribute("partCount", serviceOrder.getPartCount());
 
         return "auto/serviceOrderPart-page";
@@ -74,16 +75,9 @@ public class ServiceOrderPartController {
         var count = Integer.parseInt(request.getParameter("count"));
         ServiceOrder serviceOrder = homeController.getServiceOrder();
 
-        parts.add(part);
-        partCount.add(count);
-      //  serviceOrder.setParts(parts);
-      //  serviceOrder.setPartCount(partCount);
-        serviceOrderService.updateServiceOrder(serviceOrder, count, part.getPartNumber());
+        partServiceOrderService.addPartToServiceOrder(part,serviceOrder,count, 20);
 
 
-        int id = serviceOrder.getId();
-
-        model.addAttribute("serviceOrderParts", serviceOrder.getParts());
 
         return "redirect:/addPart-page";
     }

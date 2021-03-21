@@ -36,11 +36,12 @@ public class PartServiceOrder {
     private ServiceOrder serviceOrder;
 
 
-    public PartServiceOrder(String partNumber, String partName, int count, double price) {
+    public PartServiceOrder(String partNumber, String partName, int count, double price, ServiceOrder serviceOrder) {
         this.partNumber = partNumber;
         this.partName = partName;
         this.count = count;
         this.price = price;
+        this.serviceOrder = serviceOrder;
     }
 
     @Override
