@@ -1,8 +1,10 @@
-package com.gini.iordache.entity.auto;
+package com.gini.iordache.entity.order;
 
+import com.gini.iordache.entity.auto.CarProblems;
+import com.gini.iordache.entity.auto.Part;
+import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Client;
 import com.gini.iordache.entity.labor.Labor;
-import com.gini.iordache.entity.labor.LaborPrice;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.Getter;

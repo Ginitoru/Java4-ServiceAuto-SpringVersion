@@ -1,7 +1,7 @@
 package com.gini.iordache.services;
 
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
-import com.gini.iordache.entity.auto.ServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 
 import javax.transaction.Transactional;
 import java.util.List;

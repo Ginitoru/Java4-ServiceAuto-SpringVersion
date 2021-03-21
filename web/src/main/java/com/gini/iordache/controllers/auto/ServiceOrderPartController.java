@@ -2,7 +2,7 @@ package com.gini.iordache.controllers.auto;
 
 import com.gini.iordache.controllers.HomeController;
 import com.gini.iordache.entity.auto.Part;
-import com.gini.iordache.entity.auto.ServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.PartService;
 import com.gini.iordache.services.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;

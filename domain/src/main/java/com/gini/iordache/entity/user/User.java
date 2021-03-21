@@ -1,6 +1,6 @@
 package com.gini.iordache.entity.user;
 
-import com.gini.iordache.entity.auto.ServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.Getter;
 import lombok.Setter;
 

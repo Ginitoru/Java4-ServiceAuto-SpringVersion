@@ -3,7 +3,7 @@ package com.gini.iordache.services.impl.auto;
 import com.gini.iordache.dao.PartDao;
 import com.gini.iordache.dao.ServiceOrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
-import com.gini.iordache.entity.auto.ServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;

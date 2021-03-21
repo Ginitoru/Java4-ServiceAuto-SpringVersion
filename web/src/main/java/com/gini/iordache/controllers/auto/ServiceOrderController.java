@@ -2,7 +2,7 @@ package com.gini.iordache.controllers.auto;
 
 
 import com.gini.iordache.entity.auto.CarProblems;
-import com.gini.iordache.entity.auto.ServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.entity.clients.Person;
@@ -11,7 +11,6 @@ import com.gini.iordache.services.*;
 import com.gini.iordache.utility.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

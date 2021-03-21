@@ -1,6 +1,6 @@
 package com.gini.iordache.entity.clients;
 
-import com.gini.iordache.entity.auto.ServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

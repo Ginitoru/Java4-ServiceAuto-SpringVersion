@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class PartCount {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
     private int stockCount;

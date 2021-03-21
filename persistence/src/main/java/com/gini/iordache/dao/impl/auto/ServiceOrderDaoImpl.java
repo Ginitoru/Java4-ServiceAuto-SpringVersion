@@ -2,7 +2,7 @@ package com.gini.iordache.dao.impl.auto;
 
 import com.gini.iordache.dao.ServiceOrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
-import com.gini.iordache.entity.auto.ServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;

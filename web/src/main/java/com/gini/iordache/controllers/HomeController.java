@@ -1,8 +1,7 @@
 package com.gini.iordache.controllers;
 
 
-import com.gini.iordache.entity.auto.Part;
-import com.gini.iordache.entity.auto.ServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.PartService;
 import com.gini.iordache.services.ServiceOrderService;
 import com.gini.iordache.services.impl.utility.AllOrdersIdAndStatus;
@@ -10,12 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 
 @Controller

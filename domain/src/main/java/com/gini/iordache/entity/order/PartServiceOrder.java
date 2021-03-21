@@ -1,22 +1,19 @@
-package com.gini.iordache.entity.auto;
+package com.gini.iordache.entity.order;
 
-import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 
 @NoArgsConstructor
 @Getter
 @Setter
 @Entity
-@Table(name = "parts")
-public class Part {
+public class PartServiceOrder {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -35,20 +32,27 @@ public class Part {
     private double price;
 
 
-    @ManyToMany(mappedBy = "parts")
-    private Set<ServiceOrder> serviceOrderSet = new HashSet<>();
-
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Part part = (Part) o;
-        return Double.compare(part.price, price) == 0 && partNumber.equals(part.partNumber);
+        PartServiceOrder that = (PartServiceOrder) o;
+        return Objects.equals(partNumber, that.partNumber) && Objects.equals(partName, that.partName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(partNumber, price);
+        return Objects.hash(partNumber, partName);
+    }
+
+    @Override
+    public String toString() {
+        return "PartServiceOrder{" +
+                "id=" + id +
+                ", partNumber='" + partNumber + '\'' +
+                ", partName='" + partName + '\'' +
+                ", count=" + count +
+                ", price=" + price +
+                '}';
     }
 }
