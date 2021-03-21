@@ -1,5 +1,6 @@
 package com.gini.iordache.dao.impl.labor;
 
+import com.gini.iordache.dao.iterfaces.LaborPriceDao;
 import com.gini.iordache.entity.labor.LaborPrice;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -7,13 +8,12 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
-import javax.swing.text.html.Option;
 import java.util.Optional;
 
 @AllArgsConstructor
 @Transactional(propagation = Propagation.MANDATORY)
 @Service
-public class LaborPriceDaoImpl implements com.gini.iordache.dao.LaborPriceDao {
+public class LaborPriceDaoImpl implements LaborPriceDao {
 
     private final EntityManager entityManager;
 

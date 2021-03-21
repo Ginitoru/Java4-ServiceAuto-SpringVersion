@@ -1,9 +1,10 @@
 package com.gini.iordache.services.impl.order;
 
-import com.gini.iordache.dao.PartDao;
-import com.gini.iordache.dao.ServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.PartDao;
+import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.ServiceOrder;
+import com.gini.iordache.services.interfaces.ServiceOrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -13,7 +14,7 @@ import java.util.Set;
 
 @AllArgsConstructor
 @Service
-public class ServiceOrderServiceImpl implements com.gini.iordache.services.ServiceOrderService {
+public class ServiceOrderServiceImpl implements ServiceOrderService {
 
 
     private final ServiceOrderDao serviceOrderDao;

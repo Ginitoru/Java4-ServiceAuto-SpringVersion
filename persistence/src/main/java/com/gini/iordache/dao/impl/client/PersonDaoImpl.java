@@ -1,8 +1,8 @@
 package com.gini.iordache.dao.impl.client;
 
+import com.gini.iordache.dao.iterfaces.PersonDao;
 import com.gini.iordache.entity.clients.Person;
 import lombok.AllArgsConstructor;
-import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -14,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Transactional(propagation = Propagation.MANDATORY)
 @Repository
-public class PersonDaoImpl implements com.gini.iordache.dao.PersonDao {
+public class PersonDaoImpl implements PersonDao {
 
 
     private final EntityManager entityManager;

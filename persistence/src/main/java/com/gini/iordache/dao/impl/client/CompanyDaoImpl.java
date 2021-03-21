@@ -1,6 +1,6 @@
 package com.gini.iordache.dao.impl.client;
 
-import com.gini.iordache.dao.CompanyDao;
+import com.gini.iordache.dao.iterfaces.CompanyDao;
 import com.gini.iordache.entity.clients.Company;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

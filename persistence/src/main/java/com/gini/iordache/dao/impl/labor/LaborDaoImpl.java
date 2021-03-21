@@ -1,5 +1,6 @@
 package com.gini.iordache.dao.impl.labor;
 
+import com.gini.iordache.dao.iterfaces.LaborDao;
 import com.gini.iordache.entity.labor.Labor;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -13,7 +14,7 @@ import java.util.Optional;
 @AllArgsConstructor
 @Transactional(propagation = Propagation.MANDATORY)
 @Repository
-public class LaborDaoImpl implements com.gini.iordache.dao.LaborDao {
+public class LaborDaoImpl implements LaborDao {
 
 
     private final EntityManager entityManager;

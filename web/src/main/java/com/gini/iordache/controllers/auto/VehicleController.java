@@ -1,7 +1,7 @@
 package com.gini.iordache.controllers.auto;
 
 import com.gini.iordache.entity.auto.Vehicle;
-import com.gini.iordache.services.VehicleService;
+import com.gini.iordache.services.interfaces.VehicleService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

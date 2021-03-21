@@ -1,6 +1,6 @@
 package com.gini.iordache.dao.impl.user;
 
-import com.gini.iordache.dao.UserDao;
+import com.gini.iordache.dao.iterfaces.UserDao;
 import com.gini.iordache.entity.user.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;

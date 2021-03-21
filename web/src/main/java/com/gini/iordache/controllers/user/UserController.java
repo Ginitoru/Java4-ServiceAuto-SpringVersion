@@ -2,7 +2,7 @@ package com.gini.iordache.controllers.user;
 
 import com.gini.iordache.entity.user.Authorities;
 import com.gini.iordache.entity.user.User;
-import com.gini.iordache.services.UserService;
+import com.gini.iordache.services.interfaces.UserService;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;

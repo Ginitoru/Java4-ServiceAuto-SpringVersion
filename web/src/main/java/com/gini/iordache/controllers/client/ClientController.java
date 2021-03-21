@@ -2,8 +2,8 @@ package com.gini.iordache.controllers.client;
 
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.entity.clients.Person;
-import com.gini.iordache.services.CompanyService;
-import com.gini.iordache.services.PersonService;
+import com.gini.iordache.services.interfaces.CompanyService;
+import com.gini.iordache.services.interfaces.PersonService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

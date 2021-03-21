@@ -1,6 +1,6 @@
 package com.gini.iordache.dao.impl.auto;
 
-import com.gini.iordache.dao.PartDao;
+import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.entity.auto.Part;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

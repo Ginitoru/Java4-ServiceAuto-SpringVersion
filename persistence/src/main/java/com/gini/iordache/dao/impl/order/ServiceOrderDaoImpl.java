@@ -1,6 +1,6 @@
 package com.gini.iordache.dao.impl.order;
 
-import com.gini.iordache.dao.ServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.AllArgsConstructor;

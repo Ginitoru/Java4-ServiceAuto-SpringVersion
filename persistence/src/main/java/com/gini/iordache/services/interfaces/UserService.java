@@ -1,4 +1,4 @@
-package com.gini.iordache.services;
+package com.gini.iordache.services.interfaces;
 
 import com.gini.iordache.entity.user.User;
 import org.springframework.transaction.annotation.Transactional;

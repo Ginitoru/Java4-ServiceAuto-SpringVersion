@@ -1,6 +1,6 @@
 package com.gini.iordache.dao.impl.auto;
 
-import com.gini.iordache.entity.auto.Part;
+import com.gini.iordache.dao.iterfaces.PartCountDao;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
 @Setter
 @Transactional(propagation = Propagation.MANDATORY)
 @Repository
-public class PartCountDaoImpl implements com.gini.iordache.dao.PartCountDao {
+public class PartCountDaoImpl implements PartCountDao {
 
     private final EntityManager entityManager;
 

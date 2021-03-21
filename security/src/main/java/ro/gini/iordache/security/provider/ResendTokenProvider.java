@@ -3,7 +3,7 @@ package ro.gini.iordache.security.provider;
 import com.gini.errors.AccountAlreadyActiveException;
 import com.gini.errors.EmailIsNotRegisteredException;
 import com.gini.iordache.entity.user.User;
-import com.gini.iordache.services.UserService;
+import com.gini.iordache.services.interfaces.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.core.Authentication;

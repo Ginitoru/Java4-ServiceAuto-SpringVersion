@@ -1,7 +1,7 @@
 package com.gini.iordache.dao.impl.order;
 
 
-import com.gini.iordache.dao.LaborServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.LaborServiceOrderDao;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;

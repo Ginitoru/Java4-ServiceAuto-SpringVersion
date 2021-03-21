@@ -2,10 +2,11 @@ package com.gini.iordache.services.impl.auto;
 
 
 
-import com.gini.iordache.dao.PartDao;
+import com.gini.iordache.dao.iterfaces.PartDao;
 
 import com.gini.iordache.entity.auto.Part;
 
+import com.gini.iordache.services.interfaces.PartService;
 import lombok.AllArgsConstructor;
 
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class PartServiceImpl implements com.gini.iordache.services.PartService {
+public class PartServiceImpl implements PartService {
 
     private final PartDao partDao;
 

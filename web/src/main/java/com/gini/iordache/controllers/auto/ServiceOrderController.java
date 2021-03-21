@@ -7,7 +7,7 @@ import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.entity.clients.Person;
 import com.gini.iordache.entity.user.User;
-import com.gini.iordache.services.*;
+import com.gini.iordache.services.interfaces.*;
 import com.gini.iordache.utility.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;

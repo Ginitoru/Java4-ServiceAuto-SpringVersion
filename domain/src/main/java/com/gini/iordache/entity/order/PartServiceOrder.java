@@ -1,5 +1,6 @@
 package com.gini.iordache.entity.order;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -34,6 +35,13 @@ public class PartServiceOrder {
     @ManyToOne
     private ServiceOrder serviceOrder;
 
+
+    public PartServiceOrder(String partNumber, String partName, int count, double price) {
+        this.partNumber = partNumber;
+        this.partName = partName;
+        this.count = count;
+        this.price = price;
+    }
 
     @Override
     public boolean equals(Object o) {

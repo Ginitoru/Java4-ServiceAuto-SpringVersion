@@ -1,6 +1,6 @@
 package ro.gini.iordache.security.service;
 
-import com.gini.iordache.dao.UserDao;
+import com.gini.iordache.dao.iterfaces.UserDao;
 import com.gini.iordache.entity.user.User;
 import lombok.AllArgsConstructor;
 

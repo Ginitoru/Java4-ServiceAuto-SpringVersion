@@ -2,7 +2,7 @@ package com.gini.iordache.controllers.auto;
 
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.auto.PartCount;
-import com.gini.iordache.services.PartService;
+import com.gini.iordache.services.interfaces.PartService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

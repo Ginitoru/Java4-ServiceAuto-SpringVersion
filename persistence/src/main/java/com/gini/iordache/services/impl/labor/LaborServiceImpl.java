@@ -1,9 +1,8 @@
 package com.gini.iordache.services.impl.labor;
 
-import com.gini.iordache.dao.LaborDao;
+import com.gini.iordache.dao.iterfaces.LaborDao;
 import com.gini.iordache.entity.labor.Labor;
-import com.gini.iordache.services.LaborPriceService;
-import com.gini.iordache.services.LaborService;
+import com.gini.iordache.services.interfaces.LaborService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

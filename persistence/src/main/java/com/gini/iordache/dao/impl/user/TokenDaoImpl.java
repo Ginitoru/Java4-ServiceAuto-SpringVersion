@@ -1,6 +1,6 @@
 package com.gini.iordache.dao.impl.user;
 
-import com.gini.iordache.dao.TokenDao;
+import com.gini.iordache.dao.iterfaces.TokenDao;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;

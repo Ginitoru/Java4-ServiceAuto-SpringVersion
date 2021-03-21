@@ -1,7 +1,7 @@
 package com.gini.iordache.controllers.labor;
 
 import com.gini.iordache.entity.labor.Labor;
-import com.gini.iordache.services.LaborService;
+import com.gini.iordache.services.interfaces.LaborService;
 import com.gini.iordache.utility.LaborCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

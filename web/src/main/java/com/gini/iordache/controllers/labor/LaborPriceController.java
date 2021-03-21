@@ -1,7 +1,7 @@
 package com.gini.iordache.controllers.labor;
 
 import com.gini.iordache.entity.labor.LaborPrice;
-import com.gini.iordache.services.LaborPriceService;
+import com.gini.iordache.services.interfaces.LaborPriceService;
 import com.gini.iordache.utility.LaborCategory;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;

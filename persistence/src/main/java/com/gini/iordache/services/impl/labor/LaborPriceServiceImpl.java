@@ -1,8 +1,8 @@
 package com.gini.iordache.services.impl.labor;
 
-import com.gini.iordache.dao.LaborPriceDao;
+import com.gini.iordache.dao.iterfaces.LaborPriceDao;
 import com.gini.iordache.entity.labor.LaborPrice;
-import com.gini.iordache.services.LaborPriceService;
+import com.gini.iordache.services.interfaces.LaborPriceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;

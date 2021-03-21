@@ -1,10 +1,9 @@
 package com.gini.iordache.services.impl.order;
 
 
-import com.gini.iordache.dao.LaborServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.LaborServiceOrderDao;
 import com.gini.iordache.entity.order.LaborServiceOrder;
-import com.gini.iordache.services.LaborServiceOrderService;
-import com.gini.iordache.services.PartService;
+import com.gini.iordache.services.interfaces.LaborServiceOrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

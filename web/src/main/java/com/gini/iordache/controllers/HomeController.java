@@ -2,8 +2,8 @@ package com.gini.iordache.controllers;
 
 
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.services.PartService;
-import com.gini.iordache.services.ServiceOrderService;
+import com.gini.iordache.services.interfaces.PartService;
+import com.gini.iordache.services.interfaces.ServiceOrderService;
 import com.gini.iordache.services.impl.utility.AllOrdersIdAndStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

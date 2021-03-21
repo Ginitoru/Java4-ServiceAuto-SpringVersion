@@ -1,10 +1,10 @@
 package com.gini.iordache.services.impl.client;
 
 import com.gini.errors.client.PersonAlreadyExistsException;
-import com.gini.iordache.dao.PersonDao;
+import com.gini.iordache.dao.iterfaces.PersonDao;
 import com.gini.iordache.entity.clients.Person;
+import com.gini.iordache.services.interfaces.PersonService;
 import lombok.AllArgsConstructor;
-import org.aspectj.weaver.patterns.PerObject;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +12,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class PersonServiceImpl implements com.gini.iordache.services.PersonService {
+public class PersonServiceImpl implements PersonService {
 
     private final PersonDao personDao;
 

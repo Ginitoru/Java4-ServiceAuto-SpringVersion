@@ -1,4 +1,4 @@
-package com.gini.iordache.dao;
+package com.gini.iordache.dao.iterfaces;
 
 import com.gini.iordache.entity.labor.Labor;
 
