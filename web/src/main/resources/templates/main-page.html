@@ -51,11 +51,14 @@
 
                 <br>
 
+
+<!--       TABLE   -->
+
        <div class="tab">
+
            <table class="table">
             <thead>
                 <tr>
-
                     <th>Orders</th>
                     <th>Status</th>
                 </tr>
@@ -66,7 +69,6 @@
                     <td><a th:href="@{/order-stats/(orderId=${IdStatus.id})}" th:text="${IdStatus.id}"/></td>
                     <td th:text="${IdStatus.orderStatus}">
                 </tr>
-
            </tbody>
            </table>
        </div>

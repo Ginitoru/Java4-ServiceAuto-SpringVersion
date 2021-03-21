@@ -23,4 +23,7 @@ public interface ServiceOrderService {
 
     @Transactional
     ServiceOrder updateServiceOrder(ServiceOrder serviceOrder, int decrement, String partNumber);
+
+    @Transactional
+    ServiceOrder findServiceOrderParts(int id);
 }

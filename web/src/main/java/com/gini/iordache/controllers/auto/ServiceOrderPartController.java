@@ -35,10 +35,20 @@ public class ServiceOrderPartController {
         this.partService = partService;
     }
 
+
+    //todo: selecturile sunt praf aici si mai face si Sesion in view aici ca nu reuseste sa ia lista de partCount din query
+    //todo: need to rethink all this shit
+
+
     @GetMapping("/addPart-page")
     public String addPartsToServiceOrder(Model model){
 
+        int id = homeController.getServiceOrder().getId();
+        ServiceOrder serviceOrder = serviceOrderService.findServiceOrderParts(id);
+
         model.addAttribute("part", part);
+        model.addAttribute("serviceOrderParts",serviceOrder.getParts());
+        model.addAttribute("partCount", serviceOrder.getPartCount());
 
         return "auto/serviceOrderPart-page";
     }
@@ -59,7 +69,7 @@ public class ServiceOrderPartController {
 
 
     @PostMapping("/addPartToOrder")
-    public String addPartToOrder(HttpServletRequest request){
+    public String addPartToOrder(HttpServletRequest request, Model model){
 
         var count = Integer.parseInt(request.getParameter("count"));
         ServiceOrder serviceOrder = homeController.getServiceOrder();
@@ -69,9 +79,11 @@ public class ServiceOrderPartController {
         serviceOrder.setParts(parts);
         serviceOrder.setPartCount(partCount);
         serviceOrderService.updateServiceOrder(serviceOrder, count, part.getPartNumber());
-        parts.clear();
-        partCount.clear();
 
+
+        int id = serviceOrder.getId();
+
+        model.addAttribute("serviceOrderParts", serviceOrder.getParts());
 
         return "redirect:/addPart-page";
     }

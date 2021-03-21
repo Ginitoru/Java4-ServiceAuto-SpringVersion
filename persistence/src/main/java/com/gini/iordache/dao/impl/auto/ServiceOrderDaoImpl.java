@@ -62,7 +62,28 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
 
     @Override
     public ServiceOrder updateServiceOrder(ServiceOrder serviceOrder){
-        return entityManager.merge(serviceOrder);
+        return entityManager
+                        .merge(serviceOrder);
+    }
+
+
+    @Override
+    public ServiceOrder findServiceOrderParts(int id){
+
+        String jpql = "SELECT s FROM ServiceOrder s LEFT JOIN FETCH s.parts WHERE s.id =: id";
+        String jpql2 = "SELECT s FROM ServiceOrder s LEFT JOIN s.partCount p WHERE s IN :serviceOrder";
+
+        var serviceOrder =  entityManager.createQuery(jpql, ServiceOrder.class)
+                                                        .setParameter("id", id)
+                                                        .getSingleResult();
+
+        serviceOrder = entityManager.createQuery(jpql2, ServiceOrder.class)
+                                        .setParameter("serviceOrder", serviceOrder)
+                                        .getSingleResult();
+
+
+        return serviceOrder;
+
     }
 
 

@@ -5,7 +5,6 @@ import com.gini.iordache.dao.ServiceOrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.auto.ServiceOrder;
 import lombok.AllArgsConstructor;
-import org.springframework.security.config.authentication.AbstractUserDetailsServiceBeanDefinitionParser;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
 import java.util.List;
@@ -60,6 +59,14 @@ public class ServiceOrderServiceImpl implements com.gini.iordache.services.Servi
 
         partDao.decreasePartCount(decrement, partNumber);
         return serviceOrderDao.updateServiceOrder(serviceOrder);
+    }
+
+
+    @Override
+    @Transactional
+    public ServiceOrder findServiceOrderParts(int id){
+        return serviceOrderDao
+                            .findServiceOrderParts(id);
     }
 
 

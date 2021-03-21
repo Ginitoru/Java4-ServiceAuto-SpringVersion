@@ -18,4 +18,7 @@ public interface ServiceOrderDao {
     Optional<ServiceOrder> findServiceOrderById(int id);
 
     ServiceOrder updateServiceOrder(ServiceOrder serviceOrder);
+
+
+    ServiceOrder findServiceOrderParts(int id);
 }
