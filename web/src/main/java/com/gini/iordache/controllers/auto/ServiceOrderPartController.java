@@ -1,7 +1,9 @@
 package com.gini.iordache.controllers.auto;
 
 import com.gini.iordache.controllers.HomeController;
+import com.gini.iordache.dto.PartDto;
 import com.gini.iordache.entity.auto.Part;
+import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartService;
 import com.gini.iordache.services.interfaces.PartServiceOrderService;
@@ -21,6 +23,7 @@ import java.util.List;
 public class ServiceOrderPartController {
 
     private final PartServiceOrderService partServiceOrderService;
+    private final ServiceOrderService serviceOrderService;
     private final HomeController homeController;
     private final PartService partService;
 
@@ -28,10 +31,10 @@ public class ServiceOrderPartController {
     private List<Part> parts = new ArrayList<>();
     private List<Integer> partCount = new ArrayList<>();
 
-
     @Autowired
-    public ServiceOrderPartController(PartServiceOrderService partServiceOrderService, HomeController homeController, PartService partService) {
+    public ServiceOrderPartController(PartServiceOrderService partServiceOrderService, ServiceOrderService serviceOrderService, HomeController homeController, PartService partService) {
         this.partServiceOrderService = partServiceOrderService;
+        this.serviceOrderService = serviceOrderService;
         this.homeController = homeController;
         this.partService = partService;
     }
@@ -45,11 +48,12 @@ public class ServiceOrderPartController {
     public String addPartsToServiceOrder(Model model){
 
         int id = homeController.getServiceOrder().getId();
-      //  ServiceOrder serviceOrder = serviceOrderService.findServiceOrderParts(id);
+
+        List<PartServiceOrder> partServiceOrders = serviceOrderService.getPartsFormServiceOrder(id);
 
         model.addAttribute("part", part);
-       // model.addAttribute("serviceOrderParts",serviceOrder.getParts());
-     //   model.addAttribute("partCount", serviceOrder.getPartCount());
+        model.addAttribute("serviceOrderParts",partServiceOrders);
+
 
         return "auto/serviceOrderPart-page";
     }
@@ -65,6 +69,7 @@ public class ServiceOrderPartController {
         model.addAttribute("part", part);
 
 
+
         return "redirect:/addPart-page";
     }
 
@@ -75,9 +80,13 @@ public class ServiceOrderPartController {
         var count = Integer.parseInt(request.getParameter("count"));
         ServiceOrder serviceOrder = homeController.getServiceOrder();
 
+            //todo: de facut aici pretul
         partServiceOrderService.addPartToServiceOrder(part,serviceOrder,count, 20);
 
 
+//        int id = homeController.getServiceOrder().getId();
+//        PartDto partDto = serviceOrderService.getPartsFormServiceOrder(id);
+//        List<PartServiceOrder> partServiceOrders = partDto.getPartServiceOrders();
 
         return "redirect:/addPart-page";
     }

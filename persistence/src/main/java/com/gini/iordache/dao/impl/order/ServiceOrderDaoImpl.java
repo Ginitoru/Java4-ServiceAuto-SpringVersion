@@ -1,7 +1,9 @@
 package com.gini.iordache.dao.impl.order;
 
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
+import com.gini.iordache.dto.PartDto;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
+import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
@@ -48,6 +50,7 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
                         .getResultList();
     }
 
+
     @Override
     public Optional<ServiceOrder> findServiceOrderById(int id){
 
@@ -71,18 +74,22 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
     public ServiceOrder findServiceOrderParts(int id){
 
         String jpql = "SELECT s FROM ServiceOrder s LEFT JOIN FETCH s.parts WHERE s.id =: id";
-        String jpql2 = "SELECT s FROM ServiceOrder s LEFT JOIN s.partCount p WHERE s IN :serviceOrder";
-
-        var serviceOrder =  entityManager.createQuery(jpql, ServiceOrder.class)
-                                                        .setParameter("id", id)
-                                                        .getSingleResult();
-
-        serviceOrder = entityManager.createQuery(jpql2, ServiceOrder.class)
-                                        .setParameter("serviceOrder", serviceOrder)
-                                        .getSingleResult();
 
 
-        return serviceOrder;
+        return entityManager.createQuery(jpql, ServiceOrder.class)
+                        .setParameter("id", id)
+                        .getSingleResult();
+
+    }
+
+
+    @Override
+    public List<PartServiceOrder> getPartsFormServiceOrder(int id){
+        String jpql ="SELECT parts FROM ServiceOrder s JOIN s.parts parts WHERE s.id =: id";
+
+        return entityManager.createQuery(jpql, PartServiceOrder.class)
+                .setParameter("id", id)
+                .getResultList();
 
     }
 

@@ -1,6 +1,8 @@
 package com.gini.iordache.services.interfaces;
 
+import com.gini.iordache.dto.PartDto;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
+import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 
 import javax.transaction.Transactional;
@@ -26,4 +28,7 @@ public interface ServiceOrderService {
 
     @Transactional
     ServiceOrder findServiceOrderParts(int id);
+
+    @Transactional
+    List<PartServiceOrder> getPartsFormServiceOrder(int id);
 }

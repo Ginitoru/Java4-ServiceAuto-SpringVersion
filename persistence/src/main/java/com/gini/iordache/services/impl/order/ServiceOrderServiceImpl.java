@@ -2,7 +2,9 @@ package com.gini.iordache.services.impl.order;
 
 import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
+import com.gini.iordache.dto.PartDto;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
+import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import lombok.AllArgsConstructor;
@@ -68,6 +70,14 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
     public ServiceOrder findServiceOrderParts(int id){
         return serviceOrderDao
                             .findServiceOrderParts(id);
+    }
+
+
+
+    @Override
+    @Transactional
+    public List<PartServiceOrder> getPartsFormServiceOrder(int id){
+        return serviceOrderDao.getPartsFormServiceOrder(id);
     }
 
 
