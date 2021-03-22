@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 public interface LaborServiceOrderService {
 
-  
+
 
     @Transactional
     void addLaborToServiceOrder(Labor labor, ServiceOrder serviceOrder);

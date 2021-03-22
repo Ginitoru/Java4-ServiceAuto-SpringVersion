@@ -3,6 +3,7 @@ package com.gini.iordache.services.impl.order;
 import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
+import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
@@ -77,6 +78,15 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
     @Transactional
     public List<PartServiceOrder> getPartsFormServiceOrder(int id){
         return serviceOrderDao.getPartsFormServiceOrder(id);
+    }
+
+
+    @Override
+    @Transactional
+    public List<LaborServiceOrder> findAllLaborsInOrder(int id){
+
+        return serviceOrderDao.findAllLaborsInOrder(id);
+
     }
 
 

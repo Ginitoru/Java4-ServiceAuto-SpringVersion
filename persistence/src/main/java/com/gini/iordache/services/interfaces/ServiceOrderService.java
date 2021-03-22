@@ -2,6 +2,7 @@ package com.gini.iordache.services.interfaces;
 
 
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
+import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 
@@ -31,4 +32,7 @@ public interface ServiceOrderService {
 
     @Transactional
     List<PartServiceOrder> getPartsFormServiceOrder(int id);
+
+    @Transactional
+    List<LaborServiceOrder> findAllLaborsInOrder(int id);
 }

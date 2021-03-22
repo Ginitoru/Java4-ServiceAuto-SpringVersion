@@ -3,9 +3,11 @@ package com.gini.iordache.controllers.order;
 
 import com.gini.iordache.controllers.HomeController;
 import com.gini.iordache.entity.labor.Labor;
+import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.impl.order.LaborServiceOrderServiceImpl;
 import com.gini.iordache.services.interfaces.LaborService;
+import com.gini.iordache.services.interfaces.ServiceOrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,21 +28,28 @@ public class LaborOrderController {
     private final LaborService laborService;
     private final HomeController homeController;
     private final LaborServiceOrderServiceImpl laborOrderService;
+    private final ServiceOrderService serviceOrderService;
 
     List<Labor> labors = new ArrayList<>();
+    List<LaborServiceOrder> orderLabors = new ArrayList<>();
 
 
     @Autowired
-    public LaborOrderController(LaborService laborService, HomeController homeController, LaborServiceOrderServiceImpl laborOrderService) {
+    public LaborOrderController(LaborService laborService, HomeController homeController, LaborServiceOrderServiceImpl laborOrderService, ServiceOrderService serviceOrderService) {
         this.laborService = laborService;
         this.homeController = homeController;
         this.laborOrderService = laborOrderService;
+        this.serviceOrderService = serviceOrderService;
     }
 
     @GetMapping("/laborOrderPage")
     public String getLaborOrderPage(Model model){
 
+        ServiceOrder serviceOrder = homeController.getServiceOrder(); //cad intru pe pagina ia timpii de manopera sii ii baga in tabel
+        orderLabors = serviceOrderService.findAllLaborsInOrder(serviceOrder.getId());
+
         model.addAttribute("labors", labors);
+        model.addAttribute("orderLabors",orderLabors);
 
 
         return "order/laborOrder-page";
@@ -58,16 +67,16 @@ public class LaborOrderController {
 
         labors = laborService.findLaborByName(laborDescription);
         model.addAttribute("labors", labors);
-
+        model.addAttribute("orderLabors", orderLabors);
         System.out.println(labors);
 
 
-        return "redirect:/laborOrder/laborOrderPage";
+        return "order/laborOrder-page";
     }
 
 
     @GetMapping("/addLaborToOrder")
-    public String addLaborToOrder(HttpServletRequest request){
+    public String addLaborToOrder(HttpServletRequest request, Model model){
 
 
        ServiceOrder serviceOrder = homeController.getServiceOrder();
@@ -80,12 +89,13 @@ public class LaborOrderController {
                 .ifPresent(l -> laborOrderService.addLaborToServiceOrder(l,serviceOrder));
 
 
+        orderLabors = serviceOrderService.findAllLaborsInOrder(serviceOrder.getId());
 
+        model.addAttribute("orderLabors", orderLabors);
+        model.addAttribute("labors", labors);
 
-
-        return "redirect:/laborOrder/laborOrderPage";
+        return "order/laborOrder-page";
     }
-
 
 
 }

@@ -29,7 +29,6 @@
                         <th>Labor Category</th>
                         <th>Labor Time</th>
                         <th>Add Labor to Order</th>
-                        <th></th>
                     </tr>
                 </thead>
 
@@ -46,6 +45,35 @@
                         </td>
                     </tr>
                 </tbody>
+        </table>
+
+
+                        <br>
+                        <br>
+
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Labor Description</th>
+                    <th>Labor Category</th>
+                    <th>Labor Time</th>
+                    <th>Labor Price</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr th:each=" laborInOrder : ${orderLabors} ">
+                    <td th:text="${laborInOrder.laborDescription}"></td>
+                    <td th:text="${laborInOrder.category}"></td>
+                    <td th:text="${laborInOrder.timedLabor}"></td>
+                    <td th:text="${laborInOrder.laborPrice}"></td>
+                </tr>
+
+
+            </tbody>
+
+
 
         </table>
 
@@ -57,7 +85,7 @@
     <div>
         <a th:href="@{/main}"><input type="button" value="Home"/></a>
 
-        <a th:href="@{addPart-page}"><input type="button" value="Add Part to Page"/></a>
+        <a th:href="@{/addPart-page}"><input type="button" value="Add Part to Page"/></a>
     </div>
 
 </body>
