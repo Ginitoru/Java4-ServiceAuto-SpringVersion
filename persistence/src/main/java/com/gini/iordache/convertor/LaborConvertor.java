@@ -8,7 +8,7 @@ public class LaborConvertor {
 
     private LaborConvertor() {
     }
-    
+
 
     public static LaborServiceOrder convert(Labor labor, double laborPrice, ServiceOrder serviceOrder){
 

@@ -2,7 +2,9 @@ package com.gini.iordache.dao.impl.order;
 
 
 import com.gini.iordache.dao.iterfaces.LaborServiceOrderDao;
+import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.order.LaborServiceOrder;
+import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -23,6 +25,11 @@ public class LaborServiceOrderDaoImpl implements LaborServiceOrderDao {
         entityManager.persist(laborServiceOrder);
 
     }
+
+
+
+
+
 
 
 }

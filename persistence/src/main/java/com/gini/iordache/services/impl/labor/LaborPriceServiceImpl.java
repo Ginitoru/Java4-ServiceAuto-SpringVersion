@@ -130,4 +130,8 @@ public class LaborPriceServiceImpl implements LaborPriceService {
         throw new RuntimeException("To update the the prices you have to create them first!");
     }
 
+
+    public Optional<LaborPrice> getOptLaborPrice() {
+        return optLaborPrice;
+    }
 }
