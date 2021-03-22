@@ -7,6 +7,48 @@
 <body>
         <h1>ADD LABOR TO ORDER</h1>
 
+                <br>
+                <br>
+
+
+        <form action="#" th:action="@{/laborOrder/searchLabor}" method="GET">
+
+            <div>
+                <input type="submit" value="Search labor">
+                <input th:type="text" name="laborDescription"/>
+            </div>
+        </form>
+
+                        <br>
+                        <br>
+
+        <table>
+                <thead>
+                    <tr>
+                        <th>Labor Description</th>
+                        <th>Labor Category</th>
+                        <th>Labor Time</th>
+                        <th>Add Labor to Order</th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    <tr th:each="labor : ${labors}">
+                        <td th:text="${labor.laborDescription}"></td>
+                        <td th:text="${labor.category}"></td>
+                        <td th:text="${labor.timedLabor}"></td>
+
+                        <td>
+                            <a th:href="@{/laborOrder/addLaborToOrder(laborId=${labor.id})}">
+                                    <input type="button" value="Add labor to order">
+                            </a>
+                        </td>
+                    </tr>
+                </tbody>
+
+        </table>
+
 
 
 
