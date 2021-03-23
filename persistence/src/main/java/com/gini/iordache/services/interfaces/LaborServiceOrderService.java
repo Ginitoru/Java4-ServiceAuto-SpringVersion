@@ -12,4 +12,7 @@ public interface LaborServiceOrderService {
 
     @Transactional
     void addLaborToServiceOrder(Labor labor, ServiceOrder serviceOrder);
+
+    @Transactional
+    void deleteLaborFromOrder(int id);
 }

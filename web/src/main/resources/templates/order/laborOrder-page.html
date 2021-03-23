@@ -68,6 +68,14 @@
                     <td th:text="${laborInOrder.category}"></td>
                     <td th:text="${laborInOrder.timedLabor}"></td>
                     <td th:text="${laborInOrder.laborPrice}"></td>
+                    <td>
+
+                        <form action="#" th:action="@{/laborOrder/deleteLabor}" method="POST">
+                            <input type="hidden" name="laborId" th:value="${laborInOrder.id}">
+                            <input type="submit" value="DELETE"/>
+                        </form>
+
+                    </td>
                 </tr>
 
 

@@ -96,10 +96,24 @@ public class LaborServiceOrderServiceImpl implements LaborServiceOrderService {
 
         }
 
-
-
-
        return 0.0;
+    }
+
+
+    @Override
+    @Transactional
+    public void deleteLaborFromOrder(int id){
+
+        Optional<LaborServiceOrder> laborOrder = laborServiceOrderDao.findLaborOrderById(id);
+
+        if(laborOrder.isPresent()){
+            laborServiceOrderDao.deleteLaborFromOrder(id);
+            return;
+        }
+
+
+        throw new RuntimeException("Labor not found in order!");
+
 
     }
 

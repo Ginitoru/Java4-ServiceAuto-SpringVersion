@@ -97,5 +97,15 @@ public class LaborOrderController {
         return "order/laborOrder-page";
     }
 
+    @PostMapping("/deleteLabor")
+    public String deleteLaborOrder(HttpServletRequest request){
+
+        var id = Integer.parseInt(request.getParameter("laborId"));
+
+        laborOrderService.deleteLaborFromOrder(id);
+
+        return "redirect:/laborOrder/laborOrderPage";
+    }
+
 
 }

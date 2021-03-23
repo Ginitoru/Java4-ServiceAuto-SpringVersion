@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Optional;
 
 @AllArgsConstructor
 @Transactional(propagation = Propagation.MANDATORY)
@@ -24,6 +25,29 @@ public class LaborServiceOrderDaoImpl implements LaborServiceOrderDao {
     public void createLaborServiceOrder(LaborServiceOrder laborServiceOrder){
         entityManager.persist(laborServiceOrder);
 
+    }
+
+
+    @Override
+    public int deleteLaborFromOrder(int id){
+
+        String jpql = "DELETE FROM LaborServiceOrder l WHERE l.id =: id ";
+
+        return entityManager.createQuery(jpql)
+                                .setParameter("id", id)
+                                .executeUpdate();
+    }
+
+
+    @Override
+    public Optional<LaborServiceOrder> findLaborOrderById(int id){
+
+        String jpql = "SELECT l FROM LaborServiceOrder l WHERE l.id =: id ";
+
+        return entityManager.createQuery(jpql, LaborServiceOrder.class)
+                                .setParameter("id", id)
+                                .getResultStream()
+                                .findFirst();
     }
 
 
