@@ -22,4 +22,9 @@ public class CarProblems {
     private String problems;
 
 
+    @Override
+    public String toString() {
+        return problems;
+
+    }
 }
