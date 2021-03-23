@@ -1,6 +1,7 @@
 package com.gini.iordache.services.interfaces;
 
 
+
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
@@ -35,4 +36,9 @@ public interface ServiceOrderService {
 
     @Transactional
     List<LaborServiceOrder> findAllLaborsInOrder(int id);
+
+    @Transactional
+    ServiceOrder findCompleteServiceOrderById(int id);
+
+
 }

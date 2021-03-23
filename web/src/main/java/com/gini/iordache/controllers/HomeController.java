@@ -1,6 +1,7 @@
 package com.gini.iordache.controllers;
 
 
+
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
@@ -53,9 +54,11 @@ public class HomeController {
     public String findOrderStats(@RequestParam("orderId") int id, Model model){
 
 
-        //todo: vezi aici ce e de facut ca face 4 selecturi si nici nu a luat listele inca
-       serviceOrder = serviceOrderService.findServiceOrderById(id);
+        //todo: cu 7 selecturi am luat tot ce e in serviceOrder :D ma asteptam la mai rau
+       serviceOrder = serviceOrderService.findCompleteServiceOrderById(id);
 
+        System.out.println(serviceOrder.getParts().toString());
+        System.out.println(serviceOrder.getLabors().toString());
 
         model.addAttribute("serviceOrder", serviceOrder);
 

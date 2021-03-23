@@ -106,6 +106,27 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
 
     }
 
+   //-> https://stackoverflow.com/questions/30088649/how-to-use-multiple-join-fetch-in-one-jpql-query
+    @Override
+    public ServiceOrder findCompleteServiceOrderById(int id){
+
+        String jpql1 = "SELECT s FROM ServiceOrder s LEFT JOIN FETCH s.parts WHERE s.id = :id";
+        String jpql2 = "SELECT s FROM ServiceOrder s LEFT JOIN FETCh s.labors l WHERE s IN :serviceOrder";
+
+
+        ServiceOrder serviceOrder = entityManager.createQuery(jpql1, ServiceOrder.class)
+                                                    .setParameter("id", id)
+                                                    .getSingleResult();
+
+
+        serviceOrder = entityManager.createQuery(jpql2, ServiceOrder.class)
+                                                    .setParameter("serviceOrder", serviceOrder)
+                                                    .getSingleResult();
+
+        return serviceOrder;
+    }
+
+
 
 
 

@@ -47,4 +47,15 @@ public class Part {
     public int hashCode() {
         return Objects.hash(partNumber);
     }
+
+    @Override
+    public String toString() {
+        return "Part{" +
+                "id=" + id +
+                ", partNumber='" + partNumber + '\'' +
+                ", partName='" + partName + '\'' +
+                ", count=" + count +
+                ", price=" + price +
+                '}';
+    }
 }

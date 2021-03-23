@@ -1,6 +1,7 @@
 package com.gini.iordache.dao.iterfaces;
 
 
+
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
@@ -28,4 +29,9 @@ public interface ServiceOrderDao {
     List<PartServiceOrder> getPartsFormServiceOrder(int id);
 
     List<LaborServiceOrder> findAllLaborsInOrder(int id);
+
+
+    ServiceOrder findCompleteServiceOrderById(int id);
+
+
 }
