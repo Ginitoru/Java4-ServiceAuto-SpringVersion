@@ -44,6 +44,8 @@ public class HomeController {
     @GetMapping("/main")
     public String intra(Model model){
 
+        model.addAttribute("laborsOrder", serviceOrder.getLabors());
+        model.addAttribute("partsOrder", serviceOrder.getParts());
         model.addAttribute("serviceOrderIdAndStatus", allOrdersIdAndStatus.getList());
         model.addAttribute("serviceOrder", serviceOrder);
         return "main-page";
@@ -61,10 +63,17 @@ public class HomeController {
         System.out.println(serviceOrder.getLabors().toString());
 
         model.addAttribute("serviceOrder", serviceOrder);
+        model.addAttribute("laborsOrder", serviceOrder.getLabors());
+        model.addAttribute("partsOrder", serviceOrder.getParts());
 
 
         return "redirect:/main";
     }
+
+
+
+
+
 
 
     public ServiceOrder getServiceOrder() {

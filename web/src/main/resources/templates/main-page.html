@@ -83,6 +83,62 @@
         </div>
 
 
+                        <br>
+                        <br>
+
+<!--       PART TABLE-->
+
+       <table>
+           <thead>
+            <tr>
+                <th>Part</th>
+                <th>Part nr:</th>
+                <th>Count</th>
+                <th>Price</th>
+            </tr>
+           </thead>
+
+           <tbody>
+                <tr th:each="part : ${partsOrder}">
+                    <td th:text="${part.partName}"/>
+                    <td th:text="${part.partNumber}"/>
+                    <td th:text="${part.count}"/>
+                    <td th:text="${part.price}"/>
+                </tr>
+           </tbody>
+       </table>
+
+
+                            <br>
+                            <br>
+
+       <table>
+           <thead>
+           <tr>
+               <th>Labor</th>
+               <th>Labor Category</th>
+               <th>Labor time</th>
+               <th>Labor price</th>
+           </tr>
+           </thead>
+
+           <tbody>
+           <tr th:each="labor : ${laborsOrder}">
+               <td th:text="${labor.laborDescription}"/>
+               <td th:text="${labor.category}"/>
+               <td th:text="${labor.timedLabor}"/>
+               <td th:text="${labor.laborPrice}"/>
+           </tr>
+           </tbody>
+       </table>
+
+
+
+
+
+
+
+
                             <br>
                             <br>
 
