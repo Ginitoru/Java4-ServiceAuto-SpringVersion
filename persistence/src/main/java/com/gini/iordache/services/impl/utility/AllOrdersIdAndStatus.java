@@ -13,26 +13,26 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 
-@Getter
-@Setter
-@Component
+//@Getter
+//@Setter
+//@Component
 public class AllOrdersIdAndStatus {
 
 
-
-    private CopyOnWriteArrayList<ServiceOrderIdAndStatusDto> list = new CopyOnWriteArrayList<>();
-
-
-    @EventListener(ContextRefreshedEvent.class)
-    public void allServiceOrderIdAndStatus(ContextRefreshedEvent evt){
-
-            list                                                    // -> dupa ce incarca contextul incar id-urile si staturile service orederuliro
-                .addAll( evt.getApplicationContext()
-                            .getBean(ServiceOrderServiceImpl.class)
-                                            .allServiceOrderIdAndStatus());
-
-
-    }
+//
+//    private CopyOnWriteArrayList<ServiceOrderIdAndStatusDto> list = new CopyOnWriteArrayList<>();
+//
+//
+//    @EventListener(ContextRefreshedEvent.class)
+//    public void allServiceOrderIdAndStatus(ContextRefreshedEvent evt){
+//
+//            list                                                    // -> dupa ce incarca contextul incar id-urile si staturile service orederuliro
+//                .addAll( evt.getApplicationContext()
+//                            .getBean(ServiceOrderServiceImpl.class)
+//                                            .allServiceOrderIdAndStatus());
+//
+//
+//    }
 
 
 

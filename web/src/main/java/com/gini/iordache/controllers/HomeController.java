@@ -9,6 +9,7 @@ import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import com.gini.iordache.services.impl.utility.AllOrdersIdAndStatus;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,14 +18,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.DecimalFormat;
 
-
+@AllArgsConstructor
 @Controller
 public class HomeController {
 
 
     private final ServiceOrderService serviceOrderService;
-    private final AllOrdersIdAndStatus allOrdersIdAndStatus;
-    private final PartService partService;
+
 
     private ServiceOrder serviceOrder = new ServiceOrder();
     private double partsTotalPrice;
@@ -36,10 +36,9 @@ public class HomeController {
 
 
     @Autowired
-    public HomeController(ServiceOrderService serviceOrderService, AllOrdersIdAndStatus allOrdersIdAndStatus, PartService partService) {
+    public HomeController(ServiceOrderService serviceOrderService) {
         this.serviceOrderService = serviceOrderService;
-        this.allOrdersIdAndStatus = allOrdersIdAndStatus;
-        this.partService = partService;
+
     }
 
 
@@ -56,7 +55,7 @@ public class HomeController {
 
         model.addAttribute("laborsOrder", serviceOrder.getLabors());
         model.addAttribute("partsOrder", serviceOrder.getParts());
-        model.addAttribute("serviceOrderIdAndStatus", allOrdersIdAndStatus.getList());
+        model.addAttribute("serviceOrderIdAndStatus", serviceOrderService.allServiceOrderIdAndStatus());
         model.addAttribute("serviceOrder", serviceOrder);
         model.addAttribute("partsTotalPrice", partsTotalPrice);
         model.addAttribute("partsTotalPriceWithVAT", partsTotalPriceWithVAT);
@@ -68,7 +67,7 @@ public class HomeController {
         return "main-page";
     }
 
-
+            //todo: cam dubioasa metoda asta -> de vezut daca pot sa ii fac ceva la sfarsit
     @GetMapping("/order-stats")  //method 1
     public String findOrderStats(@RequestParam("orderId") int id, Model model){
 
@@ -100,12 +99,6 @@ public class HomeController {
         model.addAttribute("laborTotalPriceWithVAT", laborTotalPriceWithVAT);
         model.addAttribute("totalPrice", totalPrice);
         model.addAttribute("totalPriceWithVAT", totalPriceWithVAT);
-
-
-
-
-
-
 
         return "redirect:/main";
     }
@@ -156,9 +149,6 @@ public class HomeController {
 
         return Double.parseDouble(format.format(totalPrice));
     }
-
-
-
 
 
 

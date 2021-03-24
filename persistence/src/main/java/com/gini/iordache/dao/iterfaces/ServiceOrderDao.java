@@ -6,6 +6,7 @@ import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
+import com.gini.iordache.utility.OrderStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -34,4 +35,5 @@ public interface ServiceOrderDao {
     ServiceOrder findCompleteServiceOrderById(int id);
 
 
+    int updateOrderStatus(OrderStatus orderStatus, int id);
 }

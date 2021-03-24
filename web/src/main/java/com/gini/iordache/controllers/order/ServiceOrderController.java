@@ -106,7 +106,7 @@ public class ServiceOrderController {
     }
 
 
-    @PostMapping("/carProblems")
+    @PostMapping("/carProblems")    
     public String createServiceOrder(HttpServletRequest request){
 
         var carProblems = request.getParameter("carProblems");

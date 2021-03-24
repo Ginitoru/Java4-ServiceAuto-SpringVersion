@@ -5,6 +5,7 @@ import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
+import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -124,6 +125,20 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
                                                     .getSingleResult();
 
         return serviceOrder;
+    }
+
+
+    @Override
+    public int updateOrderStatus(OrderStatus  orderStatus, int id){
+
+        String jpql = "UPDATE ServiceOrder s SET s.orderStatus =: orderStatus WHERE s.id =: id";
+
+
+        return entityManager.createQuery(jpql)
+                                .setParameter("orderStatus", orderStatus)
+                                .setParameter("id", id)
+                                .executeUpdate();
+
     }
 
 

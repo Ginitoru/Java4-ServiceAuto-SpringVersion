@@ -4,10 +4,12 @@ package com.gini.iordache.services.impl.order;
 import com.gini.iordache.convertor.PartConvertor;
 import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.PartServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartServiceOrderService;
+import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -20,6 +22,7 @@ public class PartServiceOrderServiceImpl implements PartServiceOrderService {
 
     private final PartServiceOrderDao partServiceOrderDao;
     private final PartDao partDao;
+    private final ServiceOrderDao serviceOrderDao;
 
     @Override
     @Transactional
@@ -41,6 +44,10 @@ public class PartServiceOrderServiceImpl implements PartServiceOrderService {
             }                                                                                    // nr de bucati din comanda
 
 
+
+            int id = serviceOrder.getId();
+
+            serviceOrderDao.updateOrderStatus(OrderStatus.READY, id);
             partDao.decreasePartCount(count, part.getPartNumber());                              //scade nr de piese pe care le baga in comanda din magazie
             return;
 
