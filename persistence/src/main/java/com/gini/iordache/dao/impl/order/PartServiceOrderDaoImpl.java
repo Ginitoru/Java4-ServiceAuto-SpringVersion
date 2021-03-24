@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.List;
 import java.util.Optional;
 
 @AllArgsConstructor
@@ -65,10 +66,6 @@ public class PartServiceOrderDaoImpl implements PartServiceOrderDao {
                                 .executeUpdate();
 
     }
-
-
-
-
 
 
 }

@@ -24,12 +24,12 @@ public class LaborServiceOrderServiceImpl implements LaborServiceOrderService {
 
 
 
-
+    //method 1
     @Override
     @Transactional
     public void addLaborToServiceOrder(Labor labor, ServiceOrder serviceOrder){
 
-         double laborPrice = laborPrice(labor);
+         double laborPrice = this.laborPrice(labor);
 
          LaborServiceOrder laborServiceOrder = LaborConvertor.convert(labor,laborPrice, serviceOrder);
 
@@ -37,9 +37,11 @@ public class LaborServiceOrderServiceImpl implements LaborServiceOrderService {
          laborServiceOrderDao.createLaborServiceOrder(laborServiceOrder);
 
 
+
     }
 
 
+    //method 2
     private double laborPrice(Labor labor){
 
 
