@@ -3,12 +3,14 @@ package com.gini.iordache.services.impl.order;
 
 import com.gini.iordache.convertor.LaborConvertor;
 import com.gini.iordache.dao.iterfaces.LaborServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.labor.LaborPrice;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.impl.labor.LaborPriceServiceImpl;
 import com.gini.iordache.services.interfaces.LaborServiceOrderService;
+import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,7 +23,7 @@ public class LaborServiceOrderServiceImpl implements LaborServiceOrderService {
 
     private final LaborServiceOrderDao laborServiceOrderDao;
     private final LaborPriceServiceImpl laborPriceService;
-
+    private final ServiceOrderDao serviceOrderDao;
 
 
     //method 1
@@ -35,8 +37,7 @@ public class LaborServiceOrderServiceImpl implements LaborServiceOrderService {
 
 
          laborServiceOrderDao.createLaborServiceOrder(laborServiceOrder);
-
-
+         serviceOrderDao.updateOrderStatus(OrderStatus.READY, serviceOrder.getId());
 
     }
 
