@@ -127,4 +127,14 @@ public class ServiceOrder {
     public int hashCode() {
         return Objects.hash(id);
     }
+
+
+    @Override
+    public String toString() {
+        return "ServiceOrder{" +
+                "id=" + id +
+                ", totalPrice=" + totalPrice +
+                ", client=" + client +
+                '}';
+    }
 }

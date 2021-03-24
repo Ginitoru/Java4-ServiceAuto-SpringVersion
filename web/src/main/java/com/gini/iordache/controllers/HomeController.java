@@ -61,6 +61,7 @@ public class HomeController {
 
         System.out.println(serviceOrder.getParts().toString());
         System.out.println(serviceOrder.getLabors().toString());
+        System.out.println(serviceOrder);
 
         model.addAttribute("serviceOrder", serviceOrder);
         model.addAttribute("laborsOrder", serviceOrder.getLabors());

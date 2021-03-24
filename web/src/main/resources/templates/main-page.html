@@ -76,11 +76,66 @@
 
                             <br>
                             <br>
+        <div class="order-stats">
+            <div>
+                <label>Order nr:</label>
+                <label th:text="${serviceOrder.id}"></label>
+            </div>
 
-        <div>
-            <label>Order nr:</label>
-            <label th:text="${serviceOrder.id}"></label>
-        </div>
+
+
+<!--            <div th:if="${serviceOrder.id !=0.0}">-->
+
+<!--                            <div>-->
+<!--                                <label>User: </label>-->
+<!--                                <label th:text="${serviceOrder.user.username}"></label>-->
+<!--                            </div>-->
+
+<!--                            <div>-->
+<!--                                <labe>Manufacturer: </labe>-->
+<!--                                <label th:text="${serviceOrder.vehicle.carManufacturer}"></label>-->
+<!--                            </div>-->
+
+<!--                            <div>-->
+<!--                                <labe>Car model: </labe>-->
+<!--                                <label th:text="${serviceOrder.vehicle.carModel}"></label>-->
+<!--                            </div>-->
+
+<!--                            <div>-->
+<!--                                <labe>Serila number/VIN: </labe>-->
+<!--                                <label th:text="${serviceOrder.vehicle.serialNumber}"></label>-->
+<!--                            </div>-->
+
+<!--                            <div>-->
+<!--                                <labe>Client</labe>-->
+<!--                                <label th:text="${serviceOrder.client}"></label>-->
+<!--                            </div>-->
+<!--            </div>-->
+<!--        </div>-->
+
+
+
+<!--            ORDER STATS-->
+
+    <div>
+        <ul>
+            <li>User: </li>
+            <li>Manufacturer: </li>
+            <li>Model: </li>
+            <li>Serial number/VIN: </li>
+        </ul>
+
+        <ul th:if="${serviceOrder.id != 0.0}">
+            <li th:text="${serviceOrder.user.username}"></li>
+            <li th:text="${serviceOrder.vehicle.carManufacturer}"></li>
+            <li th:text="${serviceOrder.vehicle.carModel}"></li>
+            <li th:text="${serviceOrder.vehicle.serialNumber}"></li>
+        </ul>
+
+
+
+    </div>
+
 
 
                         <br>

@@ -83,7 +83,6 @@ public class ServiceOrderPartController {
     @GetMapping("/deletePart")
     public String deletePartFromServiceOrder(@RequestParam("partNumber") String partNumber, @RequestParam("count") int count){
 
-        System.out.println(partNumber + " xxxxx " + count + "   hihihihihihihih");
 
         partServiceOrderService.deletePartFromServiceOrder(partNumber, count);
 
