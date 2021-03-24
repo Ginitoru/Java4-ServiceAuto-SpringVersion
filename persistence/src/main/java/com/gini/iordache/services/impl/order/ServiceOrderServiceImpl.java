@@ -8,6 +8,7 @@ import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
+import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
@@ -95,6 +96,14 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
     @Transactional
     public ServiceOrder findCompleteServiceOrderById(int id){
         return serviceOrderDao.findCompleteServiceOrderById(id);
+    }
+
+
+
+    @Override
+    @Transactional
+    public int updateOrderStatus(OrderStatus orderStatus, int id){
+        return serviceOrderDao.updateOrderStatus(orderStatus, id);
     }
 
 

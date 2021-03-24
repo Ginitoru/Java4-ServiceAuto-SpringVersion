@@ -9,11 +9,13 @@ import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import com.gini.iordache.services.impl.utility.AllOrdersIdAndStatus;
+import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.text.DecimalFormat;
@@ -134,21 +136,29 @@ public class HomeController {
 
     private double getTotalPriceRounded(double partPrice, double laborPrice){
         DecimalFormat format = new DecimalFormat("0.00");
-
         double totalPrice = partPrice + laborPrice;
-
-
         return Double.parseDouble(format.format(totalPrice));
     }
 
 
     private double getTotalPriceRounded(double totalPriceWithVAT){
         DecimalFormat format = new DecimalFormat("0.00");
-
         double totalPrice = totalPriceWithVAT * 1.19;
-
         return Double.parseDouble(format.format(totalPrice));
     }
+
+
+    @PostMapping("/closeOrder")
+    public String closeOrder(){
+
+        serviceOrderService.updateOrderStatus(OrderStatus.CLOSE, serviceOrder.getId());
+
+        return "redirect:/main";
+    }
+
+
+
+
 
 
 
