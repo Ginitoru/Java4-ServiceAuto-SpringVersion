@@ -8,6 +8,8 @@ import lombok.Setter;
 import org.springframework.context.event.ContextRefreshedEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 
 
 import java.util.concurrent.CopyOnWriteArrayList;

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8"></meta>
+    <title>Title</title>
+</head>
+<body>
+    <h3>Invoice</h3>
+
+    <br></br>
+    <div>
+        <label>Order: </label>
+        <label th:text="${order.id}"></label>
+    </div>
+    <br></br>
+    <div>
+        <label>Username: </label>
+        <label th:text="${order.user.username}"></label>
+
+    </div>
+    <br></br>
+    <div>
+        <label>
+            <label>VIN: </label>
+            <label th:text="${order.vehicle.serialNumber}"></label>
+        </label>
+    </div>
+    <br></br>
+
+    <div class="total">
+        <label>TOTAL:.............................</label>
+        <label th:text="${totalPrice}"></label>
+    </div>
+    <br></br>
+    <div class="total">
+        <label>TOTAL + VAT.......................</label>
+        <label th:text="${totalPriceWithVAT}"></label>
+    </div>
+
+
+
+
+
+
+</body>
+</html>

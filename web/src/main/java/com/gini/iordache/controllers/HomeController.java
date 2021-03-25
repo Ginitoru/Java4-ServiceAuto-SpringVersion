@@ -2,13 +2,11 @@ package com.gini.iordache.controllers;
 
 
 
-import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.services.interfaces.PartService;
+import com.gini.iordache.service.PdfService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
-import com.gini.iordache.services.impl.utility.AllOrdersIdAndStatus;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,15 +16,17 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+
 import java.text.DecimalFormat;
 
-@AllArgsConstructor
+
 @Controller
 public class HomeController {
 
 
-    private final ServiceOrderService serviceOrderService;
 
+    private final ServiceOrderService serviceOrderService;
+    private final PdfService pdfService;
 
     private ServiceOrder serviceOrder = new ServiceOrder();
     private double partsTotalPrice;
@@ -36,15 +36,12 @@ public class HomeController {
     private double totalPrice;
     private double totalPriceWithVAT;
 
-
     @Autowired
-    public HomeController(ServiceOrderService serviceOrderService) {
+    public HomeController(ServiceOrderService serviceOrderService,  PdfService pdfService) {
         this.serviceOrderService = serviceOrderService;
 
+        this.pdfService = pdfService;
     }
-
-
-
 
     @GetMapping("/")
     public String index(){
@@ -152,11 +149,9 @@ public class HomeController {
     public String closeOrder(){
 
         serviceOrderService.updateOrderStatus(OrderStatus.CLOSE, serviceOrder.getId());
-
+        pdfService.createPDF(totalPrice, totalPriceWithVAT, serviceOrder);
         return "redirect:/main";
     }
-
-
 
 
 
