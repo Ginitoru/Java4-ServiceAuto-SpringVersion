@@ -10,12 +10,14 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 
 
 @Controller
@@ -54,7 +56,15 @@ public class UserController {
 
 
     @PostMapping("/create-user")
-    public String createUser(@ModelAttribute("newUser") User user) {
+    public String createUser(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, Model model) {
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("authority", Authorities.values());
+            System.out.println(bindingResult.toString());
+            return "user/create-user";
+        }
+
+
         userService.createUser(user);
         return "redirect:/login";
     }
