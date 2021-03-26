@@ -60,7 +60,6 @@ public class UserController {
 
         if(bindingResult.hasErrors()){
             model.addAttribute("authority", Authorities.values());
-            System.out.println(bindingResult.toString());
             return "user/create-user";
         }
 

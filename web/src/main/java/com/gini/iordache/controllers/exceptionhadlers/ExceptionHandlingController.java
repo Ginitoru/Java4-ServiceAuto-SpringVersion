@@ -2,8 +2,10 @@ package com.gini.iordache.controllers.exceptionhadlers;
 
 
 import com.gini.errors.*;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -13,6 +15,9 @@ public class ExceptionHandlingController {
 
 
     //todo: exception handler pt -> cand am user in baza de data si vreau sa creez unul la fel
+
+
+
 
 
     @ExceptionHandler(AccountAlreadyActiveException.class)

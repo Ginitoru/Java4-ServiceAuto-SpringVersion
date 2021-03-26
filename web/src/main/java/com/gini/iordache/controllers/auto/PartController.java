@@ -4,12 +4,14 @@ import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.auto.PartCount;
 import com.gini.iordache.services.interfaces.PartService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @AllArgsConstructor
 @Controller
@@ -17,6 +19,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class PartController {
 
     private final PartService partService;
+
+
+
+
+//    @InitBinder
+//    public void initBinder(WebDataBinder dataBinder){
+//        StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);
+//        dataBinder.registerCustomEditor(String.class, stringTrimmerEditor);
+//    }
+
 
 
     @GetMapping("/part")
@@ -30,11 +42,15 @@ public class PartController {
     }
 
     @PostMapping("/createPart")
-    public String createPart(@ModelAttribute ("part") Part part){
+    public String createPart(@Valid @ModelAttribute ("part") Part part, BindingResult bindingResult){
+
+        if(bindingResult.hasErrors()){
+            System.out.println(bindingResult.toString());
+            return "auto/part-page";
+        }
 
 
         partService.addPart(part);
-
         return "redirect:/parts/part";
     }
 

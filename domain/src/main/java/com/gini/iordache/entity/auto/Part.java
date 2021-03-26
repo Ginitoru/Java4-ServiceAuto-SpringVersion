@@ -6,6 +6,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -22,11 +24,16 @@ public class Part {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotNull
+    @Size(min = 1, message = "required")
     @Column(name = "part_Number")
     private String partNumber;
 
+    @NotNull
+    @Size(min = 1, message = "required")
     @Column(name = "part_Name")
     private String partName;
+
 
     @Column(name = "count")
     private int count;
