@@ -20,6 +20,7 @@
                 <div class="form-group">
                     <label class="label">Manufacturer</label>
                     <input type="text" class="field" th:field="*{carManufacturer}"/>
+                    <label th:id="${#fields.hasErrors('carManufacturer')}" th:errors="*{carManufacturer}"></label>
                 </div>
 
                     <br>
@@ -27,6 +28,7 @@
                 <div class="form-group">
                     <label class="label">Molde</label>
                     <input type="text" class="field" th:field="*{carModel}"/>
+                    <label th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}"></label>
                 </div>
 
                     <br>
@@ -34,6 +36,7 @@
                 <div class="form-group">
                     <label class="label">Serial number/VIN</label>
                     <input type="text" class="field" th:field="*{serialNumber}">
+                    <label th:id="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}"></label>
                 </div>
 
                     <br>

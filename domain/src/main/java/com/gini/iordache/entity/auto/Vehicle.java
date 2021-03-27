@@ -5,8 +5,12 @@ import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.service.spi.InjectService;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -22,13 +26,20 @@ public class Vehicle {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @NotNull(message = "required")
+    @Size(max = 30, message = "manufacturer name is to long")
     @Column(name = "car_manufacturer", nullable = false)
     private String carManufacturer;
 
+    @NotNull(message = "required")
+    @Size(max = 30, message = "model name is to long")
     @Column(name = "car_model", nullable = false)
     private String carModel;
 
-    @Column(name = "serial_number_or_vin", unique = true, nullable = false)
+    @Size(max = 17, message = "VIN lenght can't be more than {max} characters")
+    @NotNull(message = "required")
+    @Pattern(regexp = "^[0-9]*[a-zA-Z]+[a-zA-Z0-9]*$", message = "invalid VIN")
+    @Column(name = "serial_number_or_vin", unique = true)
     private String serialNumber;
 
     @OneToMany(mappedBy = "vehicle")
