@@ -6,6 +6,9 @@
 </head>
 <body>
     <h3>Invoice</h3>
+    <br></br>
+
+    <h2>Gini Service</h2>
 
     <br></br>
     <div>
@@ -13,28 +16,129 @@
         <label th:text="${order.id}"></label>
     </div>
     <br></br>
+
     <div>
         <label>Username: </label>
         <label th:text="${order.user.username}"></label>
 
     </div>
-    <br></br>
-    <div>
-        <label>
+
+        <br></br>
+
+
+
+        <div th:if="${person.cnp != 0}">
+            <label>Client: </label>
+            <label th:text="${person.firstName}"> </label>
+            <label th:text="${person.lastName}"></label>
+            <div>
+                <label>cnp: </label>
+                <label th:text="${person.cnp}"></label>
+            </div>
+        </div>
+
+        <div th:if="${company.cui != 0}">
+            <label>Client: </label>
+            <label th:text="${company.name}"></label>
+            <div>
+                <label>cui: </label>
+                <label th:text="${company.cui}"></label>
+            </div>
+        </div>
+
+
+
+<!--    VEHICLE-->
+
+    <div class="vehicle">
+        <div>
+            <label>Vehicle: </label>
+            <label th:text="${order.vehicle.carManufacturer}"></label>
+        </div>
+
+        <div>
+            <label>Model: </label>
+            <label th:text="${order.vehicle.carModel}"></label>
+        </div>
+
+        <div>
             <label>VIN: </label>
             <label th:text="${order.vehicle.serialNumber}"></label>
-        </label>
+        </div>
     </div>
-    <br></br>
+
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+                                <br></br>
+
+
+
+<!--    PART TABLE-->
+
+    <div class="part-table">
+        <table>
+            <thead>
+            <tr>
+                <th>part   </th>
+                <th>part nr</th>
+                <th>count  </th>
+                <th>price  </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="part : ${order.parts}">
+                <td th:text="${part.partName}"></td>
+                <td th:text="${part.partNumber}"></td>
+                <td th:text="${part.count}"></td>
+                <td th:text="${part.price}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+                         <br></br>
+                         <br></br>
+
+<!--    Labor table-->
+
+    <div class="labor-table">
+        <table>
+            <thead>
+            <tr>
+                <th>labor   </th>
+                <th>category</th>
+                <th>time    </th>
+                <th>price  </th>
+            </tr>
+            </thead>
+
+            <tbody>
+            <tr th:each="labor : ${order.labors}">
+                <td th:text="${labor.laborDescription}"></td>
+                <td th:text="${labor.category}"></td>
+                <td th:text="${labor.timedLabor}"></td>
+                <td th:text="${labor.laborPrice}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+
+                        <br></br>
+                        <br></br>
+                        <br></br>
+                        <br></br>
+
 
     <div class="total">
         <label>TOTAL:.............................</label>
-        <label th:text="${totalPrice}"></label>
+        <label th:text="${total}"></label>
     </div>
     <br></br>
     <div class="total">
         <label>TOTAL + VAT.......................</label>
-        <label th:text="${totalPriceWithVAT}"></label>
+        <label th:text="${totalVAT}"></label>
     </div>
 
 

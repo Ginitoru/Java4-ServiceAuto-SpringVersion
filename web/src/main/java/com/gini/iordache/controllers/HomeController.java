@@ -50,19 +50,10 @@ public class HomeController {
     }
 
     @GetMapping("/main")
-    public String intra(Model model){
+    public String showHomePage(Model model){
 
-        model.addAttribute("laborsOrder", serviceOrder.getLabors());
-        model.addAttribute("partsOrder", serviceOrder.getParts());
         model.addAttribute("serviceOrderIdAndStatus", serviceOrderService.allServiceOrderIdAndStatus());
-        model.addAttribute("serviceOrder", serviceOrder);
-        model.addAttribute("partsTotalPrice", partsTotalPrice);
-        model.addAttribute("partsTotalPriceWithVAT", partsTotalPriceWithVAT);
-        model.addAttribute("laborTotalPrice", laborTotalPrice);
-        model.addAttribute("laborTotalPriceWithVAT", laborTotalPriceWithVAT);
-        model.addAttribute("totalPrice", totalPrice);
-        model.addAttribute("totalPriceWithVAT", totalPriceWithVAT);
-
+        allAllModelAtributes(model);
         return "main-page";
     }
 
@@ -83,21 +74,11 @@ public class HomeController {
         totalPrice = getTotalPriceRounded(partsTotalPriceWithVAT, laborTotalPriceWithVAT);
         totalPriceWithVAT  = getTotalPriceRounded(totalPrice);
 
-
-
         System.out.println(serviceOrder.getParts().toString());
         System.out.println(serviceOrder.getLabors().toString());
-        System.out.println(serviceOrder);
+        System.out.println(serviceOrder.getClient());
 
-        model.addAttribute("serviceOrder", serviceOrder);
-        model.addAttribute("laborsOrder", serviceOrder.getLabors());
-        model.addAttribute("partsOrder", serviceOrder.getParts());
-        model.addAttribute("partsTotalPrice", partsTotalPrice);
-        model.addAttribute("partsTotalPriceWithVAT", partsTotalPriceWithVAT);
-        model.addAttribute("laborTotalPrice", laborTotalPrice);
-        model.addAttribute("laborTotalPriceWithVAT", laborTotalPriceWithVAT);
-        model.addAttribute("totalPrice", totalPrice);
-        model.addAttribute("totalPriceWithVAT", totalPriceWithVAT);
+        allAllModelAtributes(model);
 
         return "redirect:/main";
     }
@@ -147,10 +128,23 @@ public class HomeController {
 
     @PostMapping("/closeOrder")
     public String closeOrder(){
-
+        System.out.println(totalPrice + " xxxxxxxxxxxxxxxxx " + totalPriceWithVAT);
         serviceOrderService.updateOrderStatus(OrderStatus.CLOSE, serviceOrder.getId());
         pdfService.createPDF(totalPrice, totalPriceWithVAT, serviceOrder);
         return "redirect:/main";
+    }
+
+
+    private void allAllModelAtributes(Model model){
+        model.addAttribute("laborsOrder", serviceOrder.getLabors());
+        model.addAttribute("partsOrder", serviceOrder.getParts());
+        model.addAttribute("serviceOrder", serviceOrder);
+        model.addAttribute("partsTotalPrice", partsTotalPrice);
+        model.addAttribute("partsTotalPriceWithVAT", partsTotalPriceWithVAT);
+        model.addAttribute("laborTotalPrice", laborTotalPrice);
+        model.addAttribute("laborTotalPriceWithVAT", laborTotalPriceWithVAT);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("totalPriceWithVAT", totalPriceWithVAT);
     }
 
 

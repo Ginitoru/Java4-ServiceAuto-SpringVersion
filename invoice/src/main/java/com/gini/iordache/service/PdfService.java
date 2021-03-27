@@ -2,6 +2,9 @@ package com.gini.iordache.service;
 
 
 
+import com.gini.iordache.entity.clients.Client;
+import com.gini.iordache.entity.clients.Company;
+import com.gini.iordache.entity.clients.Person;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.lowagie.text.DocumentException;
 
@@ -29,9 +32,21 @@ public class PdfService {
 
         Context context = new Context();
 
+        Client client = serviceOrder.getClient();
+
+        if(client instanceof Person){
+            Person person = (Person) serviceOrder.getClient();
+            context.setVariable("person", person);
+        }
+
+        if(client instanceof Company){
+            Company company = (Company) serviceOrder.getClient();
+            context.setVariable("company", company);
+        }
+
         context.setVariable("order", serviceOrder);
         context.setVariable("total", totalPrice);
-        context.setVariable("totalVAT", serviceOrder);
+        context.setVariable("totalVAT", totalPriceWithVAT);
         String processHTML = templateEngine.process("/invoice/invoice", context);
 
         OutputStream outputStream = null;

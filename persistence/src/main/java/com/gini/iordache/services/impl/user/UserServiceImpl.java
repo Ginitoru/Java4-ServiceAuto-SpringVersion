@@ -1,5 +1,6 @@
 package com.gini.iordache.services.impl.user;
 
+import com.gini.errors.user.UserAlreadyExists;
 import com.gini.iordache.dao.iterfaces.TokenDao;
 import com.gini.iordache.dao.iterfaces.UserDao;
 import com.gini.iordache.entity.user.ActivationToken;
@@ -50,7 +51,7 @@ public class UserServiceImpl implements UserService {
             return;
         }
 
-        throw new NoSuchElementException("User already exists");
+        throw new UserAlreadyExists("User already exists");
     }
 
 
