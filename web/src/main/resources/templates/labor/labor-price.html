@@ -13,14 +13,16 @@
 
             <div class="form-container">
 
-                    <form action="#" th:action="@{/prices/setPrices}" class="form" method="POST">
+                    <form action="#" th:action="@{/prices/setPrices}" class="form" method="POST"
+                                        th:object="${price}">
 
                         <div class="form-group">
                             <label>Mechanical Price</label>
                             <span th:if="${laborPrices.id == 0}">
-                                <input type="text" name="mechanicalLaborPrice" class="field" />
+                                <input type="text" th:field="*{mechanicalLaborPrice}" class="field" />
                             </span>
-                                <label th:text="${laborPrices.mechanicalLaborPrice}"/>
+                                <label th:text="${laborPrices.mechanicalLaborPrice}"></label>
+                                <label th:if="${#fields.hasErrors('mechanicalLaborPrice')}" th:errors="*{mechanicalLaborPrice}"></label>
                         </div>
 
                                     <br>
@@ -28,9 +30,10 @@
                         <div class="form-group">
                             <label>Body Price</label>
                             <span th:if="${laborPrices.id == 0}">
-                                <input type="text" name="bodyLaborPrice" class="field" />
+                                <input type="text" th:field="*{bodyLaborPrice}" class="field" />
                             </span>
                             <label th:text="${laborPrices.bodyLaborPrice}"/>
+                            <label th:if="${#fields.hasErrors('bodyLaborPrice')}" th:errors="*{bodyLaborPrice}"></label>
                         </div>
 
                                      <br>
@@ -38,9 +41,10 @@
                         <div class="form-group">
                             <label>Electrical Price</label>
                             <span th:if="${laborPrices.id == 0}">
-                                <input type="text" name="electricalLaborPrice" class="field"/>
+                                <input type="text" th:field="*{electricalLaborPrice}" class="field"/>
                             </span>
                                 <label th:text="${laborPrices.electricalLaborPrice}"/>
+                            <label th:if="${#fields.hasErrors('electricalLaborPrice')}" th:errors="*{electricalLaborPrice}"></label>
                         </div>
 
                                       <br>
@@ -48,9 +52,10 @@
                         <div class="form-group">
                             <label>Normal Price</label>
                             <span th:if="${laborPrices.id == 0}">
-                                <input type="text" name="normalLaborPrice" class="field"/>
+                                <input type="text" th:field="*{normalLaborPrice}" class="field"/>
                             </span>
                                 <label th:text="${laborPrices.normalLaborPrice}"/>
+                            <label th:if="${#fields.hasErrors('normalLaborPrice')}" th:errors="*{normalLaborPrice}"></label>
                         </div>
 
                                          <br>
@@ -58,9 +63,10 @@
                         <div class="form-group">
                             <label>Itp Diesel Price</label>
                             <span th:if="${laborPrices.id == 0}">
-                                <input type="text" name="itpDieselEnginePrice" class="field"/>
+                                <input type="text" th:field="*{itpDieselEnginePrice}" class="field"/>
                             </span>
                                 <label th:text="${laborPrices.itpDieselEnginePrice}"/>
+                            <label th:if="${#fields.hasErrors('itpDieselEnginePrice')}" th:errors="*{itpDieselEnginePrice}"></label>
                         </div>
 
                                          <br>
@@ -68,9 +74,10 @@
                         <div class="form-group">
                             <label>Itp Gasoline Price</label>
                             <span th:if="${laborPrices.id == 0}">
-                                <input type="text" name="itpGasolineEnginePrice" class="field"/>
+                                <input type="text" th:field="*{itpGasolineEnginePrice}" class="field"/>
                             </span>
                                 <label th:text="${laborPrices.itpGasolineEnginePrice}"/>
+                            <label th:if="${#fields.hasErrors('itpGasolineEnginePrice')}" th:errors="*{itpGasolineEnginePrice}"></label>
                         </div>
 
                                         <br>
@@ -78,9 +85,10 @@
                         <div class="form-group">
                             <label>Itp Suv Price</label>
                             <span th:if="${laborPrices.id == 0}">
-                                <input type="text" name="itpSuvPrice" class="field"/>
+                                <input type="text" th:field="*{itpSuvPrice}" class="field"/>
                             </span>
                                 <label th:text="${laborPrices.itpSuvPrice}"/>
+                            <label th:if="${#fields.hasErrors('itpSuvPrice')}" th:errors="*{itpSuvPrice}"></label>
                         </div>
 
                                          <br>
@@ -88,9 +96,10 @@
                         <div class="form-group">
                             <label>Itp Truck Price</label>
                             <span th:if="${laborPrices.id == 0}">
-                                <input type="text"  name="itpTruckPrice" class="field"/>
+                                <input type="text"  th:field="*{itpTruckPrice}" class="field"/>
                             </span>
                                 <label th:text="${laborPrices.itpTruckPrice}"/>
+                            <label th:if="${#fields.hasErrors('itpTruckPrice')}" th:errors="*{itpTruckPrice}"></label>
                         </div>
 
                                          <br>
@@ -117,7 +126,7 @@
 
                         <label>Update Price</label>
                         <input th:type="text" th:name="updatePrice" class="update-field"/>
-
+                        <label th:if="${param.invalid}">Invalid number</label>
                             <br>
                             <br>
 

@@ -5,6 +5,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Digits;
+import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
 @Getter
@@ -16,29 +18,30 @@ public class LaborPrice {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @Column(nullable = false)
-    private double mechanicalLaborPrice;
+    @NotNull(message = "required")
+    @Digits(fraction = 2, integer = 3, message = "naspa")
+    private Double mechanicalLaborPrice;
 
-    @Column(nullable = false)
-    private double bodyLaborPrice;
+    @NotNull(message = "required")
+    private Double bodyLaborPrice;
 
-    @Column(nullable = false)
-    private double electricalLaborPrice;
+    @NotNull(message = "required")
+    private Double electricalLaborPrice;
 
-    @Column(nullable = false)
-    private double normalLaborPrice;
+    @NotNull(message = "required")
+    private Double normalLaborPrice;
 
-    @Column(nullable = false)
-    private double itpDieselEnginePrice;
+    @NotNull(message = "required")
+    private Double itpDieselEnginePrice;
 
-    @Column(nullable = false)
-    private double itpGasolineEnginePrice;
+    @NotNull(message = "required")
+    private Double itpGasolineEnginePrice;
 
-    @Column(nullable = false)
-    private double itpSuvPrice;
+    @NotNull(message = "required")
+    private Double itpSuvPrice;
 
-    @Column(nullable = false)
-    private double itpTruckPrice;
+    @NotNull(message = "required")
+    private Double itpTruckPrice;
 
 
     @Override
