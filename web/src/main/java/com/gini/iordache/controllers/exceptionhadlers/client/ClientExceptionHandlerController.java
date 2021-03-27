@@ -17,7 +17,7 @@ public class ClientExceptionHandlerController {
     @ExceptionHandler(CompanyAlreadyExistsException.class)
     public String companyAlreadyExists(CompanyAlreadyExistsException e){
         e.printStackTrace();
-        return "redirect:/clients/client?exists";
+        return "redirect:/clients/companyForm?exists";
     }
 
 
