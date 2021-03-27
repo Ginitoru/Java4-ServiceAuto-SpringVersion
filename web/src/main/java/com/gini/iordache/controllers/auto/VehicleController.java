@@ -35,11 +35,10 @@ public class VehicleController {
     public String createVehicle(@Valid @ModelAttribute("vehicle") Vehicle vehicle, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            System.out.println(vehicle +  "sfasfasfasdfasfasdf");
             return "auto/vehicle-page";
         }
 
-        System.out.println(vehicle);
+
         vehicleService.createVehicle(vehicle);
         return "redirect:/vehicles/vehicle";
 

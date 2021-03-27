@@ -17,6 +17,7 @@
                 <div class="form-group">
                     <label class="label">Description</label>
                     <input type="text" class="field" th:field="*{laborDescription}"/>
+                    <label th:if="${#fields.hasErrors('laborDescription')}" th:errors="*{laborDescription}">
                 </div>
 
                     <br>
@@ -24,6 +25,7 @@
                 <div class="form-group">
                     <label class="label" >Labour time</label>
                     <input type="text" class="field" th:field="*{timedLabor}"/>
+                    <label th:if="${#fields.hasErrors('timedLabor')}" th:errors="*{timedLabor}">
                 </div>
 
                     <br>

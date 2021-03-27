@@ -6,9 +6,11 @@ import com.gini.iordache.utility.LaborCategory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.validation.Valid;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -41,7 +43,12 @@ public class LaborController {
 
 
     @PostMapping("/create-labor")
-    public String createLabor(@ModelAttribute("labor") Labor labor){
+    public String createLabor(@Valid @ModelAttribute("labor") Labor labor, BindingResult bindingResult, Model model){
+
+        if(bindingResult.hasErrors()){
+            model.addAttribute("laborCategory", LaborCategory.values());
+            return "/labor/labor-page";
+        }
 
         laborService.createLabor(labor);
         return "redirect:/labors/labor";
