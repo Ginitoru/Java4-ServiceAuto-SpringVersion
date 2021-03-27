@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 
 @ControllerAdvice
 public class TrimWhiteSpaceFromFields {  //face trim la white space pe toate fieldurile
-                                         //am facut un @ControllerAdvice ca sa nu mai baga metoda asta in fiecare controller
+                                         //am facut un @ControllerAdvice ca sa nu mai baga metoda asta in fiecare controller (AOP)
     @InitBinder
     public void initBinder(WebDataBinder dataBinder){
         StringTrimmerEditor stringTrimmerEditor = new StringTrimmerEditor(true);

@@ -1,16 +1,14 @@
 package com.gini.iordache.entity.auto;
 
-import com.gini.iordache.entity.order.ServiceOrder;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import java.util.HashSet;
+import javax.validation.constraints.*;
 import java.util.Objects;
-import java.util.Set;
+
 
 
 @NoArgsConstructor
@@ -24,22 +22,27 @@ public class Part {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    @NotNull
+    @NotNull(message = "required")
     @Size(min = 1, message = "required")
     @Column(name = "part_Number")
     private String partNumber;
 
-    @NotNull
+    @NotNull(message = "required")
     @Size(min = 1, message = "required")
     @Column(name = "part_Name")
     private String partName;
 
 
+    @Min(value = 1, message = "must be equal or greater than {value}")
+    @Max(value = 100000, message = "must be less or equal to {value}")
+    @NotNull(message = "required")
     @Column(name = "count")
-    private int count;
+    private Integer count;
 
+    @Min(value = 0, message = "must be equal or grater than {value}")
+    @NotNull(message = "required")
     @Column(name = "price")
-    private double price;
+    private Double price;
 
 
     @Override

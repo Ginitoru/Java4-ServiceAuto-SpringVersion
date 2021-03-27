@@ -35,6 +35,7 @@
                 <div class="form-group">
                     <label>Price</label>
                     <input type="text" class="field" th:field="*{price}"/>
+                    <label th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></label>
                 </div>
 
                     <br>
@@ -42,6 +43,7 @@
                 <div class="form-group">
                     <label>Count</label>
                     <input type="text" class="field" th:field="*{count}"/>
+                    <label th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></label>
                 </div>
 
                     <br>
