@@ -34,7 +34,6 @@ public class PartController {
     public String createPart(@Valid @ModelAttribute ("part") Part part, BindingResult bindingResult){
 
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.toString());
             return "auto/part-page";
         }
 

@@ -8,6 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -19,7 +22,14 @@ public class Company extends Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
+
+    @NotNull(message = "required")
+    @Size(max = 30, message = " must have a maximum of {max} characters ")
+    @Pattern(regexp = "[0-9]+", message = "only digits")
     private String cui;
+
+    @NotNull(message = "required")
+    @Size(max = 100, message = " must have a maximum of {max} characters ")
     private String name;
 
 

@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.Embeddable;
+import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
 @NoArgsConstructor
@@ -12,6 +13,7 @@ import java.util.Objects;
 @Setter
 @Embeddable
 public class Adress {
+
 
     private String streetNumber;
     private String streetName;

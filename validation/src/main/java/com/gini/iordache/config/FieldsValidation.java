@@ -8,7 +8,7 @@ import org.springframework.context.support.ResourceBundleMessageSource;
 public class FieldsValidation {
 
 
-
+                //ma ajuta sa arat error message cand bag String in loc de int, double pe fields
 
     @Bean
     public ResourceBundleMessageSource messageSource(){
