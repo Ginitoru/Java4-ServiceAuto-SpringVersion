@@ -8,10 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -73,7 +70,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
 
-                //method3
+
+           //method3
     private void deleteInvoiceFromApp(String path){
         Path deletePath = Paths.get(path);
         try {
@@ -81,6 +79,31 @@ public class InvoiceServiceImpl implements InvoiceService {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+
+    @Override
+    @Transactional
+    public void getInvoiceFromDataBase(ServiceOrder serviceOrder){
+
+        String path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf";
+
+        Invoice invoice = invoiceDao.findInvoiceByServiceOrder(serviceOrder)
+                                        .orElseThrow(() -> new RuntimeException("Invoice not found"));
+
+        byte [] pdfBytes = invoice.getInvoice();
+
+        try(FileOutputStream fos = new FileOutputStream(path)) {
+
+
+            fos.write(pdfBytes);
+
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
 
     }
 

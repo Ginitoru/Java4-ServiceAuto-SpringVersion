@@ -138,6 +138,15 @@ public class HomeController {
     }
 
 
+    @GetMapping("/invoice")
+    public String getInvoice(){
+
+        invoiceService.getInvoiceFromDataBase(serviceOrder);
+        return "redirect:/main";
+    }
+
+
+
     private void allAllModelAtributes(Model model){
         model.addAttribute("laborsOrder", serviceOrder.getLabors());
         model.addAttribute("partsOrder", serviceOrder.getParts());

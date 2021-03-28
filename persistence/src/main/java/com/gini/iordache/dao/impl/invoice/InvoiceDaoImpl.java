@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.util.Optional;
 
 
 @AllArgsConstructor
@@ -24,6 +25,20 @@ public class InvoiceDaoImpl implements InvoiceDao {
     @Override
     public void saveInvoiceToDatabase(Invoice invoice){
         entityManager.persist(invoice);
+    }
+
+
+    @Override
+    public Optional<Invoice> findInvoiceByServiceOrder(ServiceOrder serviceOrder){
+
+        String jpql = "SELECT i FROM Invoice i WHERE i.serviceOrder =: serviceOrder";
+
+
+        return entityManager.createQuery(jpql, Invoice.class)
+                                .setParameter("serviceOrder", serviceOrder)
+                                .getResultStream()
+                                .findFirst();
+
     }
 
 

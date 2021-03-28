@@ -7,4 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 public interface InvoiceService {
     @Transactional
     void saveInvoiceToDatabase(ServiceOrder serviceOrder);
+
+
+    @Transactional
+    void getInvoiceFromDataBase(ServiceOrder serviceOrder);
 }
