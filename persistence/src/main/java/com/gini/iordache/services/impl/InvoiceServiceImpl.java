@@ -12,6 +12,9 @@ import java.io.ByteArrayOutputStream;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 
 @AllArgsConstructor
 @Service
@@ -21,14 +24,14 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
     @Override
-    @Transactional
+    @Transactional     //method1
     public void saveInvoiceToDatabase(ServiceOrder serviceOrder){
 
         Invoice invoice = new Invoice();
 
         String path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf";
 
-        byte [] pdfToByte = convertPDFtoByteArray(path);
+        byte [] pdfToByte = this.convertPDFtoByteArray(path);
 
         var invoiceNumber = "invoice_" + serviceOrder.getId() + ".pdf";
 
@@ -39,12 +42,13 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         invoiceDao.saveInvoiceToDatabase(invoice);
 
-
+        this.deleteInvoiceFromApp(path);
     }
 
 
-    private byte[] convertPDFtoByteArray(String path){
 
+                    //method2
+    private byte[] convertPDFtoByteArray(String path){
 
         ByteArrayOutputStream byteOutputStream = new ByteArrayOutputStream();
 
@@ -65,6 +69,18 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
        return byteOutputStream.toByteArray();
+    }
+
+
+
+                //method3
+    private void deleteInvoiceFromApp(String path){
+        Path deletePath = Paths.get(path);
+        try {
+            Files.deleteIfExists(deletePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 
