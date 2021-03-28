@@ -6,6 +6,7 @@ import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.service.PdfService;
+import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
@@ -27,6 +28,7 @@ public class HomeController {
 
     private final ServiceOrderService serviceOrderService;
     private final PdfService pdfService;
+    private final InvoiceService invoiceService;
 
     private ServiceOrder serviceOrder = new ServiceOrder();
     private double partsTotalPrice;
@@ -37,10 +39,10 @@ public class HomeController {
     private double totalPriceWithVAT;
 
     @Autowired
-    public HomeController(ServiceOrderService serviceOrderService,  PdfService pdfService) {
+    public HomeController(ServiceOrderService serviceOrderService, PdfService pdfService, InvoiceService invoiceService) {
         this.serviceOrderService = serviceOrderService;
-
         this.pdfService = pdfService;
+        this.invoiceService = invoiceService;
     }
 
     @GetMapping("/")
@@ -131,6 +133,7 @@ public class HomeController {
         System.out.println(totalPrice + " xxxxxxxxxxxxxxxxx " + totalPriceWithVAT);
         serviceOrderService.updateOrderStatus(OrderStatus.CLOSE, serviceOrder.getId());
         pdfService.createPDF(totalPrice, totalPriceWithVAT, serviceOrder);
+        invoiceService.saveInvoiceToDatabase(serviceOrder);
         return "redirect:/main";
     }
 

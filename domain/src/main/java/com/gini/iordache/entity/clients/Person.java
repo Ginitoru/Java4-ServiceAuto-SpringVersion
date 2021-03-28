@@ -30,11 +30,11 @@ public class Person extends Client{
     private String cnp;
 
     @NotNull(message = "required")
-    @Size(min = 5, message = "must have a minimum of {min} characters")
+    @Size(max = 30, message = "must have a maximum of {max} characters")
     private String firstName;
 
     @NotNull(message = "required")
-    @Size(max = 50, message = "must have a maximum onf {max} characters")
+    @Size(max = 30, message = "must have a maximum of {max} characters")
     private String lastName;
 
     @Override

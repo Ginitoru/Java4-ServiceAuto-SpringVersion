@@ -27,7 +27,7 @@
 
 
 
-        <div th:if="${person.cnp != 0}">
+        <div th:if="${person != null}">
             <label>Client: </label>
             <label th:text="${person.firstName}"> </label>
             <label th:text="${person.lastName}"></label>
@@ -37,7 +37,7 @@
             </div>
         </div>
 
-        <div th:if="${company.cui != 0}">
+        <div th:if="${company != null}">
             <label>Client: </label>
             <label th:text="${company.name}"></label>
             <div>

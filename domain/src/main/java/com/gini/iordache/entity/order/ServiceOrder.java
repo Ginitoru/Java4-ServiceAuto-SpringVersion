@@ -3,6 +3,7 @@ package com.gini.iordache.entity.order;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Client;
+import com.gini.iordache.entity.invoice.Invoice;
 import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.utility.OrderStatus;
@@ -39,6 +40,7 @@ public class ServiceOrder {
 
     @Enumerated(EnumType.STRING)
     private OrderStatus orderStatus;
+
 
     @OneToMany(mappedBy = "serviceOrder")
     private List<PartServiceOrder> parts = new ArrayList<>();

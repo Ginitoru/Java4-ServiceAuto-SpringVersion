@@ -103,8 +103,10 @@
                         </div>
 
                                          <br>
+                        <span th:if="${laborPrices.id == 0}">
+                            <input type="submit" class="btn" value="Create Prices" />
+                        </span>
 
-                        <input type="submit" class="btn" value="Create Prices" />
                     </form>
             </div>
 
@@ -112,13 +114,6 @@
 
                                             <br>
                                             <br>
-
-            <div class="refresh">
-                <a th:href="@{/prices/refresh}"><input type="button" value="Refresh" class="refresh-btn"/></a>
-
-            </div>
-
-
 
 
             <div class="update-container" th:if="${laborPrices.id != 0.0}">

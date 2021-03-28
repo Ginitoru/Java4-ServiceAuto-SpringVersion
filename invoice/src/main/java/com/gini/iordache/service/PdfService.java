@@ -19,6 +19,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 
+
 @AllArgsConstructor
 @Service
 public class PdfService {
@@ -29,6 +30,10 @@ public class PdfService {
 
 
     public void createPDF(double totalPrice, double totalPriceWithVAT, ServiceOrder serviceOrder){
+
+        var path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf";
+
+
 
         Context context = new Context();
 
@@ -49,16 +54,16 @@ public class PdfService {
         context.setVariable("totalVAT", totalPriceWithVAT);
         String processHTML = templateEngine.process("/invoice/invoice", context);
 
-        OutputStream outputStream = null;
-        try {
-            outputStream = new FileOutputStream("invoice.pdf");
+
+        try (FileOutputStream outputStream = new FileOutputStream(path)){
+
 
             ITextRenderer renderer = new ITextRenderer();
             renderer.setDocumentFromString(processHTML);
             renderer.layout();
             renderer.createPDF(outputStream, false);
             renderer.finishPDF();
-            outputStream.close();
+
 
         } catch (DocumentException | IOException e) {
             e.printStackTrace();

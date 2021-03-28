@@ -60,12 +60,6 @@ public class LaborPriceController {
     }
 
 
-    @GetMapping("/refresh")
-    public String refreshButton(){
-        return "redirect:/prices/showPrices";
-    }
-
-
     @PostMapping("/updatePrice")
     public String updatePrice(HttpServletRequest request){
 
