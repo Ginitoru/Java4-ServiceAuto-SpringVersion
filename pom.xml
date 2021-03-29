@@ -13,6 +13,7 @@
         <module>error</module>
         <module>invoice</module>
         <module>validation</module>
+        <module>aop</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -73,6 +74,13 @@
             <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aop -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+
+
 
         <dependency>
             <groupId>mysql</groupId>
@@ -104,6 +112,14 @@
             <artifactId>flying-saucer-pdf</artifactId>
             <version>9.1.20</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.aspectj/aspectjrt -->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjrt</artifactId>
+            <version>1.9.6</version>
+        </dependency>
+
 
     </dependencies>
 
