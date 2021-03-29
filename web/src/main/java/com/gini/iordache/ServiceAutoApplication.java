@@ -9,7 +9,7 @@ import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
 @EntityScan(basePackages = {"com.gini.iordache.entity"})
-@ComponentScan(basePackages = {"ro.gini.iordache.security.*", "com.gini.iordache.*", "ro.gini.iordache.email.*"})
+@ComponentScan(basePackages = {"ro.gini.iordache.security.*", "com.gini.iordache.*","com.gini.iordache.aspect", "ro.gini.iordache.email.*"})
 public class ServiceAutoApplication {
     public static void main(String[] args) {
 
