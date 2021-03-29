@@ -1,7 +1,7 @@
 package com.gini.iordache.controllers.exceptionhadlers.auto;
 
 
-import com.gini.errors.auto.VehicleAlreadyExists;
+import com.gini.errors.auto.VehicleAlreadyExistsException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -9,10 +9,11 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 public class VehicleExceptionHandlingController {
 
 
-    @ExceptionHandler(VehicleAlreadyExists.class)
-    public String vehicleAlreadyExists(VehicleAlreadyExists e){
+    @ExceptionHandler(VehicleAlreadyExistsException.class)
+    public String vehicleAlreadyExists(VehicleAlreadyExistsException e){
         e.printStackTrace();
         return "redirect:/vehicles/vehicle?exists";
 
     }
+
 }

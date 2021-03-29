@@ -1,6 +1,6 @@
 package com.gini.iordache.services.impl.auto;
 
-import com.gini.errors.auto.VehicleAlreadyExists;
+import com.gini.errors.auto.VehicleAlreadyExistsException;
 import com.gini.iordache.dao.iterfaces.VehicleDao;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.services.interfaces.VehicleService;
@@ -30,7 +30,7 @@ public class VehicleServiceImpl implements VehicleService {
         }
 
 
-        throw new VehicleAlreadyExists("Vehicle already exists");
+        throw new VehicleAlreadyExistsException("Vehicle already exists");
     }
 
 

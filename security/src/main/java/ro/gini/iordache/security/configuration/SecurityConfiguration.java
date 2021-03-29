@@ -2,6 +2,7 @@ package ro.gini.iordache.security.configuration;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableAsync;
@@ -12,6 +13,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ro.gini.iordache.security.filter.ResendTokenFilter;
 import ro.gini.iordache.security.filter.TokenFilter;
@@ -118,8 +120,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(tokenFilter(),BasicAuthenticationFilter.class)
-                .addFilterBefore(resendTokenFilter(), BasicAuthenticationFilter.class);
-           //     .addFilterAt(logoutFilter(), LogoutFilter.class);
+                .addFilterBefore(resendTokenFilter(), BasicAuthenticationFilter.class)
+                .addFilterAt(logoutFilter(), LogoutFilter.class);
 
 
 
