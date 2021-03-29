@@ -11,10 +11,13 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ro.gini.iordache.security.filter.ResendTokenFilter;
 import ro.gini.iordache.security.filter.TokenFilter;
 import ro.gini.iordache.security.filter.UsernameAndPasswordFilter;
+import ro.gini.iordache.security.handler.SecurityLogoutHandler;
+import ro.gini.iordache.security.handler.SuccessfulLogoutHandler;
 import ro.gini.iordache.security.provider.EmailProvider;
 import ro.gini.iordache.security.provider.ResendTokenProvider;
 import ro.gini.iordache.security.provider.TokenProvider;
@@ -33,6 +36,30 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired
     private ResendTokenProvider resendTokenProvider;
+
+    @Autowired
+    private SuccessfulLogoutHandler logoutSuccessHandler;
+
+    @Autowired
+    private SecurityLogoutHandler logoutHandler;
+
+
+
+
+
+
+
+
+
+    @Bean
+    public LogoutFilter logoutFilter(){
+
+        LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler, logoutHandler);
+        logoutFilter.setFilterProcessesUrl("/logout3");
+
+
+        return logoutFilter;
+    }
 
 
     @Bean
@@ -92,6 +119,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(tokenFilter(),BasicAuthenticationFilter.class)
                 .addFilterBefore(resendTokenFilter(), BasicAuthenticationFilter.class);
+           //     .addFilterAt(logoutFilter(), LogoutFilter.class);
 
 
 
@@ -102,6 +130,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .and()
                     .formLogin()
                     .loginPage("/login").permitAll()
+
 
 
 

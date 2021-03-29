@@ -36,7 +36,7 @@ public class ResendTokenProvider implements AuthenticationProvider {
 
        return Optional.of(user)
                         .filter( u -> u.getActivationToken().getActivatedAt() == null )
-                        .map(u -> resendTokenAuthentication(u))
+                        .map(this::resendTokenAuthentication)
                         .orElseThrow(() -> new AccountAlreadyActiveException("Account is already active"));
 
     }
