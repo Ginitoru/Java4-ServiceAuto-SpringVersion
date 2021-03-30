@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.scheduling.annotation.EnableAsync;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -25,6 +26,9 @@ import ro.gini.iordache.security.provider.EmailProvider;
 import ro.gini.iordache.security.provider.ResendTokenProvider;
 import ro.gini.iordache.security.provider.TokenProvider;
 import ro.gini.iordache.security.provider.UserNamePasswordProvider;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 @Configuration
 @EnableAsync
@@ -51,17 +55,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 
-
-
-
-
     @Bean
     public LogoutFilter logoutFilter(){
 
         LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler, logoutHandler);
         logoutFilter.setFilterProcessesUrl("/logout3");
-
-
         return logoutFilter;
     }
 
@@ -76,6 +74,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         }
     }
 
+
     @Bean
     public TokenFilter tokenFilter(){
 
@@ -85,8 +84,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             e.printStackTrace();
             throw new RuntimeException("Exception in: ----------------> AuthenticationManager");
         }
-
     }
+
 
     @Bean
     public ResendTokenFilter resendTokenFilter(){
@@ -97,8 +96,6 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
             e.printStackTrace();
             throw new RuntimeException("Exception in: ----------------> AuthenticationManager");
         }
-
-
     }
 
 
@@ -107,6 +104,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     public AuthenticationManager authenticationManagerBean() throws Exception {
         return super.authenticationManagerBean();
     }
+
 
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
@@ -138,12 +136,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
 
+
                 .and()
                 .authorizeRequests()
                         .mvcMatchers("/main").authenticated()
                         .mvcMatchers("/parts/**").authenticated()
                         .mvcMatchers("/clients/**").authenticated()
                         .mvcMatchers("/vehicles/**").authenticated();
+
+//        http.sessionManagement()
+//                .invalidSessionUrl("/login?logout")
+//                .invalidSessionUrl("/login?logout");
     }
 
 

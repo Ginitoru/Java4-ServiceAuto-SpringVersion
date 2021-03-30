@@ -25,6 +25,16 @@ public class PointcutExpression {
 
     }
 
+    @Pointcut("execution(* ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(..))")
+    public void userLoginWithUsername(){
+
+    }
+
+    @Pointcut("execution(* ro.gini.iordache.security.provider.EmailProvider.authenticate(..))")
+    public void userLoginWithEmail(){
+
+    }
+
 
 
 
