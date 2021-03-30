@@ -1,4 +1,4 @@
-package com.gini.iordache.services.impl;
+package com.gini.iordache.services.impl.invoice;
 
 import com.gini.iordache.dao.iterfaces.InvoiceDao;
 import com.gini.iordache.entity.invoice.Invoice;

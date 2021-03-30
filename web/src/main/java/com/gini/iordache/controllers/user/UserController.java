@@ -48,23 +48,7 @@ public class UserController {
             return "redirect:/login";
         }
 
-
-
         return "redirect:/main";
-    }
-
-
-
-
-
-
-
-
-
-
-    private void task(){
-
-        throw new LogoutException("bau");
     }
 
 

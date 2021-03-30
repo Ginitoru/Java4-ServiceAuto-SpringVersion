@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Transactional;
 import ro.gini.iordache.email.sender.EmailSender;
 
 import java.time.LocalDateTime;
-import java.util.NoSuchElementException;
 import java.util.Optional;
 import java.util.UUID;
 
@@ -31,7 +30,7 @@ public class UserServiceImpl implements UserService {
     //method 1
     @Override
     @Transactional
-    public void createUser(User user) {
+    public boolean createUser(User user) {
 
         Optional<User> user1 = userDao.findUserByUsername(user.getUsername());
         Optional<User> user2 = userDao.findUserByEmail(user.getEmail());
@@ -48,7 +47,7 @@ public class UserServiceImpl implements UserService {
 
             userDao.createUser(user);
             emailSender.sendEmail(user.getEmail(), user.getUsername(), token);
-            return;
+            return true;       // -> am pus return "true" deoarece am nevoie la aop @AfterReturning
         }
 
         throw new UserAlreadyExists("User already exists");

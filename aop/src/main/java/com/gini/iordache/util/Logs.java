@@ -14,18 +14,26 @@ public class Logs {
 
 
 
-    public static void loginLogoutCreateUser(Authentication auth){
+    public static void loginLogoutUser(Authentication auth){
 
         String userName = auth.getName();
+
+        System.out.println(userName + " +xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
+        writeLog(userName);
+
+    }
+
+
+    private static void writeLog(String userName){
         String path = "./web/src/main/resources/log/" + userName + ".txt";
         String writeLog = "\n" + userName + " logged at: " + LocalDateTime.now()
-                .format(TimeFormat.formatter());
-
+                                                                     .format(TimeFormat.formatter());
 
 
         try(
-                FileWriter x = new FileWriter(path,true);
-                BufferedWriter br = new BufferedWriter(x)
+            FileWriter x = new FileWriter(path,true);
+            BufferedWriter br = new BufferedWriter(x)
         ){
 
 
@@ -35,8 +43,6 @@ public class Logs {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
 
     }
 }

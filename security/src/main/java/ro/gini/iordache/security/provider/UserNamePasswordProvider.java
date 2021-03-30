@@ -26,16 +26,16 @@ public class UserNamePasswordProvider implements AuthenticationProvider {
     @Override
     public Authentication authenticate(Authentication authentication) throws AuthenticationException {
 
-        var usernameOrEmail = authentication.getName();
+        var username = authentication.getName();
         var password = authentication.getCredentials().toString();
 
-        UserDetails user = userSecurityService.loadUserByUsername(usernameOrEmail);
+        UserDetails user = userSecurityService.loadUserByUsername(username);
 
 
         if(passwordEncoder.matches(password, user.getPassword())){
 
                 if(user.isEnabled() && user.isAccountNonLocked()){
-                    return new UserNamePasswordAuthentication(usernameOrEmail, password, user.getAuthorities());
+                    return new UserNamePasswordAuthentication(username, password, user.getAuthorities());
                 }
 
                 throw new AccountIsNotActiveException("Account is not activated");

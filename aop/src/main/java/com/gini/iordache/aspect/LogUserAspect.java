@@ -3,20 +3,12 @@ package com.gini.iordache.aspect;
 
 
 import com.gini.iordache.util.Logs;
-import com.gini.iordache.util.TimeFormat;
 import lombok.AllArgsConstructor;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Component;
-
-import java.io.*;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.time.LocalDateTime;
 
 
 @Aspect
@@ -42,7 +34,7 @@ public class LogUserAspect {
             returning = "auth"
     )
     public void logTheLogins(JoinPoint joinPoint, Authentication auth){
-        Logs.loginLogoutCreateUser(auth);
+        Logs.loginLogoutUser(auth);
 
     }
 

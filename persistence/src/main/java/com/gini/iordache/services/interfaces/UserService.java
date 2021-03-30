@@ -7,7 +7,7 @@ import java.util.Optional;
 
 public interface UserService {
 
-    void createUser(User user);
+    boolean createUser(User user);
 
   //  int enableUserAccount(String username, String token);
 
