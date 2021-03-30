@@ -1,5 +1,6 @@
 package com.gini.iordache.util;
 
+import com.gini.iordache.entity.user.User;
 import org.springframework.security.core.Authentication;
 
 import java.io.BufferedWriter;
@@ -14,20 +15,36 @@ public class Logs {
 
 
 
-    public static void loginLogoutUser(Authentication auth){
+    public static void loginLogoutUser(Authentication auth, String action){
 
         String userName = auth.getName();
-
-        System.out.println(userName + " +xxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-
-        writeLog(userName);
+        writeLog(userName, action);
 
     }
 
 
-    private static void writeLog(String userName){
-        String path = "./web/src/main/resources/log/" + userName + ".txt";
-        String writeLog = "\n" + userName + " logged at: " + LocalDateTime.now()
+    public static void createUser(User user, String action){
+
+        String username = user.getUsername();
+        writeLog(username, action);
+    }
+
+
+
+    public static void sendEmail(User user, String action){
+        String username = user.getUsername();
+
+        writeLog(username, action);
+
+    }
+
+
+
+
+
+    private static void writeLog(String userName, String action){
+        String path = "./web/src/main/resources/log/user/" + userName + ".txt";
+        String writeLog = "\n" + userName + " "+ action + ": " + LocalDateTime.now()
                                                                      .format(TimeFormat.formatter());
 
 

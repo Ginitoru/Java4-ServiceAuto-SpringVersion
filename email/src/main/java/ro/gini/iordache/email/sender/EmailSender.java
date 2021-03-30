@@ -1,6 +1,8 @@
 package ro.gini.iordache.email.sender;
 
+import com.gini.iordache.entity.user.User;
+
 public interface EmailSender {
 
-    void sendEmail(String userEmail, String username, String token);
+    void sendEmail(User user);
 }

@@ -1,6 +1,7 @@
 package ro.gini.iordache.email.sender;
 
 
+import com.gini.iordache.entity.user.User;
 import lombok.AllArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
@@ -21,7 +22,12 @@ public class EmailService implements EmailSender{
 
     @Override
     @Async
-    public void sendEmail(String userEmail, String username, String token) {
+    public void sendEmail(User user) {
+
+        var userEmail = user.getEmail();
+        var username = user.getUsername();
+        var token = user.getActivationToken().getToken();
+
 
 
 

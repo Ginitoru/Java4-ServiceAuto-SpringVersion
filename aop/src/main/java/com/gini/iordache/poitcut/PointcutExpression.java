@@ -11,20 +11,6 @@ public class PointcutExpression {
 
 
 
-    @Pointcut("execution(* com.gini.iordache.controllers.user.UserController.loginProcessing())")
-    public void userLoginProcessing(){
-
-    }
-
-    @Pointcut("execution(* com.gini.iordache.controllers.user.*.*(..))")
-    public void userPackage(){
-    }
-
-    @Pointcut("execution(* com.gini.iordache.controllers.*.*.*(..))")
-    public void controllersPackage(){
-
-    }
-
     @Pointcut("execution(* ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(..))")
     public void userLoginWithUsername(){
 
@@ -34,6 +20,13 @@ public class PointcutExpression {
     public void userLoginWithEmail(){
 
     }
+
+    @Pointcut("execution(* com.gini.iordache.services.impl.user.UserServiceImpl.createUser(..))")
+    public void createUser(){
+
+    }
+
+
 
 
 

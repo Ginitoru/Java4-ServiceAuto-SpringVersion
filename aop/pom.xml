@@ -9,15 +9,31 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <packaging>jar</packaging>
+
     <dependencies>
+
+        <dependency>
+            <groupId>com.mihai.iordache82</groupId>
+            <artifactId>persistence</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
 
 
         <dependency>
             <groupId>com.mihai.iordache82</groupId>
-            <artifactId>error</artifactId>
+            <artifactId>security</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.mihai.iordache82</groupId>
+            <artifactId>email</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
     </dependencies>
     <artifactId>aop</artifactId>
 
