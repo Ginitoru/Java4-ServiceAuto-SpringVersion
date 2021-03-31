@@ -7,9 +7,12 @@ import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import java.net.UnknownHostException;
 
 @Service
 @AllArgsConstructor
@@ -21,8 +24,7 @@ public class EmailService implements EmailSender{
 
 
     @Override
-    @Async
-    public void sendEmail(User user) {
+    public void sendEmail(User user){
 
         var userEmail = user.getEmail();
         var username = user.getUsername();
@@ -59,9 +61,9 @@ public class EmailService implements EmailSender{
             mailSender.send(mailMessage);
 
 
-        } catch (MessagingException e) {
+        } catch ( MessagingException e) {
             e.printStackTrace();
-            throw new IllegalStateException("Failed to send mail :(");
+            throw new RuntimeException("Failed to send mail :(");
         }
 
     }

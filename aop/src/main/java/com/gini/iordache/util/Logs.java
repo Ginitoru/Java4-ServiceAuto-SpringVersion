@@ -16,7 +16,6 @@ public class Logs {
 
 
     public static void loginLogoutUser(Authentication auth, String action){
-
         String userName = auth.getName();
         writeLog(userName, action);
 
@@ -24,7 +23,6 @@ public class Logs {
 
 
     public static void createUser(User user, String action){
-
         String username = user.getUsername();
         writeLog(username, action);
     }
@@ -33,7 +31,6 @@ public class Logs {
 
     public static void sendEmail(User user, String action){
         String username = user.getUsername();
-
         writeLog(username, action);
 
     }
@@ -43,23 +40,41 @@ public class Logs {
 
 
     private static void writeLog(String userName, String action){
-        String path = "./web/src/main/resources/log/user/" + userName + ".txt";
+       final String path = "./web/src/main/resources/log/user/" + userName + ".txt";
+
         String writeLog = "\n" + userName + " "+ action + ": " + LocalDateTime.now()
                                                                      .format(TimeFormat.formatter());
 
+        writeInFile(writeLog, path);
+
+    }
+
+
+    public static void writeException(String excMessage){
+
+       final String path = "./web/src/main/resources/log/exceptions/mailException.txt";
+       String writeLog = "\n" + excMessage + " " + LocalDateTime.now()
+                                                        .format(TimeFormat.formatter());
+
+       writeInFile(writeLog, path);
+
+    }
+
+
+
+    public static void writeInFile(String writeLog, String path){
 
         try(
-            FileWriter x = new FileWriter(path,true);
-            BufferedWriter br = new BufferedWriter(x)
+                FileWriter x = new FileWriter(path,true);
+                BufferedWriter br = new BufferedWriter(x)
         ){
 
 
-            br.write(writeLog);
+                 br.write(writeLog);
 
 
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 }

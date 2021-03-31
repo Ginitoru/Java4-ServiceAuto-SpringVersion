@@ -7,6 +7,7 @@ import com.gini.iordache.entity.user.ActivationToken;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.interfaces.UserService;
 import lombok.AllArgsConstructor;
+import org.springframework.scheduling.annotation.Async;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +30,7 @@ public class UserServiceImpl implements UserService {
 
     //method 1
     @Override
+    @Async
     @Transactional
     public User createUser(User user) {
 
@@ -44,9 +46,11 @@ public class UserServiceImpl implements UserService {
             ActivationToken activationToken = createActivationToken(token, user);
             user.setActivationToken(activationToken);
 
-
-            userDao.createUser(user);
             emailSender.sendEmail(user);
+            userDao.createUser(user);
+
+
+
             return user;       // -> am pus return "user" deoarece am nevoie la aop @AfterReturning
         }
 
@@ -71,15 +75,15 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Async
     @Transactional
     public void updateUserToken(User user){
 
         var token = UUID.randomUUID().toString();
         user.getActivationToken().setToken(token);
 
-
-        tokenDao.updateToken(user.getId(),token);
         emailSender.sendEmail(user);
+        tokenDao.updateToken(user.getId(),token);
 
     }
 
