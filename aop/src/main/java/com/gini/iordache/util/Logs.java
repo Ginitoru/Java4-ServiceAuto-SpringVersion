@@ -40,8 +40,7 @@ public class Logs {
 
 
     private static void writeLog(String userName, String action){
-       final String path = "./web/src/main/resources/log/user/" + userName + ".txt";
-
+        String path = "./web/src/main/resources/log/user/" + userName + ".txt";
         String writeLog = "\n" + userName + " "+ action + ": " + LocalDateTime.now()
                                                                      .format(TimeFormat.formatter());
 
@@ -50,11 +49,11 @@ public class Logs {
     }
 
 
-    public static void writeException(String excMessage){
 
-       final String path = "./web/src/main/resources/log/exceptions/mailException.txt";
-       String writeLog = "\n" + excMessage + " " + LocalDateTime.now()
-                                                        .format(TimeFormat.formatter());
+    public static void writeEmailException(String excMessage){
+        String path = "./web/src/main/resources/log/exceptions/mailException.txt";
+        String writeLog = "\n" + excMessage + " " + LocalDateTime.now()
+                                                            .format(TimeFormat.formatter());
 
        writeInFile(writeLog, path);
 
@@ -62,7 +61,21 @@ public class Logs {
 
 
 
-    public static void writeInFile(String writeLog, String path){
+    public static void writeExceptions(String excMessage){
+
+        String path = "./web/src/main/resources/log/exceptions/exceptions.txt";
+        String writeLog = "\n" + excMessage + " " + LocalDateTime.now()
+                                                            .format(TimeFormat.formatter());
+
+        writeInFile(writeLog, path);
+    }
+
+
+
+
+
+
+    private static void writeInFile(String writeLog, String path){
 
         try(
                 FileWriter x = new FileWriter(path,true);

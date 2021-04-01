@@ -34,6 +34,14 @@
             <scope>compile</scope>
         </dependency>
 
+        <dependency>
+            <groupId>com.mihai.iordache82</groupId>
+            <artifactId>invoice</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+
     </dependencies>
     <artifactId>aop</artifactId>
 

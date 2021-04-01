@@ -46,8 +46,9 @@ public class UserServiceImpl implements UserService {
             ActivationToken activationToken = createActivationToken(token, user);
             user.setActivationToken(activationToken);
 
-            emailSender.sendEmail(user);
+
             userDao.createUser(user);
+            emailSender.sendEmail(user);
 
 
 
@@ -82,8 +83,9 @@ public class UserServiceImpl implements UserService {
         var token = UUID.randomUUID().toString();
         user.getActivationToken().setToken(token);
 
-        emailSender.sendEmail(user);
+
         tokenDao.updateToken(user.getId(),token);
+        emailSender.sendEmail(user);
 
     }
 

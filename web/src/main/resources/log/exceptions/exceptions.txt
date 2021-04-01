@@ -1,0 +1,4 @@
+
+
+Vehicle com.gini.iordache.services.impl.auto.VehicleServiceImpl.findVehicleBySerialNumber(String) Vehicle not found 01-04-2021 19:34:23
+Vehicle com.gini.iordache.services.impl.auto.VehicleServiceImpl.findVehicleBySerialNumber(String) Vehicle not found 01-04-2021 19:34:23

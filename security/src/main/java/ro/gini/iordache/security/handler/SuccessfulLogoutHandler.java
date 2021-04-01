@@ -21,6 +21,6 @@ public class SuccessfulLogoutHandler implements LogoutSuccessHandler {
 
 
         response.sendRedirect("/login?logout");
-
+       
     }
 }

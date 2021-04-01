@@ -40,8 +40,5 @@ public class VehicleServiceImpl implements VehicleService {
 
        return  vehicleDao.findVehicleBySerialNumber(serialNumber)
                                  .orElseThrow(() -> new RuntimeException("Vehicle not found"));
-
     }
-
-
 }

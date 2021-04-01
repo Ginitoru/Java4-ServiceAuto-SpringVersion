@@ -26,8 +26,8 @@ public class SecurityLogoutHandler implements LogoutHandler {
 
     if(authentication != null){
 
-        SecurityContextLogoutHandler x = new SecurityContextLogoutHandler();
-        x.logout(request, response, authentication);
+        SecurityContextLogoutHandler context = new SecurityContextLogoutHandler();
+        context.logout(request, response, authentication);
 
     }
 

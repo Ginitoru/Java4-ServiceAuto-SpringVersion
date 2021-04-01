@@ -26,6 +26,26 @@ public class PointcutExpression {
 
     }
 
+    @Pointcut("execution(* ro.gini.iordache.security.provider.*.*(..))")
+    private void securityModule(){
+
+    }
+
+    @Pointcut("execution(* com.gini.iordache.*.*.*.*.*(..))")
+    private void persistenceModule(){
+
+    }
+
+    @Pointcut("execution(* com.gini.iordache.service.*.*(..))")
+    private void invoiceModule(){
+
+    }
+
+    @Pointcut("securityModule() || persistenceModule() || invoiceModule()")
+    public void modulesExceptions(){
+
+    }
+
 
 
 
