@@ -145,6 +145,9 @@ public class ServiceOrderController {
 
 
         serviceOrderService.createServiceOrder(serviceOrder);
+        vehicle = new Vehicle();   //->reset valorile din search
+        person = new Person();
+        company = new Company();
 
         return "redirect:/serviceOrder/serviceOrder";
     }

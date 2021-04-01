@@ -1,6 +1,6 @@
 package ro.gini.iordache.security.provider;
 
-import com.gini.errors.AccountIsNotActiveException;
+import com.gini.errors.user.AccountIsNotActiveException;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;

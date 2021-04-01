@@ -1,6 +1,7 @@
 package com.gini.iordache.services.impl.client;
 
 import com.gini.errors.client.PersonAlreadyExistsException;
+import com.gini.errors.client.PersonNotFoundException;
 import com.gini.iordache.dao.iterfaces.PersonDao;
 import com.gini.iordache.entity.clients.Person;
 import com.gini.iordache.services.interfaces.PersonService;
@@ -36,7 +37,7 @@ public class PersonServiceImpl implements PersonService {
     public Person findPersonByCnp(String cnp){
 
         return personDao.findPersonByCnp(cnp)
-                        .orElseThrow(() -> new RuntimeException("Person not found!"));
+                        .orElseThrow(() -> new PersonNotFoundException("Person not found!"));
 
     }
 

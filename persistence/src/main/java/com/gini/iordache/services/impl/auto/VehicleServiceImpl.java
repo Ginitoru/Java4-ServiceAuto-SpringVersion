@@ -1,6 +1,7 @@
 package com.gini.iordache.services.impl.auto;
 
 import com.gini.errors.auto.VehicleAlreadyExistsException;
+import com.gini.errors.auto.VehicleNotFoundException;
 import com.gini.iordache.dao.iterfaces.VehicleDao;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.services.interfaces.VehicleService;
@@ -39,6 +40,6 @@ public class VehicleServiceImpl implements VehicleService {
     public Vehicle findVehicleBySerialNumber(String serialNumber){
 
        return  vehicleDao.findVehicleBySerialNumber(serialNumber)
-                                 .orElseThrow(() -> new RuntimeException("Vehicle not found"));
+                                 .orElseThrow(() -> new VehicleNotFoundException("Vehicle not found"));
     }
 }

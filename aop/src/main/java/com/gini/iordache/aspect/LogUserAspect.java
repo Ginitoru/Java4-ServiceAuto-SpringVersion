@@ -72,7 +72,6 @@ public class LogUserAspect {
                     throwing = "exc")
     public void logAllExceptions(JoinPoint joinPoint, Throwable exc){
 
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
         var methodSignature = joinPoint.getSignature().toString();
         var message = exc.getMessage();
         var message2 = methodSignature + " " + message;

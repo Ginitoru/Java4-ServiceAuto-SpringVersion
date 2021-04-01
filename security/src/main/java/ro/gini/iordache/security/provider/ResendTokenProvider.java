@@ -1,7 +1,7 @@
 package ro.gini.iordache.security.provider;
 
-import com.gini.errors.AccountAlreadyActiveException;
-import com.gini.errors.EmailIsNotRegisteredException;
+import com.gini.errors.user.AccountAlreadyActiveException;
+import com.gini.errors.user.EmailIsNotRegisteredException;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.interfaces.UserService;
 import lombok.AllArgsConstructor;

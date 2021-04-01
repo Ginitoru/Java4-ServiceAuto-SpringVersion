@@ -1,11 +1,12 @@
 package com.gini.iordache.controllers.exceptionhadlers;
 
 
-import com.gini.errors.*;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
+import com.gini.errors.auto.VehicleNotFoundException;
+import com.gini.errors.client.CompanyNotFoundException;
+import com.gini.errors.client.PersonNotFoundException;
+import com.gini.errors.user.*;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 
 
@@ -65,7 +66,27 @@ public class ExceptionHandlingController {
     public String invalidToken(InvalidTokenException e){
         e.printStackTrace();
         return "redirect:/account?invalidToken";
+    }
 
+
+    @ExceptionHandler(VehicleNotFoundException.class)
+    public String vehicleNotFound(VehicleNotFoundException e){
+        e.printStackTrace();
+        return "redirect:/serviceOrder/serviceOrder?vehicleNotFound";
+    }
+
+
+    @ExceptionHandler(PersonNotFoundException.class)
+    public String personNotFound(PersonNotFoundException e){
+        e.printStackTrace();
+        return "redirect:/serviceOrder/serviceOrder?personNotFound";
+    }
+
+
+    @ExceptionHandler(CompanyNotFoundException.class)
+    public String companyNotFound(CompanyNotFoundException e){
+        e.printStackTrace();
+        return "redirect:/serviceOrder/serviceOrder?companyNotFound";
     }
 
 

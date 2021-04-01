@@ -1,4 +1,4 @@
-package com.gini.errors;
+package com.gini.errors.user;
 
 public class AccountAlreadyActiveException extends RuntimeException{
 

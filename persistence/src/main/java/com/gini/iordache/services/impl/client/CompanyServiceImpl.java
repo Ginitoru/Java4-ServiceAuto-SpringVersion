@@ -1,6 +1,7 @@
 package com.gini.iordache.services.impl.client;
 
 import com.gini.errors.client.CompanyAlreadyExistsException;
+import com.gini.errors.client.CompanyNotFoundException;
 import com.gini.iordache.dao.iterfaces.CompanyDao;
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.services.interfaces.CompanyService;
@@ -40,7 +41,7 @@ public class CompanyServiceImpl implements CompanyService {
     public Company findCompanyByCui(String cui){
 
         return companyDao.findCompanyByCui(cui)
-                        .orElseThrow(() -> new RuntimeException("Company not found!"));
+                        .orElseThrow(() -> new CompanyNotFoundException("Company not found!"));
 
     }
 

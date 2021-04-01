@@ -20,12 +20,16 @@
                                         <div class="form-group">
                                             <label>Search car: VIN/Serial number:</label>
                                             <input type="text" name="serialNumber" class="field"/>
+                                            <label th:if="${param.vehicleNotFound}">
+                                                vehicle not found
+                                            </label>
                                         </div>
                         
                                                     <br>
                                         <div>
                                             <label>VIN/Serial number: </label>
                                             <label th:text="${vehicle.serialNumber}"/>
+
                                         </div>
 
                                                     <br>
@@ -60,6 +64,9 @@
                                         <div class="form-group">
                                             <input type="submit" class="btn" value="Find person">
                                             <input type="text" name="cnp" class="field">
+                                            <label th:if="${param.personNotFound}">
+                                                person not found
+                                            </label>
                                         </div>
 
                 </form>
@@ -107,6 +114,9 @@
                                 <div class="form-group">
                                     <input type="submit" class="btn" value="Find Company"/>
                                     <input type="text" name="cui" class="field"/>
+                                    <label th:if="${param.companyNotFound}">
+                                        company not found
+                                    </label>
                                 </div>
                 </form>
             </div>
