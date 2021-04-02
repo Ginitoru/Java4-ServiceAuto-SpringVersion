@@ -1,6 +1,7 @@
 package com.gini.iordache.services.impl.order;
 
 import com.gini.errors.order.ClientNotSelectedException;
+import com.gini.errors.order.OrderIsClosedException;
 import com.gini.errors.order.VehicleNotSelectedException;
 import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
@@ -9,6 +10,8 @@ import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
+import com.gini.iordache.service.PdfService;
+import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
@@ -25,6 +28,8 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     private final ServiceOrderDao serviceOrderDao;
     private final PartDao partDao;
+    private final PdfService pdfService;
+    private final InvoiceService invoiceService;
 
 
 
@@ -119,8 +124,21 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Override
     @Transactional
-    public int updateOrderStatus(OrderStatus orderStatus, int id){
-        return serviceOrderDao.updateOrderStatus(orderStatus, id);
+    public int closeOrder(ServiceOrder serviceOrder, double totalPrice, double totalPriceWithVAT){
+
+        var orderStatus = serviceOrder.getOrderStatus();
+        var orderId = serviceOrder.getId();
+
+        if(orderStatus.equals(OrderStatus.CLOSE)){
+            throw new OrderIsClosedException("Order is already CLOSED");
+
+        }
+
+
+            pdfService.createPDF(totalPrice, totalPriceWithVAT, serviceOrder);
+            invoiceService.saveInvoiceToDatabase(serviceOrder);
+
+        return serviceOrderDao.updateOrderStatus(OrderStatus.CLOSE, orderId);
     }
 
 

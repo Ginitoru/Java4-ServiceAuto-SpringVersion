@@ -6,3 +6,9 @@ Future com.gini.iordache.services.impl.user.UserServiceImpl.createUser(User) Use
 Future com.gini.iordache.services.impl.user.UserServiceImpl.createUser(User) User already exists 03-04-2021 00:48:39
 Future com.gini.iordache.services.impl.user.UserServiceImpl.createUser(User) User already exists 03-04-2021 00:50:07
 Future com.gini.iordache.services.impl.user.UserServiceImpl.createUser(User) User already exists 03-04-2021 00:53:56
+int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:40:40
+int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:40:52
+int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:41:08
+int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:45:01
+int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:48:25
+int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:51:23

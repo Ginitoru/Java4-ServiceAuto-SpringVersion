@@ -1,6 +1,7 @@
 package com.gini.iordache.controllers.exceptionhadlers.order;
 
 import com.gini.errors.order.ClientNotSelectedException;
+import com.gini.errors.order.OrderIsClosedException;
 import com.gini.errors.order.VehicleNotSelectedException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,6 +20,14 @@ public class OrderExceptionHandler {
     public String clientNotFoundException(ClientNotSelectedException e){
         e.printStackTrace();
         return "redirect:/serviceOrder/serviceOrder";
+    }
+
+    @ExceptionHandler(OrderIsClosedException.class)
+    public String orderIsClosedException(OrderIsClosedException e){
+
+        e.printStackTrace();
+        return "redirect:/main";
+
     }
 
 

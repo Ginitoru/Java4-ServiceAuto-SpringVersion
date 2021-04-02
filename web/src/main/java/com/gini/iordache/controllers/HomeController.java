@@ -9,12 +9,7 @@ import com.gini.iordache.service.PdfService;
 import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import com.gini.iordache.utility.OrderStatus;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -22,9 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.text.DecimalFormat;
 
 
@@ -138,10 +130,9 @@ public class HomeController {
 
     @PostMapping("/closeOrder")
     public String closeOrder(){
-        System.out.println(totalPrice + " xxxxxxxxxxxxxxxxx " + totalPriceWithVAT);
-        serviceOrderService.updateOrderStatus(OrderStatus.CLOSE, serviceOrder.getId());
-        pdfService.createPDF(totalPrice, totalPriceWithVAT, serviceOrder);
-        invoiceService.saveInvoiceToDatabase(serviceOrder);
+
+        serviceOrderService.closeOrder(serviceOrder, totalPrice, totalPriceWithVAT);
+
         return "redirect:/main";
     }
 

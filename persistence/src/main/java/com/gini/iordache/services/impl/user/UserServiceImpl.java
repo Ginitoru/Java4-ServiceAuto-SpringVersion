@@ -48,12 +48,11 @@ public class UserServiceImpl implements UserService {
             ActivationToken activationToken = createActivationToken(token, user);
             user.setActivationToken(activationToken);
 
-
             userDao.createUser(user);
             emailSender.sendEmail(user);
 
 
-         return null;
+         return new AsyncResult<>(user);
 
         }
 
