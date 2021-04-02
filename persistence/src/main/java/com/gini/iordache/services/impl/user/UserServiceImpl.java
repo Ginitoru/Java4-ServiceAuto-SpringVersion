@@ -8,6 +8,7 @@ import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.interfaces.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.scheduling.annotation.AsyncResult;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,6 +17,7 @@ import ro.gini.iordache.email.sender.EmailSender;
 import java.time.LocalDateTime;
 import java.util.Optional;
 import java.util.UUID;
+import java.util.concurrent.Future;
 
 @Service
 @AllArgsConstructor
@@ -29,9 +31,10 @@ public class UserServiceImpl implements UserService {
 
 
     //method 1
-    @Override
-    @Transactional
-    public User createUser(User user) throws UserAlreadyExists {
+    @Override                                               //-> trebuie sa returnez Future ca sa pot prinde exceptia cu .get() in controller
+    @Async                                                  //in caz contrar  daca nu retunez Future exceptia este prinsa de SimpleAsyncTaskExecutor si nu
+    @Transactional                                          //se mai propaga, si nici nu imi mai apare in pagina de create new user mesajul -> user-ul exista
+    public Future<User> createUser(User user){              //si nici nu mai este vazuta de AOP
 
         Optional<User> user1 = userDao.findUserByUsername(user.getUsername());
         Optional<User> user2 = userDao.findUserByEmail(user.getEmail());
@@ -50,7 +53,7 @@ public class UserServiceImpl implements UserService {
             emailSender.sendEmail(user);
 
 
-        return user;
+         return null;
 
         }
 

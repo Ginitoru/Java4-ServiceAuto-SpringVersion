@@ -2,3 +2,7 @@
 void com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.createServiceOrder(ServiceOrder) Vehicle not selected at order creation 02-04-2021 21:10:25
 void com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.createServiceOrder(ServiceOrder) Vehicle not selected at order creation 02-04-2021 21:10:25
 void com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.createServiceOrder(ServiceOrder) Vehicle not selected at order creation 02-04-2021 21:11:08
+Future com.gini.iordache.services.impl.user.UserServiceImpl.createUser(User) User already exists 03-04-2021 00:46:45
+Future com.gini.iordache.services.impl.user.UserServiceImpl.createUser(User) User already exists 03-04-2021 00:48:39
+Future com.gini.iordache.services.impl.user.UserServiceImpl.createUser(User) User already exists 03-04-2021 00:50:07
+Future com.gini.iordache.services.impl.user.UserServiceImpl.createUser(User) User already exists 03-04-2021 00:53:56

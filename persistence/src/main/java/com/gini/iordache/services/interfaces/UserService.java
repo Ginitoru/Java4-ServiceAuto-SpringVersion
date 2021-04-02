@@ -4,10 +4,11 @@ import com.gini.iordache.entity.user.User;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
+import java.util.concurrent.Future;
 
 public interface UserService {
 
-    User createUser(User user);
+    Future<User> createUser(User user);
 
   //  int enableUserAccount(String username, String token);
 

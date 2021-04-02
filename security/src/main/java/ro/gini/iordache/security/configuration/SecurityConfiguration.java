@@ -18,6 +18,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
+import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ro.gini.iordache.security.filter.ResendTokenFilter;
@@ -44,24 +45,28 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     private  EmailProvider emailProvider;
     @Autowired
     private  TokenProvider tokenProvider;
-
     @Autowired
     private ResendTokenProvider resendTokenProvider;
-
-    @Autowired
-    private SuccessfulLogoutHandler logoutSuccessHandler;
-
-    @Autowired
-    private SecurityLogoutHandler logoutHandler;
 
 
 
 
 
     @Bean
+    public LogoutHandler logoutHandler(){
+        return new SecurityLogoutHandler();
+    }
+
+    @Bean
+    public LogoutSuccessHandler logoutSuccessHandler(){
+        return new SuccessfulLogoutHandler();
+    }
+
+
+    @Bean
     public LogoutFilter logoutFilter(){
 
-        LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler, logoutHandler);
+        LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler(), logoutHandler());
         logoutFilter.setFilterProcessesUrl("/logout3");
         return logoutFilter;
     }

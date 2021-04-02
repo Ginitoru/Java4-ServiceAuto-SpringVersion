@@ -1,6 +1,7 @@
 package com.gini.iordache.controllers.user;
 
 import com.gini.errors.logout.LogoutException;
+import com.gini.errors.user.UserAlreadyExists;
 import com.gini.iordache.entity.user.Authorities;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.interfaces.UserService;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+import java.util.concurrent.ExecutionException;
 
 
 @Controller
@@ -61,15 +63,20 @@ public class UserController {
 
 
     @PostMapping("/create-user")
-    public String createUser(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, Model model) {
+    public String createUser(@Valid @ModelAttribute("newUser") User user, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()){
             model.addAttribute("authority", Authorities.values());
             return "user/create-user";
         }
 
+        try {
+            userService.createUser(user).get();
+        } catch (InterruptedException | ExecutionException e) {
+            e.printStackTrace();
+            throw new UserAlreadyExists("User already exists");
+        }
 
-        userService.createUser(user);
         return "redirect:/login";
     }
 

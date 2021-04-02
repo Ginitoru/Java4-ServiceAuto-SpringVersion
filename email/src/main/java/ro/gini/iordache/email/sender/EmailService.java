@@ -25,7 +25,6 @@ public class EmailService implements EmailSender{
 
 
     @Override
-    @Async
     public void sendEmail(User user){
 
         var userEmail = user.getEmail();
