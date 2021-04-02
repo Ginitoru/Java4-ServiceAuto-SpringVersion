@@ -154,7 +154,14 @@
 
                                          <br>
                     <div>
-                        <input type="submit" class="btn-car-problems" value="Create Order"/>
+                        <input  type="submit" class="btn-car-problems" value="Create Order"
+                                th:if="${vehicle.id == 0 || (person.id == 0 && company.id == 0)}"
+                                onclick="alert('Select a vehicle person or company')"/>
+                    </div>
+
+                    <div>
+                        <input  type="submit" class="btn-car-problems" value="Create Order"
+                                th:if="${vehicle.id != 0 && !(person.id == 0 && company.id == 0)}"/>
                     </div>
 
 

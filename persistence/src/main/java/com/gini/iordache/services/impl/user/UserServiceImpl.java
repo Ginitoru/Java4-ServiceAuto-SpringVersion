@@ -30,9 +30,8 @@ public class UserServiceImpl implements UserService {
 
     //method 1
     @Override
-    @Async
     @Transactional
-    public User createUser(User user) {
+    public User createUser(User user) throws UserAlreadyExists {
 
         Optional<User> user1 = userDao.findUserByUsername(user.getUsername());
         Optional<User> user2 = userDao.findUserByEmail(user.getEmail());
@@ -51,8 +50,8 @@ public class UserServiceImpl implements UserService {
             emailSender.sendEmail(user);
 
 
+        return user;
 
-            return user;       // -> am pus return "user" deoarece am nevoie la aop @AfterReturning
         }
 
         throw new UserAlreadyExists("User already exists");

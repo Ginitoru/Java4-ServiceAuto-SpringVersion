@@ -52,7 +52,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/create-user")
+    @GetMapping("/createUserPage")
     public String showCreateUserPage(Model model) {
         model.addAttribute("newUser", new User());
         model.addAttribute("authority", Authorities.values());

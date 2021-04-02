@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
+import javax.validation.ReportAsSingleViolation;
 import java.net.UnknownHostException;
 
 @Service
@@ -24,6 +25,7 @@ public class EmailService implements EmailSender{
 
 
     @Override
+    @Async
     public void sendEmail(User user){
 
         var userEmail = user.getEmail();

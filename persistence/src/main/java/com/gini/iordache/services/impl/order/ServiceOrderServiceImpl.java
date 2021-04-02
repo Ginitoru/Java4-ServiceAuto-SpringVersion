@@ -1,5 +1,7 @@
 package com.gini.iordache.services.impl.order;
 
+import com.gini.errors.order.ClientNotSelectedException;
+import com.gini.errors.order.VehicleNotSelectedException;
 import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 
@@ -37,6 +39,21 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
     @Override
     @Transactional
     public void createServiceOrder(ServiceOrder serviceOrder){
+
+        var vehicleId = serviceOrder.getVehicle().getId();
+        var clientId = serviceOrder.getClient().getId();
+
+
+        if(vehicleId == 0){
+            throw new VehicleNotSelectedException("Vehicle not selected at order creation");
+        }
+
+
+        if(clientId == 0){
+            throw new ClientNotSelectedException("Client not selected at order creation!");
+        }
+
+
         serviceOrderDao.createServiceOrder(serviceOrder);
     }
 

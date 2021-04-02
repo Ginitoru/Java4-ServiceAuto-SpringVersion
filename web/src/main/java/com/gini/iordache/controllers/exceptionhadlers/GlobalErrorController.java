@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 
 
 //prostesc aplicatia ca exceptiile sunt aruncate din acest contoller care este mapat la /error si nu din corul aplicatiei.
-//iar cu clasa de @ControllerAdvice le rezolv. Astfel pot sa ma ocup de exceptiile ce se arunca la logare, creere cont autentificare etc.
+//iar cu clasele de @ControllerAdvice le rezolv. Astfel pot sa ma ocup de exceptiile ce se arunca la logare, creare cont autentificare etc.
 
 
 @Controller

@@ -36,8 +36,6 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.stream.Collectors;
 
 @Configuration
-@EnableAsync
-@EnableAspectJAutoProxy
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Autowired

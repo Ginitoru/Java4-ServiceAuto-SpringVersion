@@ -1,4 +1,4 @@
-package com.gini.iordache.controllers.exceptionhadlers;
+package com.gini.iordache.controllers.trim;
 
 import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.web.bind.WebDataBinder;
