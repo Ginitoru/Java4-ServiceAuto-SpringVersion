@@ -6,6 +6,7 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -22,9 +23,9 @@ public class SecurityUser implements UserDetails {
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
 
-        Set<GrantedAuthority> userAuthorities = user.getAuthorities().stream()
-                                                                .map( auth -> new SimpleGrantedAuthority(auth))
-                                                                .collect(Collectors.toSet());
+        List<GrantedAuthority> userAuthorities = user.getAuthorities().stream()
+                                                                .map( auth -> new SimpleGrantedAuthority("ROLE_"+ auth))
+                                                                .collect(Collectors.toList());
 
         return userAuthorities;
     }

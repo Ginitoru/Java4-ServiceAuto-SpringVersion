@@ -66,7 +66,7 @@ public class ServiceOrderController {
         model.addAttribute("person", person);
         model.addAttribute("company", company);
 
-        return "auto/serviceOrder-page";
+        return "order/serviceOrder-page";
     }
 
 

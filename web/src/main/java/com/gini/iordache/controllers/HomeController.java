@@ -63,6 +63,8 @@ public class HomeController {
 
         model.addAttribute("serviceOrderIdAndStatus", serviceOrderService.allServiceOrderIdAndStatus());
         allAllModelAtributes(model);
+
+
         return "main-page";
     }
 
@@ -88,7 +90,6 @@ public class HomeController {
         System.out.println(serviceOrder.getClient());
 
         allAllModelAtributes(model);
-
         return "redirect:/main";
     }
 

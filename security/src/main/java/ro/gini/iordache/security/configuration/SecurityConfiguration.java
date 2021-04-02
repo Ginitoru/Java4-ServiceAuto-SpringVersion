@@ -1,6 +1,8 @@
 package ro.gini.iordache.security.configuration;
 
 
+import com.gini.iordache.entity.user.Authorities;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
@@ -12,6 +14,7 @@ import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
@@ -27,8 +30,10 @@ import ro.gini.iordache.security.provider.ResendTokenProvider;
 import ro.gini.iordache.security.provider.TokenProvider;
 import ro.gini.iordache.security.provider.UserNamePasswordProvider;
 
+import java.util.Arrays;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
+import java.util.stream.Collectors;
 
 @Configuration
 @EnableAsync
@@ -116,37 +121,39 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     }
 
 
+
+
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
+        String[] roles = Arrays.stream(Authorities.values())
+                                    .map(Enum::toString)
+                                    .toArray(String[]::new);
+
+
         http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(tokenFilter(),BasicAuthenticationFilter.class)
                 .addFilterBefore(resendTokenFilter(), BasicAuthenticationFilter.class)
                 .addFilterAt(logoutFilter(), LogoutFilter.class);
 
 
-
         http.authorizeRequests()
+                        .mvcMatchers("/main").hasAnyRole(roles)
+                        .mvcMatchers("/parts/**").hasAnyRole(roles)
+                        .mvcMatchers("/clients/**").hasAnyRole(roles)
+                        .mvcMatchers("/vehicles/**").hasAnyRole(roles)
+                        .mvcMatchers("/labors/**").hasAnyRole(roles)
+                        .mvcMatchers("/prices/**").hasAnyRole("MANAGER")
+                        .mvcMatchers("/laborOrder/**").hasAnyRole(roles)
+                        .mvcMatchers("/serviceOrder/**").hasAnyRole(roles)
+                        .mvcMatchers("/orderPart/**").hasAnyRole(roles)
+                        .mvcMatchers("/").permitAll()
+                        .mvcMatchers("/create-user").permitAll()
+                                    .and()
+                                    .formLogin()
+                                    .loginPage("/login").permitAll();
 
-                .mvcMatchers("/").permitAll()
-                .mvcMatchers("/create-user").permitAll()
-                    .and()
-                    .formLogin()
-                    .loginPage("/login").permitAll()
 
-
-
-
-
-                .and()
-                .authorizeRequests()
-                        .mvcMatchers("/main").authenticated()
-                        .mvcMatchers("/parts/**").authenticated()
-                        .mvcMatchers("/clients/**").authenticated()
-                        .mvcMatchers("/vehicles/**").authenticated();
-
-//        http.sessionManagement()
-//                .invalidSessionUrl("/login?logout")
-//                .invalidSessionUrl("/login?logout");
     }
 
 

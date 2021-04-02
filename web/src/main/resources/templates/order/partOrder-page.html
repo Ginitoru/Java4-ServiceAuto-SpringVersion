@@ -17,7 +17,7 @@
 
     <!--SEARCH PART-->
                <div class="from-1">
-                   <form action="#" th:action="@{/findPart}" method="GET">
+                   <form action="#" th:action="@{/orderPart/findPart}" method="GET">
                        <div class="form-group">
                            <input type="submit" class="btn" value="Search"/>
                            <input type="text", name="partNumber" class="field">
@@ -67,7 +67,7 @@
 <!--ADD PART TO SERVICE ORDER-->
 
                <div class="add-part">
-                    <form action="#" th:action="@{/addPartToOrder}" method="POST">
+                    <form action="#" th:action="@{/orderPart/addPartToOrder}" method="POST">
 
                         <div>
                             <label>Part count: </label>
@@ -111,7 +111,7 @@
                        <td th:text="${bau.count}"></td>
                        <td>
 
-                           <a th:href="@{/deletePart(partNumber=${bau.partNumber}, count =${bau.count})}">
+                           <a th:href="@{/orderPart/deletePart(partNumber=${bau.partNumber}, count =${bau.count})}">
                                <input type="button" value="DELETE"
                                       onclick=" return confirm('Do you really want to delete this part?')"/>
                            </a>
