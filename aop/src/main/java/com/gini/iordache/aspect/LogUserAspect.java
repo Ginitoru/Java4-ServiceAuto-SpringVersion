@@ -46,19 +46,6 @@ public class LogUserAspect {
     }
 
 
-    @AfterThrowing( pointcut = ("execution(* com.gini.iordache.*.*.*.*.*(..))"),
-                    throwing = "exc")
-    public void logExceptions(JoinPoint joinPoint, Throwable exc){
-
-        var methodSignature = joinPoint.getSignature().toString();
-        var message = exc.getMessage();
-        var message2 = methodSignature + " " + message;
-
-        Logs.writeExceptions(message2);
-    }
-
-
-
     @Before("execution(* ro.gini.iordache.security.handler.SecurityLogoutHandler.logout(..))")
     public void logLogout(JoinPoint joinPoint){
 
@@ -67,7 +54,7 @@ public class LogUserAspect {
         Logs.loginLogoutUser(auth, "logged out at:");
     }
 
-//
+
     @AfterThrowing(value = "com.gini.iordache.poitcut.PointcutExpression.modulesExceptions()",
                     throwing = "exc")
     public void logAllExceptions(JoinPoint joinPoint, Throwable exc){
