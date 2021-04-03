@@ -62,15 +62,8 @@ public class ServiceOrderPartController {
     public String findPart(HttpServletRequest request, Model model){
 
         var partNumber = request.getParameter("partNumber");
-
         part = partService.findPartByPartNumber(partNumber);
-
         model.addAttribute("part", part);
-
-        boolean x = request.isUserInRole("MANAGER");
-        String z = SecurityContextHolder.getContext().getAuthentication().getAuthorities().toString();
-        String y = request.getAuthType();
-        System.out.println(x + " " + z +" "+ y + "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
 
         return "redirect:/orderPart/addPart-page";
     }
@@ -78,7 +71,7 @@ public class ServiceOrderPartController {
 
     @PostMapping("/addPartToOrder")
     public String addPartToOrder(HttpServletRequest request){
-        System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
+
         var count = Integer.parseInt(request.getParameter("count"));
         ServiceOrder serviceOrder = homeController.getServiceOrder();
 

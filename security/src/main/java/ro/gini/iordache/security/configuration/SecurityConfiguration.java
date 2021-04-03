@@ -22,6 +22,7 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ro.gini.iordache.security.filter.ResendTokenFilter;
+import ro.gini.iordache.security.filter.RestUsernamePasswordFilter;
 import ro.gini.iordache.security.filter.TokenFilter;
 import ro.gini.iordache.security.filter.UsernameAndPasswordFilter;
 import ro.gini.iordache.security.handler.SecurityLogoutHandler;
@@ -69,6 +70,17 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler(), logoutHandler());
         logoutFilter.setFilterProcessesUrl("/logout3");
         return logoutFilter;
+    }
+
+    @Bean
+    public RestUsernamePasswordFilter restUsernamePasswordFilter(){
+        try {
+            return new RestUsernamePasswordFilter(authenticationManagerBean());
+        } catch (Exception e) {
+            e.printStackTrace();
+            throw new RuntimeException("Exception in: ----------------> AuthenticationManager");
+        }
+
     }
 
 
@@ -137,7 +149,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(tokenFilter(),BasicAuthenticationFilter.class)
                 .addFilterBefore(resendTokenFilter(), BasicAuthenticationFilter.class)
-                .addFilterAt(logoutFilter(), LogoutFilter.class);
+                .addFilterAt(logoutFilter(), LogoutFilter.class)
+                .addFilterBefore(restUsernamePasswordFilter(), BasicAuthenticationFilter.class);
 
 
         http.authorizeRequests()
@@ -150,6 +163,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .mvcMatchers("/laborOrder/**").hasAnyRole(roles)
                         .mvcMatchers("/serviceOrder/**").hasAnyRole(roles)
                         .mvcMatchers("/orderPart/**").hasAnyRole(roles)
+                        .mvcMatchers("/app2/**").hasAnyRole(roles)
                         .mvcMatchers("/").permitAll()
                         .mvcMatchers("/create-user").permitAll()
                                     .and()

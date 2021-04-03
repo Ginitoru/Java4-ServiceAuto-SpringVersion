@@ -12,3 +12,10 @@ int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(Ser
 int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:45:01
 int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:48:25
 int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 03-04-2021 01:51:23
+Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:38:52
+Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:39:12
+Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:39:39
+Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:40:35
+Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:41:18
+Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:41:52
+Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:42:28

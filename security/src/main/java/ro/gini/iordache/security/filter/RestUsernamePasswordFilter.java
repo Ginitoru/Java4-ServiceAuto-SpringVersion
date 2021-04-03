@@ -1,6 +1,6 @@
 package ro.gini.iordache.security.filter;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -14,51 +14,42 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-public class UsernameAndPasswordFilter extends OncePerRequestFilter {
+@AllArgsConstructor
+public class RestUsernamePasswordFilter extends OncePerRequestFilter {
 
     private final AuthenticationManager authenticationManager;
 
-    @Autowired
-    public UsernameAndPasswordFilter(AuthenticationManager authenticationManager) {
-        this.authenticationManager = authenticationManager;
-    }
 
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
 
-
-
-        var usernameOrEmail = request.getParameter("username");
-        var password = request.getParameter("password");
-
-
-        Authentication auth = null;
-
+        var usernameOrEmail = request.getHeader("username");
+        var password = request.getHeader("password");
 
 
         if(usernameOrEmail.contains("@")){
+            Authentication auth = new EmailAuthentication(usernameOrEmail, password);
 
-            auth = new EmailAuthentication(usernameOrEmail, password);
+            auth = authenticationManager.authenticate(auth);
+            SecurityContextHolder.getContext().setAuthentication(auth);
+            filterChain.doFilter(request, response);
 
         }else{
 
-            auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
+            Authentication auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
+            auth = authenticationManager.authenticate(auth);
+            SecurityContextHolder.getContext().setAuthentication(auth);
 
         }
 
 
-        auth = authenticationManager.authenticate(auth);
-        SecurityContextHolder.getContext().setAuthentication(auth);
-        filterChain.doFilter(request, response);
     }
-
-
 
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) throws ServletException {
-        return !request.getServletPath().equals("/login-processing");
+        return !request.getServletPath().equals("/login6");
     }
 }

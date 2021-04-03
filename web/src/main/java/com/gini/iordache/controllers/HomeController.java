@@ -77,9 +77,6 @@ public class HomeController {
         totalPrice = getTotalPriceRounded(partsTotalPriceWithVAT, laborTotalPriceWithVAT);
         totalPriceWithVAT  = getTotalPriceRounded(totalPrice);
 
-        System.out.println(serviceOrder.getParts().toString());
-        System.out.println(serviceOrder.getLabors().toString());
-        System.out.println(serviceOrder.getClient());
 
         allAllModelAtributes(model);
         return "redirect:/main";
