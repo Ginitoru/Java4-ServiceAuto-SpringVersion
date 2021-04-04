@@ -24,7 +24,6 @@ public class ServiceOrder {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
-    private double totalPrice;
 
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE})
     private CarProblems carProblems;
@@ -48,6 +47,25 @@ public class ServiceOrder {
 
     @OneToMany(mappedBy = "serviceOrder")
     private List<LaborServiceOrder> labors = new ArrayList<>();
+
+    @Transient
+    private double partsTotalPrice;
+
+    private double partsTotalPriceVAT;
+
+    @Transient
+    private double laborTotalPrice;
+
+    @Transient
+    private double laborTotalPriceVAT;
+
+    @Transient
+    private double totalPrice;
+
+    @Transient
+    private double totalPriceVAT;
+
+
 
 
 

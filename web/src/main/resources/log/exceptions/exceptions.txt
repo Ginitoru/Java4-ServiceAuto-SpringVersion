@@ -19,3 +19,4 @@ Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authe
 Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:41:18
 Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:41:52
 Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:42:28
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 04-04-2021 23:53:50

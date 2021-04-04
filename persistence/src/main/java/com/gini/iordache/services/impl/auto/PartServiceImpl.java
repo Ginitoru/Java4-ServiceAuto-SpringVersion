@@ -35,7 +35,7 @@ public class PartServiceImpl implements PartService {
 
 
 
-        if(optionalPart.get().equals(part)){        //daca piesa exista si are acelasi pret face update la count si pret in depozit
+        if(optionalPart.get().equals(part)){        //daca piesa exista face update la count si pret in depozit
 
             partDao.updatePartCountAndPrice(
                                             part.getCount(),

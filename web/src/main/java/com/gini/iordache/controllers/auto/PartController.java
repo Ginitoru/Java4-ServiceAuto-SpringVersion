@@ -1,10 +1,9 @@
 package com.gini.iordache.controllers.auto;
 
 import com.gini.iordache.entity.auto.Part;
-import com.gini.iordache.entity.auto.PartCount;
+
 import com.gini.iordache.services.interfaces.PartService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.propertyeditors.StringTrimmerEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,7 +23,7 @@ public class PartController {
     public String getPartPage(Model model){
 
         model.addAttribute("part", new Part());
-        model.addAttribute("partCount", new PartCount());
+
 
 
         return "auto/part-page";

@@ -1,7 +1,6 @@
 package com.gini.iordache.services.interfaces;
 
 import com.gini.iordache.entity.auto.Part;
-import com.gini.iordache.entity.auto.PartCount;
 import org.springframework.transaction.annotation.Transactional;
 
 public interface PartService {

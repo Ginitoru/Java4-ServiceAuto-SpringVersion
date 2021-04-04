@@ -11,12 +11,14 @@ import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.service.PdfService;
+import com.gini.iordache.services.impl.utility.TwoDigitsDouble;
 import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
+import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Set;
 
@@ -114,11 +116,6 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
     }
 
 
-    @Override
-    @Transactional
-    public ServiceOrder findCompleteServiceOrderById(int id){
-        return serviceOrderDao.findCompleteServiceOrderById(id);
-    }
 
 
 
@@ -142,8 +139,67 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
     }
 
 
+    @Override
+    @Transactional //metoda 1
+    public ServiceOrder findCompleteServiceOrderById(int id){
+
+        ServiceOrder serviceOrder = serviceOrderDao.findCompleteServiceOrderById(id);
+
+
+        double partsTotalPrice = this.getPartsTotalPrice(serviceOrder);
+        double partsTotalPriceVAT = TwoDigitsDouble.formatPrice(partsTotalPrice * 1.19);
+
+
+        double laborPrice = this.getLaborTotalPrice(serviceOrder);
+        double laborPriceVAT = TwoDigitsDouble.formatPrice(laborPrice * 1.19);
+
+
+        double totalPrice = TwoDigitsDouble.formatPrice(partsTotalPrice + laborPrice);
+        double totalPriceVAT = TwoDigitsDouble.formatPrice(totalPrice  * 1.19);
+
+
+                            serviceOrder.setPartsTotalPrice(partsTotalPrice);
+                            serviceOrder.setPartsTotalPriceVAT(partsTotalPriceVAT);
+
+                            serviceOrder.setLaborTotalPrice(laborPrice);
+                            serviceOrder.setLaborTotalPriceVAT(laborPriceVAT);
+
+                            serviceOrder.setTotalPrice(totalPrice);
+                            serviceOrder.setTotalPriceVAT(totalPriceVAT);
+
+
+        return serviceOrder;
+    }
 
 
 
+
+    //method 2 intra in 1
+    private double getPartsTotalPrice(ServiceOrder serviceOrder){
+        return serviceOrder.getParts()
+                .stream()
+                .mapToDouble(this::partPrice)
+                .map(price -> TwoDigitsDouble.formatPrice(price))
+                .sum();                               //face suma preturilor la piese
+
+    }
+
+
+    //method 3 intra in 2
+    private double partPrice(PartServiceOrder part){
+        return part.getCount() * part.getPrice();
+    }
+
+
+    //method 4 intra in 1
+    private double getLaborTotalPrice(ServiceOrder serviceOrder){
+
+        return serviceOrder.getLabors()
+                .stream()
+                .mapToDouble( l -> l.getLaborPrice())
+                .map(price -> TwoDigitsDouble.formatPrice(price))
+                .sum();
+
+    }
 
 }

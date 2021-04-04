@@ -164,6 +164,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                         .mvcMatchers("/serviceOrder/**").hasAnyRole(roles)
                         .mvcMatchers("/orderPart/**").hasAnyRole(roles)
                         .mvcMatchers("/app2/**").hasAnyRole(roles)
+                        .mvcMatchers("/restPart/**").hasAnyRole(roles)
                         .mvcMatchers("/").permitAll()
                         .mvcMatchers("/create-user").permitAll()
                                     .and()
