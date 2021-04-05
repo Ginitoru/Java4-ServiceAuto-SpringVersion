@@ -20,3 +20,14 @@ Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authe
 Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:41:52
 Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 03-04-2021 22:42:28
 Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 04-04-2021 23:53:50
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 05-04-2021 00:50:57
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 05-04-2021 00:54:37
+int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 05-04-2021 00:56:46
+int com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.closeOrder(ServiceOrder,double,double) Order is already CLOSED 05-04-2021 01:00:56
+List com.gini.iordache.dao.impl.order.ServiceOrderDaoImpl.allServiceOrderIdAndStatus() No enum constant com.gini.iordache.utility.OrderStatus.open; nested exception is java.lang.IllegalArgumentException: No enum constant com.gini.iordache.utility.OrderStatus.open 05-04-2021 01:15:17
+List com.gini.iordache.services.impl.order.ServiceOrderServiceImpl.allServiceOrderIdAndStatus() No enum constant com.gini.iordache.utility.OrderStatus.open; nested exception is java.lang.IllegalArgumentException: No enum constant com.gini.iordache.utility.OrderStatus.open 05-04-2021 01:15:17
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 05-04-2021 23:01:17
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 05-04-2021 23:01:21
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 05-04-2021 23:01:27
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 05-04-2021 23:13:39
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 05-04-2021 23:17:24

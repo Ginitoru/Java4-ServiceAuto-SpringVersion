@@ -2,6 +2,7 @@ package com.gini.iordache.services.impl.auto;
 
 
 
+import com.gini.errors.order.PartNotFoundException;
 import com.gini.iordache.dao.iterfaces.PartDao;
 
 import com.gini.iordache.entity.auto.Part;
@@ -54,7 +55,7 @@ public class PartServiceImpl implements PartService {
     public Part findPartByPartNumber(String partNumber){
 
         return partDao.findPartByPartNumber(partNumber)
-                        .orElseThrow(() -> new RuntimeException("Part does not exists!"));
+                        .orElseThrow(() -> new PartNotFoundException("Part does not exists!"));
 
 
     }

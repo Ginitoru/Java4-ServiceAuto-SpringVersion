@@ -1,14 +1,8 @@
 package com.gini.iordache.controllers;
 
-
-
-import com.gini.iordache.entity.order.LaborServiceOrder;
-import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.service.PdfService;
 import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
-import com.gini.iordache.utility.OrderStatus;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,8 +10,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-import java.text.DecimalFormat;
 
 
 @Controller

@@ -131,7 +131,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
         }
 
-
+        System.out.println(totalPrice + " xxxx"  + totalPrice + "   fasfasd    " );
             pdfService.createPDF(totalPrice, totalPriceWithVAT, serviceOrder);
             invoiceService.saveInvoiceToDatabase(serviceOrder);
 

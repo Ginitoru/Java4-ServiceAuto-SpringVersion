@@ -51,6 +51,7 @@ public class ServiceOrder {
     @Transient
     private double partsTotalPrice;
 
+    @Transient
     private double partsTotalPriceVAT;
 
     @Transient
