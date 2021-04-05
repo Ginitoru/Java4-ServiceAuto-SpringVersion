@@ -43,6 +43,7 @@
     <orderEntry type="module" module-name="persistence" />
     <orderEntry type="module" module-name="domain" />
     <orderEntry type="module" module-name="error" />
+    <orderEntry type="module" module-name="utility" />
     <orderEntry type="module" module-name="security" />
     <orderEntry type="module" module-name="email" />
     <orderEntry type="module" module-name="invoice" />

@@ -59,7 +59,7 @@ public class HomeController {
     @PostMapping("/closeOrder")
     public String closeOrder(){
 
-        serviceOrderService.closeOrder(serviceOrder, serviceOrder.getTotalPrice(), serviceOrder.getTotalPriceVAT());
+        serviceOrderService.closeOrder(serviceOrder);
 
         return "redirect:/main";
     }

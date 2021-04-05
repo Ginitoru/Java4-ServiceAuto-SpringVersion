@@ -43,5 +43,5 @@ public interface ServiceOrderService {
 
 
     @Transactional
-    int closeOrder(ServiceOrder serviceOrder, double totalPrice, double totalPriceWithVAT);
+    int closeOrder(ServiceOrder serviceOrder);
 }

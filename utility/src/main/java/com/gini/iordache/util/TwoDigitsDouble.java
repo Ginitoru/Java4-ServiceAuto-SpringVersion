@@ -1,4 +1,4 @@
-package com.gini.iordache.services.impl.utility;
+package com.gini.iordache.util;
 
 
 public class TwoDigitsDouble {

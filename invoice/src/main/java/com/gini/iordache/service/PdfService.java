@@ -29,10 +29,12 @@ public class PdfService {
 
 
 
-    public void createPDF(double totalPrice, double totalPriceWithVAT, ServiceOrder serviceOrder){
+    public void createPDF(ServiceOrder serviceOrder){
 
         var path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf";
 
+        var totalPrice = serviceOrder.getTotalPrice();
+        var totalPriceVAT = serviceOrder.getTotalPriceVAT();
 
 
         Context context = new Context();
@@ -51,7 +53,7 @@ public class PdfService {
 
         context.setVariable("order", serviceOrder);
         context.setVariable("total", totalPrice);
-        context.setVariable("totalVAT", totalPriceWithVAT);
+        context.setVariable("totalVAT", totalPriceVAT);
         String processHTML = templateEngine.process("/invoice/invoice", context);
 
 

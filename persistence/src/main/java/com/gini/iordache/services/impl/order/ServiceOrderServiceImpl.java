@@ -5,20 +5,19 @@ import com.gini.errors.order.OrderIsClosedException;
 import com.gini.errors.order.VehicleNotSelectedException;
 import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
-
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.PartServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.service.PdfService;
-import com.gini.iordache.services.impl.utility.TwoDigitsDouble;
 import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
+import com.gini.iordache.util.TwoDigitsDouble;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+
 import javax.transaction.Transactional;
-import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Set;
 
@@ -121,7 +120,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Override
     @Transactional
-    public int closeOrder(ServiceOrder serviceOrder, double totalPrice, double totalPriceWithVAT){
+    public int closeOrder(ServiceOrder serviceOrder){
 
         var orderStatus = serviceOrder.getOrderStatus();
         var orderId = serviceOrder.getId();
@@ -131,8 +130,8 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
         }
 
-        System.out.println(totalPrice + " xxxx"  + totalPrice + "   fasfasd    " );
-            pdfService.createPDF(totalPrice, totalPriceWithVAT, serviceOrder);
+
+            pdfService.createPDF(serviceOrder);
             invoiceService.saveInvoiceToDatabase(serviceOrder);
 
         return serviceOrderDao.updateOrderStatus(OrderStatus.CLOSE, orderId);
