@@ -2,8 +2,8 @@ package com.gini.iordache.dao.impl.order;
 
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
-import com.gini.iordache.entity.order.LaborServiceOrder;
-import com.gini.iordache.entity.order.PartServiceOrder;
+import com.gini.iordache.entity.order.LaborOrder;
+import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
@@ -85,10 +85,10 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
 
 
     @Override
-    public List<PartServiceOrder> getPartsFormServiceOrder(int id){
+    public List<PartOrder> getPartsFormServiceOrder(int id){
         String jpql ="SELECT parts FROM ServiceOrder s JOIN s.parts parts WHERE s.id =: id";
 
-        return entityManager.createQuery(jpql, PartServiceOrder.class)
+        return entityManager.createQuery(jpql, PartOrder.class)
                 .setParameter("id", id)
                 .getResultList();
 
@@ -96,12 +96,12 @@ public class ServiceOrderDaoImpl implements ServiceOrderDao {
 
 
     @Override
-    public List<LaborServiceOrder> findAllLaborsInOrder(int id){
+    public List<LaborOrder> findAllLaborsInOrder(int id){
 
         String jpql = "SELECT labors FROM ServiceOrder s JOIN s.labors labors WHERE s.id =: id";
 
 
-        return entityManager.createQuery(jpql, LaborServiceOrder.class)
+        return entityManager.createQuery(jpql, LaborOrder.class)
                 .setParameter("id", id)
                 .getResultList();
 

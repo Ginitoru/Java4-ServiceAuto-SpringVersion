@@ -28,10 +28,10 @@ public class LaborDaoImpl implements LaborDao {
     @Override
     public List<Labor> findLaborByName(String laborDescription){
 
-        String jpql = "SELECT l FROM Labor l WHERE l.laborDescription =:laborDescription";
+        String jpql = "SELECT l FROM Labor l WHERE l.laborDescription  LIKE :laborDescription";
 
         return entityManager.createQuery(jpql, Labor.class)
-                                .setParameter("laborDescription",laborDescription)
+                                .setParameter("laborDescription", "%"   +laborDescription + "%" )
                                 .getResultList();
 
     }

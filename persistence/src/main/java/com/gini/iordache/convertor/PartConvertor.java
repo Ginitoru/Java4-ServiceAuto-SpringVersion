@@ -1,7 +1,7 @@
 package com.gini.iordache.convertor;
 
 import com.gini.iordache.entity.auto.Part;
-import com.gini.iordache.entity.order.PartServiceOrder;
+import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 
 public class PartConvertor {
@@ -10,9 +10,9 @@ public class PartConvertor {
     }
 
 
-    public static PartServiceOrder convert(Part part, ServiceOrder serviceOrder, int count){
+    public static PartOrder convert(Part part, ServiceOrder serviceOrder, int count){
 
-        PartServiceOrder partServiceOrder = new PartServiceOrder(
+        PartOrder partServiceOrder = new PartOrder(
                                                 part.getPartNumber(),
                                                 part.getPartName(),
                                                 count,

@@ -5,23 +5,48 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Welocme</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/index/index.css}">
 
 </head>
 <body>
-        <h1>Welcome to my shit app:DDDDDDD, now don't run away just yet!!!!</h1>
-        <hr>
-        <br>
-        <h2>UNDER CONSTRUCTION</h2>
-        <br>
+ 
+        <!-- <header id="header">
+            <h1>Welcome!</h1>
+        </header> -->
+
+        <div class="container">
+            
+            <div class="img">
 
 
-            <div>
-                <a th:href="@{/createUserPage}">Create User Page</a>
+
             </div>
+            <div class="group-buttons">
+                <div class="img2"></div>
+                <div class="button-div">
+                    <a  th:href="@{/createUserPage}"><input type="button" value="Create User" class="button"/></a>
+                </div>
+    
+                <div class="button-div">
+                    <a th:href="@{/login}" ><input type="button" value="Login" class="button"></a>
+                </div>
 
-            <div>
-                <a th:href="@{/login}">To Login Page</a>
+                <footer class="footer">
+                    <p>
+                        Ginitoru's app! Now, don't run away just yet :)
+                    </p>
+                
+                </footer>
+    
             </div>
+            
+        </div>
+
+    
+
+       
+
+           
 
 
 

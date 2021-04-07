@@ -2,7 +2,6 @@ package com.gini.iordache.entity.order;
 
 
 import com.gini.iordache.utility.LaborCategory;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,7 +14,7 @@ import java.util.Objects;
 @Setter
 @NoArgsConstructor
 @Entity
-public class LaborServiceOrder {
+public class LaborOrder {
 
 
     @Id
@@ -34,7 +33,7 @@ public class LaborServiceOrder {
     @Enumerated(EnumType.STRING)
     private LaborCategory category;
 
-    public LaborServiceOrder(String laborDescription, double timedLabor, double laborPrice, ServiceOrder serviceOrder, LaborCategory category) {
+    public LaborOrder(String laborDescription, double timedLabor, double laborPrice, ServiceOrder serviceOrder, LaborCategory category) {
         this.laborDescription = laborDescription;
         this.timedLabor = timedLabor;
         this.laborPrice = laborPrice;
@@ -47,7 +46,7 @@ public class LaborServiceOrder {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        LaborServiceOrder that = (LaborServiceOrder) o;
+        LaborOrder that = (LaborOrder) o;
         return Double.compare(that.timedLabor, timedLabor) == 0 && Double.compare(that.laborPrice, laborPrice) == 0 && Objects.equals(laborDescription, that.laborDescription) && category == that.category;
     }
 

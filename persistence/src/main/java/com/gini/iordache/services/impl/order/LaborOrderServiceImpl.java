@@ -6,10 +6,11 @@ import com.gini.iordache.dao.iterfaces.LaborServiceOrderDao;
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.labor.LaborPrice;
-import com.gini.iordache.entity.order.LaborServiceOrder;
+import com.gini.iordache.entity.order.LaborOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.impl.labor.LaborPriceServiceImpl;
 import com.gini.iordache.services.interfaces.LaborServiceOrderService;
+import com.gini.iordache.util.TwoDigitsDouble;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,7 +20,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class LaborServiceOrderServiceImpl implements LaborServiceOrderService {
+public class LaborOrderServiceImpl implements LaborServiceOrderService {
 
     private final LaborServiceOrderDao laborServiceOrderDao;
     private final LaborPriceServiceImpl laborPriceService;
@@ -32,8 +33,9 @@ public class LaborServiceOrderServiceImpl implements LaborServiceOrderService {
     public void addLaborToServiceOrder(Labor labor, ServiceOrder serviceOrder){
 
          double laborPrice = this.laborPrice(labor);
+         laborPrice = TwoDigitsDouble.formatPrice(laborPrice); //formatez pretul la 2 cifre dupa punct
 
-         LaborServiceOrder laborServiceOrder = LaborConvertor.convert(labor,laborPrice, serviceOrder);
+         LaborOrder laborServiceOrder = LaborConvertor.convert(labor,laborPrice, serviceOrder);
 
 
          laborServiceOrderDao.createLaborServiceOrder(laborServiceOrder);
@@ -107,7 +109,7 @@ public class LaborServiceOrderServiceImpl implements LaborServiceOrderService {
     @Transactional
     public void deleteLaborFromOrder(int id){
 
-        Optional<LaborServiceOrder> laborOrder = laborServiceOrderDao.findLaborOrderById(id);
+        Optional<LaborOrder> laborOrder = laborServiceOrderDao.findLaborOrderById(id);
 
         if(laborOrder.isPresent()){
             laborServiceOrderDao.deleteLaborFromOrder(id);

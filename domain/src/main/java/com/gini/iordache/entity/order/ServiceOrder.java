@@ -1,10 +1,7 @@
 package com.gini.iordache.entity.order;
 
-import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Client;
-import com.gini.iordache.entity.invoice.Invoice;
-import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.Getter;
@@ -42,11 +39,11 @@ public class ServiceOrder {
 
 
     @OneToMany(mappedBy = "serviceOrder")
-    private List<PartServiceOrder> parts = new ArrayList<>();
+    private List<PartOrder> parts = new ArrayList<>();
 
 
     @OneToMany(mappedBy = "serviceOrder")
-    private List<LaborServiceOrder> labors = new ArrayList<>();
+    private List<LaborOrder> labors = new ArrayList<>();
 
     @Transient
     private double partsTotalPrice;
@@ -115,14 +112,14 @@ public class ServiceOrder {
             return this;
         }
 
-        public Builder withPart(List<PartServiceOrder> parts){
+        public Builder withPart(List<PartOrder> parts){
             serviceOrder.parts = parts;
             return this;
         }
 
 
 
-        public Builder withLabors(List<LaborServiceOrder> labors){
+        public Builder withLabors(List<LaborOrder> labors){
             serviceOrder.labors = labors;
             return this;
         }

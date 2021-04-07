@@ -3,10 +3,9 @@ package com.gini.iordache.services.interfaces;
 
 
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
-import com.gini.iordache.entity.order.LaborServiceOrder;
-import com.gini.iordache.entity.order.PartServiceOrder;
+import com.gini.iordache.entity.order.LaborOrder;
+import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.utility.OrderStatus;
 
 import javax.transaction.Transactional;
 import java.util.List;
@@ -33,10 +32,10 @@ public interface ServiceOrderService {
     ServiceOrder findServiceOrderParts(int id);
 
     @Transactional
-    List<PartServiceOrder> getPartsFormServiceOrder(int id);
+    List<PartOrder> getPartsFormServiceOrder(int id);
 
     @Transactional
-    List<LaborServiceOrder> findAllLaborsInOrder(int id);
+    List<LaborOrder> findAllLaborsInOrder(int id);
 
     @Transactional
     ServiceOrder findCompleteServiceOrderById(int id);

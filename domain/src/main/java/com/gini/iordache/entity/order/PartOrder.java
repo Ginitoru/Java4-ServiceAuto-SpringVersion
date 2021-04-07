@@ -1,6 +1,5 @@
 package com.gini.iordache.entity.order;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,7 +12,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @Entity
-public class PartServiceOrder {
+public class PartOrder {
 
 
     @Id
@@ -36,7 +35,7 @@ public class PartServiceOrder {
     private ServiceOrder serviceOrder;
 
 
-    public PartServiceOrder(String partNumber, String partName, int count, double price, ServiceOrder serviceOrder) {
+    public PartOrder(String partNumber, String partName, int count, double price, ServiceOrder serviceOrder) {
         this.partNumber = partNumber;
         this.partName = partName;
         this.count = count;
@@ -48,7 +47,7 @@ public class PartServiceOrder {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PartServiceOrder that = (PartServiceOrder) o;
+        PartOrder that = (PartOrder) o;
         return Objects.equals(partNumber, that.partNumber) && Objects.equals(partName, that.partName);
     }
 

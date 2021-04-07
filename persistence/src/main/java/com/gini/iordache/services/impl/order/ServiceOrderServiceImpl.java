@@ -6,8 +6,8 @@ import com.gini.errors.order.VehicleNotSelectedException;
 import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
-import com.gini.iordache.entity.order.LaborServiceOrder;
-import com.gini.iordache.entity.order.PartServiceOrder;
+import com.gini.iordache.entity.order.LaborOrder;
+import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.service.PdfService;
 import com.gini.iordache.services.interfaces.InvoiceService;
@@ -101,14 +101,14 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
     @Override
     @Transactional
-    public List<PartServiceOrder> getPartsFormServiceOrder(int id){
+    public List<PartOrder> getPartsFormServiceOrder(int id){
         return serviceOrderDao.getPartsFormServiceOrder(id);
     }
 
 
     @Override
     @Transactional
-    public List<LaborServiceOrder> findAllLaborsInOrder(int id){
+    public List<LaborOrder> findAllLaborsInOrder(int id){
 
         return serviceOrderDao.findAllLaborsInOrder(id);
 
@@ -185,7 +185,7 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
 
     //method 3 intra in 2
-    private double partPrice(PartServiceOrder part){
+    private double partPrice(PartOrder part){
         return part.getCount() * part.getPrice();
     }
 

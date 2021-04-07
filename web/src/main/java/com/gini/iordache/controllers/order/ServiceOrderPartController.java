@@ -2,14 +2,12 @@ package com.gini.iordache.controllers.order;
 
 import com.gini.iordache.controllers.HomeController;
 import com.gini.iordache.entity.auto.Part;
-import com.gini.iordache.entity.order.PartServiceOrder;
+import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartService;
 import com.gini.iordache.services.interfaces.PartServiceOrderService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.context.SecurityContext;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,7 +46,7 @@ public class ServiceOrderPartController {
 
         int id = homeController.getServiceOrder().getId();
 
-        List<PartServiceOrder> partServiceOrders = serviceOrderService.getPartsFormServiceOrder(id);
+        List<PartOrder> partServiceOrders = serviceOrderService.getPartsFormServiceOrder(id);
 
         model.addAttribute("part", part);
         model.addAttribute("serviceOrderParts",partServiceOrders);

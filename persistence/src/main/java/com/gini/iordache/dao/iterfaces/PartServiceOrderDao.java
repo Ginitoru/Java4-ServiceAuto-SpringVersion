@@ -1,14 +1,14 @@
 package com.gini.iordache.dao.iterfaces;
 
-import com.gini.iordache.entity.order.PartServiceOrder;
+import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 
 import java.util.Optional;
 
 public interface PartServiceOrderDao {
-    void createPartServiceOrder(PartServiceOrder partServiceOrder);
+    void createPartServiceOrder(PartOrder partServiceOrder);
 
-    Optional<PartServiceOrder> findPartOrderByPartName(String partNumber, ServiceOrder serviceOrder);
+    Optional<PartOrder> findPartOrderByPartName(String partNumber, ServiceOrder serviceOrder);
 
     int deletePartFromServiceOrder(String partNumber);
 

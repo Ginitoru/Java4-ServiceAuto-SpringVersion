@@ -2,7 +2,6 @@ package com.gini.iordache.services.interfaces;
 
 
 import com.gini.iordache.entity.labor.Labor;
-import com.gini.iordache.entity.order.LaborServiceOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import org.springframework.transaction.annotation.Transactional;
 

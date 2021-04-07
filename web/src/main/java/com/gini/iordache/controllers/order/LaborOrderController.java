@@ -3,12 +3,11 @@ package com.gini.iordache.controllers.order;
 
 import com.gini.iordache.controllers.HomeController;
 import com.gini.iordache.entity.labor.Labor;
-import com.gini.iordache.entity.order.LaborServiceOrder;
+import com.gini.iordache.entity.order.LaborOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.services.impl.order.LaborServiceOrderServiceImpl;
+import com.gini.iordache.services.impl.order.LaborOrderServiceImpl;
 import com.gini.iordache.services.interfaces.LaborService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,15 +26,15 @@ public class LaborOrderController {
 
     private final LaborService laborService;
     private final HomeController homeController;
-    private final LaborServiceOrderServiceImpl laborOrderService;
+    private final LaborOrderServiceImpl laborOrderService;
     private final ServiceOrderService serviceOrderService;
 
     List<Labor> labors = new ArrayList<>();
-    List<LaborServiceOrder> orderLabors = new ArrayList<>();
+    List<LaborOrder> orderLabors = new ArrayList<>();
 
 
     @Autowired
-    public LaborOrderController(LaborService laborService, HomeController homeController, LaborServiceOrderServiceImpl laborOrderService, ServiceOrderService serviceOrderService) {
+    public LaborOrderController(LaborService laborService, HomeController homeController, LaborOrderServiceImpl laborOrderService, ServiceOrderService serviceOrderService) {
         this.laborService = laborService;
         this.homeController = homeController;
         this.laborOrderService = laborOrderService;

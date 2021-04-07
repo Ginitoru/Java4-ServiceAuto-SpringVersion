@@ -6,7 +6,7 @@ import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.PartServiceOrderDao;
 import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
 import com.gini.iordache.entity.auto.Part;
-import com.gini.iordache.entity.order.PartServiceOrder;
+import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartServiceOrderService;
 import com.gini.iordache.utility.OrderStatus;
@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class PartServiceOrderServiceImpl implements PartServiceOrderService {
+public class PartOrderServiceImpl implements PartServiceOrderService {
 
     private final PartServiceOrderDao partServiceOrderDao;
     private final PartDao partDao;
@@ -28,8 +28,8 @@ public class PartServiceOrderServiceImpl implements PartServiceOrderService {
     @Transactional
     public void addPartToServiceOrder(Part part, ServiceOrder serviceOrder, int count){
 
-        Optional<PartServiceOrder> optPartOrder = partServiceOrderDao.findPartOrderByPartName(part.getPartNumber(), serviceOrder);
-        PartServiceOrder partServiceOrder = PartConvertor.convert(part,serviceOrder, count);
+        Optional<PartOrder> optPartOrder = partServiceOrderDao.findPartOrderByPartName(part.getPartNumber(), serviceOrder);
+        PartOrder partServiceOrder = PartConvertor.convert(part,serviceOrder, count);
 
 
         if(count <= part.getCount()){

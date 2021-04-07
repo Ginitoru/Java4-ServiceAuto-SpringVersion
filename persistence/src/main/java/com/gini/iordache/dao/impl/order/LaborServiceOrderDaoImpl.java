@@ -2,9 +2,7 @@ package com.gini.iordache.dao.impl.order;
 
 
 import com.gini.iordache.dao.iterfaces.LaborServiceOrderDao;
-import com.gini.iordache.entity.labor.Labor;
-import com.gini.iordache.entity.order.LaborServiceOrder;
-import com.gini.iordache.entity.order.ServiceOrder;
+import com.gini.iordache.entity.order.LaborOrder;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -22,7 +20,7 @@ public class LaborServiceOrderDaoImpl implements LaborServiceOrderDao {
 
 
     @Override
-    public void createLaborServiceOrder(LaborServiceOrder laborServiceOrder){
+    public void createLaborServiceOrder(LaborOrder laborServiceOrder){
         entityManager.persist(laborServiceOrder);
 
     }
@@ -31,7 +29,7 @@ public class LaborServiceOrderDaoImpl implements LaborServiceOrderDao {
     @Override
     public int deleteLaborFromOrder(int id){
 
-        String jpql = "DELETE FROM LaborServiceOrder l WHERE l.id =: id ";
+        String jpql = "DELETE FROM LaborOrder l WHERE l.id =: id ";
 
         return entityManager.createQuery(jpql)
                                 .setParameter("id", id)
@@ -40,11 +38,11 @@ public class LaborServiceOrderDaoImpl implements LaborServiceOrderDao {
 
 
     @Override
-    public Optional<LaborServiceOrder> findLaborOrderById(int id){
+    public Optional<LaborOrder> findLaborOrderById(int id){
 
-        String jpql = "SELECT l FROM LaborServiceOrder l WHERE l.id =: id ";
+        String jpql = "SELECT l FROM LaborOrder l WHERE l.id =: id ";
 
-        return entityManager.createQuery(jpql, LaborServiceOrder.class)
+        return entityManager.createQuery(jpql, LaborOrder.class)
                                 .setParameter("id", id)
                                 .getResultStream()
                                 .findFirst();

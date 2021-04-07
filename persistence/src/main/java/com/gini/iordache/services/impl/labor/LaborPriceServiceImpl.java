@@ -63,7 +63,7 @@ public class LaborPriceServiceImpl implements LaborPriceService {
     @Transactional
     public void createAllLaborPrices(LaborPrice laborPrice){
 
-        findLaborPrices();
+
 
         if(optLaborPrice.isEmpty()){
             laborPriceDao.createAllLaborPrices(laborPrice);
