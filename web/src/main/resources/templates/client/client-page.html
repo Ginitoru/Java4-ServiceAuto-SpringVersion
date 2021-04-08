@@ -2,74 +2,84 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/client/client.css}">
 </head>
 <body>
-        <h1>Client page</h1>
+
+        <header>
+            <h1>Add client</h1>
+        </header>
+       
 
 
 
         <div class="container">
 
-            <div>
-                <a th:href="@{/clients/personForm}"><input type="button" class="btn" value="Create person"/></a>
 
-            </div>
-                <br>
-            <div>
-                <a th:href="@{/clients/companyForm}"><input type="button" class="btn" value="Create company"/></a>
+            <div class="buttons">
+
+                <div class="link-client">
+                    <a th:href="@{/clients/personForm}" class="link"><input type="button" class="btn" value="Create person"/></a>
+                </div>
+
+                <div class="link-client">
+                    <a th:href="@{/clients/companyForm}" class="link"><input type="button" class="btn" value="Create company"/></a>
+                </div>
             </div>
 
-                <br>
-                <br>
+          
+               <!-- Pseson form -->
 
             <div th:if="${flag1 == true}" class="container-form">
 
-                <div th:if="${param.exists}">
+                <div th:if="${param.exists}" class="error">
                     Client Already exists.
                 </div>
 
-                <form action="#" th:action="@{/clients/create-person}" class="form"
+                <form action="#" th:action="@{/clients/create-person}" class="form-container"
                                     th:object="${person}" method="POST">
 
                         <div class="form-group">
-                            <label>First name</label>
+                            <label class="label1">First name</label>
                             <input type="text" class="field" th:field="*{firstName}"/>
-                            <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}"></label>
+                            <label th:if="${#fields.hasErrors('firstName')}" th:errors="*{firstName}" class="error"></label>
                         </div>
 
-                            <br>
+                           
 
                         <div class="form-group">
-                            <label class="label">Last name</label>
+                            <label class="label2">Last name</label>
                             <input type="text" class="field" th:field="*{lastName}"/>
-                            <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"></label>
+                            <label th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}" class="error"></label>
                         </div>
 
-                            <br>
+                         
 
                         <div class="form-group">
-                                <label class="label">CNP</label>
+                                <label class="label3">CNP</label>
                                 <input type="text" class="field" th:field="*{cnp}">
-                                <label th:if="${#fields.hasErrors('cnp')}" th:errors="*{cnp}"></label>
+                                <label th:if="${#fields.hasErrors('cnp')}" th:errors="*{cnp}" class="error"></label>
                         </div>
 
-                            <br>
+                            
 
                         <div class="form-group">
-                            <label class="label">Street number</label>
+                            <label class="label4">Street number</label>
                             <input type="text" class="field" th:field="*{adress.streetNumber}"/>
                         </div>
 
-                            <br>
+                          
 
                         <div class="form-group">
-                            <label class="descfrm-type-label">Street name</label>
+                            <label class="label5">Street name</label>
                             <input type="text" class="field" th:field="*{adress.streetName}"/>
 
                         </div>
 
-                        <br>
+                        
 
                         <input type="submit" class="btn" value="Create person"/>
                 </form>
@@ -78,55 +88,59 @@
 
 
 
-
+<!-- Company form -->
 
 
             <div th:if="${flag2 == true}" class="container-form">
                 <form action="#" th:action="@{/clients/create-company}" class="form"
                                     th:object="${company}" method="POST">
 
-                    <div th:if="${param.exists}">
+                    <div th:if="${param.exists}" class="error">
                         Company already exists
                     </div>
 
                         <div class="form-group">
-                            <label class="label"> Company name</label>
+                            <label class="label6"> Company</label>
                             <input type="text" class="field" th:field="*{name}"/>
-                            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></label>
+                            <label th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="error"></label>
                         </div>
 
-                            <br>
+                            
 
                         <div class="form-group">
-                            <label class="label">Cui</label>
+                            <label class="label7">Cui</label>
                             <input type="text" class="field" th:field="*{cui}"/>
-                            <label th:if="${#fields.hasErrors('cui')}" th:errors="*{cui}"></label>
+                            <label th:if="${#fields.hasErrors('cui')}" th:errors="*{cui}" class="error"></label>
                         </div>
 
-                            <br>
+                            
 
                         <div class="form-group">
-                            <label class="label"> Street number</label>
+                            <label class="label8"> Street number</label>
                             <input type="text" class="field" th:field="*{adress.streetNumber}"/>
                         </div>
 
-                            <br>
+                            
 
                         <div class="form-group">
-                            <label class="label">Street name</label>
+                            <label class="label9">Street name</label>
                             <input type="text" class="field" th:field="*{adress.streetName}"/>
                         </div>
 
-                            <br>
+                           
 
                         <input type="submit" class="btn" value="Create company"/>
                 </form>
             </div>
 
-                                <br>
-            <a th:href="@{/main}"><input type="button" class="btn" value="Home"/></a>
+                               
+            <a class="link" th:href="@{/main}"><input type="button" class="btn-home" value="Home"/></a>
 
         </div>
+
+        <footer>
+            <p>powerd by Ginitoru</p>
+        </footer>
 
 
 

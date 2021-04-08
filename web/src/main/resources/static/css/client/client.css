@@ -1,0 +1,236 @@
+*{
+    padding:0;
+    margin: 0;
+}
+
+
+body{
+
+    
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    background: -webkit-linear-gradient(left, #75dfff, #2438ef);
+
+}
+
+header{
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    
+ 
+
+}
+
+
+.container{
+    width: 50%;
+    height: 75%;
+    display: flex;
+    flex-direction: column;
+    max-width: 960px;
+    background-color: whitesmoke;
+
+}
+
+
+.container .buttons{
+    width: 100%;
+   
+   display: flex;
+   flex-direction: column;
+   margin-bottom: 50px;
+   margin: 0 auto;
+}
+
+
+.container .buttons .link-client{
+    width: 100%;
+    margin: 0 auto;    
+}
+
+
+.container .buttons .link-client .link{
+    width: 100%; 
+}
+
+.container .buttons .link-client .link .btn{
+    width: 95%;
+    background-color: whitesmoke;
+    margin-bottom: 15px;
+    font-size: 15px;
+    font-weight: 800;
+    font-style: normal; 
+    background-color: darkblue;
+    color: whitesmoke;
+    margin-left: 15px;
+    margin-right: 15px;
+    padding: 10px;    
+}
+
+
+.container .buttons .link-client .link .btn:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
+.container .container-form{
+    width: 100%;
+    margin: 0px auto;
+}
+
+.container .container-form .form-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  
+  
+}
+
+
+
+.form-group{
+        width: 100%;
+        margin-bottom: 15px;
+}
+
+
+label{
+    padding-left: 15px;
+    font-weight: bold;
+}
+
+
+.label1{
+    padding-right: 25px;
+    
+}
+
+.label2{
+    padding-right: 28px;
+    
+}
+
+.label3{
+    padding-right: 67px;
+    
+}
+
+.label4{
+    padding-right: 0px;
+    
+}
+
+.label5{
+    padding-right: 16px;
+    
+}
+
+.label6{
+    padding-right: 33px;
+    
+}
+
+.label7{
+    padding-right: 75px;
+}
+
+.label8{
+    padding-right: 0px;
+}
+
+.label9{
+    padding-right: 17px;
+}
+
+.form{
+    display: flex;
+    flex-direction: column;
+
+}
+
+
+
+.btn{
+    width: 80%;
+    margin: 0 auto;
+    height: 40px;
+    margin: auto;
+    margin-top: 40px;
+    place-self:inherit;
+    font-weight: 800;
+    color: whitesmoke;
+
+    background-color: red;
+}
+
+
+.btn:hover{
+    background-color: green;
+    cursor: pointer;
+}
+
+.container .container-form .form-group .field{
+    width: 70%;
+    height: 30px;
+}
+
+
+.container .link {
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 50px;
+}
+
+.btn-home{
+    /* margin-top: 50px; */
+    width: 100%;
+    padding: 10px;
+    background-color: darkblue;
+    color: whitesmoke;
+    font-weight: bold;
+}
+
+.btn-home:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.error{
+    color: red;
+}
+
+footer{
+    width: 100%;
+    height: 5%;
+    position: absolute;
+    bottom: 0;
+    text-align: center;
+}
