@@ -2,60 +2,81 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Part page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/auto/part.css}">
 </head>
+
 <body>
-        <h1>PartPage</h1>
+
+        <header>
+            <h1>Here you can store parts in the warehouse</h1>
+        </header>
+        
+
+
+
 
 
         <div class="form">
-            <form action="#" th:action="@{/parts/createPart}"
+            <form class="form-group" action="#" th:action="@{/parts/createPart}"
                              th:object="${part}" method="POST">
 
-                <h2>Add Part to Warehouse</h2>
+                
 
 
-                <div class="form-group">
-                    <label class="label">Part number</label>
+                <div class="button-group">
+                    <label class="label1">Part number</label>
                     <input type="text" class="field" th:field="*{partNumber}"/>
-                    <label th:if="${#fields.hasErrors('partNumber')}" th:errors="*{partNumber}"></label>
+                    <label th:if="${#fields.hasErrors('partNumber')}"   th:errors="*{partNumber}" class="error"></label>
                 </div>
 
-                    <br>
+                  
 
-                <div class="form-grup">
-                    <label>Part name</label>
+                <div class="button-group">
+                    <label class="label2">Part name</label>
                     <input type="text" class="field" th:field="*{partName}"/>
-                    <label th:if="${#fields.hasErrors('partName')}" th:errors="*{partName}"></label>
+                    <label th:if="${#fields.hasErrors('partName')}" th:errors="*{partName}" class="error"></label>
                 </div>
 
-                    <br>
+                    
 
 
-                <div class="form-group">
-                    <label>Price</label>
+                <div class="button-group">
+                    <label class="label3">Price</label>
                     <input type="text" class="field" th:field="*{price}"/>
-                    <label th:if="${#fields.hasErrors('price')}" th:errors="*{price}"></label>
+                    <label th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="error"></label>
                 </div>
 
-                    <br>
+                    
 
-                <div class="form-group">
-                    <label>Count</label>
+                <div class="button-group">
+                    <label class="label4">Count</label>
                     <input type="text" class="field" th:field="*{count}"/>
-                    <label th:if="${#fields.hasErrors('count')}" th:errors="*{count}"></label>
+                    <label th:if="${#fields.hasErrors('count')}" th:errors="*{count}" class="error"></label>
                 </div>
 
-                    <br>
+                    
+                <div class="btn">
+                    <input type="submit" class="button" value="STORE PART"/>
+                </div>
 
-                <input type="submit" class="button" value="Add part"/>
+              
+                
 
             </form>
 
-                                <br>
-            <a th:href="@{/main}"><input type="button" class="btn" value="Home"/></a>
+            <a class="link-home" th:href="@{/main}">
+                <input type="home" class="btn-home" value="Home"/>
+            </a>               
+          
 
         </div>
+
+        <footer>
+            <p> powerd by: Gitnitoru</p>
+        </footer>
 
 
 
