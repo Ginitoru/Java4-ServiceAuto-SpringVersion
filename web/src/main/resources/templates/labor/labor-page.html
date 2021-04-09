@@ -2,152 +2,154 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Labor page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/labor/labor.css}">
 </head>
-<body>
-        <h1>LaborPage Create Labor</h1>
 
-            <br>
+<body>
+        
+    
+        <header>
+            <h1>add general labor</h1>
+        </header>
+
+        
 
         <div class="container">
 
-            <form action="#" th:action="@{/labors/create-labor}" class="form"
+            <div class="labor">
+                <form action="#" th:action="@{/labors/create-labor}" class="form"
                                 th:object="${labor}" method="POST">
 
-                <div class="form-group">
-                    <label class="label">Description</label>
-                    <input type="text" class="field" th:field="*{laborDescription}"/>
-                    <label th:if="${#fields.hasErrors('laborDescription')}" th:errors="*{laborDescription}"></label>
-                </div>
-
-                    <br>
-
-                <div class="form-group">
-                    <label class="label" >Labour time</label>
-                    <input type="text" class="field" th:field="*{timedLabor}"/>
-                    <label th:if="${#fields.hasErrors('timedLabor')}" th:errors="*{timedLabor}"></label>
-                </div>
-
-                    <br>
-                <div class="selection">
-                        <div>
-                            <label class="label-category">Category</label>
-                        </div>
-
-                            <br>
-
-                        <select th:field="*{category}">
-
-                            <option th:each="cat : ${laborCategory}"
-                                    th:value="${cat.toString()}" th:text="${cat.toString()}"></option>
-                        </select>
-                </div>
-
-                    <br>
-
-                <div>
-                    <input type="submit" class="btn" value="Submit"/>
-                </div>
-
-
-            </form>
-
-
-                    <br>
-                    <br>
-
-<!--TABLE-->
-
-
-
-         <form action="#" th:action="@{/labors/laborsList}" class="form-table"  method="GET">
-
-             <input type="submit" class="btn" value="SearchAll"/>
-             <input type="text" th:name="laborDescription" class="search-field"/>
-
-
-            <br>
-             <br>
-
-             <div class="table-container">
-                 <table class="table">
-                     <thead>
-                     <tr>
-                         <th>Description</th>
-                         <th>Category</th>
-                         <th>Time</th>
-                         <th>Action</th>
-                     </tr>
-                     </thead>
-
-                     <tbody>
-                     <tr th:each="theLabor : ${laborList}">
-                         <td th:text="${theLabor.laborDescription}"/>
-                         <td th:text="${theLabor.category}"/>
-                         <td th:text="${theLabor.timedLabor}"/>
-                         <td>
-                             <a th:href="@{/labors/laborsList(laborId=${theLabor.id})}"><input type="button" class="update-btn" value="Modify"/></a>
-                             <a th:href="@{/labors/delete(laborId=${theLabor.id})}"><input type="button" class="delete-btn" value="Delete"
-                                         onclick="return confirm('Are you sore you want to delete this entry?')"/></a>
-                         </td>
-                     </tr>
-                     </tbody>
-                 </table>
-             </div>
-         </form>
-
-            <br>
-            <br>
-
-        <div>
-
-
-<!--    UPDATE-->
-
-
-
-            <form action="#" th:action="@{/labors/update}" class="form-update"
-                  th:object="${laborUpdate}" method="POST">
-
-                    <br>
-
-                <div th:if="${param.laborId}">
-
-                    <div class="text-update">
-                        <h3>Modify labor</h3>
+                    <div class="form-group">
+                        <label class="label1">Description</label>
+                        <input type="text" class="field" th:field="*{laborDescription}"/>
+                        <label th:if="${#fields.hasErrors('laborDescription')}" th:errors="*{laborDescription}" class="error"></label>
                     </div>
 
-                    <input type="hidden" th:field="*{id}"/>
+            
 
-                    <div class="field-update">
-                        <label>Description</label>
-                        <input type="text" th:field="*{laborDescription}"/>
+                    <div class="form-group">
+                        <label class="label2" >Labour time</label>
+                        <input type="text" class="field" th:field="*{timedLabor}"/>
+                        <label th:if="${#fields.hasErrors('timedLabor')}" th:errors="*{timedLabor}" class="error"></label>
                     </div>
 
-                    <br>
-                    <br>
+                        
+                    <div class="selection">
+                            <div>
+                                <label class="label-category">Category</label>
+                            </div>
 
-                    <div class="field-update">
-                        <label>Time</label>
-                        <input type="text" th:field="*{timedLabor}"/>
+                            <select th:field="*{category}">
+
+                                <option th:each="cat : ${laborCategory}"
+                                        th:value="${cat.toString()}" th:text="${cat.toString()}"></option>
+                            </select>
                     </div>
 
-                        <br>
-
-                    <div>
+                    
+                    <div class="submit">
                         <input type="submit" class="btn" value="Submit"/>
                     </div>
-                </div>
+                </form>
+            </div>
+           
+                  
 
-            </form>
+                         <!--TABLE-->
 
-                             <br>
-            <a th:href="@{/main}"><input type="button" class="btn" value="Home"/></a>
+
+            <div class="table">
+                <form action="#" th:action="@{/labors/laborsList}" class="form-table"  method="GET">
+                    
+                    <div class="search">
+                        <input type="submit" class="btn" value="SearchAll"/>
+                        <input type="text" name="laborDescription" class="field"/>
+                    </div>
+    
+                    <div class="table-container">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>Description</th>
+                                    <th>Category</th>
+                                    <th>Time</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+    
+                            <tbody>
+                                <tr th:each="theLabor : ${laborList}">
+                                    <td th:text="${theLabor.laborDescription}"/>
+                                    <td th:text="${theLabor.category}"/>
+                                    <td th:text="${theLabor.timedLabor}"/>
+                                    <td>
+                                        <a th:href="@{/labors/laborsList(laborId=${theLabor.id})}" class="table-link">
+                                            <input type="button" class="update-btn" value="Modify"/>
+                                        </a>
+    
+                                        <a th:href="@{/labors/delete(laborId=${theLabor.id})}" class="table-link">
+                                            <input type="button" class="delete-btn" value="Delete"
+                                                    onclick="return confirm('Are you sore you want to delete this entry?')"/>
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+            
+
+
+
+                                <!-- UPDATE-->
+            <div class="update">            
+                <form action="#" th:action="@{/labors/update}" class="form-update"
+                                            th:object="${laborUpdate}" method="POST">
+
+                    <div th:if="${param.laborId}" class="update-box">
+
+                        <div class="text-update">
+                            <h3>Modify labor</h3>
+                        </div>
+
+                        <input type="hidden" th:field="*{id}"/>
+
+                        <div class="field-update">
+                            <label class="label3">Description</label>
+                            <input type="text" th:field="*{laborDescription}" class="field"/>
+                        </div>
+
+                    
+
+                        <div class="field-update">
+                            <label class="label4">Time</label>
+                            <input type="text" th:field="*{timedLabor}" class="field"/>
+                        </div>
+
+                        
+
+                        <div class="modify">
+                            <input type="submit" class="btn" value="Modify"/>
+                        </div>
+                    </div>
+                </form>   
+            </div>
+
+            <div class="link">
+                <a th:href="@{/main}" class="main-link">
+                    <input type="button" class="link-btn" value="Home"/>
+                </a>
+            </div>
         </div>
 
+        <footer>
+            <p>powerd by Ginitoru</p>
+        </footer>
 
-        </div>
-
-
-</body>
+    </body>
 </html>
