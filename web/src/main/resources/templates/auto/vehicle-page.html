@@ -1,57 +1,69 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicle page</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/auto/vehicle.css}">
+
+
 </head>
 <body>
-        <h1>Vehicle page</h1>
 
+        <header>
+            <h1>add vehicle page</h1>
+        </header>
 
         <div class="form">
-            <form action="#" th:action="@{/vehicles/create-vehicle}"
+            <form action="#" th:action="@{/vehicles/create-vehicle}" class="form-group"
                              th:object="${vehicle}" method="POST">
 
-                <div th:if="${param.exists}">
+                <div th:if="${param.exists}" class="error">
                     Vehicle already exists
                 </div>
 
 
-                <div class="form-group">
-                    <label class="label">Manufacturer</label>
+                <div class="group">
+                    <label class="label1">Manufacturer</label>
                     <input type="text" class="field" th:field="*{carManufacturer}"/>
-                    <label th:id="${#fields.hasErrors('carManufacturer')}" th:errors="*{carManufacturer}"></label>
+                    <label th:id="${#fields.hasErrors('carManufacturer')}" th:errors="*{carManufacturer}" class="error"></label>
                 </div>
 
-                    <br>
+                    
 
-                <div class="form-group">
-                    <label class="label">Molde</label>
+                <div class="group">
+                    <label class="label2">Molde</label>
                     <input type="text" class="field" th:field="*{carModel}"/>
-                    <label th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}"></label>
+                    <label th:if="${#fields.hasErrors('carModel')}" th:errors="*{carModel}" class="error"></label>
                 </div>
 
-                    <br>
+                    
 
-                <div class="form-group">
-                    <label class="label">Serial number/VIN</label>
+                <div class="group">
+                    <label class="label3">Serial number/VIN</label>
                     <input type="text" class="field" th:field="*{serialNumber}">
-                    <label th:id="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}"></label>
+                    <label th:id="${#fields.hasErrors('serialNumber')}" th:errors="*{serialNumber}" class="error"></label>
                 </div>
 
-                    <br>
+                   
 
-                <div class="form-group">
+                <div class="btn-submit">
                     <input type="submit" class="button" value="Add vehicle"/>
-
                 </div>
 
             </form>
 
-                                    <br>
-            <a th:href="@{/main}"><input type="button" class="btn" value="Home"/></a>
-
+             <div class="home">
+                <a th:href="@{/main}" class="link" ><input type="button" class="btn" value="Home"/></a>
+             </div>                      
+            
         </div>
+
+        <footer>
+            <p>powerd by Ginitoru</p>
+        </footer>
 
 
 
