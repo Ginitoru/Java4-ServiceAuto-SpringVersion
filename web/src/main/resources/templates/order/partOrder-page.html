@@ -22,6 +22,7 @@
                            <input type="submit" class="btn" value="Search"/>
                            <input type="text", name="partNumber" class="field">
                            <label th:if="${param.part}">part not found</label>
+                           <label th:if="${param.select}">select a part</label>
                        </div>
                                   <br>
 
@@ -73,6 +74,9 @@
                         <div>
                             <label>Part count: </label>
                             <input type="text" name="count"/>
+                            <label th:if="${param.noPart}">no more parts</label>
+                            <label th:if="${param.invalid}">wrong format</label>
+
                         </div>
 
                              <br>

@@ -1,6 +1,7 @@
 package com.gini.iordache.services.impl.order;
 
 
+import com.gini.errors.order.NotEnoughPartsException;
 import com.gini.iordache.convertor.PartConvertor;
 import com.gini.iordache.dao.iterfaces.PartDao;
 import com.gini.iordache.dao.iterfaces.PartServiceOrderDao;
@@ -53,7 +54,7 @@ public class PartOrderServiceImpl implements PartServiceOrderService {
 
         }
 
-        throw new RuntimeException("Not enough parts in WAREHOUSE!!! ");
+        throw new NotEnoughPartsException("Not enough parts in WAREHOUSE!!! ");
 
     }
 

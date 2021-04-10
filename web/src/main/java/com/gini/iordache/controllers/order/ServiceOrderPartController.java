@@ -1,5 +1,8 @@
 package com.gini.iordache.controllers.order;
 
+import com.gini.errors.order.BadIntegerNumberException;
+import com.gini.errors.order.PartNotFoundException;
+import com.gini.errors.order.SelectPartException;
 import com.gini.iordache.controllers.HomeController;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.PartOrder;
@@ -17,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
 
 @Controller
@@ -60,9 +64,18 @@ public class ServiceOrderPartController {
     public String findPart(HttpServletRequest request, Model model){
 
         var partNumber = request.getParameter("partNumber");
-        part = partService.findPartByPartNumber(partNumber);
-        model.addAttribute("part", part);
 
+
+        try{
+            part = partService.findPartByPartNumber(partNumber); //prind si rearunc exceptia ca sa resetez instanta de 'part'
+        }catch(PartNotFoundException e){                         //ce face sa se goleasca field-urile din partOrder.html si
+        e.printStackTrace();                                     //sa imi apara si 'part not found'
+            part = new Part();
+            throw new PartNotFoundException();
+        }
+
+
+        model.addAttribute("part", part);
         return "redirect:/orderPart/addPart-page";
     }
 
@@ -70,10 +83,23 @@ public class ServiceOrderPartController {
     @PostMapping("/addPartToOrder")
     public String addPartToOrder(HttpServletRequest request){
 
-        var count = Integer.parseInt(request.getParameter("count"));
-        ServiceOrder serviceOrder = homeController.getServiceOrder();
+        if(part.getId() == 0){
+            throw new SelectPartException("No part was selected");
+        }
 
-        partServiceOrderService.addPartToServiceOrder(part,serviceOrder,count);
+        try{
+
+            var count = Integer.parseInt(request.getParameter("count"));
+            ServiceOrder serviceOrder = homeController.getServiceOrder();
+            partServiceOrderService.addPartToServiceOrder(part,serviceOrder,count);
+
+        }catch(NumberFormatException e){
+            e.printStackTrace();
+            throw new BadIntegerNumberException("The value is not an integer");
+
+        }
+
+
         return "redirect:/orderPart/addPart-page";
     }
 

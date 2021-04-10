@@ -52,7 +52,7 @@ public class PartServiceImpl implements PartService {
 
     @Override
     @Transactional
-    public Part findPartByPartNumber(String partNumber){
+    public Part findPartByPartNumber(String partNumber) throws PartNotFoundException{
 
         return partDao.findPartByPartNumber(partNumber)
                         .orElseThrow(() -> new PartNotFoundException("Part does not exists!"));

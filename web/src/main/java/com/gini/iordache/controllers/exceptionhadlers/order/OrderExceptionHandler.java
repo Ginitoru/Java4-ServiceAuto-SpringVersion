@@ -1,9 +1,6 @@
 package com.gini.iordache.controllers.exceptionhadlers.order;
 
-import com.gini.errors.order.ClientNotSelectedException;
-import com.gini.errors.order.OrderIsClosedException;
-import com.gini.errors.order.PartNotFoundException;
-import com.gini.errors.order.VehicleNotSelectedException;
+import com.gini.errors.order.*;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -36,6 +33,26 @@ public class OrderExceptionHandler {
 
         e.printStackTrace();
         return "redirect:/orderPart/addPart-page?part";
+
+    }
+
+    @ExceptionHandler(NotEnoughPartsException.class)
+    public String notEnoughPartsException(NotEnoughPartsException e){
+
+        e.printStackTrace();
+        return "redirect:/orderPart/addPart-page?noPart";
+    }
+
+    @ExceptionHandler(BadIntegerNumberException.class)
+    public String validIntegerNumberException(BadIntegerNumberException e){
+        e.printStackTrace();
+        return "redirect:/orderPart/addPart-page?invalid";
+    }
+
+    @ExceptionHandler(SelectPartException.class)
+    public String noPartWasSelectedException(SelectPartException e){
+        e.printStackTrace();
+        return "redirect:/orderPart/addPart-page?select";
 
     }
 
