@@ -1,0 +1,316 @@
+*{
+    margin: 0;
+    padding: 0;
+
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background: -webkit-linear-gradient(left, #75dfff, #2438ef);
+    font-weight: 600;
+}
+
+
+header{
+    width: 100%;
+    height: 15%;
+    text-align: center;
+    color: whitesmoke;
+}
+
+h1{
+    padding-top: 20px;
+}
+
+
+.container{
+    width: 60%;
+    height: 70%;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);
+    display: grid;
+    grid-template-areas: 
+        'car car'
+        'person company'
+        'problems problems'
+        'problems problems'
+        'link link'
+    ;
+    
+}
+
+
+.car{
+    grid-area: car;
+    border-bottom: 1px solid whitesmoke;
+      
+}
+
+.person{
+    grid-area: person;
+    border-bottom: 1px solid whitesmoke; 
+}
+
+.company{
+    grid-area: company;
+    border-bottom: 1px solid whitesmoke;
+    border-left: 1px solid whitesmoke;
+    
+}
+
+.car-problems{
+    grid-area: problems;
+    border-bottom: 1px solid whitesmoke;
+    
+}
+
+.link{
+    grid-area: link;
+    
+}
+
+
+.form-car{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  
+}
+
+.form-car .form-group{
+  
+    margin: 10px;
+    
+}
+
+.field{
+    width: 30%;
+    height: 20px;
+    border-radius: 5px;
+}
+
+.generic-label{
+    margin: 5px;
+    margin-left: 10px;
+}
+
+.label1{
+    margin-right: 35px;
+}
+
+.label2{
+    margin-right: 58px;
+}
+
+.label3{
+    padding-right: 52px;
+}
+
+.label4{
+    margin-right: 21px;
+}
+
+
+
+.car .form-car .btn{
+    width: 80%;
+    margin: 30px auto;
+    padding: 5px;
+    background-color: rgb(15, 12, 59);
+    color: whitesmoke;
+    border-radius: 5px;
+}
+
+.car .form-car .btn:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
+
+
+.person .form-person .form-group{
+    display: flex;
+    flex-direction: column;
+   
+}
+
+
+
+
+.person .form-person .form-group .btn{
+    padding:5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 80%;
+    background-color: rgb(15, 12, 59);
+    color: whitesmoke
+}
+
+.person .form-person .form-group .btn:hover{
+    background-color: red;
+    cursor: pointer;
+
+
+}
+
+.person .form-person .form-group .field{
+    width: 90%;
+    margin-left: 10px;
+}
+
+.person .form-person .form-group label{
+    text-align: center;
+    margin-top: 10px;
+}
+
+
+
+
+.company .form-company .form-group{
+    display: flex;
+    flex-direction: column;
+}
+
+.company .form-company .form-group .field{
+    width: 90%;
+    margin-left: 10px;
+    margin-top: 21px;
+}
+
+.company .form-company .form-group label{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.company .form-company .form-group .btn{
+    padding:5px;
+    border-radius: 5px;
+    margin: 0 auto;
+    margin-top: 60px;
+    width: 80%;
+    background-color: rgb(15, 12, 59);
+    color: whitesmoke
+}
+
+.company .form-company .form-group .btn:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
+.car-problems .problems{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    text-align: center;
+    width: 100%;
+}
+
+.car-problems .problems label{
+    margin:10px;
+}
+
+
+.text{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+
+textarea{
+    height: 100%;
+    width: 98%;
+    margin: 0 auto;
+    resize: none;
+}
+
+
+.car-problems .problems .btn{
+    background-color:  rgb(15, 12, 59);
+    color: whitesmoke;
+    width: 60%;
+    padding: 6px;
+    border-radius: 5px;
+    margin: 5px auto;
+
+}
+
+.car-problems .problems .btn:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
+
+.link{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    
+}
+
+.link .btn{
+    width: 80%;
+    margin: auto;
+    background-color:  rgb(15, 12, 59);
+    padding: 6px;
+    color: whitesmoke; 
+}
+
+.link .btn:hover{
+    background-color: red;
+    cursor: pointer;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+span{
+    font-weight:1000;
+}
+
+
+footer{
+    text-align: center;
+    position: absolute;
+    bottom: 0;   
+    width: 100%;
+    height: 5%;
+    font-weight: 600;
+}
+
+
+
+

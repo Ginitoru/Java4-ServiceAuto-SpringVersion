@@ -1,187 +1,192 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" >
-    <title>Title</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/order/serviceOrder.css}">
+    <title>Order page</title>
 </head>
 <body>
-
-        <h1>Service Order Page</h1>
+        <header>
+            <h1>Order Page</h1>
+        </header>
+        
 
 
         <div class="container">
 
-<!--   SEARCH CAR         -->
+                                                <!-- SEARCH CAR -->
 
 
-            <div class="search-car">
-                <form action="#" th:action="@{/serviceOrder/searchCar}" class="form-search-car" method="GET">
+            <div class="car">
 
-                                        <div class="form-group">
-                                            <label>Search car: VIN/Serial number:</label>
-                                            <input type="text" name="serialNumber" class="field"/>
-                                            <label th:if="${param.vehicleNotFound}">
-                                                vehicle not found
-                                            </label>
-                                        </div>
-                        
-                                                    <br>
-                                        <div>
-                                            <label>VIN/Serial number: </label>
-                                            <label th:text="${vehicle.serialNumber}"/>
+                <form action="#" th:action="@{/serviceOrder/searchCar}" class="form-car" method="GET">
 
-                                        </div>
+                    <div class="form-group">
+                        <label>VIN/Serial number:</label>
+                        <input type="text" name="serialNumber" class="field"/>
+                        <label th:if="${param.vehicleNotFound}">
+                            vehicle not found
+                        </label>
+                    </div>
+    
+                                
+                    <div class="generic-label">
+                        <label>VIN/Serial number: </label>
+                        <label th:text="${vehicle.serialNumber}"></label>
 
-                                                    <br>
+                    </div>
 
-                                        <div>
-                                            <labe>Manufacturer: </labe>
-                                            <label th:text="${vehicle.carManufacturer}"/>
-                                        </div>
+                                
 
-                                                    <br>
+                    <div class="generic-label">
+                        <labe class="label1">Manufacturer: </labe>
+                        <label th:text="${vehicle.carManufacturer}"></label>
+                    </div>
 
-                                        <div>
-                                            <label>Car model: </label>
-                                            <label th:text="${vehicle.carModel}"/>
-                                        </div>
+                                
 
-                                                    <br>
+                    <div class="generic-label">
+                        <label class="label2">Car model: </label>
+                        <label th:text="${vehicle.carModel}"></label>
+                    </div>
 
-                                     <input type="submit" class="btn" value="Search car"/>
+                              
+
+                    <input type="submit" class="btn" value="Search car"/>
+                </form>
+
+            </div>
+               
+            
+
+                                                   
+
+
+                                        <!--FIND PERSON-->
+
+            <div class="person">
+
+                <div class="person-info">
+                    <div class="generic-label">
+                        <label class="label3" >cnp: </label>
+                        <label th:text="${person.cnp}"></label>
+                    </div>
+
+                    
+
+                    <div class="generic-label">
+                        <label>First name: </label>
+                        <label th:text="${person.firstName}"></label>
+                    </div>
+
+                   
+
+                    <div class="generic-label">
+                        <label>Last name: </label>
+                        <label th:text="${person.lastName}">xx</label>
+                    </div>
+                </div>
+
+                <form action="#" th:action="@{/serviceOrder/findPerson}" class="form-person" method="GET">
+                    <div class="form-group">
+                        <input type="text" name="cnp" class="field">
+                        <label th:if="${param.personNotFound}">
+                            person not found
+                        </label>
+
+                        <input type="submit" class="btn" value="Find person">
+                    </div>
+                </form>               
+            </div>    
+               
+
+
+
+
+                                                
+
+
+
+
+                                            <!-- SEARCH COMPANY-->
+
+
+            <div class="company"> 
+                <div class="find-company">
+                    <div class="generic-label">
+                        <label class="label4">cui: </label>
+                        <label th:text="${company.cui}">xx</label>
+                    </div>
+
+
+                    
+
+                    <div class="generic-label">
+                        <label >Name: </label>
+                        <label th:text="${company.name}">xx</label>
+                    </div>
+                </div>
+
+                <form action="#" th:action="@{/serviceOrder/findCompany}" class="form-company" method="GET">
+                    <div class="form-group">                     
+                        <input type="text" name="cui" class="field"/>
+                        <label th:if="${param.companyNotFound}">
+                            company not found
+                        </label>
+
+                        <input type="submit" class="btn" value="Find Company"/>
+                    </div>
                 </form>
             </div>
 
-                                                    <br>
-                                                    <br>
+                               
 
-
-<!--   FIND PERSON         -->
-
-            <div class="search-person" >
-                <form action="#" th:action="@{/serviceOrder/findPerson}" class="form-search-client" method="GET">
-
-                                        <div class="form-group">
-                                            <input type="submit" class="btn" value="Find person">
-                                            <input type="text" name="cnp" class="field">
-                                            <label th:if="${param.personNotFound}">
-                                                person not found
-                                            </label>
-                                        </div>
-
-                </form>
-            </div>
-
-                                             <br>
-
-
-
-            <div class="person-info">
-                                        <div>
-                                            <label>cnp: </label>
-                                            <label th:text="${person.cnp}"/>
-                                        </div>
-
-                                        <br>
-
-                                        <div>
-                                            <label>First name: </label>
-                                            <label th:text="${person.firstName}"/>
-                                        </div>
-
-                                        <br>
-
-                                        <div>
-                                            <label>Last name: </label>
-                                            <label th:text="${person.lastName}"/>
-                                        </div>
-            </div>
+            
 
 
 
 
-                                                 <br>
-
-
-
-
-<!-- SEARCH COMPANY-->
-
-
-            <div class="search-company">
-                <form action="#" th:action="@{/serviceOrder/findCompany}" class="form-search-company" method="GET">
-
-                                <div class="form-group">
-                                    <input type="submit" class="btn" value="Find Company"/>
-                                    <input type="text" name="cui" class="field"/>
-                                    <label th:if="${param.companyNotFound}">
-                                        company not found
-                                    </label>
-                                </div>
-                </form>
-            </div>
-
-                                <br>
-
-            <div class="find-company">
-                            <div>
-                                <label>cui: </label>
-                                <label th:text="${company.cui}"/>
-                            </div>
-
-
-                            <br>
-
-                            <div>
-                                <label>Name: </label>
-                                <label th:text="${company.name}"/>
-                            </div>
-
-                            <br>
-            </div>
-
-
-
-
-<!--CAR PROBLEMS-->
+                                <!--CAR PROBLEMS-->
 
             <div class="car-problems">
-                <form action="#" th:action="@{/serviceOrder/carProblems}" method="POST">
+                <form action="#" th:action="@{/serviceOrder/carProblems}" method="POST" class="problems">
                     <label>Car problems</label>
-                    <br>
-                    <textarea name="carProblems" class="text" rows="10" cols="15"></textarea>
+                    
+                    <div class="text">
+                        <textarea name="carProblems" ></textarea>
+                    </div>
+                   
 
 
-                                         <br>
-                    <div>
-                        <input  type="submit" class="btn-car-problems" value="Create Order"
+                                      
+                   
+                        <input  type="submit" class="btn" value="Create Order"
                                 th:if="${vehicle.id == 0 || (person.id == 0 && company.id == 0)}"
                                 onclick="alert('Select a vehicle person or company')"/>
-                    </div>
+                    
 
-                    <div>
-                        <input  type="submit" class="btn-car-problems" value="Create Order"
+                    
+                        <input  type="submit" class="btn" value="Create Order"
                                 th:if="${vehicle.id != 0 && !(person.id == 0 && company.id == 0)}"/>
-                    </div>
+                    
 
 
-                </form>
-                                <br>
-
-
-
-
-
+                </form>                              
             </div>
 
 
-
-
-            <br>
-            <a th:href="@{/main}"><input type="button" class="btn" value="Home"/></a>
+            <a th:href="@{/main}" class="link">
+                <input type="button" class="btn" value="Home"/>
+            </a>
         </div>
 
+        <footer>
+            <p>powerd by Ginitoru<span>&trade;</span></p>
+        </footer>
 
 
-</body>
+
+    </body>
 </html>
