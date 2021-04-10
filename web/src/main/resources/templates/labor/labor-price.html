@@ -1,149 +1,168 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/labor/labor-prices.css}">
+    <title>Labor price page</title>
+
 </head>
 <body>
-
-    <h1>Labor Price Page</h1>
+    
+    <header>
+        <h1>Labor Prices</h1>
+    </header>
+    
 
         <div class="container">
 
 
-            <div class="form-container">
+            <div class="container-prices">
 
                     <form action="#" th:action="@{/prices/setPrices}" class="form" method="POST"
                                         th:object="${price}">
 
-                        <div class="form-group">
+                        <div class="mech">
                             <label>Mechanical Price</label>
                             <span th:if="${laborPrices.id == 0}">
                                 <input type="text" th:field="*{mechanicalLaborPrice}" class="field" />
                             </span>
                                 <label th:text="${laborPrices.mechanicalLaborPrice}"></label>
-                                <label th:if="${#fields.hasErrors('mechanicalLaborPrice')}" th:errors="*{mechanicalLaborPrice}"></label>
+                                <label th:if="${#fields.hasErrors('mechanicalLaborPrice')}" th:errors="*{mechanicalLaborPrice}" class="error"></label>
                         </div>
 
-                                    <br>
+                                   
 
-                        <div class="form-group">
+                        <div class="body">
                             <label>Body Price</label>
                             <span th:if="${laborPrices.id == 0}">
                                 <input type="text" th:field="*{bodyLaborPrice}" class="field" />
                             </span>
-                            <label th:text="${laborPrices.bodyLaborPrice}"/>
-                            <label th:if="${#fields.hasErrors('bodyLaborPrice')}" th:errors="*{bodyLaborPrice}"></label>
+                            <label th:text="${laborPrices.bodyLaborPrice}"></label>
+                            <label th:if="${#fields.hasErrors('bodyLaborPrice')}" th:errors="*{bodyLaborPrice}" class="error"></label>
                         </div>
 
-                                     <br>
+                                
 
-                        <div class="form-group">
+                        <div class="electric">
                             <label>Electrical Price</label>
                             <span th:if="${laborPrices.id == 0}">
                                 <input type="text" th:field="*{electricalLaborPrice}" class="field"/>
                             </span>
-                                <label th:text="${laborPrices.electricalLaborPrice}"/>
-                            <label th:if="${#fields.hasErrors('electricalLaborPrice')}" th:errors="*{electricalLaborPrice}"></label>
+                                <label th:text="${laborPrices.electricalLaborPrice}"></label>
+                            <label th:if="${#fields.hasErrors('electricalLaborPrice')}" th:errors="*{electricalLaborPrice}" class="error"></label>
                         </div>
 
-                                      <br>
+                                   
 
-                        <div class="form-group">
+                        <div class="normal">
                             <label>Normal Price</label>
                             <span th:if="${laborPrices.id == 0}">
                                 <input type="text" th:field="*{normalLaborPrice}" class="field"/>
                             </span>
-                                <label th:text="${laborPrices.normalLaborPrice}"/>
-                            <label th:if="${#fields.hasErrors('normalLaborPrice')}" th:errors="*{normalLaborPrice}"></label>
+                                <label th:text="${laborPrices.normalLaborPrice}"></label>
+                            <label th:if="${#fields.hasErrors('normalLaborPrice')}" th:errors="*{normalLaborPrice}" class="error"></label>
                         </div>
 
-                                         <br>
+                                     
 
-                        <div class="form-group">
+                        <div class="diesel">
                             <label>Itp Diesel Price</label>
                             <span th:if="${laborPrices.id == 0}">
                                 <input type="text" th:field="*{itpDieselEnginePrice}" class="field"/>
                             </span>
-                                <label th:text="${laborPrices.itpDieselEnginePrice}"/>
-                            <label th:if="${#fields.hasErrors('itpDieselEnginePrice')}" th:errors="*{itpDieselEnginePrice}"></label>
+                                <label th:text="${laborPrices.itpDieselEnginePrice}"></label>
+                            <label th:if="${#fields.hasErrors('itpDieselEnginePrice')}" th:errors="*{itpDieselEnginePrice}" class="error"></label>
                         </div>
 
-                                         <br>
+                                      
 
-                        <div class="form-group">
+                        <div class="gasoline">
                             <label>Itp Gasoline Price</label>
                             <span th:if="${laborPrices.id == 0}">
                                 <input type="text" th:field="*{itpGasolineEnginePrice}" class="field"/>
                             </span>
-                                <label th:text="${laborPrices.itpGasolineEnginePrice}"/>
-                            <label th:if="${#fields.hasErrors('itpGasolineEnginePrice')}" th:errors="*{itpGasolineEnginePrice}"></label>
+                                <label th:text="${laborPrices.itpGasolineEnginePrice}"></label>
+                            <label th:if="${#fields.hasErrors('itpGasolineEnginePrice')}" th:errors="*{itpGasolineEnginePrice}" class="error"></label>
                         </div>
 
-                                        <br>
+                                  
 
-                        <div class="form-group">
+                        <div class="suv">
                             <label>Itp Suv Price</label>
                             <span th:if="${laborPrices.id == 0}">
                                 <input type="text" th:field="*{itpSuvPrice}" class="field"/>
                             </span>
-                                <label th:text="${laborPrices.itpSuvPrice}"/>
-                            <label th:if="${#fields.hasErrors('itpSuvPrice')}" th:errors="*{itpSuvPrice}"></label>
+                                <label th:text="${laborPrices.itpSuvPrice}"></label>
+                            <label th:if="${#fields.hasErrors('itpSuvPrice')}" th:errors="*{itpSuvPrice}" class="error"></label>
                         </div>
 
-                                         <br>
+                                   
 
-                        <div class="form-group">
+                        <div class="truck">
                             <label>Itp Truck Price</label>
                             <span th:if="${laborPrices.id == 0}">
                                 <input type="text"  th:field="*{itpTruckPrice}" class="field"/>
                             </span>
-                                <label th:text="${laborPrices.itpTruckPrice}"/>
-                            <label th:if="${#fields.hasErrors('itpTruckPrice')}" th:errors="*{itpTruckPrice}"></label>
+                                <label th:text="${laborPrices.itpTruckPrice}"></label>
+                            <label th:if="${#fields.hasErrors('itpTruckPrice')}" th:errors="*{itpTruckPrice}" class="error"></label>
                         </div>
 
-                                         <br>
-                        <span th:if="${laborPrices.id == 0}">
+                              
+                        <div th:if="${laborPrices.id == 0}" class="create">
                             <input type="submit" class="btn" value="Create Prices" />
-                        </span>
+                        </div>
 
                     </form>
             </div>
 
 
 
-                                            <br>
-                                            <br>
+                                   
 
 
-            <div class="update-container" th:if="${laborPrices.id != 0.0}">
-                    <form action="#" th:action="@{/prices/updatePrice}" class="update-form" method="POST">
-
+            <div class="container-update" th:if="${laborPrices.id != 0.0}">
+                <form action="#" th:action="@{/prices/updatePrice}" class="update-form" method="POST">
+                    
+                    <div class="upd">
                         <label>Update Price</label>
                         <input th:type="text" th:name="updatePrice" class="update-field"/>
-                        <label th:if="${param.invalid}">Invalid number</label>
-                            <br>
-                            <br>
+                        <label th:if="${param.invalid}" class="error">Invalid number</label>
+                    </div>
+                   
+                        
+                      
 
 
-                        <select th:name="category">
-                                <option th:each=" cat : ${category}"
-                                            th:value="${cat.toString()}" th:text="${cat.toString()}">
-                                </option>
-                        </select>
+                    <select th:name="category" class="category">
+                            <option th:each=" cat : ${category}"
+                                        th:value="${cat.toString()}" th:text="${cat.toString()}">
+                            </option>
+                    </select>
 
 
-                        <br>
-                        <br>
+                   
 
-                        <input type="submit" class="upd-button" value="Update"/>
-                    </form>
+                    <input type="submit" class="btn" value="Update"/>
+                </form>
             </div>
 
-                            <br>
-                <a th:href="@{/main}"><input type="button" class="btn" value="Home"/></a>
+            <div class="home">
+                <a th:href="@{/main}" class="link" >
+                    <input type="button" class="btn" value="Home"/>
+                </a>
+            </div>
+                   
+                      
+               
 
         </div>
+
+        <footer>
+            <p>powerd by Ginitoru&trade;</p>
+        </footer>
 
 
 

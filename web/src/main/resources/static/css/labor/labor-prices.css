@@ -1,0 +1,229 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+
+body{
+    width: 100%;
+    height: 100vh;
+    font-family: Arial, Helvetica, sans-serif;
+    display: flex;
+    flex-direction: column;
+    background: -webkit-linear-gradient(left, #75dfff, #2438ef);
+}
+
+
+header{
+    width: 100%;
+    height: 10%;
+    text-align: center;
+    padding-top:20px;
+    color: whitesmoke;
+}
+
+
+
+.container{
+    width: 70%;
+    height: 70%;
+    box-shadow: 0 19px 38px rgba(0, 0, 0, 0.30), 0 15px 12px rgba(0, 0, 0, 0.22);         
+    display: grid;
+    grid-template-areas: 
+            'prices prices prices prices'
+            'prices prices prices prices'
+            'update update update update'
+            'home home home home';
+
+           
+}
+
+
+.container-prices{
+    grid-area: prices;
+    border: 1px solid whitesmoke;
+   
+   
+   
+}
+
+.container-update{
+    grid-area: update;
+    grid-column: 2 / 4;
+    border-left: 1px solid whitesmoke;
+    border-right: 1px solid whitesmoke;
+    border-bottom: 1px solid whitesmoke;
+    
+
+
+}
+
+.home{
+    grid-area: home;
+    grid-column: 2 / 4;
+    margin: auto;
+    width: 100%;
+}
+
+
+
+.form{
+    width: 100%;
+    height: 100%;
+    display: grid;
+    grid-template-areas: 
+        'mech body electric normal'
+        'diesel gasoline suv truck'
+        'create create create create'
+    ;
+
+   
+}
+
+
+
+.mech{
+    grid-area: mech;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+
+}
+
+.body{
+    grid-area: body;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+
+.electric{
+    grid-area: electric;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+
+.normal{
+    grid-area: normal;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+
+.diesel{
+    grid-area: diesel;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+
+.gasoline{
+    grid-area: gasoline;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+
+.suv{
+    grid-area: suv;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+
+
+.truck{
+    grid-area: truck;
+    display: flex;
+    flex-direction: column;
+    text-align: center; 
+}
+
+.create{
+    grid-area: create;
+    grid-column: 2 / 4;
+    display: flex;
+}
+
+label{
+    font-weight: 600;
+    padding-top: 5px;
+}
+
+
+.field{
+    width: 70%;
+    height: 25px;
+    border-radius: 5px;
+}
+
+.btn{
+    width: 100%;
+    margin: auto 0;
+    height: 35px;
+    background-color: rgb(15, 12, 59);
+    color: whitesmoke;
+    font-weight: 600;
+    border-radius: 5px;
+    
+}
+
+.btn:hover{
+    background-color: red;
+}
+
+
+ .container .container-update .update-form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.upd{
+    margin: 10px auto;
+    
+}
+
+.category{
+    
+    width: 50%;
+    margin: 20px auto;
+    height: 30px;
+}
+
+
+.upd-button{
+    width: 80%;
+    margin: 50px auto;
+    padding: 10px;
+    border-radius: 5px;
+    background-color:  rgb(15, 12, 59);
+    color: whitesmoke;
+
+}
+
+
+.container .container-update .update-form .btn{
+    width: 80%;
+    margin: auto;
+}
+
+.update-field{
+    padding:5px;
+    border-radius: 5px;
+}
+
+.error{
+    color:whitesmoke ;
+    font-weight: 500;
+}
+
+footer{
+    text-align: center;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 5%;
+    font-weight: 600;
+}
