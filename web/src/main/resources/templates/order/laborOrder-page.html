@@ -2,99 +2,110 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/order/laborOrder.css}">
+    <title>Labor order page</title>
 </head>
-<body>
-        <h1>ADD LABOR TO ORDER</h1>
+    <body>
 
-                <br>
-                <br>
+        <header>
+            <h1>ADD LABOR TO ORDER</h1>
+        </header>
 
+        <div class="container">
+            <form class="form-search" action="#" th:action="@{/laborOrder/searchLabor}" method="GET">
+                <div class="group">
+                    <input type="submit" value="Search labor" class="btn">
+                    <input th:type="text" name="laborDescription" class="field"/>
+                </div>
+            </form>
+    
+                          <!-- table labor  -->
+                <div class="table1">
+                    <table class="general-labor">
+                        <thead>
+                            <tr>
+                                <th>Labor Description</th>
+                                <th>Labor Category</th>
+                                <th>Labor Time</th>
+                                <th>Add Labor to Order</th>
+                            </tr>
+                        </thead>
+            
+                        <tbody>
+                            <tr th:each="labor : ${labors}">
+                                <td th:text="${labor.laborDescription}"/>
+                                <td th:text="${labor.category}"/>
+                                <td th:text="${labor.timedLabor}"/>
+            
+                                <td>
+                                    <a th:href="@{/laborOrder/addLaborToOrder(laborId=${labor.id})}" class="link">
+                                            <input type="button" class="add-btn" value="Add labor to order">
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+               
 
-        <form action="#" th:action="@{/laborOrder/searchLabor}" method="GET">
+    
+           
+    
+    
+                           <!--Table labor order  -->
+    
+            <div class="table2">
+                <table class="labor-order">
+                   
+                        <thead>
+                            <tr>
+                                <th>Labor Description</th>
+                                <th>Labor Category</th>
+                                <th>Labor Time</th>
+                                <th>Labor Price</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+            
+                 
+                  
+                
+                        <tbody>
+                            <tr th:each=" laborInOrder : ${orderLabors} ">
+                                <td th:text="${laborInOrder.laborDescription}"></td>
+                                <td th:text="${laborInOrder.category}"></td>
+                                <td th:text="${laborInOrder.timedLabor}"></td>
+                                <td th:text="${laborInOrder.laborPrice}"></td>
+                                <td>
+                                    <form class="link" action="#" th:action="@{/laborOrder/deleteLabor}" method="POST">
+                                        <input type="hidden" name="laborId" th:value="${laborInOrder.id}">
+                                        <input type="submit" value="DELETE" class="delete-btn"/>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
 
-            <div>
-                <input type="submit" value="Search labor">
-                <input th:type="text" name="laborDescription"/>
+                    
+                   
+                    
+                </table>
             </div>
-        </form>
+            
+           
+            <div class="links">
+                <a th:href="@{/main}"><input type="button" class="link-btn"value="Home"/></a>
+    
+                <a th:href="@{/orderPart/addPart-page}"><input type="button" class="link-btn" value="Add Part to Page"/></a>
+            </div>
+        </div>
 
-                        <br>
-                        <br>
-
-        <table>
-                <thead>
-                    <tr>
-                        <th>Labor Description</th>
-                        <th>Labor Category</th>
-                        <th>Labor Time</th>
-                        <th>Add Labor to Order</th>
-                    </tr>
-                </thead>
-
-                <tbody>
-                    <tr th:each="labor : ${labors}">
-                        <td th:text="${labor.laborDescription}"></td>
-                        <td th:text="${labor.category}"></td>
-                        <td th:text="${labor.timedLabor}"></td>
-
-                        <td>
-                            <a th:href="@{/laborOrder/addLaborToOrder(laborId=${labor.id})}">
-                                    <input type="button" value="Add labor to order">
-                            </a>
-                        </td>
-                    </tr>
-                </tbody>
-        </table>
-
-
-                        <br>
-                        <br>
-
-
-        <table>
-            <thead>
-                <tr>
-                    <th>Labor Description</th>
-                    <th>Labor Category</th>
-                    <th>Labor Time</th>
-                    <th>Labor Price</th>
-                </tr>
-            </thead>
-
-            <tbody>
-                <tr th:each=" laborInOrder : ${orderLabors} ">
-                    <td th:text="${laborInOrder.laborDescription}"></td>
-                    <td th:text="${laborInOrder.category}"></td>
-                    <td th:text="${laborInOrder.timedLabor}"></td>
-                    <td th:text="${laborInOrder.laborPrice}"></td>
-                    <td>
-
-                        <form action="#" th:action="@{/laborOrder/deleteLabor}" method="POST">
-                            <input type="hidden" name="laborId" th:value="${laborInOrder.id}">
-                            <input type="submit" value="DELETE"/>
-                        </form>
-
-                    </td>
-                </tr>
-
-
-            </tbody>
+        <footer>
+            <p>powerd by Ginitoru<span>&trade;</span></p>
+        </footer>
 
 
 
-        </table>
-
-
-
-
-
-        <br>
-    <div>
-        <a th:href="@{/main}"><input type="button" value="Home"/></a>
-
-        <a th:href="@{/orderPart/addPart-page}"><input type="button" value="Add Part to Page"/></a>
-    </div>
-
-</body>
+    </body>
 </html>
