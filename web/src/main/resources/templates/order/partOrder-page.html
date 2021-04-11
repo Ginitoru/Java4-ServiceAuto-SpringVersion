@@ -2,149 +2,132 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/order/partOrder.css}"/>
+    <title>Part order page</title>
 </head>
-<body>
-
-        <h1>ADD PARTS TO SERVICE ORDER</h1>
-
-                <br>
-                <br>
-
-       <div class="container">
+    <body>
 
 
+        <header>
+            <h1>ADD PARTS TO ORDER</h1>
+        </header>
 
-    <!--SEARCH PART-->
-               <div class="from-1">
-                   <form action="#" th:action="@{/orderPart/findPart}" method="GET">
+        <div class="container">
+                                    <!--SEARCH PART-->
+        
+                   <form action="#" th:action="@{/orderPart/findPart}" method="GET" class="form-1">
                        <div class="form-group">
                            <input type="submit" class="btn" value="Search"/>
                            <input type="text", name="partNumber" class="field">
                            <label th:if="${param.part}">part not found</label>
                            <label th:if="${param.select}">select a part</label>
                        </div>
-                                  <br>
-
                    </form>
-               </div>
+              
 
-                            <br>
+                        
 
 
-<!-- PART FIELDS-->
+                                <!-- PART FIELDS-->
 
-               <div class="part-attributes">
+                <div class="part-attributes">
 
-                   <div>
-                       <label>Part name:</label>
+                   <div class="label-group">
+                       <label class="name">Part name:</label>
                        <label th:text="${part.partName}"></label>
                    </div>
 
-                                <br>
+                                
 
-                   <div>
-                       <label>Part number:</label>
+                   <div class="label-group">
+                       <label class="number">Part number:</label>
                        <label th:text="${part.partNumber}"></label>
                    </div>
-                                <br>
+                                
 
-                   <div>
-                       <label>Part count:</label>
+                   <div class="label-group">
+                       <label class="count" >Part count:</label>
                        <label th:text="${part.count}"></label>
                    </div>
 
-                                <br>
+                             
 
-                   <div>
-                       <label>Part price:</label>
+                   <div class="label-group">
+                       <label class="price">Part price:</label>
                        <label th:text="${part.price}"></label>
                    </div>
-               </div>
+                </div>
 
-                        <br>
-                        <br>
+                     
 
 
-<!--ADD PART TO SERVICE ORDER-->
+                        <!--ADD PART TO SERVICE ORDER-->
 
-               <div class="add-part">
-                    <form action="#" th:action="@{/orderPart/addPartToOrder}" method="POST">
+                
+                    <form action="#" th:action="@{/orderPart/addPartToOrder}" method="POST" class="add-part">
 
-                        <div>
-                            <label>Part count: </label>
-                            <input type="text" name="count"/>
+                        
+                            <label>Part count</label>
+                       
+
+                        <div class="group">
+                            <input type="submit" value="Add part" class="btn">
+                            <input type="text" name="count" class="field"/>
                             <label th:if="${param.noPart}">no more parts</label>
                             <label th:if="${param.invalid}">wrong format</label>
-
-                        </div>
-
-                             <br>
-
-                        <div>
-                            <input type="submit" value="Add part">
                         </div>
                     </form>
-               </div>
+                
 
-                            <br>
-                            <br>
-
-
-
-<!--   TABLE -->
-
-
-           <div>
-               <table class="table">
-                   <thead>
-                   <tr>
-                       <th>Part name</th>
-                       <th>Part number</th>
-                       <th>Part price</th>
-                       <th>Part count</th>
-                       <th>Action</th>
-                   </tr>
-                   </thead>
-
-                   <tbody>
-
-                   <tr th:each="bau : ${serviceOrderParts}">
-                       <td th:text="${bau.partName}"></td>
-                       <td th:text="${bau.partNumber}"></td>
-                       <td th:text="${bau.price}"></td>
-                       <td th:text="${bau.count}"></td>
-                       <td>
-
-                           <a th:href="@{/orderPart/deletePart(partNumber=${bau.partNumber}, count =${bau.count})}">
-                               <input type="button" value="DELETE"
-                                      onclick=" return confirm('Do you really want to delete this part?')"/>
-                           </a>
-
-
-                       </td>
-                   </tr>
-                   </tbody>
-               </table>
-
-           </div>
-
-                <br>
+                          
 
 
 
-           <div>
-              <a th:href="@{/main}"><input type="button" value="Home"/></a>
-               <a th:href="@{/laborOrder/laborOrderPage}"><input type="button" value="Add Labor to Order"/></a>
-           </div>
+                                <!--TABLE -->
 
 
+           
+                <table class="table">
+                    <thead class="table-head">
+                        <tr>
+                            <th>Part name</th>
+                            <th>Part number</th>
+                            <th>Part price</th>
+                            <th>Part count</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="table-body">
+
+                        <tr th:each="bau : ${serviceOrderParts}">
+                            <td th:text="${bau.partName}"></td>
+                            <td th:text="${bau.partNumber}"></td>
+                            <td th:text="${bau.price}"></td>
+                            <td th:text="${bau.count}"></td>
+                            <td class="del-cell">
+
+                                <a th:href="@{/orderPart/deletePart(partNumber=${bau.partNumber}, count =${bau.count})}" class="delete">
+                                    <input type="button" value="Delete" class="delete-btn"
+                                            onclick=" return confirm('Do you really want to delete this part?')"/>
+                                </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
 
 
+                <div class="links">
+                    <a th:href="@{/laborOrder/laborOrderPage}"><input type="button" value="Labor order page" class="button"></a>
+                    <a th:href="@{/main}"><input type="button" value="Home" class="button"></a>
+                    
+                </div>
+        </div>  
 
-
-       </div>
-
-
-</body>
+        <footer>
+            <p>powerd by Ginitoru<span>&trade;</span></p>
+        </footer>
+    </body>
 </html>
