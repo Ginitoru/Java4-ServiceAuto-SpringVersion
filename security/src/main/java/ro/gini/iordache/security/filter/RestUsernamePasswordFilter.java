@@ -24,25 +24,25 @@ public class RestUsernamePasswordFilter extends OncePerRequestFilter {
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,
                                     FilterChain filterChain) throws ServletException, IOException {
-
-        var usernameOrEmail = request.getHeader("username");
-        var password = request.getHeader("password");
-
-
-        if(usernameOrEmail.contains("@")){
-            Authentication auth = new EmailAuthentication(usernameOrEmail, password);
-
-            auth = authenticationManager.authenticate(auth);
-            SecurityContextHolder.getContext().setAuthentication(auth);
-            filterChain.doFilter(request, response);
-
-        }else{
-
-            Authentication auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
-            auth = authenticationManager.authenticate(auth);
-            SecurityContextHolder.getContext().setAuthentication(auth);
-
-        }
+//
+//        var usernameOrEmail = request.getHeader("username");
+//        var password = request.getHeader("password");
+//
+//
+//        if(usernameOrEmail.contains("@")){
+//            Authentication auth = new EmailAuthentication(usernameOrEmail, password);
+//
+//            auth = authenticationManager.authenticate(auth);
+//            SecurityContextHolder.getContext().setAuthentication(auth);
+//            filterChain.doFilter(request, response);
+//
+//        }else{
+//
+//            Authentication auth = new UserNamePasswordAuthentication(usernameOrEmail, password);
+//            auth = authenticationManager.authenticate(auth);
+//            SecurityContextHolder.getContext().setAuthentication(auth);
+//
+//        }
 
 
     }
