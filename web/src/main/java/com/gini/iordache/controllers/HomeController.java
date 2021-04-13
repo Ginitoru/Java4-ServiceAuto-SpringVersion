@@ -4,6 +4,7 @@ import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +20,6 @@ public class HomeController {
 
     private final ServiceOrderService serviceOrderService;
     private final InvoiceService invoiceService;
-
     private ServiceOrder serviceOrder = new ServiceOrder();
 
 
@@ -76,6 +76,8 @@ public class HomeController {
 
 
     private void allAllModelAtributes(Model model){
+        String username = SecurityContextHolder.getContext().getAuthentication().getName();
+
         model.addAttribute("laborsOrder", serviceOrder.getLabors());
         model.addAttribute("partsOrder", serviceOrder.getParts());
         model.addAttribute("serviceOrder", serviceOrder);
@@ -88,6 +90,8 @@ public class HomeController {
 
         model.addAttribute("totalPrice", serviceOrder.getTotalPrice());
         model.addAttribute("totalPriceWithVAT", serviceOrder.getTotalPriceVAT());
+
+        model.addAttribute("username", username);
 
 
 

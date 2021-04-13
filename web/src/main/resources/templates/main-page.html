@@ -1,132 +1,121 @@
+
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="/css/main.css"/>
+    <title>Main page</title>
 </head>
-<body>
-        <h1>AM INTRAT</h1>
+    <body>
+
+        <nav>
+            <div class="nav-name">
+                <label>SERVICE AUTO</label>
+            </div>
+            <div class="nav-units">
+                <ul>
+                    <li>
+                        <label class="user">login user:</label>
+                        <label class="username" th:text="${username}"></label>
+                    </li>
+
+                    <li>
+                        <form action="#" th:action="@{/logout3}" method="POST">
+                            <input class="logout" type="submit" value="Logout"/>
+            
+                        </form>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+        
 
 
-   <div class="container">
+        <div class="container">
 
-           <div class="buttons">
+            <div class="buttons">
+                <div class="button">
+                    <a th:href="@{/parts/part}"><input type="button" class="btn" value="Parts"/></a>
+                </div>
+  
+                <div class="button">
+                    <a th:href="@{/clients/client}"><input type="button" class="btn"value="Client"/></a>
+                </div>
 
-                   <div class="group-button">
-                       <a th:href="@{/parts/part}"><input type="button" class="btn" value="Parts"/></a>
-                   </div>
+                <div class="button">
+                    <a th:href="@{/vehicles/vehicle}"><input type="button" class="btn" value="Vehicle"/></a>
+                </div>   
 
-                        <br>
+                <div class="button">
+                    <a th:href="@{/labors/labor}"><input type="button" class="btn" value="Labor"/></a>
+                </div>
 
-                   <div class="group-button">
-                       <a th:href="@{/clients/client}"><input type="button" class="btn"value="Client"/></a>
-                   </div>
+                <div class="button">
+                    <a th:href="@{/prices/showPrices}"><input type="button" class="btn" value="Labor Prices"></a>
+                </div>
 
-                        <br>
+                <div class="button">
+                    <a th:href="@{/serviceOrder/serviceOrder}"><input type="button" class="btn" value="Service Order"/></a>
+                </div>
+                
+                <div class="button">
+                    <a th:href="@{/orderPart/addPart-page}"><input type="button" class="btn" value="Add Parts to Order"/></a>
+                </div>
+                    
+                <div class="button">
+                    <a th:href="@{/laborOrder/laborOrderPage}"><input type="button" class="btn" value="Add Labor to Order"/></a>
+                </div>
+                
+                <div class="close-btn">
+                    <form action="#" th:action="@{/closeOrder}" method="POST">
+                        <input type="submit" class="btn" value="Close order">
+                    </form>
+                </div>
 
-                    <div class="group-button">
-                        <a th:href="@{/vehicles/vehicle}"><input type="button" class="btn" value="Vehicle"/></a>
-                    </div>
-
-                        <br>
-
-                    <div class="group-button">
-                        <a th:href="@{/labors/labor}"><input type="button" class="btn" value="Labor"/></a>
-                    </div>
-
-                        <br>
-
-                    <div class="group-button">
-                        <a th:href="@{/prices/showPrices}"><input type="button" class="btn" value="Labor Prices"></a>
-
-                    </div>
-
-                        <br>
-
-                    <div class="group-button">
-                        <a th:href="@{/serviceOrder/serviceOrder}"><input type="button" class="btn" value="Service Order"/></a>
-
-                    </div>
-           </div>
-
-                <br>
-
-
-<!--       TABLE   -->
-
-           <div class="tab">
-
-               <table class="table">
-                <thead>
-                    <tr>
-                        <th>Orders</th>
-                        <th>Status</th>
-                    </tr>
-                </thead>
-
-               <tbody>
-                    <tr th:each="IdStatus : ${serviceOrderIdAndStatus}">
-                        <td><a th:href="@{/order-stats/(orderId=${IdStatus.id})}" th:text="${IdStatus.id}"/></td>
-                        <td th:text="${IdStatus.orderStatus}">
-                    </tr>
-               </tbody>
-               </table>
-           </div>
-
-
-                            <br>
-                            <br>
-            <div class="order-stats">
                 <div>
-                    <label>Order nr:</label>
-                    <label th:text="${serviceOrder.id}"></label>
+                    <a th:href="@{/invoice}"><input type="button" class="btn" value="Invoice"/></a>
                 </div>
             </div>
 
+               
 
 
-<!--            <div th:if="${serviceOrder.id !=0.0}">-->
+                    <!--   TABLE   -->
 
-<!--                            <div>-->
-<!--                                <label>User: </label>-->
-<!--                                <label th:text="${serviceOrder.user.username}"></label>-->
-<!--                            </div>-->
+            <div class="status-table">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Orders</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
 
-<!--                            <div>-->
-<!--                                <labe>Manufacturer: </labe>-->
-<!--                                <label th:text="${serviceOrder.vehicle.carManufacturer}"></label>-->
-<!--                            </div>-->
-
-<!--                            <div>-->
-<!--                                <labe>Car model: </labe>-->
-<!--                                <label th:text="${serviceOrder.vehicle.carModel}"></label>-->
-<!--                            </div>-->
-
-<!--                            <div>-->
-<!--                                <labe>Serila number/VIN: </labe>-->
-<!--                                <label th:text="${serviceOrder.vehicle.serialNumber}"></label>-->
-<!--                            </div>-->
-
-<!--                            <div>-->
-<!--                                <labe>Client</labe>-->
-<!--                                <label th:text="${serviceOrder.client}"></label>-->
-<!--                            </div>-->
-<!--            </div>-->
-<!--        </div>-->
+                    <tbody>
+                        <tr th:each="IdStatus : ${serviceOrderIdAndStatus}">
+                            <td><a th:href="@{/order-stats/(orderId=${IdStatus.id})}" th:text="${IdStatus.id}"/></td>
+                            <td th:text="${IdStatus.orderStatus}"></td>
+                        </tr>
+                    </tbody>
+               </table>
+            </div>
 
 
+                      <!--   ORDER STATS-->
 
-<!--            ORDER STATS-->
-
-            <div>
-                <ul>
+            <div class="stats">
+                <ul class="list-lables">
+                    <li>Order nr:</li>
                     <li>User: </li>
                     <li>Manufacturer: </li>
                     <li>Model: </li>
-                    <li>Serial number/VIN: </li>
+                    <li>VIN: </li>
                 </ul>
 
-                <ul th:if="${serviceOrder.id != 0.0}">
+                <ul th:if="${serviceOrder.id != 0.0}" class="list-order-stats">
+                    <li th:text="${serviceOrder.id}"></li>
                     <li th:text="${serviceOrder.user.username}"></li>
                     <li th:text="${serviceOrder.vehicle.carManufacturer}"></li>
                     <li th:text="${serviceOrder.vehicle.carModel}"></li>
@@ -136,159 +125,130 @@
 
 
 
-                        <br>
-                        <br>
+                        
+                    
 
-<!--       PART TABLE-->
+                    <!--   PART TABLE-->
 
-           <div class="part-table">
-               <table>
-                   <thead>
-                   <tr>
-                       <th>Part</th>
-                       <th>Part nr:</th>
-                       <th>Count</th>
-                       <th>Price</th>
-                   </tr>
-                   </thead>
+            <div class="part-table">
+                <div class="name">
+                    <label>Parts</label>
+                </div>
+                <table class="part-tbl">
+                    <thead>
+                        <tr>
+                            <th>Part</th>
+                            <th>Part nr:</th>
+                            <th>Count</th>
+                            <th>Price</th>
+                        </tr>
+                    </thead>
 
                    <tbody>
-                   <tr th:each="part : ${partsOrder}">
-                       <td th:text="${part.partName}"/>
-                       <td th:text="${part.partNumber}"/>
-                       <td th:text="${part.count}"/>
-                       <td th:text="${part.price}"/>
-                   </tr>
+                        <tr th:each="part : ${partsOrder}">
+                            <td th:text="${part.partName}"></td>
+                            <td th:text="${part.partNumber}"></td>
+                            <td th:text="${part.count}"></td>
+                            <td th:text="${part.price}"></td>
+                        </tr>
                    </tbody>
-               </table>
+                </table>
 
-                       <div class="price">
-                           <label>Total:..............................: </label>
-                           <label th:text="${partsTotalPrice}"></label>
-                       </div>
-                            <br>
-                       <div class="price-vat">
-                           <label>Total + VAT:...................: </label>
-                           <label th:text="${partsTotalPriceWithVAT}"></label>
-                       </div>
-           </div>
+                <div class="parts-price">
+                    <div class="parts-total">
+                        <label>Total:</label>
+                        <label class="space"></label>
+                        <label th:text="${partsTotalPrice}" class="price1"></label>
+                    </div>
 
-
-
-                            <br>
-                            <br>
-
-
-
-
-<!--       LABOR TABLE-->
-        <div class="labor-table">
-            <table>
-                <thead>
-                <tr>
-                    <th>Labor</th>
-                    <th>Labor Category</th>
-                    <th>Labor time</th>
-                    <th>Labor price</th>
-                </tr>
-                </thead>
-
-                <tbody>
-                <tr th:each="labor : ${laborsOrder}">
-                    <td th:text="${labor.laborDescription}"/>
-                    <td th:text="${labor.category}"/>
-                    <td th:text="${labor.timedLabor}"/>
-                    <td th:text="${labor.laborPrice}"/>
-                </tr>
-                </tbody>
-            </table>
-
-            <div class="price">
-                <label>Total:..............................: </label>
-                <label th:text="${laborTotalPrice}"></label>
-            </div>
-            <br>
-            <div class="price-vat">
-                <label>Total + VAT:...................: </label>
-                <label th:text="${laborTotalPriceWithVAT}"></label>
+                    <div class="parts-total">
+                        <label>Total+VAT:</label>
+                        <label class="space"></label>
+                        <label th:text="${partsTotalPriceWithVAT}" class="price2"></label>
+                    </div>
+                </div>
             </div>
 
 
+
+                        <!--   LABOR TABLE-->
+
+            <div class="labor-table">
+                <div class="name">
+                    <label>Labor</label>
+                </div>
+                <table class="labor-tbl">
+                    <thead>
+                        <tr>
+                            <th>Labor</th>
+                            <th>Labor Cat</th>
+                            <th>Labor time</th>
+                            <th>Labor price</th>
+                        </tr>
+                    </thead>
+                        <tbody>
+                            <tr th:each="labor : ${laborsOrder}">
+                                <td th:text="${labor.laborDescription}"></td>
+                                <td th:text="${labor.category}"></td>
+                                <td th:text="${labor.timedLabor}"></td>
+                                <td th:text="${labor.laborPrice}"></td>
+                            </tr>
+                        </tbody>
+                    
+                    
+                </table>
+
+                <div class="labor-price">
+                    <div class="labor-total">
+                        <label class="leb1">Total: </label>
+                        <label class="space"></label>
+                        <label class="leb2" th:text="${laborTotalPrice}"></label>
+                    </div>
+
+                    <div class="labor-total">
+                        <label class="leb3">Total+VAT:</label>
+                        <label class="space"></label>
+                        <label class="leb4" th:text="${laborTotalPriceWithVAT}"></label>
+                    </div>
+                </div>
+            </div>
+
+
+                        <!--  CAR PROBLEMS-->
+
+            <div class="car-problems">
+                <div class="problems">
+                    <label>Car problems</label>
+                </div>
+                                    
+                <div>
+                    <textarea readonly th:text="${serviceOrder.carProblems}" rows="10" cols="20"></textarea>
+                </div>
+
+            </div>
+         
+
+                        <!--   PRET TOTAL-->
+
+            <div class="total">
+                <div class="total-position">
+                    <div class="final-price">
+                        <label class="leb5">TOTAL:</label>
+                        <label class="space"></label>
+                        <label class="leb6" th:text="${totalPrice}"></label>
+                    </div>
+    
+                    <div class="final-price">
+                        <label class="leb7">TOTAL+VAT:</label>
+                        <label class="space"></label>
+                        <label class="leb8" th:text="${totalPriceWithVAT}"></label>
+                    </div>       
+                </div>  
+            </div>  
         </div>
 
-
-                        <br>
-                        <br>
-
-
-
-
-<!--       CAR PROBLEMS-->
-
-       <div class="car-problmes">
-           <div>
-               <label>Car problems</label>
-           </div>
-                            <br>
-            <div>
-                <textarea readonly th:text="${serviceOrder.carProblems}" th:rows="10" th:cols="20"/>
-            </div>
-
-       </div>
-
-
-
-                            <br>
-                            <br>
-
-<!--       PRET TOTAL-->
-
-       <div class="total">
-           <label>TOTAL:.............................</label>
-           <label th:text="${totalPrice}"></label>
-       </div>
-            <br>
-       <div class="total-VAT">
-           <label>TOTAL + VAT:..................</label>
-           <label th:text="${totalPriceWithVAT}"></label>
-       </div>
-
-                            <br>
-                            <br>
-
-       <a th:href="@{/orderPart/addPart-page}"><input type="button" value="Add Parts to Order"/></a>
-
-       <a th:href="@{/laborOrder/laborOrderPage}"><input type="button" value="Add Labor to Order"/></a>
-
-
-
-                            <br>
-                            <br>
-
-        <div class="close-btn">
-            <form action="#" th:action="@{/closeOrder}" method="POST">
-                <input type="submit" value="Close order">
-            </form>
-        </div>
-
-       <br>
-       <a th:href="@{/invoice}"><input type="button" value="Invoice"/></a>
-
-
-       <form action="#" th:action="@{/logout3}" method="POST">
-           <input type="submit" value="Logout"/>
-
-       </form>
-
-
-
-
-
-   </div>
-
-
-
-
-
-</body>
+        <footer>
+            <p>Ginitoru<span>&trade;</span></p>
+        </footer>
+    </body>
 </html>
