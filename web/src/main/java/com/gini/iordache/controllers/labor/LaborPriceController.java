@@ -1,5 +1,6 @@
 package com.gini.iordache.controllers.labor;
 
+import com.gini.errors.labor.InvalidPriceException;
 import com.gini.iordache.entity.labor.LaborPrice;
 import com.gini.iordache.services.interfaces.LaborPriceService;
 import com.gini.iordache.utility.LaborCategory;
@@ -48,7 +49,7 @@ public class LaborPriceController {
 
         if(bindingResult.hasErrors()){
             System.out.println(bindingResult.toString());
-            model.addAttribute("laborPrices", laborPrice);
+            model.addAttribute("laborPrices", new LaborPrice());     //ca sa nu apara pretul in pagina cand bag nr negativ
             model.addAttribute("category", LaborCategory.values());
 
             return "/labor/labor-price";
@@ -69,9 +70,9 @@ public class LaborPriceController {
             var newPrice = Double.parseDouble(request.getParameter("updatePrice"));
             laborPriceService.updatePrices(newPrice, categoryPrice);
         }catch(NumberFormatException e){
-
             e.printStackTrace();
-            return "redirect:/prices/showPrices?invalid";
+            throw new InvalidPriceException("wrong format number");
+
         }
 
 

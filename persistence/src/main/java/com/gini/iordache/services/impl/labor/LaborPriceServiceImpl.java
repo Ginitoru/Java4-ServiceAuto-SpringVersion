@@ -1,5 +1,7 @@
 package com.gini.iordache.services.impl.labor;
 
+import com.gini.errors.labor.LaborPriceException;
+import com.gini.errors.labor.InvalidPriceException;
 import com.gini.iordache.dao.iterfaces.LaborPriceDao;
 import com.gini.iordache.entity.labor.LaborPrice;
 import com.gini.iordache.services.interfaces.LaborPriceService;
@@ -50,7 +52,6 @@ public class LaborPriceServiceImpl implements LaborPriceService {
 
 
     @Override
-    @Transactional
     public LaborPrice findAllPrices(){
 
         return optLaborPrice.orElseGet(LaborPrice::new);
@@ -79,6 +80,11 @@ public class LaborPriceServiceImpl implements LaborPriceService {
     @Override
     @Transactional
     public void updatePrices(double newPrice, String categoryPrice){
+
+        if(newPrice < 0){
+            throw new InvalidPriceException("negative price");
+        }
+
 
         if(optLaborPrice.isPresent()) {
             var id = optLaborPrice.get().getId();
@@ -127,7 +133,7 @@ public class LaborPriceServiceImpl implements LaborPriceService {
             return;
         }
 
-        throw new RuntimeException("To update the the prices you have to create them first!");
+        throw new LaborPriceException("To update the the prices you have to create them first!");
     }
 
 
