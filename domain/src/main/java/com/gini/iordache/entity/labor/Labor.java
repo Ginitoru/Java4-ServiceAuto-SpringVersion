@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.util.Objects;
 
@@ -23,8 +24,8 @@ public class Labor {
     @NotNull(message = "required")
     private String laborDescription;
 
-
-    private double timedLabor;
+    @Min(value = 0, message = "invalid")
+    private Double timedLabor;
 
     @Enumerated(EnumType.STRING)
     private LaborCategory category;

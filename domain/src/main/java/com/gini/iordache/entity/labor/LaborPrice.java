@@ -6,6 +6,7 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import javax.validation.constraints.Digits;
+import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 @NoArgsConstructor
@@ -19,28 +20,35 @@ public class LaborPrice {
     private int id;
 
     @NotNull(message = "required")
-    @Digits(fraction = 2, integer = 3, message = "naspa")
+    @Min(value = 0, message = "invalid")
     private Double mechanicalLaborPrice;
 
     @NotNull(message = "required")
+    @Min(value = 0, message = "invalid")
     private Double bodyLaborPrice;
 
     @NotNull(message = "required")
+    @Min(value = 0, message = "invalid")
     private Double electricalLaborPrice;
 
     @NotNull(message = "required")
+    @Min(value = 0, message = "invalid")
     private Double normalLaborPrice;
 
     @NotNull(message = "required")
+    @Min(value = 0, message = "invalid")
     private Double itpDieselEnginePrice;
 
     @NotNull(message = "required")
+    @Min(value = 0, message = "invalid")
     private Double itpGasolineEnginePrice;
 
     @NotNull(message = "required")
+    @Min(value = 0, message = "invalid")
     private Double itpSuvPrice;
 
     @NotNull(message = "required")
+    @Min(value = 0, message = "invalid")
     private Double itpTruckPrice;
 
 
