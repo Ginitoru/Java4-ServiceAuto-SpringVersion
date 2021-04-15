@@ -1,4 +1,4 @@
-package com.gini.iordache.controllers;
+package com.gini.iordache.controllers.home;
 
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.InvoiceService;
@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 
 
 @Controller
+@RequestMapping("/app")
 public class HomeController {
 
 
@@ -29,11 +31,7 @@ public class HomeController {
         this.invoiceService = invoiceService;
     }
 
-    @GetMapping("/")
-    public String index(){
 
-        return "index";
-    }
 
     @GetMapping("/main")
     public String showHomePage(Model model){
@@ -42,7 +40,7 @@ public class HomeController {
         allAllModelAtributes(model);
 
 
-        return "main-page";
+        return "home/home-page";
     }
 
 
@@ -52,7 +50,7 @@ public class HomeController {
        serviceOrder = serviceOrderService.findCompleteServiceOrderById(id);
        allAllModelAtributes(model);
 
-        return "redirect:/main";
+        return "redirect:/app/main";
     }
 
 
@@ -61,7 +59,7 @@ public class HomeController {
 
         serviceOrderService.closeOrder(serviceOrder);
 
-        return "redirect:/main";
+        return "redirect:/app/main";
     }
 
 
@@ -69,7 +67,7 @@ public class HomeController {
     public String getInvoice(){
 
         invoiceService.getInvoiceFromDataBase(serviceOrder);
-        return "redirect:/main";
+        return "redirect:/app/main";
     }
 
 

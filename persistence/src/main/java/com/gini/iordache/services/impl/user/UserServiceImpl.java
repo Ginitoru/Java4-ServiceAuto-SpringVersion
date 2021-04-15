@@ -37,24 +37,30 @@ public class UserServiceImpl implements UserService {
     public Future<User> createUser(User user){              //si nici nu mai este vazuta de AOP
 
         Optional<User> user1 = userDao.findUserByUsername(user.getUsername());
-        Optional<User> user2 = userDao.findUserByEmail(user.getEmail());
-
-        if(user1.isEmpty() && user2.isEmpty()){
-
-            String encodedPassword = passwordEncoder.encode(user.getPassword());
-            user.setPassword(encodedPassword);
-            var token = UUID.randomUUID().toString();
-
-            ActivationToken activationToken = createActivationToken(token, user);
-            user.setActivationToken(activationToken);
-
-            userDao.createUser(user);
-            emailSender.sendEmail(user);
 
 
-         return new AsyncResult<>(user);
 
+        if(user1.isEmpty()){                                         //am facut o mica optimizare aici. In caz ca user1 isPresent() by username
+                                                                     //nu mai face SELECT pt user1 by email.
+            user1 = userDao.findUserByEmail(user.getEmail());
+
+            if(user1.isEmpty()){
+
+                    String encodedPassword = passwordEncoder.encode(user.getPassword());
+                    user.setPassword(encodedPassword);
+                    var token = UUID.randomUUID().toString();
+
+                    ActivationToken activationToken = createActivationToken(token, user);
+                    user.setActivationToken(activationToken);
+
+                    userDao.createUser(user);
+                    emailSender.sendEmail(user);
+
+
+                    return new AsyncResult<>(user);
+            }
         }
+
 
         throw new UserAlreadyExists("User already exists");
     }

@@ -50,7 +50,7 @@ public class UserController {
             return "redirect:/login";
         }
 
-        return "redirect:/main";
+        return "redirect:/app/main";
     }
 
 

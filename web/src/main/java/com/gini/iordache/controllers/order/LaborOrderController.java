@@ -1,7 +1,7 @@
 package com.gini.iordache.controllers.order;
 
 
-import com.gini.iordache.controllers.HomeController;
+import com.gini.iordache.controllers.home.HomeController;
 import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.order.LaborOrder;
 import com.gini.iordache.entity.order.ServiceOrder;

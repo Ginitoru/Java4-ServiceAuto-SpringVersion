@@ -154,7 +154,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
 
         http.authorizeRequests()
-                        .mvcMatchers("/main").hasAnyRole(roles)
+                        .mvcMatchers("/app/**").hasAnyRole(roles)
                         .mvcMatchers("/parts/**").hasAnyRole(roles)
                         .mvcMatchers("/clients/**").hasAnyRole(roles)
                         .mvcMatchers("/vehicles/**").hasAnyRole(roles)

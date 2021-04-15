@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import javax.validation.Path;
 import java.time.LocalDateTime;
 import java.util.Optional;
 
@@ -52,8 +53,8 @@ public class UserDaoImpl implements UserDao {
                             .setParameter("email", email)
                             .getResultStream()
                             .findFirst();
-
     }
+
 
     @Override
     public int activateUserAccount(User user){

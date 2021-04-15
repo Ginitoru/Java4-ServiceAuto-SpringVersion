@@ -24,7 +24,7 @@ public class OrderExceptionHandler {
     public String orderIsClosedException(OrderIsClosedException e){
 
         e.printStackTrace();
-        return "redirect:/main";
+        return "redirect:/app/main";
 
     }
 
