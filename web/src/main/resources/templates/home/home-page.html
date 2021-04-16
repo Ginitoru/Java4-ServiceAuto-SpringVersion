@@ -70,12 +70,12 @@
                 
                 <div class="close-btn">
                     <form action="#" th:action="@{/app/closeOrder}" method="POST">
-                        <input type="submit" class="btn" value="Close order">
+                        <input type="submit" class="btn" value="Close order" th:onclick="'closeOrder(' + ${serviceOrder.id} + ')'">
                     </form>
                 </div>
 
                 <div>
-                    <a th:href="@{/app/templates/invoice}"><input type="button" class="btn" value="Invoice"/></a>
+                    <a th:href="@{/app/invoice}"><input type="button" class="btn" value="Invoice"/></a>
                 </div>
             </div>
 
@@ -95,8 +95,29 @@
 
                     <tbody>
                         <tr th:each="IdStatus : ${serviceOrderIdAndStatus}">
-                            <td><a th:href="@{/app/order-stats/(orderId=${IdStatus.id})}" th:text="${IdStatus.id}"/></td>
+                            <td>
+                                <a th:href="@{/app/order-stats/(orderId=${IdStatus.id})}" th:text="${IdStatus.id}"/>
+                            </td>
                             <td th:text="${IdStatus.orderStatus}"></td>
+                            <td>
+                                <form action="#" th:action="@{/app/closeOrder/(orderId=${IdStatus.id})}" method="POST">
+                                    <input type="submit" value="close">
+                                </form>
+                            </td>
+
+<!--                            <td>-->
+<!--                                <a th:href="@{/app/invoice/(orderId=${IdStatus.id})}">-->
+<!--                                    <input type="button" value="Invoice">-->
+<!--                                </a>-->
+<!--                            </td>-->
+
+<!--                            <td>-->
+<!--                               <a th:href="@{/laborOrder/laborOrderPage/(orderId=${IdStatus.id})}">-->
+<!--                                   <input type="button" value="Add labor">-->
+<!--                               </a>-->
+<!--                            </td>-->
+
+
                         </tr>
                     </tbody>
                </table>
@@ -250,5 +271,15 @@
         <footer>
             <p>Ginitoru<span>&trade;</span></p>
         </footer>
+
+    <script th:inline="javascript">
+        function closeOrder(id){
+
+                if(id === 0){
+                    alert('Select an Order first')
+                }
+        }
+    </script>
+
     </body>
 </html>

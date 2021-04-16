@@ -3,6 +3,7 @@ package com.gini.iordache.controllers.order;
 import com.gini.errors.order.BadIntegerNumberException;
 import com.gini.errors.order.PartNotFoundException;
 import com.gini.errors.order.SelectPartException;
+import com.gini.iordache.controllers.MiniCache;
 import com.gini.iordache.controllers.home.HomeController;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.PartOrder;
@@ -28,26 +29,24 @@ public class ServiceOrderPartController {
 
     private final PartServiceOrderService partServiceOrderService;
     private final ServiceOrderService serviceOrderService;
-    private final HomeController homeController;
+
     private final PartService partService;
+    private final MiniCache miniCache;
 
     private Part part = new Part();
 
-
     @Autowired
-    public ServiceOrderPartController(PartServiceOrderService partServiceOrderService, ServiceOrderService serviceOrderService, HomeController homeController, PartService partService) {
+    public ServiceOrderPartController(PartServiceOrderService partServiceOrderService, ServiceOrderService serviceOrderService, PartService partService, MiniCache miniCache) {
         this.partServiceOrderService = partServiceOrderService;
         this.serviceOrderService = serviceOrderService;
-        this.homeController = homeController;
         this.partService = partService;
+        this.miniCache = miniCache;
     }
-
-
 
     @GetMapping("/addPart-page")
     public String addPartsToServiceOrder(Model model){
 
-        int id = homeController.getServiceOrder().getId();
+        int id = miniCache.getCompleteServiceOrder().getId();
 
         List<PartOrder> partServiceOrders = serviceOrderService.getPartsFormServiceOrder(id);
 
@@ -89,7 +88,7 @@ public class ServiceOrderPartController {
         try{
 
             var count = Integer.parseInt(request.getParameter("count"));
-            ServiceOrder serviceOrder = homeController.getServiceOrder();
+            ServiceOrder serviceOrder = miniCache.getCompleteServiceOrder();
             partServiceOrderService.addPartToServiceOrder(part,serviceOrder,count);
 
         }catch(NumberFormatException e){

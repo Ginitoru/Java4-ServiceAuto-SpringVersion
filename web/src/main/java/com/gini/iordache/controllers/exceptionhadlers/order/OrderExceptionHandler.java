@@ -56,6 +56,13 @@ public class OrderExceptionHandler {
 
     }
 
+    @ExceptionHandler(SelectOrderException.class)
+    public String processSelectOrderException(SelectOrderException e){
+        e.printStackTrace();
+
+        return "redirect:/app/main";
+    }
+
 
 
 }

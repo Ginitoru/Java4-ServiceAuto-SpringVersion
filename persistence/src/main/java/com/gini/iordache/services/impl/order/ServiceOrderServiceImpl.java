@@ -15,6 +15,7 @@ import com.gini.iordache.services.interfaces.ServiceOrderService;
 import com.gini.iordache.util.TwoDigitsDouble;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -139,8 +140,10 @@ public class ServiceOrderServiceImpl implements ServiceOrderService {
 
 
     @Override
+//    @Cacheable(value = "orderCache", key = "'order' +#id")
     @Transactional //metoda 1
     public ServiceOrder findCompleteServiceOrderById(int id){
+
 
         ServiceOrder serviceOrder = serviceOrderDao.findCompleteServiceOrderById(id);
 

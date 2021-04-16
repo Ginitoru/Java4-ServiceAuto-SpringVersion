@@ -82,18 +82,19 @@ nav{
 
 }
 
-.buttons{
+.buttons {
     grid-area: buttons;
     background-color: rgb(241, 237, 237);
     grid-row: 1 / span 11;
     border: 1px solid black;
-    
+
     width: 150px;
 }
 
 .status-table{
     grid-area: status;
     background-color: rgb(241, 237, 237);
+
 }
 
 .stats{

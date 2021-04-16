@@ -163,13 +163,13 @@
                                       
                    
                         <input  type="submit" class="btn" value="Create Order"
-                                th:if="${vehicle.id == 0 || (person.id == 0 && company.id == 0)}"
-                                onclick="alert('Select a vehicle person or company')"/>
+
+                                th:onclick="'selection()'"/>
                     
 
-                    
-                        <input  type="submit" class="btn" value="Create Order"
-                                th:if="${vehicle.id != 0 && !(person.id == 0 && company.id == 0)}"/>
+<!--                    -->
+<!--                        <input  type="submit" class="btn" value="Create Order"-->
+<!--                                th:if="${vehicle.id != 0 && !(person.id == 0 && company.id == 0)}"/>-->
                     
 
 
@@ -177,7 +177,7 @@
             </div>
 
 
-            <a th:href="@{/main}" class="link">
+            <a th:href="@{/app/main}" class="link">
                 <input type="button" class="btn" value="Home"/>
             </a>
         </div>
@@ -187,6 +187,29 @@
         </footer>
 
 
+
+
+        <script th:inline="javascript">
+            function selection() {
+
+                const vehicleId = [[${vehicle.id}]];
+                const personId = [[${person.id}]];
+                const companyId = [[${company.id}]];
+
+
+                if (vehicleId === 0) {
+                    alert("Select a vehicle!");
+                    return;
+                }
+
+                if((personId === 0 && companyId === 0)){
+                    alert("Select a person or company!")
+                    return;
+                }
+
+                alert("Order created!")
+            }
+        </script>
 
     </body>
 </html>
