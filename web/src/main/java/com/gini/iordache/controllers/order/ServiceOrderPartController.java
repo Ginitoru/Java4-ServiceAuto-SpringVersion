@@ -11,6 +11,7 @@ import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.PartService;
 import com.gini.iordache.services.interfaces.PartServiceOrderService;
 import com.gini.iordache.services.interfaces.ServiceOrderService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,27 +22,19 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
+import java.util.Optional;
 
-
+@AllArgsConstructor
 @Controller
 @RequestMapping("/orderPart")
 public class ServiceOrderPartController {
 
     private final PartServiceOrderService partServiceOrderService;
     private final ServiceOrderService serviceOrderService;
-
-    private final PartService partService;
     private final MiniCache miniCache;
 
-    private Part part = new Part();
 
-    @Autowired
-    public ServiceOrderPartController(PartServiceOrderService partServiceOrderService, ServiceOrderService serviceOrderService, PartService partService, MiniCache miniCache) {
-        this.partServiceOrderService = partServiceOrderService;
-        this.serviceOrderService = serviceOrderService;
-        this.partService = partService;
-        this.miniCache = miniCache;
-    }
+
 
     @GetMapping("/addPart-page")
     public String addPartsToServiceOrder(Model model){
@@ -50,7 +43,13 @@ public class ServiceOrderPartController {
 
         List<PartOrder> partServiceOrders = serviceOrderService.getPartsFormServiceOrder(id);
 
-        model.addAttribute("part", part);
+        Optional
+                .ofNullable(miniCache.getPart())
+                                .ifPresentOrElse
+                                        (part -> model.addAttribute("part", part),
+                                           () -> model.addAttribute("part", new Part()));
+
+
         model.addAttribute("serviceOrderParts",partServiceOrders);
 
 
@@ -62,16 +61,15 @@ public class ServiceOrderPartController {
     public String findPart(HttpServletRequest request, Model model){
 
         var partNumber = request.getParameter("partNumber");
-
+        Part part;
 
         try{
-            part = partService.findPartByPartNumber(partNumber); //prind si rearunc exceptia ca sa resetez instanta de 'part'
+            part = miniCache.findPartByPartNumber(partNumber); //prind si rearunc exceptia ca sa resetez instanta de 'part'
         }catch(PartNotFoundException e){                         //ce face sa se goleasca field-urile din partOrder.html si
         e.printStackTrace();                                     //sa imi apara si 'part not found'
-            part = new Part();
+
             throw new PartNotFoundException();
         }
-
 
         model.addAttribute("part", part);
         return "redirect:/orderPart/addPart-page";
@@ -81,7 +79,7 @@ public class ServiceOrderPartController {
     @PostMapping("/addPartToOrder")
     public String addPartToOrder(HttpServletRequest request){
 
-        if(part.getId() == 0){
+        if(miniCache.getPart() == null){
             throw new SelectPartException("No part was selected");
         }
 
@@ -89,7 +87,7 @@ public class ServiceOrderPartController {
 
             var count = Integer.parseInt(request.getParameter("count"));
             ServiceOrder serviceOrder = miniCache.getCompleteServiceOrder();
-            partServiceOrderService.addPartToServiceOrder(part,serviceOrder,count);
+            partServiceOrderService.addPartToServiceOrder(miniCache.getPart(), serviceOrder, count);
 
         }catch(NumberFormatException e){
             e.printStackTrace();
@@ -97,6 +95,8 @@ public class ServiceOrderPartController {
 
         }
 
+        String partNumber = miniCache.getPart().getPartNumber();
+        miniCache.findPartByPartNumber(partNumber); // -> sa imi scada si count-ul in pagina html de la piesa din magazie
 
         return "redirect:/orderPart/addPart-page";
     }
@@ -107,7 +107,7 @@ public class ServiceOrderPartController {
 
 
         partServiceOrderService.deletePartFromServiceOrder(partNumber, count);
-
+        miniCache.findPartByPartNumber(partNumber); // -> sa imi creasca si count-ul in pagina html de la piesa din magazie
         return "redirect:/orderPart/addPart-page";
     }
 

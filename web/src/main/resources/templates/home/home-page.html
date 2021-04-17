@@ -100,24 +100,6 @@
                             </td>
                             <td th:text="${IdStatus.orderStatus}"></td>
                             <td>
-                                <form action="#" th:action="@{/app/closeOrder/(orderId=${IdStatus.id})}" method="POST">
-                                    <input type="submit" value="close">
-                                </form>
-                            </td>
-
-<!--                            <td>-->
-<!--                                <a th:href="@{/app/invoice/(orderId=${IdStatus.id})}">-->
-<!--                                    <input type="button" value="Invoice">-->
-<!--                                </a>-->
-<!--                            </td>-->
-
-<!--                            <td>-->
-<!--                               <a th:href="@{/laborOrder/laborOrderPage/(orderId=${IdStatus.id})}">-->
-<!--                                   <input type="button" value="Add labor">-->
-<!--                               </a>-->
-<!--                            </td>-->
-
-
                         </tr>
                     </tbody>
                </table>
