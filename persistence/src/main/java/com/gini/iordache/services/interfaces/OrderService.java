@@ -11,7 +11,7 @@ import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Set;
 
-public interface ServiceOrderService {
+public interface OrderService {
     @Transactional
     void createServiceOrder(ServiceOrder serviceOrder);
 

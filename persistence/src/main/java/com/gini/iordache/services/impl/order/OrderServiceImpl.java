@@ -4,18 +4,17 @@ import com.gini.errors.order.ClientNotSelectedException;
 import com.gini.errors.order.OrderIsClosedException;
 import com.gini.errors.order.VehicleNotSelectedException;
 import com.gini.iordache.dao.iterfaces.PartDao;
-import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.OrderDao;
 import com.gini.iordache.dto.ServiceOrderIdAndStatusDto;
 import com.gini.iordache.entity.order.LaborOrder;
 import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.service.PdfService;
 import com.gini.iordache.services.interfaces.InvoiceService;
-import com.gini.iordache.services.interfaces.ServiceOrderService;
+import com.gini.iordache.services.interfaces.OrderService;
 import com.gini.iordache.util.TwoDigitsDouble;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
@@ -25,10 +24,10 @@ import java.util.Set;
 
 @AllArgsConstructor
 @Service
-public class ServiceOrderServiceImpl implements ServiceOrderService {
+public class OrderServiceImpl implements OrderService {
 
 
-    private final ServiceOrderDao serviceOrderDao;
+    private final OrderDao serviceOrderDao;
     private final PartDao partDao;
     private final PdfService pdfService;
     private final InvoiceService invoiceService;

@@ -31,7 +31,7 @@ public class PartOrderDaoImpl implements PartOrderDao {
     @Override
     public Optional<PartOrder> findPartOrderByPartName(String partNumber, ServiceOrder serviceOrder){
 
-        String jpql = "SELECT p FROM PartOrder p WHERE p.partNumber =: partNumber AND p.order =: serviceOrder";
+        String jpql = "SELECT p FROM PartOrder p WHERE p.partNumber =: partNumber AND p.serviceOrder =: serviceOrder";
 
         return entityManager.createQuery(jpql, PartOrder.class)
                                 .setParameter("partNumber", partNumber)

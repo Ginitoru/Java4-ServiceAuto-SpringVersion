@@ -4,15 +4,12 @@ import com.gini.errors.order.BadIntegerNumberException;
 import com.gini.errors.order.PartNotFoundException;
 import com.gini.errors.order.SelectPartException;
 import com.gini.iordache.controllers.MiniCache;
-import com.gini.iordache.controllers.home.HomeController;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.services.interfaces.PartService;
-import com.gini.iordache.services.interfaces.PartServiceOrderService;
-import com.gini.iordache.services.interfaces.ServiceOrderService;
+import com.gini.iordache.services.interfaces.PartOrderService;
+import com.gini.iordache.services.interfaces.OrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -27,10 +24,10 @@ import java.util.Optional;
 @AllArgsConstructor
 @Controller
 @RequestMapping("/orderPart")
-public class ServiceOrderPartController {
+public class PartOrderController {
 
-    private final PartServiceOrderService partServiceOrderService;
-    private final ServiceOrderService serviceOrderService;
+    private final PartOrderService partServiceOrderService;
+    private final OrderService serviceOrderService;
     private final MiniCache miniCache;
 
 

@@ -4,12 +4,12 @@ package com.gini.iordache.services.impl.order;
 import com.gini.errors.order.NotEnoughPartsException;
 import com.gini.iordache.convertor.PartConvertor;
 import com.gini.iordache.dao.iterfaces.PartDao;
-import com.gini.iordache.dao.iterfaces.PartServiceOrderDao;
-import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.PartOrderDao;
+import com.gini.iordache.dao.iterfaces.OrderDao;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.services.interfaces.PartServiceOrderService;
+import com.gini.iordache.services.interfaces.PartOrderService;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,11 +19,11 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class PartOrderServiceImpl implements PartServiceOrderService {
+public class PartOrderServiceImpl implements PartOrderService {
 
-    private final PartServiceOrderDao partServiceOrderDao;
+    private final PartOrderDao partServiceOrderDao;
     private final PartDao partDao;
-    private final ServiceOrderDao serviceOrderDao;
+    private final OrderDao serviceOrderDao;
 
     @Override
     @Transactional

@@ -4,14 +4,11 @@ package com.gini.iordache.controllers.order;
 import com.gini.iordache.controllers.MiniCache;
 import com.gini.iordache.entity.order.CarProblems;
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Company;
-import com.gini.iordache.entity.clients.Person;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.interfaces.*;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -25,10 +22,10 @@ import java.util.Optional;
 @AllArgsConstructor
 @Controller
 @RequestMapping("/serviceOrder")
-public class ServiceOrderController {
+public class OrderController {
 
 
-    private final ServiceOrderService serviceOrderService;
+    private final OrderService serviceOrderService;
     private final UserService userService;
     private final MiniCache miniCache;
 

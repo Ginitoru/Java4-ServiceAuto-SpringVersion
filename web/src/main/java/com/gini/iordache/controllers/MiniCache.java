@@ -21,7 +21,7 @@ import java.util.Map;
 public class MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
 
 
-    private final ServiceOrderService serviceOrderService;
+    private final OrderService serviceOrderService;
     private final LaborService laborService;
     private final PartService partService;
     private final VehicleService vehicleService;
@@ -37,7 +37,7 @@ public class MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
     private final Map<String, Company> company = new HashMap<>();
 
     @Autowired
-    public MiniCache(ServiceOrderService serviceOrderService,
+    public MiniCache(OrderService serviceOrderService,
                      LaborService laborService,
                      PartService partService,
                      VehicleService vehicleService,

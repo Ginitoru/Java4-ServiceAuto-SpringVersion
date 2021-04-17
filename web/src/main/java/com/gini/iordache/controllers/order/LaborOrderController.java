@@ -2,15 +2,9 @@ package com.gini.iordache.controllers.order;
 
 
 import com.gini.iordache.controllers.MiniCache;
-import com.gini.iordache.controllers.home.HomeController;
-import com.gini.iordache.entity.labor.Labor;
-import com.gini.iordache.entity.order.LaborOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.impl.order.LaborOrderServiceImpl;
-import com.gini.iordache.services.interfaces.LaborService;
-import com.gini.iordache.services.interfaces.ServiceOrderService;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,8 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 @AllArgsConstructor
 @Controller

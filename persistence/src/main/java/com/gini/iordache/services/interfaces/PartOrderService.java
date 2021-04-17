@@ -4,7 +4,7 @@ import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.ServiceOrder;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface PartServiceOrderService {
+public interface PartOrderService {
 
     @Transactional
     void addPartToServiceOrder(Part part, ServiceOrder serviceOrder, int count);

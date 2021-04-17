@@ -2,14 +2,14 @@ package com.gini.iordache.services.impl.order;
 
 
 import com.gini.iordache.convertor.LaborConvertor;
-import com.gini.iordache.dao.iterfaces.LaborServiceOrderDao;
-import com.gini.iordache.dao.iterfaces.ServiceOrderDao;
+import com.gini.iordache.dao.iterfaces.LaborOrderDao;
+import com.gini.iordache.dao.iterfaces.OrderDao;
 import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.labor.LaborPrice;
 import com.gini.iordache.entity.order.LaborOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.impl.labor.LaborPriceServiceImpl;
-import com.gini.iordache.services.interfaces.LaborServiceOrderService;
+import com.gini.iordache.services.interfaces.LaborOrderService;
 import com.gini.iordache.util.TwoDigitsDouble;
 import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
@@ -20,11 +20,11 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
-public class LaborOrderServiceImpl implements LaborServiceOrderService {
+public class LaborOrderServiceImpl implements LaborOrderService {
 
-    private final LaborServiceOrderDao laborServiceOrderDao;
+    private final LaborOrderDao laborServiceOrderDao;
     private final LaborPriceServiceImpl laborPriceService;
-    private final ServiceOrderDao serviceOrderDao;
+    private final OrderDao serviceOrderDao;
 
 
     //method 1

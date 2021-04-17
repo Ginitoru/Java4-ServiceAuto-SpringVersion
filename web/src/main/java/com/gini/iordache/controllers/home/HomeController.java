@@ -3,7 +3,7 @@ package com.gini.iordache.controllers.home;
 import com.gini.errors.order.SelectOrderException;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.InvoiceService;
-import com.gini.iordache.services.interfaces.ServiceOrderService;
+import com.gini.iordache.services.interfaces.OrderService;
 import com.gini.iordache.controllers.MiniCache;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/app")
 public class HomeController {
 
-    private final ServiceOrderService serviceOrderService;
+    private final OrderService serviceOrderService;
     private final InvoiceService invoiceService;
     private final MiniCache miniCache;
 

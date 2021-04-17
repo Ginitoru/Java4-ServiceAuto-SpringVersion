@@ -5,7 +5,7 @@ import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.order.ServiceOrder;
 import org.springframework.transaction.annotation.Transactional;
 
-public interface LaborServiceOrderService {
+public interface LaborOrderService {
 
 
 
