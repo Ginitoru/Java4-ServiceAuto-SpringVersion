@@ -1,7 +1,9 @@
 package com.gini.iordache.controllers.order;
 
 
-import com.gini.iordache.controllers.MiniCache;
+
+import com.gini.iordache.cache.MiniCache;
+import com.gini.iordache.cache.MiniCacheImpl;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.impl.order.LaborOrderServiceImpl;
 import lombok.AllArgsConstructor;

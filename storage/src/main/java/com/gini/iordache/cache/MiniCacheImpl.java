@@ -1,4 +1,4 @@
-package com.gini.iordache.controllers;
+package com.gini.iordache.cache;
 
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.auto.Vehicle;
@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Map;
 
 @Component
-public class MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
+public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
 
 
     private final OrderService serviceOrderService;
@@ -37,12 +37,12 @@ public class MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
     private final Map<String, Company> company = new HashMap<>();
 
     @Autowired
-    public MiniCache(OrderService serviceOrderService,
-                     LaborService laborService,
-                     PartService partService,
-                     VehicleService vehicleService,
-                     PersonService personService,
-                     CompanyService companyService) {
+    public MiniCacheImpl(OrderService serviceOrderService,
+                         LaborService laborService,
+                         PartService partService,
+                         VehicleService vehicleService,
+                         PersonService personService,
+                         CompanyService companyService) {
 
         this.serviceOrderService = serviceOrderService;
         this.laborService = laborService;
@@ -52,6 +52,8 @@ public class MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
         this.companyService = companyService;
     }
 
+
+    @Override
     public ServiceOrder loadCompleteServiceOrderById(int id){
 
         var serviceOrder = serviceOrderService.findCompleteServiceOrderById(id);
@@ -61,34 +63,39 @@ public class MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
     }
 
 
+    @Override
     public ServiceOrder getCompleteServiceOrder(){
         return order.get(username());
     }
 
 
+    @Override
     public void loadLaborsOrder(){
         orderLabors.put(username(), serviceOrderService.
                                                  findAllLaborsInOrder(getCompleteServiceOrder().getId()));
     }
 
 
+    @Override
     public List<LaborOrder> getLaborFromOrder(){
         return orderLabors.get(username());
     }
 
 
+    @Override
     public void loadLabors(String laborDescription){
         labors.put(username(), laborService.findLaborByName(laborDescription));
     }
 
 
+    @Override
     public List<Labor> getLabors(){
        return labors.get(username());
     }
 
 
 
-
+    @Override
     public Part findPartByPartNumber(String partNumber){
         parts.put(username(),partService.findPartByPartNumber(partNumber));
 
@@ -96,62 +103,84 @@ public class MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
     }
 
 
+    @Override
     public Vehicle findVehicleBySerialNumber(String serialNumber){
         vehicle.put(username(), vehicleService.findVehicleBySerialNumber(serialNumber));
         return vehicle.get(username());
     }
 
+
+    @Override
     public Vehicle getVehicle(){
         return vehicle.get(username());
     }
 
+
+    @Override
     public Vehicle getEmptyVehicle(){
         vehicle.put(username(), new Vehicle());
         return vehicle.get(username());
     }
 
 
+    @Override
     public Person findPersonByCnp(String cnp){
         person.put(username(), personService.findPersonByCnp(cnp));
         return person.get(username());
     }
 
+
+    @Override
     public Person getEmptyPerson(){
         person.put(username(), new Person());
         return person.get(username());
     }
 
+    @Override
     public Person getPerson(){
         return person.get(username());
     }
 
+
+    @Override
     public Company findCompanyByCui(String cui){
         company.put(username(),companyService.findCompanyByCui(cui));
         return company.get(username());
     }
 
+
+    @Override
     public Company getCompany(){
         return company.get(username());
     }
 
+
+    @Override
     public Company getEmptyCompany(){
         company.put(username(), new Company());
         return company.get(username());
     }
 
+
+    @Override
     public Part getPart(){
         return parts.get(username());
     }
 
+
+    @Override
     public void resetCompanySearch(){
         company.put(username(), new Company());
     }
 
 
+    @Override
     public void resetPersonSearch(){
         person.put(username(), new Person());
     }
 
+
+    @Override
     public void resetCarSearch(){
         vehicle.put(username(), new Vehicle());
     }

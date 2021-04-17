@@ -1,10 +1,13 @@
 package com.gini.iordache.controllers.home;
 
 import com.gini.errors.order.SelectOrderException;
+import com.gini.iordache.cache.MiniCache;
+import com.gini.iordache.cache.MiniCacheImpl;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.OrderService;
-import com.gini.iordache.controllers.MiniCache;
+
+import com.gini.iordache.utility.OrderStatus;
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -19,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequestMapping("/app")
 public class HomeController {
 
-    private final OrderService serviceOrderService;
+    private final OrderService orderService;
     private final InvoiceService invoiceService;
     private final MiniCache miniCache;
 
@@ -34,7 +37,7 @@ public class HomeController {
             allModelAtributes(miniCache.getCompleteServiceOrder(), model);
         }
 
-        model.addAttribute("serviceOrderIdAndStatus", serviceOrderService.allServiceOrderIdAndStatus());
+        model.addAttribute("serviceOrderIdAndStatus", orderService.allServiceOrderIdAndStatus());
 
         return "home/home-page";
     }
@@ -55,11 +58,14 @@ public class HomeController {
 
         var username = SecurityContextHolder.getContext().getAuthentication().getName();
 
+
         if(miniCache.getCompleteServiceOrder() == null){
             throw  new SelectOrderException("No order selected");
         }
 
-        serviceOrderService.closeOrder(miniCache.getCompleteServiceOrder());
+
+        orderService.closeOrder(miniCache.getCompleteServiceOrder());
+        miniCache.getCompleteServiceOrder().setOrderStatus(OrderStatus.CLOSE); //todo: nu e bine asta aici! trebuie bagata in service ca sa se faca pe tranzactie
 
         return "redirect:/app/main";
     }
