@@ -8,7 +8,7 @@ import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 
 @Configuration
-public class PdfGenerator {
+public class PdfGeneratorConfig {
 
 
     @Bean

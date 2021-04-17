@@ -5,7 +5,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.support.ResourceBundleMessageSource;
 
 @Configuration
-public class FieldsValidation {
+public class FieldsValidationConfig {
 
 
                 //ma ajuta sa arat error message cand bag String in loc de int, double pe fields

@@ -16,6 +16,7 @@
         <module>aop</module>
         <module>utility</module>
         <module>storage</module>
+        <module>config</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>
