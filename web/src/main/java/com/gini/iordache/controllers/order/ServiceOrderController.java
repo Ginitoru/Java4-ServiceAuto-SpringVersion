@@ -1,6 +1,7 @@
 package com.gini.iordache.controllers.order;
 
 
+import com.gini.iordache.controllers.MiniCache;
 import com.gini.iordache.entity.order.CarProblems;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.entity.auto.Vehicle;
@@ -9,6 +10,7 @@ import com.gini.iordache.entity.clients.Person;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.interfaces.*;
 import com.gini.iordache.utility.OrderStatus;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
@@ -18,53 +20,33 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Optional;
 
-
+@AllArgsConstructor
 @Controller
 @RequestMapping("/serviceOrder")
 public class ServiceOrderController {
 
 
-    private final VehicleService vehicleService;
-    private final PersonService personService;
-    private final CompanyService companyService;
     private final ServiceOrderService serviceOrderService;
     private final UserService userService;
-
-
-    private Vehicle vehicle = new Vehicle();
-    private Person person = new Person();
-    private Company company = new Company();
-
-
-
-    @Autowired
-    public ServiceOrderController(VehicleService vehicleService,
-                                        PersonService personService,
-                                             CompanyService companyService,
-                                                         UserService userService,
-                                                                ServiceOrderService serviceOrderService) {
-
-        this.vehicleService = vehicleService;
-        this.personService = personService;
-        this.companyService = companyService;
-        this.serviceOrderService = serviceOrderService;
-        this.userService = userService;
-    }
-
-
-
-
-
-
+    private final MiniCache miniCache;
 
 
     @GetMapping("/serviceOrder")
     public String showServiceOrderPage(Model model){
 
-        model.addAttribute("vehicle", vehicle);
-        model.addAttribute("person", person);
-        model.addAttribute("company", company);
+        Optional.ofNullable(miniCache.getVehicle())
+                    .ifPresentOrElse(vehicle -> model.addAttribute("vehicle", vehicle),
+                                          () -> model.addAttribute("vehicle", miniCache.getEmptyVehicle()));
+
+        Optional.ofNullable(miniCache.getPerson())
+                    .ifPresentOrElse(person -> model.addAttribute("person", person),
+                                         () -> model.addAttribute("person", miniCache.getEmptyPerson()));
+
+        Optional.ofNullable(miniCache.getCompany())
+                    .ifPresentOrElse(company -> model.addAttribute("company", company),
+                                          () -> model.addAttribute("company", miniCache.getEmptyCompany()));
 
         return "order/serviceOrder-page";
     }
@@ -74,7 +56,7 @@ public class ServiceOrderController {
     public String searchCarByVin(HttpServletRequest request, Model model){
 
         var serialNumber = request.getParameter("serialNumber");
-        vehicle = vehicleService.findVehicleBySerialNumber(serialNumber);
+        var vehicle = miniCache.findVehicleBySerialNumber(serialNumber);
         model.addAttribute("vehicle", vehicle);
 
         return "redirect:/serviceOrder/serviceOrder";
@@ -86,9 +68,9 @@ public class ServiceOrderController {
     public String searchPersonByCnp(HttpServletRequest request, Model model){
 
         var cnp = request.getParameter("cnp");
-        person = personService.findPersonByCnp(cnp);
+        var person = miniCache.findPersonByCnp(cnp);
         model.addAttribute("person", person);
-        company = new Company();                            //->resetez company daca am dat search
+        miniCache.resetCompanySearch();                           //->resetez company daca am dat search person
 
         return "redirect:/serviceOrder/serviceOrder";
 
@@ -98,9 +80,9 @@ public class ServiceOrderController {
     public String searchCompany(HttpServletRequest request, Model model){
 
         var cui = request.getParameter("cui");
-        company = companyService.findCompanyByCui(cui);
+        Company company = miniCache.findCompanyByCui(cui);
         model.addAttribute("company", company);
-        person = new Person();                                      // -> resetez person daca am dat search
+        miniCache.resetPersonSearch();                                      // -> resetez person daca am dat search company
 
         return "redirect:/serviceOrder/serviceOrder";
     }
@@ -109,50 +91,51 @@ public class ServiceOrderController {
     @PostMapping("/carProblems")    
     public String createServiceOrder(HttpServletRequest request){
 
-        var carProblems = request.getParameter("carProblems");
+
+        if(miniCache.getVehicle().getId() != 0 &&
+                ((miniCache.getPerson().getId() != 0) || (miniCache.getCompany().getId() != 0))){
 
 
-        CarProblems problems = new CarProblems();
-        problems.setProblems(carProblems);
+            var carProblems = request.getParameter("carProblems");
 
-
-        String username = SecurityContextHolder
-                                        .getContext()
+            String username = SecurityContextHolder
+                                                .getContext()
                                                 .getAuthentication()
-                                                        .getPrincipal()
-                                                                .toString();
+                                                .getPrincipal()
+                                                .toString();
 
 
-                                 User user = userService.findUseByUsername(username);
+            User user = userService.findUseByUsername(username);
+            CarProblems problems = new CarProblems();
+                        problems.setProblems(carProblems);
 
 
-        ServiceOrder serviceOrder = new ServiceOrder.Builder()
-                        .withOrderStatus(OrderStatus.OPEN)
-                    .withCarProblems(problems)
-                .withVehicle(vehicle)
-            .withUser(user)
-        .build();
+            ServiceOrder serviceOrder = new ServiceOrder.Builder()
+                                                .withOrderStatus(OrderStatus.OPEN)
+                                                .withCarProblems(problems)
+                                                .withVehicle(miniCache.getVehicle())
+                                                .withUser(user)
+                                                .build();
 
 
 
-        if(person.getId() == 0){
-            serviceOrder.setClient(company);
+            if(miniCache.getPerson().getId() == 0){
+                serviceOrder.setClient(miniCache.getCompany());
+            }
+
+            if(miniCache.getCompany().getId() == 0){
+                serviceOrder.setClient(miniCache.getPerson());
+            }
+
+
+            serviceOrderService.createServiceOrder(serviceOrder);
+
+            miniCache.resetCarSearch();   //->reset valorile din search
+            miniCache.resetPersonSearch();
+            miniCache.resetCompanySearch();
         }
 
-        if(company.getId() == 0){
-            serviceOrder.setClient(person);
-        }
-
-
-
-
-
-        serviceOrderService.createServiceOrder(serviceOrder);
-        vehicle = new Vehicle();   //->reset valorile din search
-        person = new Person();
-        company = new Company();
 
         return "redirect:/serviceOrder/serviceOrder";
     }
-
 }
