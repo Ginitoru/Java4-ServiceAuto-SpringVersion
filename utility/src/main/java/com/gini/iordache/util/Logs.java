@@ -41,7 +41,7 @@ public class Logs {
 
     private static void writeLog(String userName, String action){
         String path = "./web/src/main/resources/log/user/" + userName + ".txt";
-        String writeLog = "\n" + userName + " "+ action + ": " + LocalDateTime.now()
+        String writeLog = "\n" + userName + " " + action + ": " + LocalDateTime.now()
                                                                      .format(TimeFormat.formatter());
 
         writeInFile(writeLog, path);

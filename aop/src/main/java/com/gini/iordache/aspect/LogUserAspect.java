@@ -38,7 +38,7 @@ public class LogUserAspect {
 
 
 
-    @AfterThrowing( pointcut = "execution(* ro.gini.iordache.email.sender.EmailService.sendEmail(..))",
+    @AfterThrowing( pointcut = "execution(* ro.gini.iordache.email.sender.impl.EmailService.sendEmail(..))",
                    throwing = "exc")
     public void logSendMail(JoinPoint JoinPoint, Throwable exc){
         String message = exc.getMessage();

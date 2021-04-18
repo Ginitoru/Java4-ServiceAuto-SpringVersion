@@ -6,7 +6,7 @@ import com.gini.errors.user.InvalidTokenException;
 import com.gini.errors.user.TokenHasExpiredException;
 import com.gini.iordache.entity.user.ActivationToken;
 import com.gini.iordache.entity.user.User;
-import com.gini.iordache.services.impl.user.UserServiceImpl;
+import com.gini.iordache.services.interfaces.UserService;
 import lombok.AllArgsConstructor;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -22,7 +22,7 @@ import java.util.Optional;
 @AllArgsConstructor     //aici cred ca am cam exagerat cu Optional:D
 public class TokenProvider implements AuthenticationProvider {
 
-    private final UserServiceImpl userService;
+    private final UserService userService;
 
     //method 1
     @Override

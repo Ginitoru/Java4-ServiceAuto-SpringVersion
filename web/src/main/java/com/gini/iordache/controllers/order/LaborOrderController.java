@@ -2,10 +2,11 @@ package com.gini.iordache.controllers.order;
 
 
 
+import com.gini.errors.order.SelectOrderException;
 import com.gini.iordache.cache.MiniCache;
-import com.gini.iordache.cache.MiniCacheImpl;
 import com.gini.iordache.entity.order.ServiceOrder;
-import com.gini.iordache.services.impl.order.LaborOrderServiceImpl;
+
+import com.gini.iordache.services.interfaces.LaborOrderService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,11 +23,15 @@ public class LaborOrderController {
 
 
     private final MiniCache miniCache;
-    private final LaborOrderServiceImpl laborOrderService;
+    private final LaborOrderService laborOrderService;
 
 
     @GetMapping("/laborOrderPage")
     public String getLaborOrderPage(Model model){
+
+        if(miniCache.getCompleteServiceOrder() == null){
+                throw new SelectOrderException("No order selected!");
+        }
 
         miniCache.loadLaborsOrder();
 

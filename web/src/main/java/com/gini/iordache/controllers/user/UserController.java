@@ -1,13 +1,13 @@
 package com.gini.iordache.controllers.user;
 
-import com.gini.errors.logout.LogoutException;
+
 import com.gini.errors.user.UserAlreadyExists;
 import com.gini.iordache.entity.user.Authorities;
 import com.gini.iordache.entity.user.User;
 import com.gini.iordache.services.interfaces.UserService;
 
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;

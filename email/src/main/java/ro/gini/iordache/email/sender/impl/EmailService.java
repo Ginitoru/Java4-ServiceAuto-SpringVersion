@@ -1,4 +1,4 @@
-package ro.gini.iordache.email.sender;
+package ro.gini.iordache.email.sender.impl;
 
 
 import com.gini.iordache.entity.user.User;
@@ -6,17 +6,19 @@ import lombok.AllArgsConstructor;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Service;
+import ro.gini.iordache.email.sender.EmailHtmlRenderer;
+import ro.gini.iordache.email.sender.EmailSender;
 
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
 
 @Service
 @AllArgsConstructor
-public class EmailService implements EmailSender{
+public class EmailService implements EmailSender {
 
 
     private final JavaMailSenderImpl mailSender;
-    private final EmailHtmlRendererImpl emailHtmlRenderer;
+    private final EmailHtmlRenderer emailHtmlRenderer;
 
 
 

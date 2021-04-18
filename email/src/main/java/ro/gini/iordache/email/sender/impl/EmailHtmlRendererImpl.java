@@ -1,6 +1,7 @@
-package ro.gini.iordache.email.sender;
+package ro.gini.iordache.email.sender.impl;
 
 import org.springframework.stereotype.Component;
+import ro.gini.iordache.email.sender.EmailHtmlRenderer;
 
 @Component
 public class EmailHtmlRendererImpl implements EmailHtmlRenderer {

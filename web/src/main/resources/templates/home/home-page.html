@@ -61,11 +61,11 @@
                 </div>
                 
                 <div class="button">
-                    <a th:href="@{/orderPart/addPart-page}"><input type="button" class="btn" value="Add Parts to Order"/></a>
+                    <a th:href="@{/orderPart/addPart-page}"><input type="button" class="btn" value="Add Parts to Order" th:onclick="selectOrder()"/></a>
                 </div>
                     
                 <div class="button">
-                    <a th:href="@{/laborOrder/laborOrderPage}"><input type="button" class="btn" value="Add Labor to Order"/></a>
+                    <a th:href="@{/laborOrder/laborOrderPage}"><input type="button" class="btn" value="Add Labor to Order" th:onclick="selectOrder()"/></a>
                 </div>
                 
                 <div class="close-btn">
@@ -75,7 +75,7 @@
                 </div>
 
                 <div>
-                    <a th:href="@{/app/invoice}"><input type="button" class="btn" value="Invoice"/></a>
+                    <a th:href="@{/app/invoice}"><input type="button" class="btn" value="Invoice" th:onclick="getInvoice()"/></a>
                 </div>
             </div>
 
@@ -261,6 +261,35 @@
                     alert('Select an Order first')
                 }
         }
+    </script>
+
+    <script th:inline="javascript">
+        function selectOrder(){
+            const orderId = [[${serviceOrder.id}]];
+
+            if(orderId === 0){
+                alert("Select an order first!")
+            }
+        }
+    </script>
+
+    <script th:inline="javascript">
+        function getInvoice(){
+
+            selectOrder();
+            const orderStatus = [[${serviceOrder.orderStatus}]];
+            const orderId = [[${serviceOrder.id}]];
+
+            if(orderStatus.toString() !== 'CLOSE'){
+                alert("Close the order first!")
+            }
+
+            if(orderStatus.toString() === 'CLOSE'){
+                alert('Invoce nr: ' + orderId + ' was downloaded to: /web/src/main/resources/invoices')
+            }
+
+        }
+
     </script>
 
     </body>

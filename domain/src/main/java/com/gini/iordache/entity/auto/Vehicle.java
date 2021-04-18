@@ -5,7 +5,7 @@ import com.gini.iordache.entity.order.ServiceOrder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.hibernate.service.spi.InjectService;
+
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;

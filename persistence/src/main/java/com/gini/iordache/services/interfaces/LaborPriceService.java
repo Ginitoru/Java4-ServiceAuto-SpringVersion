@@ -3,7 +3,7 @@ package com.gini.iordache.services.interfaces;
 import com.gini.iordache.entity.labor.LaborPrice;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.annotation.PostConstruct;
+
 
 public interface LaborPriceService {
 

@@ -1,5 +1,6 @@
-package com.gini.iordache.cache;
+package com.gini.iordache.cache.impl;
 
+import com.gini.iordache.cache.MiniCache;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.entity.clients.Company;

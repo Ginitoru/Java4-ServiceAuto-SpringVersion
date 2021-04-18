@@ -1,5 +1,6 @@
 package com.gini.iordache.controllers.exceptionhadlers.order;
 
+import com.gini.errors.invoice.InvoiceException;
 import com.gini.errors.order.*;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -61,6 +62,14 @@ public class OrderExceptionHandler {
         e.printStackTrace();
 
         return "redirect:/app/main";
+    }
+
+
+    @ExceptionHandler(InvoiceException.class)
+    public String processInvoiceException(InvoiceException e){
+        e.printStackTrace();
+        return "redirect:/app/main";
+
     }
 
 

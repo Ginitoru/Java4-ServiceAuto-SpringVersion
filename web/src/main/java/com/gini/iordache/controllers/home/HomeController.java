@@ -2,7 +2,7 @@ package com.gini.iordache.controllers.home;
 
 import com.gini.errors.order.SelectOrderException;
 import com.gini.iordache.cache.MiniCache;
-import com.gini.iordache.cache.MiniCacheImpl;
+
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.InvoiceService;
 import com.gini.iordache.services.interfaces.OrderService;
@@ -77,6 +77,8 @@ public class HomeController {
         if(miniCache.getCompleteServiceOrder() == null){
             throw  new SelectOrderException("No order selected");
         }
+
+
 
         invoiceService.getInvoiceFromDataBase(miniCache.getCompleteServiceOrder());
         return "redirect:/app/main";

@@ -2,9 +2,9 @@ package com.gini.iordache.controllers.order;
 
 import com.gini.errors.order.BadIntegerNumberException;
 import com.gini.errors.order.PartNotFoundException;
+import com.gini.errors.order.SelectOrderException;
 import com.gini.errors.order.SelectPartException;
 import com.gini.iordache.cache.MiniCache;
-import com.gini.iordache.cache.MiniCacheImpl;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.order.PartOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
@@ -36,6 +36,10 @@ public class PartOrderController {
 
     @GetMapping("/addPart-page")
     public String addPartsToServiceOrder(Model model){
+
+        if(miniCache.getCompleteServiceOrder() == null){
+            throw new SelectOrderException("No order selected!");
+        }
 
         int id = miniCache.getCompleteServiceOrder().getId();
 

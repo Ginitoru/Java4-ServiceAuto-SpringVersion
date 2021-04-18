@@ -3,7 +3,7 @@ package com.gini.iordache.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.support.ResourceBundleMessageSource;
+
 import org.thymeleaf.templateresolver.ClassLoaderTemplateResolver;
 
 

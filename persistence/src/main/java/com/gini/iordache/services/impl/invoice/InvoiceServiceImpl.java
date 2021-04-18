@@ -1,5 +1,6 @@
 package com.gini.iordache.services.impl.invoice;
 
+import com.gini.errors.invoice.InvoiceException;
 import com.gini.iordache.dao.iterfaces.InvoiceDao;
 import com.gini.iordache.entity.invoice.Invoice;
 import com.gini.iordache.entity.order.ServiceOrder;
@@ -90,7 +91,7 @@ public class InvoiceServiceImpl implements InvoiceService {
         String path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf";
 
         Invoice invoice = invoiceDao.findInvoiceByServiceOrder(serviceOrder)
-                                        .orElseThrow(() -> new RuntimeException("Invoice not found"));
+                                        .orElseThrow(() -> new InvoiceException("Invoice not found"));
 
         byte [] pdfBytes = invoice.getInvoice();
 
