@@ -69,7 +69,13 @@ public class OrderExceptionHandler {
     public String processInvoiceException(InvoiceException e){
         e.printStackTrace();
         return "redirect:/app/main";
+    }
 
+
+    @ExceptionHandler(PartOrderException.class)
+    public String processAddPartToOrderException(PartOrderException e){
+        e.printStackTrace();
+        return "redirect:/orderPart/addPart-page";
     }
 
 

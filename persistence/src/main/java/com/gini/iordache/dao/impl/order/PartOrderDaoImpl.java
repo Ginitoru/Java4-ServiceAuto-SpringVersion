@@ -21,7 +21,7 @@ public class PartOrderDaoImpl implements PartOrderDao {
 
 
     @Override
-    public void createPartServiceOrder(PartOrder partServiceOrder){
+    public void createPartOrder(PartOrder partServiceOrder){
         entityManager.persist(partServiceOrder);
 
     }

@@ -10,5 +10,5 @@ public interface PartOrderService {
     void addPartToServiceOrder(Part part, ServiceOrder serviceOrder, int count);
 
     @Transactional
-    int deletePartFromServiceOrder(String partNumber, int count);
+    int deletePartFromServiceOrder(String partNumber, int count, ServiceOrder order);
 }

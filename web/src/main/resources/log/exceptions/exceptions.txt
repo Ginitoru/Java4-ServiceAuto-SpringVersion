@@ -1,8 +1,35 @@
 
-void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder) Invoice not found 18-04-2021 18:57:53
-void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder) Invoice not found 18-04-2021 19:10:55
-void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder) Invoice not found 18-04-2021 20:23:27
-void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder) Invoice not found 18-04-2021 20:23:31
-Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 18-04-2021 20:32:11
-Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 18-04-2021 20:40:06
-void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder) Invoice not found 18-04-2021 20:41:04
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Not enough parts in WAREHOUSE!!!  18-04-2021 21:01:38
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Not enough parts in WAREHOUSE!!!  18-04-2021 21:01:44
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:14:54
+int com.gini.iordache.services.impl.order.OrderServiceImpl.closeOrder(ServiceOrder) Order is already CLOSED 18-04-2021 21:19:58
+void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder) Invoice not found 18-04-2021 21:20:08
+int com.gini.iordache.services.impl.order.OrderServiceImpl.closeOrder(ServiceOrder) Order is already CLOSED 18-04-2021 21:20:24
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:20:48
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:20:50
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:20:51
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:20:53
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:20:54
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:30:39
+int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 18-04-2021 21:56:12
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:56:27
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 21:56:41
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 22:49:59
+int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 18-04-2021 22:50:36
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 22:51:14
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 23:04:20
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 23:04:22
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 23:04:25
+int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 18-04-2021 23:05:45
+int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 18-04-2021 23:05:47
+int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 18-04-2021 23:05:48
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 23:05:52
+int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 18-04-2021 23:06:52
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 18-04-2021 23:06:55
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 18-04-2021 23:07:00
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 23:07:06
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 18-04-2021 23:07:24
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 23:07:28
+int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 18-04-2021 23:08:57
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 23:09:04
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 18-04-2021 23:11:10

@@ -6,7 +6,7 @@ import com.gini.iordache.entity.order.ServiceOrder;
 import java.util.Optional;
 
 public interface PartOrderDao {
-    void createPartServiceOrder(PartOrder partServiceOrder);
+    void createPartOrder(PartOrder partServiceOrder);
 
     Optional<PartOrder> findPartOrderByPartName(String partNumber, ServiceOrder serviceOrder);
 

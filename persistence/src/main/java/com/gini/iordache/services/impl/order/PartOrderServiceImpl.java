@@ -1,6 +1,7 @@
 package com.gini.iordache.services.impl.order;
 
 
+import com.gini.errors.order.PartOrderException;
 import com.gini.errors.order.NotEnoughPartsException;
 import com.gini.iordache.convertor.PartConvertor;
 import com.gini.iordache.dao.iterfaces.PartDao;
@@ -21,34 +22,41 @@ import java.util.Optional;
 @Service
 public class PartOrderServiceImpl implements PartOrderService {
 
-    private final PartOrderDao partServiceOrderDao;
+    private final PartOrderDao partOrderDao;
     private final PartDao partDao;
-    private final OrderDao serviceOrderDao;
+    private final OrderDao orderDao;
 
     @Override
     @Transactional
     public void addPartToServiceOrder(Part part, ServiceOrder serviceOrder, int count){
 
-        Optional<PartOrder> optPartOrder = partServiceOrderDao.findPartOrderByPartName(part.getPartNumber(), serviceOrder);
-        PartOrder partServiceOrder = PartConvertor.convert(part,serviceOrder, count);
+
+        if((serviceOrder.getOrderStatus().toString().equals("CLOSE"))){
+            throw new PartOrderException("Order is CLOSED can't add any more parts to it!");
+        }
 
 
-        if(count <= part.getCount()){
+        Optional<PartOrder> optPartOrder = partOrderDao.findPartOrderByPartName(part.getPartNumber(), serviceOrder);
+        PartOrder partServiceOrder = PartConvertor.convert(part,serviceOrder, count);  //-> transform piesa din warehouse intro piesa ce va intra in comanda
+
+
+        if((count <= part.getCount())){
+
 
             if(optPartOrder.isEmpty()){
 
-                partServiceOrderDao.createPartServiceOrder(partServiceOrder);                //adauga piesa in comanda daca nu exista
+                partOrderDao.createPartOrder(partServiceOrder);                //adauga piesa in comanda daca nu exista
 
             }else{
 
-                partServiceOrderDao.updatePartOrderCount(optPartOrder.get().getId(), count); // daca piesa exista in comanda si o adaugam iar ii va creste
+                partOrderDao.updatePartOrderCount(optPartOrder.get().getId(), count); // daca piesa exista in comanda si o adaugam iar ii va creste
             }                                                                                    // nr de bucati din comanda
 
 
 
             int id = serviceOrder.getId();
 
-            serviceOrderDao.updateOrderStatus(OrderStatus.READY, id);
+            orderDao.updateOrderStatus(OrderStatus.READY, id);
             partDao.decreasePartCount(count, part.getPartNumber());                              //scade nr de piese pe care le baga in comanda din magazie
             return;
 
@@ -61,10 +69,14 @@ public class PartOrderServiceImpl implements PartOrderService {
 
     @Override
     @Transactional
-    public int deletePartFromServiceOrder(String partNumber, int count){
+    public int deletePartFromServiceOrder(String partNumber, int count, ServiceOrder order){
+
+        if(order.getOrderStatus().toString().equals("CLOSE")){
+            throw new PartOrderException("Order is CLOSED can't remove parts from it!");
+        }
 
         partDao.updatePartCount(count, partNumber);
-        return partServiceOrderDao.deletePartFromServiceOrder(partNumber);
+        return partOrderDao.deletePartFromServiceOrder(partNumber);
 
     }
 

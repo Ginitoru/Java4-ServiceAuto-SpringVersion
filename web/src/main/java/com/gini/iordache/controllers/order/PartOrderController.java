@@ -27,7 +27,7 @@ import java.util.Optional;
 @RequestMapping("/orderPart")
 public class PartOrderController {
 
-    private final PartOrderService partServiceOrderService;
+    private final PartOrderService partOrderService;
     private final OrderService serviceOrderService;
     private final MiniCache miniCache;
 
@@ -45,11 +45,15 @@ public class PartOrderController {
 
         List<PartOrder> partServiceOrders = serviceOrderService.getPartsFormServiceOrder(id);
 
-        Optional
-                .ofNullable(miniCache.getPart())
+        Optional.ofNullable(miniCache.getPart())
                                 .ifPresentOrElse
                                         (part -> model.addAttribute("part", part),
                                            () -> model.addAttribute("part", new Part()));
+
+
+        Optional.ofNullable(miniCache.getCompleteServiceOrder())
+                                .ifPresentOrElse(order -> model.addAttribute("order",order),  //pt javascript
+                                                    () -> model.addAttribute("order",new ServiceOrder()));
 
 
         model.addAttribute("serviceOrderParts",partServiceOrders);
@@ -89,7 +93,7 @@ public class PartOrderController {
 
             var count = Integer.parseInt(request.getParameter("count"));
             ServiceOrder serviceOrder = miniCache.getCompleteServiceOrder();
-            partServiceOrderService.addPartToServiceOrder(miniCache.getPart(), serviceOrder, count);
+            partOrderService.addPartToServiceOrder(miniCache.getPart(), serviceOrder, count);
 
         }catch(NumberFormatException e){
             e.printStackTrace();
@@ -108,7 +112,7 @@ public class PartOrderController {
     public String deletePartFromServiceOrder(@RequestParam("partNumber") String partNumber, @RequestParam("count") int count){
 
 
-        partServiceOrderService.deletePartFromServiceOrder(partNumber, count);
+        partOrderService.deletePartFromServiceOrder(partNumber, count, miniCache.getCompleteServiceOrder());
         miniCache.findPartByPartNumber(partNumber); // -> sa imi creasca si count-ul in pagina html de la piesa din magazie
         return "redirect:/orderPart/addPart-page";
     }

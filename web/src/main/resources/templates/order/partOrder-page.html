@@ -73,7 +73,7 @@
                        
 
                         <div class="group">
-                            <input type="submit" value="Add part" class="btn">
+                            <input type="submit" value="Add part" class="btn" onclick="addPart()">
                             <input type="text" name="count" class="field"/>
                             <label th:if="${param.noPart}">no more parts</label>
                             <label th:if="${param.invalid}">wrong format</label>
@@ -111,7 +111,7 @@
 
                                 <a th:href="@{/orderPart/deletePart(partNumber=${bau.partNumber}, count =${bau.count})}" class="delete">
                                     <input type="button" value="Delete" class="delete-btn"
-                                            onclick=" return confirm('Do you really want to delete this part?')"/>
+                                            onclick= "deletePart()"/>
                                 </a>
                             </td>
                         </tr>
@@ -129,5 +129,35 @@
         <footer>
             <p>powerd by Ginitoru<span>&trade;</span></p>
         </footer>
+
+
+    <script th:inline="javascript">
+        function deletePart(){
+            const orderStatus = [[${order.orderStatus}]];
+            const orderId = [[${order.id}]];
+
+            if(orderStatus.toString() === 'CLOSE') {
+                alert('order nr: ' + orderId + " is CLOSED. You can't modify the order!")
+            }
+
+            if(orderStatus.toString() !== 'CLOSE') {
+                return confirm('Do you really want to delete this part?')
+            }
+        }
+    </script>
+
+    <script th:inline="javascript">
+        function addPart(){
+            const orderStatus = [[${order.orderStatus}]];
+            const orderId = [[${order.id}]];
+
+            if(orderStatus.toString() === 'CLOSE') {
+                alert('order nr: ' + orderId + " is CLOSED. You can't modify the order!")
+            }
+        }
+
+    </script>
+
+
     </body>
 </html>
