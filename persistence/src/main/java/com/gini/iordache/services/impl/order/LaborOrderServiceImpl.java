@@ -1,6 +1,7 @@
 package com.gini.iordache.services.impl.order;
 
 
+import com.gini.errors.order.LaborOrderException;
 import com.gini.iordache.convertor.LaborConvertor;
 import com.gini.iordache.dao.iterfaces.LaborOrderDao;
 import com.gini.iordache.dao.iterfaces.OrderDao;
@@ -22,7 +23,7 @@ import java.util.Optional;
 @Service
 public class LaborOrderServiceImpl implements LaborOrderService {
 
-    private final LaborOrderDao laborServiceOrderDao;
+    private final LaborOrderDao laborOrderDao;
     private final LaborPriceServiceImpl laborPriceService;
     private final OrderDao serviceOrderDao;
 
@@ -30,16 +31,21 @@ public class LaborOrderServiceImpl implements LaborOrderService {
     //method 1
     @Override
     @Transactional
-    public void addLaborToServiceOrder(Labor labor, ServiceOrder serviceOrder){
+    public void addLaborToServiceOrder(Labor labor, ServiceOrder order){
+
+        if(order.getOrderStatus().toString().equals("CLOSE")){
+            throw new LaborOrderException("Order is CLOSED, can't add any more labors to it!");
+        }
+
 
          double laborPrice = this.laborPrice(labor);
          laborPrice = TwoDigitsDouble.formatPrice(laborPrice); //formatez pretul la 2 cifre dupa punct
 
-         LaborOrder laborServiceOrder = LaborConvertor.convert(labor,laborPrice, serviceOrder);
+         LaborOrder laborServiceOrder = LaborConvertor.convert(labor,laborPrice, order);
 
 
-         laborServiceOrderDao.createLaborServiceOrder(laborServiceOrder);
-         serviceOrderDao.updateOrderStatus(OrderStatus.READY, serviceOrder.getId());
+         laborOrderDao.createLaborServiceOrder(laborServiceOrder);
+         serviceOrderDao.updateOrderStatus(OrderStatus.READY, order.getId());
 
     }
 
@@ -107,12 +113,16 @@ public class LaborOrderServiceImpl implements LaborOrderService {
 
     @Override
     @Transactional
-    public void deleteLaborFromOrder(int id){
+    public void deleteLaborFromOrder(int id, ServiceOrder order){
 
-        Optional<LaborOrder> laborOrder = laborServiceOrderDao.findLaborOrderById(id);
+        if(order.getOrderStatus().toString().equals("CLOSE")){
+            throw new LaborOrderException("Order is CLOSED, can't add any more labors to it!");
+        }
+
+        Optional<LaborOrder> laborOrder = laborOrderDao.findLaborOrderById(id);
 
         if(laborOrder.isPresent()){
-            laborServiceOrderDao.deleteLaborFromOrder(id);
+            laborOrderDao.deleteLaborFromOrder(id);
             return;
         }
 

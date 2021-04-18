@@ -32,7 +32,7 @@ public class PartOrderServiceImpl implements PartOrderService {
 
 
         if((serviceOrder.getOrderStatus().toString().equals("CLOSE"))){
-            throw new PartOrderException("Order is CLOSED can't add any more parts to it!");
+            throw new PartOrderException("Order is CLOSED, can't add any more parts to it!");
         }
 
 

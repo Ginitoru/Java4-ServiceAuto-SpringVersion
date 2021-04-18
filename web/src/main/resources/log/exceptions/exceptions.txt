@@ -33,3 +33,19 @@ void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToService
 int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 18-04-2021 23:08:57
 void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED can't add any more parts to it! 18-04-2021 23:09:04
 Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 18-04-2021 23:11:10
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:42
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:43
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:45
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:52
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:53
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:53
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:53
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:54
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:54
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:30:54
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:34:06
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:34:07
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:41:44
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:43:45
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.addLaborToServiceOrder(Labor,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:43:47
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Order is CLOSED, can't add any more labors to it! 18-04-2021 23:43:48

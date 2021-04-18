@@ -41,7 +41,7 @@
             
                                 <td>
                                     <a th:href="@{/laborOrder/addLaborToOrder(laborId=${labor.id})}" class="link">
-                                            <input type="button" class="add-btn" value="Add labor to order">
+                                        <input type="button" class="add-btn" value="Add labor to order" onclick="addLabor()">
                                     </a>
                                 </td>
                             </tr>
@@ -68,10 +68,7 @@
                                 <th>Action</th>
                             </tr>
                         </thead>
-            
-                 
-                  
-                
+
                         <tbody>
                             <tr th:each=" laborInOrder : ${orderLabors} ">
                                 <td th:text="${laborInOrder.laborDescription}"></td>
@@ -81,7 +78,7 @@
                                 <td>
                                     <form class="link" action="#" th:action="@{/laborOrder/deleteLabor}" method="POST">
                                         <input type="hidden" name="laborId" th:value="${laborInOrder.id}">
-                                        <input type="submit" value="DELETE" class="delete-btn"/>
+                                        <input type="submit" value="DELETE" class="delete-btn" onclick="deleteLabor()"/>
                                     </form>
                                 </td>
                             </tr>
@@ -104,6 +101,33 @@
         <footer>
             <p>powerd by Ginitoru<span>&trade;</span></p>
         </footer>
+
+        <script th:inline="javascript">
+            function deleteLabor(){
+                const orderStatus = [[${order.orderStatus}]];
+                const orderId = [[${order.id}]];
+
+                if(orderStatus.toString() === 'CLOSE') {
+                    alert('order nr: ' + orderId + " is CLOSED. You can't modify the order!")
+                }
+
+                if(orderStatus.toString() !== 'CLOSE') {
+                    return confirm('Do you really want to delete this part?')
+                }
+            }
+        </script>
+
+        <script th:inline="javascript">
+            function addLabor(){
+                const orderStatus = [[${order.orderStatus}]];
+                const orderId = [[${order.id}]];
+
+                if(orderStatus.toString() === 'CLOSE') {
+                    alert('order nr: ' + orderId + " is CLOSED. You can't modify the order!")
+                }
+            }
+
+        </script>
 
 
 

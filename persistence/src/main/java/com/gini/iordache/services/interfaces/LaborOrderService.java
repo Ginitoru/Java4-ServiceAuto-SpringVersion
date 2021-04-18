@@ -13,5 +13,5 @@ public interface LaborOrderService {
     void addLaborToServiceOrder(Labor labor, ServiceOrder serviceOrder);
 
     @Transactional
-    void deleteLaborFromOrder(int id);
+    void deleteLaborFromOrder(int id, ServiceOrder order);
 }

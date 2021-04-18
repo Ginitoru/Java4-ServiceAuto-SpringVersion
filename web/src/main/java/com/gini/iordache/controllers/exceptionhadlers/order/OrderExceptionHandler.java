@@ -23,7 +23,6 @@ public class OrderExceptionHandler {
 
     @ExceptionHandler(OrderIsClosedException.class)
     public String orderIsClosedException(OrderIsClosedException e){
-
         e.printStackTrace();
         return "redirect:/app/main";
 
@@ -60,7 +59,6 @@ public class OrderExceptionHandler {
     @ExceptionHandler(SelectOrderException.class)
     public String processSelectOrderException(SelectOrderException e){
         e.printStackTrace();
-
         return "redirect:/app/main";
     }
 
@@ -73,9 +71,16 @@ public class OrderExceptionHandler {
 
 
     @ExceptionHandler(PartOrderException.class)
-    public String processAddPartToOrderException(PartOrderException e){
+    public String processPartOrderException(PartOrderException e){
         e.printStackTrace();
         return "redirect:/orderPart/addPart-page";
+    }
+
+
+    @ExceptionHandler(LaborOrderException.class)
+    public String processLaborOrderException(LaborOrderException e){
+        e.printStackTrace();
+        return "redirect:/laborOrder/laborOrderPage";
     }
 
 
