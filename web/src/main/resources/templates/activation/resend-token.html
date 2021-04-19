@@ -27,7 +27,7 @@
             <form class="form" action="#" th:action="@{/resendToken}" th:object="${token}" method="POST"> 
                  
                     <input class="field" type="text" name="email" placeholder="email adress"/>
-                    <input class ="btn" type="submit" value="Send activation email"/>
+                    <input class ="btn" type="submit" value="Send activation email" onclick="showSendEmailAlert()"/>
                
 
                 
@@ -39,7 +39,14 @@
             <div class="bottom">
                 <p><p>Ginitoru<span>&trade;</span></p></p>
             </div>
-            
         </footer>
+
+        <script th:inline="javascript">
+            function showSendEmailAlert(){
+                alert('An email was sent to your email address to activate the account!')
+            }
+        </script>
+
+
     </body>
 </html>

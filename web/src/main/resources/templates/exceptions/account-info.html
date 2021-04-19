@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/activation/account-info.css}"/>
+    <title>Resend Token</title>
+
+</head>
+    <body>
+        <header>
+            <div class="active-text" th:if="${param.active}">
+                <h1>Account is active</h1>
+            </div>
+        </header>
+
+        <div class="login-page" th:if="${param.active}">
+            <p>Click the link below to go to the login page</p>
+            <a class="login" th:href="@{/login}"> Login page</a>
+        </div>
+        
+
+      
+        <div class="invalid" th:if="${param.invalidToken}">
+
+            <p>The link is no longer valid.</p>
+            <p> To resend a new activation email click the button below.</p>
+            
+            <a th:href="@{/token}"><button type="button">Send activation email</button></a>
+        </div>
+
+        <footer>
+            <div class="bottom">
+                <p class="footer-text"><p>Ginitoru<span>&trade;</span></p></p>
+            </div>        
+        </footer>
+    </body>
+</html>
