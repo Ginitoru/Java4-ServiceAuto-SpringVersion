@@ -81,18 +81,8 @@ public class UserController {
     }
 
     @GetMapping("/activate")
-    public String activateAccount(HttpServletRequest request, Model model) {
-
-        var token = request.getParameter("token");
-        var email = request.getParameter("email");
-
-        System.out.println("token " + token + " username " + email);
-
-        model.addAttribute("pacpac", token);
-        model.addAttribute("email", email);
-
-
-        return "user/activate-user";
+    public String activateAccount() {
+        return "activation/confirmAccount-activation";
     }
 
 }

@@ -28,7 +28,7 @@ public class ActivateAccountController {
     @GetMapping("/account")
     public String accountActivePage(){
 
-        return "exceptions/account-info";
+        return "activation/account-info";
 
     }
 }
