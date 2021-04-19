@@ -3,43 +3,43 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Resend Token</title>
+    <link rel="stylesheet" type="text/css" th:href="@{/css/activation/resend-token.css}"/>
+    <title>Resend activation email</title>
 
 </head>
-<body>
+    <body>
+        <header>
+            <h1>Account is not active</h1>
+        </header>
 
 
-        <h1>TOKEN PAGE</h1>
-    <hr>
-    <br>
-    <br>
-
-    <form action="#" th:action="@{/resendToken}"
-            th:object="${token}" method="POST">
-
-        <div>
-            <h3>Account is not active</h3>
-            <br>
-            <h3>Enter email to resend activation token</h3>
-
-
-
-            <input type="text" id="email" name="email" placeholder="email">
-
-            <input type="submit" value="Resend Token">
-
-            <div th:if="${param.error}">
-                <h3>wrong email adress</h3>
+            <div class="text">          
+                <h3>Enter email in the field below to activate account:</h3>
             </div>
 
+            <div class ="error" th:if="${param.error}">
+                <h4>wrong email adress</h4>
+            </div>
+
+        <div class="resend-token-form">     
+            <form class="form" action="#" th:action="@{/resendToken}" th:object="${token}" method="POST"> 
+                 
+                    <input class="field" type="text" name="email" placeholder="email adress"/>
+                    <input class ="btn" type="submit" value="Send activation email"/>
+               
+
+                
+                
+            </form>   
         </div>
 
-
-
-
-    </form>
-
-
-</body>
+        <footer>
+            <div class="bottom">
+                <p><p>Ginitoru<span>&trade;</span></p></p>
+            </div>
+            
+        </footer>
+    </body>
 </html>

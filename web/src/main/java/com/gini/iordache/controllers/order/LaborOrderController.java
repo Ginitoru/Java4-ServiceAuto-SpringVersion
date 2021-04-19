@@ -68,7 +68,7 @@ public class LaborOrderController {
 
         return "redirect:/laborOrder/laborOrderPage";
     }
-    
+
 
     @PostMapping("/deleteLabor")
     public String deleteLaborOrder(HttpServletRequest request){
