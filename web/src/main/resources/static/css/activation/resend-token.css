@@ -55,11 +55,21 @@ h1{
     height: 35px;
     border-radius: 5px;
     border: 1px solid tomato;
-    color: white;
     font-weight: 600;
     font-size: 15px;
     color: tomato;
     background-color: white;
+}
+
+.field:focus{
+    outline: none;
+    border: 2px solid tomato;
+}
+
+.btn:focus{
+    outline: none;
+    background-color: tomato;
+    color: whitesmoke;
 }
 
 .btn:hover{

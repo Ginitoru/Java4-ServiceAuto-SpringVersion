@@ -2,147 +2,303 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"></meta>
-    <title>Title</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+<!--    <link rel="stylesheet" type="text/css" href="/css/invoice.css"/>-->
+    <title>Invoice</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        body{
+            width: 100%;
+            height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: whitesmoke;
+            min-width: 450px;
+        }
+
+        .header{
+            height: 100px;
+            background-color: red;
+            color: whitesmoke;
+            align-items: center;
+        }
+
+        h1{
+            margin-top: 25px;
+            margin-left: 20px;
+        }
+
+        .color{
+            width: 100%;
+            height:10px;
+            background-color: black;
+        }
+
+        .invoice-container{
+
+        }
+
+
+
+        .invoice-container{
+            margin: 20px;
+        }
+
+        .container-a{
+            width: 100%;
+
+
+        }
+
+
+
+        .sub-container-1{
+            position: relative;
+            width: 100%;
+            height: 150px;
+            align-items: center;
+            border-bottom: 2px solid tomato;
+            margin:0;
+        }
+
+        h2{
+            position: relative;
+            top: 50px;
+            left: 20px;
+            margin: auto;
+            color: red;
+        }
+
+        .sub-container-2{
+            border-bottom: 2px solid tomato;
+            top:0;
+            left: 250px;
+
+        }
+
+        .orderId{
+            margin-left: 33px;
+        }
+
+        .firstName{
+            padding-left: 34px;
+        }
+
+        .cnp{
+            padding-left: 48px;
+        }
+
+        .company{
+            padding-left: 33px;
+        }
+
+        .cui{
+            padding-left: 53px;
+        }
+
+        .vehicle{
+            padding-left: 22px;
+        }
+
+        .model{
+            padding-left: 29px;
+        }
+
+        .vin{
+            padding-left: 46px;
+        }
+
+        th{
+            width: 25%;
+            background-color: red;
+            color: whitesmoke;
+        }
+
+        td{
+            width: 25%;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+
+
+        table{
+            width: 100%;
+            text-align: left;
+        }
+
+        .container-c{
+            width: 100%;
+            height: 5%;
+
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom: 10px solid red;
+
+
+        }
+
+        .total{
+            width: 95%;
+            height: 100%;
+            display: flex;
+            margin: 5px auto;
+            border-bottom: 1px solid red;
+        }
+
+        .space{
+            width: 100%;
+        }
+
+
+
+
+
+
+
+
+
+    </style>
+
+
 </head>
 <body>
-    <h3>Invoice</h3>
-    <br></br>
-
-    <h2>Gini Service</h2>
-
-    <br></br>
-    <div>
-        <label>Order: </label>
-        <label th:text="${order.id}"></label>
-    </div>
-    <br></br>
-
-    <div>
-        <label>Username: </label>
-        <label th:text="${order.user.username}"></label>
-
-    </div>
-
-        <br></br>
+<div class="header">
+    <div class="color"></div>
+    <h1>INVOICE</h1>
+</div>
 
 
+<div class="invoice-container">
+    <div class="container-a">
+        <div class="sub-container-1">
+            <h2>Gini Auto Service</h2>
+        </div>
 
-        <div th:if="${person != null}">
-            <label>Client: </label>
-            <label th:text="${person.firstName}"> </label>
-            <label th:text="${person.lastName}"></label>
+        <div class="sub-container-2">
+
             <div>
-                <label>cnp: </label>
-                <label th:text="${person.cnp}"></label>
+                <lebel>Order:</lebel>
+                <label class="orderId" th:text="${order.id}"></label>
             </div>
-        </div>
 
-        <div th:if="${company != null}">
-            <label>Client: </label>
-            <label th:text="${company.name}"></label>
             <div>
-                <label>cui: </label>
-                <label th:text="${company.cui}"></label>
+                <label>Username:</label>
+                <label th:text="${order.user.username}"></label>
             </div>
-        </div>
+
+            <div th:if="${person != null}">
+                <lebel>Client:</lebel>
+                <label class="firstName" th:text="${person.firstName}"></label>
+                <label th:text="${person.lastName}"></label>
+                <div>
+                    <label>cnp:</label>
+                    <label class="cnp" th:text="${person.cnp}"></label>
+                </div>
+            </div>
+
+            <div th:if="${company != null}">
+                <label>Client:</label>
+                <label class="company" th:text="${company.name}"></label>
+                <div>
+                    <label>cui:</label>
+                    <label class="cui" th:text="${company.cui}"></label>
+                </div>
+            </div>
+
+
+            <div>
+                <label>Vehicle:</label>
+                <lebel class="vehicle" th:text="${order.vehicle.carManufacturer}"></lebel>
+            </div>
+            <div>
+                <label>Model:</label>
+                <label class="model" th:text="${order.vehicle.carModel}"></label>
+            </div>
+
+            <div>
+                <label>VIN:</label>
+                <label class="vin" th:text="${order.vehicle.serialNumber}"></label>
+            </div>
 
 
 
-<!--    VEHICLE-->
 
-    <div class="vehicle">
-        <div>
-            <label>Vehicle: </label>
-            <label th:text="${order.vehicle.carManufacturer}"></label>
-        </div>
-
-        <div>
-            <label>Model: </label>
-            <label th:text="${order.vehicle.carModel}"></label>
-        </div>
-
-        <div>
-            <label>VIN: </label>
-            <label th:text="${order.vehicle.serialNumber}"></label>
         </div>
     </div>
 
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
-                                <br></br>
+    <!--    PART TABLE-->
+    <div class="container-B">
+        <div class="part-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>part   </th>
+                    <th>part nr</th>
+                    <th>count  </th>
+                    <th>price  </th>
+                </tr>
+                </thead>
 
+                <tbody>
+                <tr th:each="part : ${order.parts}">
+                    <td th:text="${part.partName}"></td>
+                    <td th:text="${part.partNumber}"></td>
+                    <td th:text="${part.count}"></td>
+                    <td th:text="${part.price}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
+        <!--    Labor table-->
 
-<!--    PART TABLE-->
+        <div class="labor-table">
+            <table>
+                <thead>
+                <tr>
+                    <th>labor   </th>
+                    <th>category</th>
+                    <th>time    </th>
+                    <th>price  </th>
+                </tr>
+                </thead>
 
-    <div class="part-table">
-        <table>
-            <thead>
-            <tr>
-                <th>part   </th>
-                <th>part nr</th>
-                <th>count  </th>
-                <th>price  </th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr th:each="part : ${order.parts}">
-                <td th:text="${part.partName}"></td>
-                <td th:text="${part.partNumber}"></td>
-                <td th:text="${part.count}"></td>
-                <td th:text="${part.price}"></td>
-            </tr>
-            </tbody>
-        </table>
+                <tbody>
+                <tr th:each="labor : ${order.labors}">
+                    <td th:text="${labor.laborDescription}"></td>
+                    <td th:text="${labor.category}"></td>
+                    <td th:text="${labor.timedLabor}"></td>
+                    <td th:text="${labor.laborPrice}"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
-                         <br></br>
-                         <br></br>
+</div>
 
-<!--    Labor table-->
-
-    <div class="labor-table">
-        <table>
-            <thead>
-            <tr>
-                <th>labor   </th>
-                <th>category</th>
-                <th>time    </th>
-                <th>price  </th>
-            </tr>
-            </thead>
-
-            <tbody>
-            <tr th:each="labor : ${order.labors}">
-                <td th:text="${labor.laborDescription}"></td>
-                <td th:text="${labor.category}"></td>
-                <td th:text="${labor.timedLabor}"></td>
-                <td th:text="${labor.laborPrice}"></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-
-                        <br></br>
-                        <br></br>
-                        <br></br>
-                        <br></br>
-
-
+<div class="container-c">
     <div class="total">
-        <label>TOTAL:.............................</label>
+        <label>TOTAL:</label>
+        <label class="space"></label>
         <label th:text="${total}"></label>
     </div>
-    <br></br>
+
     <div class="total">
-        <label>TOTAL + VAT.......................</label>
+        <label>TOTAL+VAT:</label>
+        <label class="space"></label>
         <label th:text="${totalVAT}"></label>
     </div>
-
-
-
+</div>
 
 
 
