@@ -35,8 +35,8 @@ public class LaborOrderController {
 
         miniCache.loadLaborsOrder();
 
-        model.addAttribute("labors", miniCache.getLabors());
-        model.addAttribute("orderLabors",miniCache.getLaborFromOrder());
+        model.addAttribute("labors", miniCache.retrieveLabors());
+        model.addAttribute("orderLabors",miniCache.retrieveLaborFromOrder());
         model.addAttribute("order", miniCache.getCompleteServiceOrder()); // pt javascript din laborOrder-page.html
 
         return "order/laborOrder-page";
@@ -47,7 +47,7 @@ public class LaborOrderController {
     public String searchLabor(HttpServletRequest request, Model model){
 
         var laborDescription = request.getParameter("laborDescription");
-        miniCache.loadLabors(laborDescription);
+        miniCache.retrieveLabors(laborDescription);
 
         return "redirect:/laborOrder/laborOrderPage";
     }
@@ -61,7 +61,7 @@ public class LaborOrderController {
 
         int id = Integer.parseInt(request.getParameter("laborId"));
 
-        miniCache.getLabors().stream()
+        miniCache.retrieveLabors().stream()
                                 .filter(u -> u.getId() == id)
                                 .findFirst()
                                 .ifPresent(l -> laborOrderService.addLaborToServiceOrder(l, serviceOrder));
@@ -79,6 +79,4 @@ public class LaborOrderController {
 
         return "redirect:/laborOrder/laborOrderPage";
     }
-
-
 }

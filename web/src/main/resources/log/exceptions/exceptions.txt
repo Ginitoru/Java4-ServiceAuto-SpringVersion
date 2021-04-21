@@ -1,0 +1,4 @@
+
+Part com.gini.iordache.services.impl.auto.PartServiceImpl.findPartByPartNumber(String) Part does not exists! 21-04-2021 23:26:33
+void com.gini.iordache.services.impl.order.PartOrderServiceImpl.addPartToServiceOrder(Part,ServiceOrder,int) Order is CLOSED, can't add any more parts to it! 21-04-2021 23:26:38
+int com.gini.iordache.services.impl.order.PartOrderServiceImpl.deletePartFromServiceOrder(String,int,ServiceOrder) Order is CLOSED can't remove parts from it! 21-04-2021 23:26:41

@@ -35,14 +35,14 @@ public class EmailService implements EmailSender {
         MimeMessageHelper helper = new MimeMessageHelper(mailMessage, "utf-8");
 
         String link = "http://localhost:8080/activate?token=" + token + "&email=" + userEmail;
-        String email2 = emailHtmlRenderer.constructHtmlMailPage(link, username);
+        String email = emailHtmlRenderer.constructHtmlMailPage(link, username);
 
 
         try {
             helper.setSubject("Confirmation Token");
             helper.setTo(userEmail);
-            helper.setFrom("application@baubau.com");
-            helper.setText(email2, true);
+            helper.setFrom("application@service.com");
+            helper.setText(email, true);
             mailSender.send(mailMessage);
 
 

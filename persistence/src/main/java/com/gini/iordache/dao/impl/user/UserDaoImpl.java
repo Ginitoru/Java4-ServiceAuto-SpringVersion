@@ -59,8 +59,6 @@ public class UserDaoImpl implements UserDao {
     @Override
     public int activateUserAccount(User user){
 
-   //     //todo: nu prea pare ok, dar pt inceput merge-> de vazut daca pot sa o mai optimizez -> de facut doar 1 update nu 2
-
         String jpql = "UPDATE ActivationToken a SET a.activatedAt =: activatedAt WHERE a.id =: id ";
 
         String jpql2 = "UPDATE User u SET u.isEnabled = TRUE, u.isNonLoked = TRUE WHERE u.username =: username";
@@ -75,8 +73,8 @@ public class UserDaoImpl implements UserDao {
         return entityManager.createQuery(jpql2)
                         .setParameter("username", user.getUsername())
                         .executeUpdate();
-
     }
+
 
     @Override
     public Optional<User> findUserWithToken(String email){
@@ -88,5 +86,4 @@ public class UserDaoImpl implements UserDao {
                     .getResultStream()
                     .findFirst();
     }
-
 }

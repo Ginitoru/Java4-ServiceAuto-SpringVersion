@@ -9,6 +9,7 @@ import com.gini.iordache.entity.order.LaborOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 
 import java.util.List;
+import java.util.Map;
 
 public interface MiniCache {
     ServiceOrder loadCompleteServiceOrderById(int id);
@@ -17,37 +18,51 @@ public interface MiniCache {
 
     void loadLaborsOrder();
 
-    List<LaborOrder> getLaborFromOrder();
+    List<LaborOrder> retrieveLaborFromOrder();
 
-    void loadLabors(String laborDescription);
+    void retrieveLabors(String laborDescription);
 
-    List<Labor> getLabors();
+    List<Labor> retrieveLabors();
 
     Part findPartByPartNumber(String partNumber);
 
     Vehicle findVehicleBySerialNumber(String serialNumber);
 
-    Vehicle getVehicle();
+    Vehicle retrieveVehicle();
 
     Vehicle getEmptyVehicle();
 
     Person findPersonByCnp(String cnp);
 
-    Person getEmptyPerson();
+    Person loadEmptyPerson();
 
-    Person getPerson();
+    Person retrievePerson();
 
     Company findCompanyByCui(String cui);
 
-    Company getCompany();
+    Company retrieveCompany();
 
-    Company getEmptyCompany();
+    Company loadEmptyCompany();
 
-    Part getPart();
+    Part retrievePart();
 
     void resetCompanySearch();
 
     void resetPersonSearch();
 
     void resetCarSearch();
+
+    Map<String, ServiceOrder> getOrder();
+
+    Map<String, List<Labor>> getLabors();
+
+    Map<String, List<LaborOrder>> getOrderLabors();
+
+    Map<String, Part> getParts();
+
+    Map<String, Vehicle> getVehicle();
+
+    Map<String, Person> getPerson();
+
+    Map<String, Company> getCompany();
 }

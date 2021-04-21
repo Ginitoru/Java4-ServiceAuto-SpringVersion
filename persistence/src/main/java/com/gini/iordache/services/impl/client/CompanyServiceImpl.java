@@ -31,8 +31,6 @@ public class CompanyServiceImpl implements CompanyService {
         }
 
         throw new CompanyAlreadyExistsException("Company Already exists");
-
-
     }
 
 
@@ -44,6 +42,4 @@ public class CompanyServiceImpl implements CompanyService {
                         .orElseThrow(() -> new CompanyNotFoundException("Company not found!"));
 
     }
-
-
 }

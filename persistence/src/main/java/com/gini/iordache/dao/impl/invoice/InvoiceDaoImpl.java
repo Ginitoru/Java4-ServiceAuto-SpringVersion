@@ -38,11 +38,5 @@ public class InvoiceDaoImpl implements InvoiceDao {
                                 .setParameter("serviceOrder", serviceOrder)
                                 .getResultStream()
                                 .findFirst();
-
     }
-
-
-
-
-
 }

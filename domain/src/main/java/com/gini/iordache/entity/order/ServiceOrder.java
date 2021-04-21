@@ -64,12 +64,6 @@ public class ServiceOrder {
     private double totalPriceVAT;
 
 
-
-
-
-
-
-
     public static class Builder{
 
         private ServiceOrder serviceOrder = new ServiceOrder();
@@ -123,8 +117,6 @@ public class ServiceOrder {
             serviceOrder.labors = labors;
             return this;
         }
-
-
 
         public ServiceOrder build(){
             return serviceOrder;

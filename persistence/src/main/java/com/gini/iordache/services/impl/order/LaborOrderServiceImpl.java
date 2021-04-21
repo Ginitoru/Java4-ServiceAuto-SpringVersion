@@ -59,7 +59,7 @@ public class LaborOrderServiceImpl implements LaborOrderService {
 
         if(laborPrice.isPresent()){
 
-                switch (laborCategory){
+                switch (laborCategory) {
 
 
                     case "MECHANICAL" -> {
@@ -101,12 +101,8 @@ public class LaborOrderServiceImpl implements LaborOrderService {
                     case "ITP_TRUCK" -> {
                         return labor.getTimedLabor() * laborPrice.get().getItpTruckPrice();
                     }
-
-
                 }
-
         }
-
        return 0.0;
     }
 
@@ -126,10 +122,6 @@ public class LaborOrderServiceImpl implements LaborOrderService {
             return;
         }
 
-
         throw new RuntimeException("Labor not found in order!");
-
-
     }
-
 }

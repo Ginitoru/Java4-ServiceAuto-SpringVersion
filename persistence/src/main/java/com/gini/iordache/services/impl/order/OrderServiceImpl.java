@@ -35,6 +35,7 @@ public class OrderServiceImpl implements OrderService {
 
 
 
+
     @Override
     @Transactional
     public List<ServiceOrderIdAndStatusDto> allServiceOrderIdAndStatus(){
@@ -99,7 +100,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-
     @Override
     @Transactional
     public List<PartOrder> getPartsFormServiceOrder(int id){
@@ -116,9 +116,6 @@ public class OrderServiceImpl implements OrderService {
     }
 
 
-
-
-
     @Override
     @Transactional
     public int closeOrder(ServiceOrder serviceOrder){
@@ -131,9 +128,8 @@ public class OrderServiceImpl implements OrderService {
 
         }
 
-
-            pdfService.createPDF(serviceOrder);
-            invoiceService.saveInvoiceToDatabase(serviceOrder);
+        pdfService.createPDFInvoice(serviceOrder);
+        invoiceService.saveInvoiceToDatabase(serviceOrder);
 
         return serviceOrderDao.updateOrderStatus(OrderStatus.CLOSE, orderId);
     }
@@ -160,14 +156,14 @@ public class OrderServiceImpl implements OrderService {
         double totalPriceVAT = TwoDigitsDouble.formatPrice(totalPrice  * 1.19);
 
 
-                            serviceOrder.setPartsTotalPrice(partsTotalPrice);
-                            serviceOrder.setPartsTotalPriceVAT(partsTotalPriceVAT);
+                    serviceOrder.setPartsTotalPrice(partsTotalPrice);
+                    serviceOrder.setPartsTotalPriceVAT(partsTotalPriceVAT);
 
-                            serviceOrder.setLaborTotalPrice(laborPrice);
-                            serviceOrder.setLaborTotalPriceVAT(laborPriceVAT);
+                    serviceOrder.setLaborTotalPrice(laborPrice);
+                    serviceOrder.setLaborTotalPriceVAT(laborPriceVAT);
 
-                            serviceOrder.setTotalPrice(totalPrice);
-                            serviceOrder.setTotalPriceVAT(totalPriceVAT);
+                    serviceOrder.setTotalPrice(totalPrice);
+                    serviceOrder.setTotalPriceVAT(totalPriceVAT);
 
 
         return serviceOrder;
@@ -203,5 +199,4 @@ public class OrderServiceImpl implements OrderService {
                 .sum();
 
     }
-
 }

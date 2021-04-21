@@ -19,7 +19,7 @@ public class RestUsernamePasswordFilter extends OncePerRequestFilter {
 
     private final AuthenticationManager authenticationManager;
 
-
+        //todo: momenta nefuctionala -> operationala cand voi implementa @RestController
     @Override
     protected void doFilterInternal(HttpServletRequest request,
                                     HttpServletResponse response,

@@ -47,11 +47,4 @@ public class LaborOrderDaoImpl implements LaborOrderDao {
                                 .getResultStream()
                                 .findFirst();
     }
-
-
-
-
-
-
-
 }

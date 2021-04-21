@@ -56,9 +56,8 @@ public class PartServiceImpl implements PartService {
 
         return partDao.findPartByPartNumber(partNumber)
                         .orElseThrow(() -> new PartNotFoundException("Part does not exists!"));
-
-
     }
+
 
     @Override
     @Transactional

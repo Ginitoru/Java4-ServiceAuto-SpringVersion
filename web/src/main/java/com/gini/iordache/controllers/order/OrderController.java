@@ -34,17 +34,17 @@ public class OrderController {
     @GetMapping("/serviceOrder")
     public String showServiceOrderPage(Model model){
 
-        Optional.ofNullable(miniCache.getVehicle())
+        Optional.ofNullable(miniCache.retrieveVehicle())
                     .ifPresentOrElse(vehicle -> model.addAttribute("vehicle", vehicle),
                                           () -> model.addAttribute("vehicle", miniCache.getEmptyVehicle()));
 
-        Optional.ofNullable(miniCache.getPerson())
+        Optional.ofNullable(miniCache.retrievePerson())
                     .ifPresentOrElse(person -> model.addAttribute("person", person),
-                                         () -> model.addAttribute("person", miniCache.getEmptyPerson()));
+                                         () -> model.addAttribute("person", miniCache.loadEmptyPerson()));
 
-        Optional.ofNullable(miniCache.getCompany())
+        Optional.ofNullable(miniCache.retrieveCompany())
                     .ifPresentOrElse(company -> model.addAttribute("company", company),
-                                          () -> model.addAttribute("company", miniCache.getEmptyCompany()));
+                                          () -> model.addAttribute("company", miniCache.loadEmptyCompany()));
 
         return "order/serviceOrder-page";
     }
@@ -68,7 +68,7 @@ public class OrderController {
         var cnp = request.getParameter("cnp");
         var person = miniCache.findPersonByCnp(cnp);
         model.addAttribute("person", person);
-        miniCache.resetCompanySearch();                           //->resetez company daca am dat search person
+        miniCache.resetCompanySearch();                                     // -> resetez company daca am dat search person
 
         return "redirect:/serviceOrder/serviceOrder";
 
@@ -90,8 +90,8 @@ public class OrderController {
     public String createServiceOrder(HttpServletRequest request){
 
 
-        if(miniCache.getVehicle().getId() != 0 &&
-                ((miniCache.getPerson().getId() != 0) || (miniCache.getCompany().getId() != 0))){
+        if(miniCache.retrieveVehicle().getId() != 0 &&
+                ((miniCache.retrievePerson().getId() != 0) || (miniCache.retrieveCompany().getId() != 0))){
 
 
             var carProblems = request.getParameter("carProblems");
@@ -111,18 +111,18 @@ public class OrderController {
             ServiceOrder serviceOrder = new ServiceOrder.Builder()
                                                 .withOrderStatus(OrderStatus.OPEN)
                                                 .withCarProblems(problems)
-                                                .withVehicle(miniCache.getVehicle())
+                                                .withVehicle(miniCache.retrieveVehicle())
                                                 .withUser(user)
                                                 .build();
 
 
 
-            if(miniCache.getPerson().getId() == 0){
-                serviceOrder.setClient(miniCache.getCompany());
+            if(miniCache.retrievePerson().getId() == 0){
+                serviceOrder.setClient(miniCache.retrieveCompany());
             }
 
-            if(miniCache.getCompany().getId() == 0){
-                serviceOrder.setClient(miniCache.getPerson());
+            if(miniCache.retrieveCompany().getId() == 0){
+                serviceOrder.setClient(miniCache.retrievePerson());
             }
 
 

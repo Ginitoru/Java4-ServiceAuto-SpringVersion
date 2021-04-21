@@ -34,7 +34,6 @@ public class CompanyDaoImpl implements CompanyDao {
                                 .setParameter("cui", cui)
                                 .getResultStream()
                                 .findFirst();
-
     }
 
 
@@ -48,6 +47,4 @@ public class CompanyDaoImpl implements CompanyDao {
                                 .getResultList();
 
     }
-
-
 }

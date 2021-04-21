@@ -24,7 +24,7 @@ public class UserSecurityService implements UserDetailsService {
     public UserDetails loadUserByUsername(String usernameOrEmail) throws UsernameNotFoundException {
 
 
-        //todo: de facut cu regex aici -> nu mai cred ca e nevoie deoarece la field email html-ul deja ma obliga sa bag un email corect
+        //todo: de facut cu regex aici -> nu mai cred ca e nevoie deoarece la field email html-ul deja ma obliga sa bag un email valid
 
         if(usernameOrEmail.contains("@")){
 

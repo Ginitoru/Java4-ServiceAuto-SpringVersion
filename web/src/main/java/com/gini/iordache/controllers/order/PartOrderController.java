@@ -45,7 +45,7 @@ public class PartOrderController {
 
         List<PartOrder> partServiceOrders = serviceOrderService.getPartsFormServiceOrder(id);
 
-        Optional.ofNullable(miniCache.getPart())
+        Optional.ofNullable(miniCache.retrievePart())
                                 .ifPresentOrElse
                                         (part -> model.addAttribute("part", part),
                                            () -> model.addAttribute("part", new Part()));
@@ -85,7 +85,7 @@ public class PartOrderController {
     @PostMapping("/addPartToOrder")
     public String addPartToOrder(HttpServletRequest request){
 
-        if(miniCache.getPart() == null){
+        if(miniCache.retrievePart() == null){
             throw new SelectPartException("No part was selected");
         }
 
@@ -93,7 +93,7 @@ public class PartOrderController {
 
             var count = Integer.parseInt(request.getParameter("count"));
             ServiceOrder serviceOrder = miniCache.getCompleteServiceOrder();
-            partOrderService.addPartToServiceOrder(miniCache.getPart(), serviceOrder, count);
+            partOrderService.addPartToServiceOrder(miniCache.retrievePart(), serviceOrder, count);
 
         }catch(NumberFormatException e){
             e.printStackTrace();
@@ -101,7 +101,7 @@ public class PartOrderController {
 
         }
 
-        String partNumber = miniCache.getPart().getPartNumber();
+        String partNumber = miniCache.retrievePart().getPartNumber();
         miniCache.findPartByPartNumber(partNumber); // -> sa imi scada si count-ul in pagina html de la piesa din magazie
 
         return "redirect:/orderPart/addPart-page";

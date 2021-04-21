@@ -40,5 +40,4 @@ public class PersonServiceImpl implements PersonService {
                         .orElseThrow(() -> new PersonNotFoundException("Person not found!"));
 
     }
-
 }

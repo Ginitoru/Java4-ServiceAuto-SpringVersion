@@ -12,16 +12,12 @@ public class PartConvertor {
 
     public static PartOrder convert(Part part, ServiceOrder serviceOrder, int count){
 
-        PartOrder partServiceOrder = new PartOrder(
-                                                part.getPartNumber(),
-                                                part.getPartName(),
-                                                count,
-                                                part.getPrice(),
-                                                serviceOrder);
-
-
-        return partServiceOrder;
+        return new PartOrder(
+                             part.getPartNumber(),
+                             part.getPartName(),
+                             count,
+                             part.getPrice(),
+                             serviceOrder
+        );
     }
-
-
 }

@@ -1,5 +1,6 @@
 package com.gini.iordache.cache.impl;
 
+
 import com.gini.iordache.cache.MiniCache;
 import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.entity.auto.Vehicle;
@@ -9,6 +10,8 @@ import com.gini.iordache.entity.labor.Labor;
 import com.gini.iordache.entity.order.LaborOrder;
 import com.gini.iordache.entity.order.ServiceOrder;
 import com.gini.iordache.services.interfaces.*;
+import lombok.Getter;
+import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
@@ -17,6 +20,7 @@ import org.springframework.stereotype.Component;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 @Component
 public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuiesc asta cu un cache
@@ -29,13 +33,13 @@ public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuie
     private final PersonService personService;
     private final CompanyService companyService;
 
-    private static final Map<String, ServiceOrder> order = new HashMap<>();
-    private final HashMap<String, List<Labor>> labors = new HashMap<>();
-    private final HashMap<String, List<LaborOrder>> orderLabors = new HashMap<>();
-    private final Map<String, Part> parts = new HashMap<>();
-    private final Map<String, Vehicle> vehicle = new HashMap<>();
-    private final Map<String, Person> person = new HashMap<>();
-    private final Map<String, Company> company = new HashMap<>();
+    private  Map<String, ServiceOrder> order = new HashMap<>();
+    private  Map<String, List<Labor>> labors = new HashMap<>();
+    private  Map<String, List<LaborOrder>> orderLabors = new HashMap<>();
+    private  Map<String, Part> parts = new HashMap<>();
+    private  Map<String, Vehicle> vehicle = new HashMap<>();
+    private  Map<String, Person> person = new HashMap<>();
+    private  Map<String, Company> company = new HashMap<>();
 
     @Autowired
     public MiniCacheImpl(OrderService serviceOrderService,
@@ -60,6 +64,7 @@ public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuie
         var serviceOrder = serviceOrderService.findCompleteServiceOrderById(id);
 
         order.put(username(), serviceOrder);
+
         return order.get(username());
     }
 
@@ -78,19 +83,19 @@ public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuie
 
 
     @Override
-    public List<LaborOrder> getLaborFromOrder(){
+    public List<LaborOrder> retrieveLaborFromOrder(){
         return orderLabors.get(username());
     }
 
 
     @Override
-    public void loadLabors(String laborDescription){
+    public void retrieveLabors(String laborDescription){
         labors.put(username(), laborService.findLaborByName(laborDescription));
     }
 
 
     @Override
-    public List<Labor> getLabors(){
+    public List<Labor> retrieveLabors(){
        return labors.get(username());
     }
 
@@ -112,7 +117,7 @@ public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuie
 
 
     @Override
-    public Vehicle getVehicle(){
+    public Vehicle retrieveVehicle(){
         return vehicle.get(username());
     }
 
@@ -132,13 +137,13 @@ public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuie
 
 
     @Override
-    public Person getEmptyPerson(){
+    public Person loadEmptyPerson(){
         person.put(username(), new Person());
         return person.get(username());
     }
 
     @Override
-    public Person getPerson(){
+    public Person retrievePerson(){
         return person.get(username());
     }
 
@@ -151,20 +156,20 @@ public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuie
 
 
     @Override
-    public Company getCompany(){
+    public Company retrieveCompany(){
         return company.get(username());
     }
 
 
     @Override
-    public Company getEmptyCompany(){
+    public Company loadEmptyCompany(){
         company.put(username(), new Company());
         return company.get(username());
     }
 
 
     @Override
-    public Part getPart(){
+    public Part retrievePart(){
         return parts.get(username());
     }
 
@@ -194,11 +199,38 @@ public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuie
     }
 
 
+    @Override
+    public Map<String, ServiceOrder> getOrder() {
+        return order;
+    }
 
+    @Override
+    public Map<String, List<Labor>> getLabors() {
+        return labors;
+    }
 
+    @Override
+    public Map<String, List<LaborOrder>> getOrderLabors() {
+        return orderLabors;
+    }
 
+    @Override
+    public Map<String, Part> getParts() {
+        return parts;
+    }
 
+    @Override
+    public Map<String, Vehicle> getVehicle() {
+        return vehicle;
+    }
 
+    @Override
+    public Map<String, Person> getPerson() {
+        return person;
+    }
 
-
+    @Override
+    public Map<String, Company> getCompany() {
+        return company;
+    }
 }

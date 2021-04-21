@@ -37,8 +37,6 @@ public class Logs {
 
 
 
-
-
     private static void writeLog(String userName, String action){
         String path = "./web/src/main/resources/log/user/" + userName + ".txt";
         String writeLog = "\n" + userName + " " + action + ": " + LocalDateTime.now()
@@ -72,9 +70,6 @@ public class Logs {
 
 
 
-
-
-
     private static void writeInFile(String writeLog, String path){
 
         try(
@@ -82,9 +77,7 @@ public class Logs {
                 BufferedWriter br = new BufferedWriter(x)
         ){
 
-
                  br.write(writeLog);
-
 
         } catch (IOException e) {
             e.printStackTrace();

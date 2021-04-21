@@ -75,14 +75,6 @@ public class LaborPriceController {
 
         }
 
-
         return "redirect:/prices/showPrices";
     }
-
-
-
-
-
-
-
 }

@@ -60,9 +60,7 @@ public class LaborController {
 
 
         if(request.getParameter("laborDescription") == null ||
-                request.getParameter("laborDescription").equals("")
-
-        ){
+                request.getParameter("laborDescription").equals("")){
 
                  labors = laborService.findAllLabors();
                  model.addAttribute("laborList", labors);
@@ -70,30 +68,18 @@ public class LaborController {
         }else{
 
                  var laborDescription = request.getParameter("laborDescription");
-
                  labors = laborService.findLaborByName(laborDescription);
-
                  model.addAttribute("laborList", labors);
-
         }
 
 
 
-        if(request.getParameter("laborId") == null){
+        if(request.getParameter("laborId") != null){
 
-        }else{
-
-                 var laborId = Integer.parseInt(request.getParameter("laborId"));
-
-                 Labor labor = laborService.findLaborById(laborId);
-
-                 model.addAttribute("laborUpdate", labor);
-
+            var laborId = Integer.parseInt(request.getParameter("laborId"));
+            Labor labor = laborService.findLaborById(laborId);
+            model.addAttribute("laborUpdate", labor);
         }
-
-
-
-
 
         model.addAttribute("labor", new Labor());
         model.addAttribute("laborCategory", LaborCategory.values());

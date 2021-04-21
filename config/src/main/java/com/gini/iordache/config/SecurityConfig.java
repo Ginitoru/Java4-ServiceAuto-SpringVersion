@@ -20,6 +20,7 @@ import ro.gini.iordache.security.filter.ResendTokenFilter;
 import ro.gini.iordache.security.filter.RestUsernamePasswordFilter;
 import ro.gini.iordache.security.filter.TokenFilter;
 import ro.gini.iordache.security.filter.UsernameAndPasswordFilter;
+import ro.gini.iordache.security.handler.CacheLogoutHandler;
 import ro.gini.iordache.security.handler.SecurityLogoutHandler;
 import ro.gini.iordache.security.handler.SuccessfulLogoutHandler;
 import ro.gini.iordache.security.provider.EmailProvider;
@@ -53,6 +54,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
     @Bean
+    public LogoutHandler cacheLogoutHandler(){
+        return new CacheLogoutHandler();
+    }
+
+    @Bean
     public LogoutSuccessHandler logoutSuccessHandler(){
         return new SuccessfulLogoutHandler();
     }
@@ -61,10 +67,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public LogoutFilter logoutFilter(){
 
-        LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler(), logoutHandler());
+        LogoutFilter logoutFilter = new LogoutFilter(logoutSuccessHandler(), cacheLogoutHandler(), logoutHandler());
         logoutFilter.setFilterProcessesUrl("/logout3");
         return logoutFilter;
     }
+
 
     @Bean
     public RestUsernamePasswordFilter restUsernamePasswordFilter(){
@@ -164,8 +171,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                     .and()
                                     .formLogin()
                                     .loginPage("/login").permitAll();
-
-
     }
 
 

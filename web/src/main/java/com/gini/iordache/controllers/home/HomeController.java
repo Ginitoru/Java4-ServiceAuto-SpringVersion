@@ -65,10 +65,9 @@ public class HomeController {
 
 
         orderService.closeOrder(miniCache.getCompleteServiceOrder());
-        miniCache.getCompleteServiceOrder().setOrderStatus(OrderStatus.CLOSE); //todo: nu e bine asta aici! trebuie bagata in service ca sa se faca pe tranzactie
-
-        return "redirect:/app/main";
-    }
+        miniCache.getCompleteServiceOrder().setOrderStatus(OrderStatus.CLOSE);  //todo: de sters asta cand implemetez cu cache
+        return "redirect:/app/main";                                            //todo: momentan nu pot sa o bag in service pe tranzactie deoarece creez
+    }                                                                           //todo: circular dependency
 
 
     @GetMapping("/invoice")

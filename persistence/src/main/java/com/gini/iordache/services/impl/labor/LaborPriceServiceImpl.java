@@ -128,11 +128,9 @@ public class LaborPriceServiceImpl implements LaborPriceService {
                     default ->
                         throw new RuntimeException("Price category invalid");
             }
-
             findLaborPrices();
             return;
         }
-
         throw new LaborPriceException("To update the the prices you have to create them first!");
     }
 

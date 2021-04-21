@@ -47,8 +47,5 @@ public class PersonDaoImpl implements PersonDao {
 
          return entityManager.createQuery(jpql, Person.class)
                                 .getResultList();
-
     }
-
-
 }

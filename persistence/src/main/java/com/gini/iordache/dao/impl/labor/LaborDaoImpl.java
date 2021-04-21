@@ -71,8 +71,8 @@ public class LaborDaoImpl implements LaborDao {
                                 .setParameter("id", id)
                                 .getResultStream()
                                 .findFirst();
-
     }
+
 
     @Override
     public int deleteLabor(int id){
@@ -84,5 +84,4 @@ public class LaborDaoImpl implements LaborDao {
                                 .executeUpdate();
 
     }
-
 }

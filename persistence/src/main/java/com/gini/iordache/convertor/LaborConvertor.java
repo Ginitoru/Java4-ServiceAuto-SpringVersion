@@ -12,17 +12,12 @@ public class LaborConvertor {
 
     public static LaborOrder convert(Labor labor, double laborPrice, ServiceOrder serviceOrder){
 
-        LaborOrder laborServiceOrder = new LaborOrder(
-                                                                labor.getLaborDescription(),
-                                                                labor.getTimedLabor(),
-                                                                laborPrice,
-                                                                serviceOrder,
-                                                                labor.getCategory()
-
+         return new LaborOrder(
+                                labor.getLaborDescription(),
+                                labor.getTimedLabor(),
+                                laborPrice,
+                                serviceOrder,
+                                labor.getCategory()
         );
-
-
-        return laborServiceOrder;
-
     }
 }

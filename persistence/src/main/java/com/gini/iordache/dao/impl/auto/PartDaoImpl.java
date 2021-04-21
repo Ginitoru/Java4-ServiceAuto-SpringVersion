@@ -31,8 +31,8 @@ public class PartDaoImpl implements PartDao {
                                 .setParameter("partName", partName)
                                 .getResultStream()
                                 .findFirst();
-
     }
+
 
     @Override
     public Optional<Part> findPartByPartNumber(String partNumber){
@@ -81,8 +81,5 @@ public class PartDaoImpl implements PartDao {
                                 .setParameter("decrement", decrement)
                                 .setParameter("partNumber", partNumber)
                                 .executeUpdate();
-
     }
-
-
 }

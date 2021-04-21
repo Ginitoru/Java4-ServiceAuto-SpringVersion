@@ -29,7 +29,7 @@ public class InvoiceServiceImpl implements InvoiceService {
 
         String path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf";
 
-        byte [] pdfToByte = this.convertPDFtoByteArray(path);
+        byte [] pdfToByte = this.convertPDFtoByteArray(path); // ia padf-ul de invoice din aceasta locatie
 
         var invoiceNumber = "invoice_" + serviceOrder.getId() + ".pdf";
 
@@ -38,9 +38,9 @@ public class InvoiceServiceImpl implements InvoiceService {
         invoice.setServiceOrder(serviceOrder);
 
 
-        invoiceDao.saveInvoiceToDatabase(invoice);
+        invoiceDao.saveInvoiceToDatabase(invoice); //baga invoice pdf in baza de date
 
-        this.deleteInvoiceFromApp(path);
+        this.deleteInvoiceFromApp(path);           //sterge invoice pdf din locatie
     }
 
 
@@ -65,11 +65,8 @@ public class InvoiceServiceImpl implements InvoiceService {
             e.printStackTrace();
         }
 
-
        return byteOutputStream.toByteArray();
     }
-
-
 
 
            //method3
@@ -80,7 +77,6 @@ public class InvoiceServiceImpl implements InvoiceService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
 
@@ -104,9 +100,5 @@ public class InvoiceServiceImpl implements InvoiceService {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
-
-
 }
