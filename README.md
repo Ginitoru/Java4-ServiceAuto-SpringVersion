@@ -1,4 +1,4 @@
-The project is a small app that is dedicated to the auto service repairs business. The main purpose of the app is to create create service orders for each car, containing the labor and the parts required for the repair of the car and generate the invoice at the end of the repaire.
+The project is a small app that is dedicated to the auto service repairs business. The main purpose of the app is to create service orders for each car, containing the labor and the parts required for the repair of the car and generate the invoice at the end of the repaire.
 
 Story:
 
