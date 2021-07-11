@@ -1,11 +1,11 @@
-The project is a small app that is dedicated to the auto service repairs business. The main purpose of the app is to create service orders for each car, containing the labor and the parts required for the repair of the car and generate the invoice at the end of the repaire.
+The project is a small app that is dedicated to the auto service repairs business. The main purpose of the app is to create service orders for each car, containing the labor and the parts required for the repair of the car and generate the invoice at the end of the repair.
 
 Story:
 
-The idea behind the app is as follow : the client comes to the service auto repaire shop with a problem at his car -> maintenante, body repaire, mechanical repaire etc.
+The idea behind the app is as follow : the client comes to the service auto repair shop with a problem at his car -> maintenante, body repair, mechanical repair etc.
 The staff uses the app to create a service order by entering into the app the clients info and the main characteristics of the car. Once all the data is collected the service staff can create a service order which
-Will be used to gather all the information about the cars repaire -> labor and parts needed.
-At the end of the repaire the service order will be used to generate the invoice, that will be saved into the database.
+Will be used to gather all the information about the cars repair -> labor and parts needed.
+At the end of the repair the service order will be used to generate the invoice, that will be saved into the database.
 
 The app is structured on modules that have specific roles:
 1.	aop module: the role of this module is to log the different exceptions that the app generates and write them in .txt files, and allsow logs the user creating a new account, login and logout. The app generates the .txt files when this events occur.
