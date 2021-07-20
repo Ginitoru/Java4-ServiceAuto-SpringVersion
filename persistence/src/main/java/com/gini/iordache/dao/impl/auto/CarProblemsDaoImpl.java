@@ -31,7 +31,7 @@ public class CarProblemsDaoImpl implements CarProblemsDao {
         String jpql = "SELECT c FROM CarProblems c";
 
         return entityManager.createQuery(jpql, CarProblemsDao.class)
-                .getResultList();
+                            .getResultList();
     }
 
 

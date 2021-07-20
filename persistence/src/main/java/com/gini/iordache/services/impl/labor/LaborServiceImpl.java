@@ -47,7 +47,7 @@ public class LaborServiceImpl implements LaborService {
 
 
        return laborDao.findLaborById(id)
-                    .orElseThrow(() -> new RuntimeException("Labor id not found"));
+                      .orElseThrow(() -> new RuntimeException("Labor id not found"));
 
     }
 
@@ -71,5 +71,4 @@ public class LaborServiceImpl implements LaborService {
 
         throw new RuntimeException("Labor not found");
     }
-
 }

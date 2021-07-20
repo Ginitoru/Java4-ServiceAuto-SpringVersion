@@ -29,8 +29,8 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "SELECT p FROM LaborPrice p";
 
         return entityManager.createQuery(jpql, LaborPrice.class)
-                                .getResultStream()
-                                .findFirst();
+                            .getResultStream()
+                            .findFirst();
     }
 
     @Override
@@ -39,9 +39,9 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "UPDATE LaborPrice l SET l.mechanicalLaborPrice =: mechanicalLaborPrice WHERE l.id =: id ";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("mechanicalLaborPrice", mechanicalLaborPrice)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("mechanicalLaborPrice", mechanicalLaborPrice)
+                            .setParameter("id", id)
+                            .executeUpdate();
     }
 
 
@@ -51,9 +51,9 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "UPDATE LaborPrice l SET l.bodyLaborPrice =: bodyLaborPrice WHERE l.id =: id";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("bodyLaborPrice",bodyLaborPrice)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("bodyLaborPrice",bodyLaborPrice)
+                            .setParameter("id", id)
+                            .executeUpdate();
 
     }
 
@@ -64,9 +64,9 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "UPDATE LaborPrice l SET l.electricalLaborPrice =: electricalLaborPrice WHERE l.id =: id";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("electricalLaborPrice", electricalLaborPrice)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("electricalLaborPrice", electricalLaborPrice)
+                            .setParameter("id", id)
+                            .executeUpdate();
     }
 
 
@@ -76,9 +76,9 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "UPDATE LaborPrice l SET l.normalLaborPrice =: normalLaborPrice WHERE l.id = :id ";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("normalLaborPrice", normalLaborPrice)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("normalLaborPrice", normalLaborPrice)
+                            .setParameter("id", id)
+                            .executeUpdate();
     }
 
 
@@ -88,9 +88,9 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "UPDATE LaborPrice l SET l.itpDieselEnginePrice =: itpDieselEnginePrice WHERE l.id =: id";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("itpDieselEnginePrice", itpDieselEnginePrice)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("itpDieselEnginePrice", itpDieselEnginePrice)
+                            .setParameter("id", id)
+                            .executeUpdate();
     }
 
 
@@ -100,9 +100,9 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "UPDATE LaborPrice l SET l.itpGasolineEnginePrice =: itpGasolineEnginePrice WHERE l.id = :id ";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("itpGasolineEnginePrice", itpGasolineEnginePrice)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("itpGasolineEnginePrice", itpGasolineEnginePrice)
+                            .setParameter("id", id)
+                            .executeUpdate();
     }
 
 
@@ -112,9 +112,9 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "UPDATE LaborPrice l SET l.itpSuvPrice =: itpSuvPrice WHERE l.id =: id ";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("itpSuvPrice", itpSuvPrice)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("itpSuvPrice", itpSuvPrice)
+                            .setParameter("id", id)
+                            .executeUpdate();
     }
 
 
@@ -124,9 +124,9 @@ public class LaborPriceDaoImpl implements LaborPriceDao {
         String jpql = "UPDATE LaborPrice l SET l.itpTruckPrice =: itpTruckPrice WHERE l.id =: id";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("itpTruckPrice", itpTruckPrice)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("itpTruckPrice", itpTruckPrice)
+                            .setParameter("id", id)
+                            .executeUpdate();
 
     }
 

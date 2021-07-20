@@ -43,10 +43,6 @@ public class PartServiceImpl implements PartService {
                                                     part.getPrice(),
                                                          part.getPartNumber());
         }
-
-
-        throw new RuntimeException(" PartNumber already exists!");
-
     }
 
 

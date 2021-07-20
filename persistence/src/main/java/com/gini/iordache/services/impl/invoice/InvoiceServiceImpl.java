@@ -8,7 +8,9 @@ import com.gini.iordache.services.interfaces.InvoiceService;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.MimeTypeUtils;
 
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -80,25 +82,54 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
 
+//    @Override  ---------> deprecated
+//    @Transactional
+//    public void getInvoiceFromDataBase(ServiceOrder serviceOrder){
+//
+//        String path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf";
+//
+//        Invoice invoice = invoiceDao.findInvoiceByServiceOrder(serviceOrder)
+//                                        .orElseThrow(() -> new InvoiceException("Invoice not found"));
+//
+//        byte [] pdfBytes = invoice.getInvoice();
+//
+//        try(FileOutputStream fos = new FileOutputStream(path)) {
+//
+//
+//            fos.write(pdfBytes);
+//
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
+
     @Override
     @Transactional
-    public void getInvoiceFromDataBase(ServiceOrder serviceOrder){
+    public void getInvoiceFromDataBase(ServiceOrder serviceOrder, HttpServletResponse response){
 
-        String path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf";
 
         Invoice invoice = invoiceDao.findInvoiceByServiceOrder(serviceOrder)
-                                        .orElseThrow(() -> new InvoiceException("Invoice not found"));
+                                    .orElseThrow(() -> new InvoiceException("Invoice not found"));
 
         byte [] pdfBytes = invoice.getInvoice();
 
-        try(FileOutputStream fos = new FileOutputStream(path)) {
 
 
-            fos.write(pdfBytes);
+        response.setContentType(MimeTypeUtils.APPLICATION_OCTET_STREAM.getType());
+        response.setHeader("Content-Disposition", "attachment; filename=" + " invoice"+ serviceOrder.getId() + ".pdf");
+        response.setContentLength(pdfBytes.length);
 
+
+        try(OutputStream os = response.getOutputStream()) {
+
+            os.write(pdfBytes);
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
 }

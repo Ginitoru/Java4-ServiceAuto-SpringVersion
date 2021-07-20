@@ -32,8 +32,8 @@ public class LaborOrderDaoImpl implements LaborOrderDao {
         String jpql = "DELETE FROM LaborOrder l WHERE l.id =: id ";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("id", id)
+                            .executeUpdate();
     }
 
 
@@ -43,8 +43,8 @@ public class LaborOrderDaoImpl implements LaborOrderDao {
         String jpql = "SELECT l FROM LaborOrder l WHERE l.id =: id ";
 
         return entityManager.createQuery(jpql, LaborOrder.class)
-                                .setParameter("id", id)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("id", id)
+                            .getResultStream()
+                            .findFirst();
     }
 }

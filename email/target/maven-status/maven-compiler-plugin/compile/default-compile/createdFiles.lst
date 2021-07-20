@@ -1,0 +1,4 @@
+ro\gini\iordache\email\sender\EmailHtmlRenderer.class
+ro\gini\iordache\email\sender\impl\EmailService.class
+ro\gini\iordache\email\sender\EmailSender.class
+ro\gini\iordache\email\sender\impl\EmailHtmlRendererImpl.class

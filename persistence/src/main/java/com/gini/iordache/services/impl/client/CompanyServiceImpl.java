@@ -39,7 +39,7 @@ public class CompanyServiceImpl implements CompanyService {
     public Company findCompanyByCui(String cui){
 
         return companyDao.findCompanyByCui(cui)
-                        .orElseThrow(() -> new CompanyNotFoundException("Company not found!"));
+                         .orElseThrow(() -> new CompanyNotFoundException("Company not found!"));
 
     }
 }

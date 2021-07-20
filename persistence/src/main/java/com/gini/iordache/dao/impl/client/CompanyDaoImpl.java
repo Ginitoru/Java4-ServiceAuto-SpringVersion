@@ -31,9 +31,9 @@ public class CompanyDaoImpl implements CompanyDao {
         String jpql = "SELECT c FROM Company c WHERE c.cui =: cui";
 
         return entityManager.createQuery(jpql, Company.class)
-                                .setParameter("cui", cui)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("cui", cui)
+                            .getResultStream()
+                            .findFirst();
     }
 
 
@@ -43,8 +43,8 @@ public class CompanyDaoImpl implements CompanyDao {
         String jpql = "SELECT c FROM Company c WHERE c.name =: companyName";
 
         return entityManager.createQuery(jpql, Company.class)
-                                .setParameter("companyName", companyName)
-                                .getResultList();
+                            .setParameter("companyName", companyName)
+                            .getResultList();
 
     }
 }

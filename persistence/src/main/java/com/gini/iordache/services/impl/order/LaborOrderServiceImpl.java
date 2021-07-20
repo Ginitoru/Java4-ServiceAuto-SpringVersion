@@ -62,43 +62,44 @@ public class LaborOrderServiceImpl implements LaborOrderService {
                 switch (laborCategory) {
 
 
-                    case "MECHANICAL" -> {
+                    case "MECHANICAL": {
                         return labor.getTimedLabor() * laborPrice.get().getMechanicalLaborPrice();
 
                     }
 
 
-                    case "BODY" -> {
+                    case "BODY": {
                         return labor.getTimedLabor() * laborPrice.get().getBodyLaborPrice();
+
                     }
 
 
-                    case "ELECTRIC" -> {
+                    case "ELECTRIC": {
                         return labor.getTimedLabor() * laborPrice.get().getElectricalLaborPrice();
                     }
 
 
-                    case "NORMAL" -> {
+                    case "NORMAL": {
                         return labor.getTimedLabor() * laborPrice.get().getNormalLaborPrice();
                     }
 
 
-                    case "ITP_DIESEL" -> {
+                    case "ITP_DIESEL": {
                         return labor.getTimedLabor() * laborPrice.get().getItpDieselEnginePrice();
                     }
 
 
-                    case "ITP_GASOLINE" -> {
+                    case "ITP_GASOLINE": {
                         return labor.getTimedLabor() * laborPrice.get().getItpGasolineEnginePrice();
                     }
 
 
-                    case "ITP_SUV" -> {
+                    case "ITP_SUV": {
                         return labor.getTimedLabor() * laborPrice.get().getItpSuvPrice();
                     }
 
 
-                    case "ITP_TRUCK" -> {
+                    case "ITP_TRUCK": {
                         return labor.getTimedLabor() * laborPrice.get().getItpTruckPrice();
                     }
                 }

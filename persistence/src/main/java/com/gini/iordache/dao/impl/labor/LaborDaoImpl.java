@@ -31,8 +31,8 @@ public class LaborDaoImpl implements LaborDao {
         String jpql = "SELECT l FROM Labor l WHERE l.laborDescription  LIKE :laborDescription";
 
         return entityManager.createQuery(jpql, Labor.class)
-                                .setParameter("laborDescription", "%"   +laborDescription + "%" )
-                                .getResultList();
+                            .setParameter("laborDescription", "%"   +laborDescription + "%" )
+                            .getResultList();
 
     }
 
@@ -44,10 +44,10 @@ public class LaborDaoImpl implements LaborDao {
 
 
         return entityManager.createQuery(jpql)
-                                .setParameter("timedLabor", timedLabor)
-                                .setParameter("laborDescription", laborDescription)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("timedLabor", timedLabor)
+                            .setParameter("laborDescription", laborDescription)
+                            .setParameter("id", id)
+                            .executeUpdate();
 
     }
 
@@ -57,7 +57,7 @@ public class LaborDaoImpl implements LaborDao {
         String jpql = "SELECT l FROM Labor l";
 
         return entityManager.createQuery(jpql, Labor.class)
-                                .getResultList();
+                            .getResultList();
 
     }
 
@@ -68,9 +68,9 @@ public class LaborDaoImpl implements LaborDao {
         String jpql = "SELECT l FROM Labor l WHERE l.id =: id";
 
         return entityManager.createQuery(jpql, Labor.class)
-                                .setParameter("id", id)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("id", id)
+                            .getResultStream()
+                            .findFirst();
     }
 
 
@@ -80,8 +80,8 @@ public class LaborDaoImpl implements LaborDao {
         String jpql = "DELETE FROM Labor l WHERE l.id =: id";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("id", id)
+                            .executeUpdate();
 
     }
 }

@@ -1,9 +1,0 @@
-
-Failed messages: com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. j11sm7781659wmq.4 - gsmtp
- 08-06-2021 21:43:39
-Failed messages: com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. b22sm15622003wmj.22 - gsmtp
- 08-06-2021 21:44:09
-Failed messages: com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. gg22sm182601ejb.114 - gsmtp
- 08-06-2021 21:48:38
-Failed messages: com.sun.mail.smtp.SMTPSendFailedException: 530 5.7.0 Must issue a STARTTLS command first. i26sm214539edq.54 - gsmtp
- 08-06-2021 21:49:20

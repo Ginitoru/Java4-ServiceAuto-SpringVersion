@@ -32,9 +32,9 @@ public class PersonDaoImpl implements PersonDao {
         String jpql = "SELECT p FROM Person p WHERE p.cnp =: cnp";
 
         return entityManager.createQuery(jpql, Person.class)
-                                .setParameter("cnp", cnp)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("cnp", cnp)
+                            .getResultStream()
+                            .findFirst();
 
     }
 
@@ -46,6 +46,6 @@ public class PersonDaoImpl implements PersonDao {
         String jpql = "SELECT p FROM Person p WHERE p.firstName =: firstOrLastName OR p.lastName =: firstOrLastName ";
 
          return entityManager.createQuery(jpql, Person.class)
-                                .getResultList();
+                             .getResultList();
     }
 }

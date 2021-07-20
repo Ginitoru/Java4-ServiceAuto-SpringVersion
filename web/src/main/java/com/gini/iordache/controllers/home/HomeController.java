@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpServletResponse;
+
 @AllArgsConstructor
 @Controller
 @RequestMapping("/app")
@@ -71,7 +73,7 @@ public class HomeController {
 
 
     @GetMapping("/invoice")
-    public String getInvoice(){
+    public String getInvoice(HttpServletResponse response){
 
         if(miniCache.getCompleteServiceOrder() == null){
             throw  new SelectOrderException("No order selected");
@@ -79,7 +81,7 @@ public class HomeController {
 
 
 
-        invoiceService.getInvoiceFromDataBase(miniCache.getCompleteServiceOrder());
+        invoiceService.getInvoiceFromDataBase(miniCache.getCompleteServiceOrder(), response);
         return "redirect:/app/main";
     }
 

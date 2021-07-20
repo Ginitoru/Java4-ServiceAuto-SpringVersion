@@ -28,9 +28,9 @@ public class PartDaoImpl implements PartDao {
         String jpql = "SELECT p FROM Part p WHERE p.partName =: partName";
 
         return entityManager.createQuery(jpql, Part.class)
-                                .setParameter("partName", partName)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("partName", partName)
+                            .getResultStream()
+                            .findFirst();
     }
 
 
@@ -40,9 +40,9 @@ public class PartDaoImpl implements PartDao {
         String jpql = "SELECT p FROM Part p WHERE p.partNumber =: partNumber";
 
         return entityManager.createQuery(jpql, Part.class)
-                                .setParameter("partNumber", partNumber)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("partNumber", partNumber)
+                            .getResultStream()
+                            .findFirst();
 
     }
 
@@ -53,9 +53,9 @@ public class PartDaoImpl implements PartDao {
         String jpql = "UPDATE Part p SET p.count = p.count + :increment WHERE p.partNumber =: partNumber";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("increment", increment)
-                                .setParameter("partNumber", partNumber)
-                                .executeUpdate();
+                            .setParameter("increment", increment)
+                            .setParameter("partNumber", partNumber)
+                            .executeUpdate();
     }
 
     @Override
@@ -64,10 +64,10 @@ public class PartDaoImpl implements PartDao {
         String jpql = "UPDATE Part p SET p.count = p.count + :increment, p.price =: price WHERE p.partNumber =: partNumber";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("increment", increment)
-                                .setParameter("partNumber", partNumber)
-                                .setParameter("price", price)
-                                .executeUpdate();
+                            .setParameter("increment", increment)
+                            .setParameter("partNumber", partNumber)
+                            .setParameter("price", price)
+                            .executeUpdate();
 
     }
 
@@ -78,8 +78,8 @@ public class PartDaoImpl implements PartDao {
         String jpql = "UPDATE Part p SET p.count = p.count - :decrement WHERE p.partNumber =: partNumber";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("decrement", decrement)
-                                .setParameter("partNumber", partNumber)
-                                .executeUpdate();
+                            .setParameter("decrement", decrement)
+                            .setParameter("partNumber", partNumber)
+                            .executeUpdate();
     }
 }

@@ -66,7 +66,7 @@ public class ServiceOrder {
 
     public static class Builder{
 
-        private ServiceOrder serviceOrder = new ServiceOrder();
+        private final ServiceOrder serviceOrder = new ServiceOrder();
 
 
         public Builder withId(int id){

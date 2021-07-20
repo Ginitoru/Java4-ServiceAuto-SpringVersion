@@ -17,7 +17,7 @@ import org.springframework.security.web.authentication.logout.LogoutHandler;
 import org.springframework.security.web.authentication.logout.LogoutSuccessHandler;
 import org.springframework.security.web.authentication.www.BasicAuthenticationFilter;
 import ro.gini.iordache.security.filter.ResendTokenFilter;
-import ro.gini.iordache.security.filter.RestUsernamePasswordFilter;
+
 import ro.gini.iordache.security.filter.TokenFilter;
 import ro.gini.iordache.security.filter.UsernameAndPasswordFilter;
 import ro.gini.iordache.security.handler.CacheLogoutHandler;
@@ -32,7 +32,6 @@ import java.util.Arrays;
 
 
 @Configuration
-@EnableCaching
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Autowired
@@ -72,17 +71,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         return logoutFilter;
     }
 
-
-    @Bean
-    public RestUsernamePasswordFilter restUsernamePasswordFilter(){
-        try {
-            return new RestUsernamePasswordFilter(authenticationManagerBean());
-        } catch (Exception e) {
-            e.printStackTrace();
-            throw new RuntimeException("Exception in: ----------------> AuthenticationManager");
-        }
-
-    }
 
 
     @Bean
@@ -150,8 +138,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.addFilterAt(usernameAndPasswordFilter(), BasicAuthenticationFilter.class)
                 .addFilterBefore(tokenFilter(),BasicAuthenticationFilter.class)
                 .addFilterBefore(resendTokenFilter(), BasicAuthenticationFilter.class)
-                .addFilterAt(logoutFilter(), LogoutFilter.class)
-                .addFilterBefore(restUsernamePasswordFilter(), BasicAuthenticationFilter.class);
+                .addFilterAt(logoutFilter(), LogoutFilter.class);
 
 
         http.authorizeRequests()

@@ -34,10 +34,10 @@ public class PartOrderDaoImpl implements PartOrderDao {
         String jpql = "SELECT p FROM PartOrder p WHERE p.partNumber =: partNumber AND p.serviceOrder =: serviceOrder";
 
         return entityManager.createQuery(jpql, PartOrder.class)
-                                .setParameter("partNumber", partNumber)
-                                .setParameter("serviceOrder", serviceOrder)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("partNumber", partNumber)
+                            .setParameter("serviceOrder", serviceOrder)
+                            .getResultStream()
+                            .findFirst();
     }
 
 
@@ -48,8 +48,8 @@ public class PartOrderDaoImpl implements PartOrderDao {
         String jpql = "DELETE FROM PartOrder p WHERE p.partNumber =: partNumber";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("partNumber", partNumber)
-                                .executeUpdate();
+                            .setParameter("partNumber", partNumber)
+                            .executeUpdate();
 
     }
 
@@ -60,9 +60,9 @@ public class PartOrderDaoImpl implements PartOrderDao {
         String jpql = "UPDATE PartOrder p SET p.count = p.count + :increment WHERE p.id =: id";
 
         return entityManager.createQuery(jpql)
-                                .setParameter("increment", increment)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("increment", increment)
+                            .setParameter("id", id)
+                            .executeUpdate();
 
     }
 }

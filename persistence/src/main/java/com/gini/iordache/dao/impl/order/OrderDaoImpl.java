@@ -37,8 +37,8 @@ public class OrderDaoImpl implements OrderDao {
         String jpql = "SELECT s FROM ServiceOrder s";
 
         return entityManager.createQuery(jpql, ServiceOrder.class)
-                        .getResultStream()
-                        .collect(Collectors.toSet());
+                            .getResultStream()
+                            .collect(Collectors.toSet());
     }
 
 
@@ -48,7 +48,7 @@ public class OrderDaoImpl implements OrderDao {
         String jpql ="SELECT  NEW  com.gini.iordache.dto.ServiceOrderIdAndStatusDto(s.id, s.orderStatus) FROM ServiceOrder s";
 
         return entityManager.createQuery(jpql, ServiceOrderIdAndStatusDto.class)
-                        .getResultList();
+                            .getResultList();
     }
 
 
@@ -58,9 +58,9 @@ public class OrderDaoImpl implements OrderDao {
         String jpql = "SELECT s FROM ServiceOrder s WHERE s.id =: id";
 
         return entityManager.createQuery(jpql, ServiceOrder.class)
-                                .setParameter("id", id)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("id", id)
+                            .getResultStream()
+                            .findFirst();
 
     }
 
@@ -78,8 +78,8 @@ public class OrderDaoImpl implements OrderDao {
 
 
         return entityManager.createQuery(jpql, ServiceOrder.class)
-                        .setParameter("id", id)
-                        .getSingleResult();
+                            .setParameter("id", id)
+                            .getSingleResult();
 
     }
 
@@ -89,8 +89,8 @@ public class OrderDaoImpl implements OrderDao {
         String jpql ="SELECT parts FROM ServiceOrder s JOIN s.parts parts WHERE s.id =: id";
 
         return entityManager.createQuery(jpql, PartOrder.class)
-                .setParameter("id", id)
-                .getResultList();
+                            .setParameter("id", id)
+                            .getResultList();
 
     }
 
@@ -102,27 +102,28 @@ public class OrderDaoImpl implements OrderDao {
 
 
         return entityManager.createQuery(jpql, LaborOrder.class)
-                .setParameter("id", id)
-                .getResultList();
+                            .setParameter("id", id)
+                            .getResultList();
 
     }
 
    //-> https://stackoverflow.com/questions/30088649/how-to-use-multiple-join-fetch-in-one-jpql-query
     @Override
     public ServiceOrder findCompleteServiceOrderById(int id){
+        ServiceOrder serviceOrder = null;
 
         String jpql1 = "SELECT s FROM ServiceOrder s LEFT JOIN FETCH s.parts WHERE s.id = :id";
         String jpql2 = "SELECT s FROM ServiceOrder s LEFT JOIN FETCh s.labors l WHERE s IN :serviceOrder";
 
 
-        ServiceOrder serviceOrder = entityManager.createQuery(jpql1, ServiceOrder.class)
-                                                    .setParameter("id", id)
-                                                    .getSingleResult();
+        serviceOrder = entityManager.createQuery(jpql1, ServiceOrder.class)
+                                    .setParameter("id", id)
+                                    .getSingleResult();
 
 
         serviceOrder = entityManager.createQuery(jpql2, ServiceOrder.class)
-                                                    .setParameter("serviceOrder", serviceOrder)
-                                                    .getSingleResult();
+                                    .setParameter("serviceOrder", serviceOrder)
+                                    .getSingleResult();
 
         return serviceOrder;
     }
@@ -135,9 +136,9 @@ public class OrderDaoImpl implements OrderDao {
 
 
         return entityManager.createQuery(jpql)
-                                .setParameter("orderStatus", orderStatus)
-                                .setParameter("id", id)
-                                .executeUpdate();
+                            .setParameter("orderStatus", orderStatus)
+                            .setParameter("id", id)
+                            .executeUpdate();
 
     }
 }

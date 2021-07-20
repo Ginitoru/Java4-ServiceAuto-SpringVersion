@@ -34,7 +34,7 @@ public class EmailService implements EmailSender {
         MimeMessage mailMessage = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(mailMessage, "utf-8");
 
-        String link = "http://localhost:8080/activate?token=" + token + "&email=" + userEmail;
+        String link = "http://serviceauto3-env.eba-8ppwvwkb.eu-central-1.elasticbeanstalk.com/activate?token=" + token + "&email=" + userEmail;
         String email = emailHtmlRenderer.constructHtmlMailPage(link, username);
 
 

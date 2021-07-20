@@ -33,13 +33,13 @@ public class MiniCacheImpl implements MiniCache {  //todo: de vazut cum inlocuie
     private final PersonService personService;
     private final CompanyService companyService;
 
-    private  Map<String, ServiceOrder> order = new HashMap<>();
-    private  Map<String, List<Labor>> labors = new HashMap<>();
-    private  Map<String, List<LaborOrder>> orderLabors = new HashMap<>();
-    private  Map<String, Part> parts = new HashMap<>();
-    private  Map<String, Vehicle> vehicle = new HashMap<>();
-    private  Map<String, Person> person = new HashMap<>();
-    private  Map<String, Company> company = new HashMap<>();
+    private final Map<String, ServiceOrder> order = new HashMap<>();
+    private final Map<String, List<Labor>> labors = new HashMap<>();
+    private final Map<String, List<LaborOrder>> orderLabors = new HashMap<>();
+    private final Map<String, Part> parts = new HashMap<>();
+    private final Map<String, Vehicle> vehicle = new HashMap<>();
+    private final Map<String, Person> person = new HashMap<>();
+    private final Map<String, Company> company = new HashMap<>();
 
     @Autowired
     public MiniCacheImpl(OrderService serviceOrderService,

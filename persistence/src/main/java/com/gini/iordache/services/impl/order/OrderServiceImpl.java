@@ -33,9 +33,6 @@ public class OrderServiceImpl implements OrderService {
     private final InvoiceService invoiceService;
 
 
-
-
-
     @Override
     @Transactional
     public List<ServiceOrderIdAndStatusDto> allServiceOrderIdAndStatus(){

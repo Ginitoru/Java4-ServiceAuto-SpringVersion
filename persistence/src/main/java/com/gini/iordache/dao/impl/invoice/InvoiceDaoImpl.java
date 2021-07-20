@@ -35,8 +35,8 @@ public class InvoiceDaoImpl implements InvoiceDao {
 
 
         return entityManager.createQuery(jpql, Invoice.class)
-                                .setParameter("serviceOrder", serviceOrder)
-                                .getResultStream()
-                                .findFirst();
+                            .setParameter("serviceOrder", serviceOrder)
+                            .getResultStream()
+                            .findFirst();
     }
 }

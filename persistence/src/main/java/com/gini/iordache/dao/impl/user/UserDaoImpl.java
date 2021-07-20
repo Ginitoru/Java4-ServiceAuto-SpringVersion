@@ -64,15 +64,15 @@ public class UserDaoImpl implements UserDao {
         String jpql2 = "UPDATE User u SET u.isEnabled = TRUE, u.isNonLoked = TRUE WHERE u.username =: username";
 
         entityManager.createQuery(jpql)
-                    .setParameter("id", user.getActivationToken().getId())
-                    .setParameter("activatedAt", LocalDateTime.now())
-                    .executeUpdate();
+                     .setParameter("id", user.getActivationToken().getId())
+                     .setParameter("activatedAt", LocalDateTime.now())
+                     .executeUpdate();
 
 
 
         return entityManager.createQuery(jpql2)
-                        .setParameter("username", user.getUsername())
-                        .executeUpdate();
+                            .setParameter("username", user.getUsername())
+                            .executeUpdate();
     }
 
 
@@ -82,8 +82,8 @@ public class UserDaoImpl implements UserDao {
         String jpql = "SELECT u FROM User u JOIN FETCH u.activationToken WHERE u.email =: email";
 
         return entityManager.createQuery(jpql, User.class)
-                    .setParameter("email", email)
-                    .getResultStream()
-                    .findFirst();
+                            .setParameter("email", email)
+                            .getResultStream()
+                            .findFirst();
     }
 }

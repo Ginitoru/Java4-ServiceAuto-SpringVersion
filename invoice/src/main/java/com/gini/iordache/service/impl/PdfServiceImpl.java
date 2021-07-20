@@ -28,7 +28,7 @@ public class PdfServiceImpl implements PdfService {
     @Override
     public void createPDFInvoice(ServiceOrder serviceOrder){
 
-        var path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf"; //creeaza pdf invoice in aceasta locatie
+        var path = "./web/src/main/resources/invoices/invoice_" + serviceOrder.getId() + ".pdf"; //creaza pdf invoice in aceasta locatie
 
         var totalPrice = serviceOrder.getTotalPrice();
         var totalPriceVAT = serviceOrder.getTotalPriceVAT();

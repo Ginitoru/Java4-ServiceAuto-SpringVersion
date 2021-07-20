@@ -93,39 +93,39 @@ public class LaborPriceServiceImpl implements LaborPriceService {
             switch (categoryPrice) {
 
 
-                    case "MECHANICAL" ->
+                case  "MECHANICAL" :
                         laborPriceDao.updateMechanicalLaborPrice(newPrice, id);
+                        break;
 
-
-                    case "BODY" ->
+                case "BODY":
                         laborPriceDao.updateBodyLaborPrice(newPrice, id);
-
-                    case "ELECTRIC" ->
+                        break;
+                case "ELECTRIC":
                         laborPriceDao.updateElectricalLaborPrice(newPrice, id);
+                        break;
 
-
-                    case "NORMAL" ->
+                case "NORMAL":
                         laborPriceDao.updateNormalLaborPrice(newPrice, id);
+                        break;
 
-
-                    case "ITP_DIESEL" ->
+                case "ITP_DIESEL":
                         laborPriceDao.updateItpDieselEnginePrice(newPrice, id);
+                        break;
 
 
-
-                    case "ITP_GASOLINE" ->
+                case "ITP_GASOLINE":
                         laborPriceDao.updateItpGasolineEnginePrice(newPrice, id);
+                        break;
 
-
-                    case "ITP_SUV" ->
+                case "ITP_SUV":
                         laborPriceDao.updateItpSuvPrice(newPrice, id);
+                        break;
 
-
-                    case "ITP_TRUCK" ->
+                case "ITP_TRUCK":
                         laborPriceDao.updateItpTruckPrice(newPrice, id);
+                        break;
 
-
-                    default ->
+                default:
                         throw new RuntimeException("Price category invalid");
             }
             findLaborPrices();
