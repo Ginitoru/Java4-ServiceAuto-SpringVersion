@@ -1,0 +1,16 @@
+ro\gini\iordache\security\service\UserSecurityService.class
+ro\gini\iordache\security\handler\SecurityLogoutHandler.class
+ro\gini\iordache\security\authentication\TokenAuthentication.class
+ro\gini\iordache\security\provider\EmailProvider.class
+ro\gini\iordache\security\securityuser\SecurityUser.class
+ro\gini\iordache\security\authentication\ResendTokenAuthentication.class
+ro\gini\iordache\security\filter\ResendTokenFilter.class
+ro\gini\iordache\security\provider\UserNamePasswordProvider.class
+ro\gini\iordache\security\provider\ResendTokenProvider.class
+ro\gini\iordache\security\handler\CacheLogoutHandler.class
+ro\gini\iordache\security\provider\TokenProvider.class
+ro\gini\iordache\security\authentication\UserNamePasswordAuthentication.class
+ro\gini\iordache\security\filter\TokenFilter.class
+ro\gini\iordache\security\filter\UsernameAndPasswordFilter.class
+ro\gini\iordache\security\handler\SuccessfulLogoutHandler.class
+ro\gini\iordache\security\authentication\EmailAuthentication.class
