@@ -50,8 +50,6 @@ h1{
 
 .table1{
     grid-area: table1;
-
-    
 }
 
 .table2{
@@ -63,13 +61,6 @@ h1{
 .links{
     grid-area: links;
 }
-
-/*tbody{*/
-/*    height: 500px;*/
-/*    overflow-y: scroll;*/
-/*    display: block;*/
-/*}*/
-
 
 
 .table1, .table2{
@@ -97,21 +88,17 @@ h1{
 }
 
 
-
-
-
-
-
-
+.alert{
+    color: red;
+    font-weight: 900;
+}
 
 
 .general-labor{
     table-layout:fixed;
     width: 100%;
-    
     flex-direction: column;
     border-right: 1px solid whitesmoke;
-    
 }
 
 .labor-order{
@@ -121,17 +108,13 @@ h1{
 .links{
     grid-area: links;
     position: relative;
-   
 }
-
 
 
 
 th{
     background-color: rgb(15, 12, 59);
     color: whitesmoke;
-    
-   
 }
 
 .table1{
@@ -141,20 +124,9 @@ th{
     flex-direction: column;
 }
 
-/* .general-labor{
-    
-    display: flex;
-    flex-direction: column;
-    
-
-} */
-
-
-
 
 .link{
     display: flex;
-    
 }
 
 
@@ -177,6 +149,8 @@ th{
 tr:hover{
     background-color: whitesmoke;
 }
+
+
 th{
     text-align: center;
     background-color: rgb(15, 12, 59);
@@ -187,9 +161,11 @@ td{
     text-align: center;
 }
 
+
 th, td{
     border-bottom: 1px solid black;
 }
+
 
 .delete-btn{
     margin: 0 auto;
@@ -204,6 +180,7 @@ th, td{
     cursor: pointer;
 }
 
+
 .links{
     display: flex;
     flex-direction: column;
@@ -215,6 +192,7 @@ th, td{
     display: flex;
     padding-bottom: 10px;
 }
+
 
 .link-btn{
     width: 300px;
@@ -237,7 +215,6 @@ footer{
     position: absolute;
     bottom: 0;
     text-align: center;
- 
 }
 
 

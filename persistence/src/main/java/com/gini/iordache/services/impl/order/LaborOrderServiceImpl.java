@@ -1,6 +1,7 @@
 package com.gini.iordache.services.impl.order;
 
 
+import com.gini.errors.LaborNotFoundException;
 import com.gini.errors.order.LaborOrderException;
 import com.gini.iordache.convertor.LaborConvertor;
 import com.gini.iordache.dao.iterfaces.LaborOrderDao;
@@ -123,6 +124,6 @@ public class LaborOrderServiceImpl implements LaborOrderService {
             return;
         }
 
-        throw new RuntimeException("Labor not found in order!");
+        throw new LaborNotFoundException("Labor was already deleted from the order!");
     }
 }

@@ -1,0 +1,7 @@
+
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Labor not found in order! 20-07-2021 17:58:32
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Labor was deleted from the order! 20-07-2021 18:09:54
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Labor was deleted from the order! 20-07-2021 18:18:15
+Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 20-07-2021 18:23:30
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Labor was deleted from the order! 20-07-2021 18:24:13
+void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Labor was already deleted from the order! 20-07-2021 18:26:46
