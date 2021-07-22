@@ -72,17 +72,18 @@ public class HomeController {
     }                                                                           //todo: circular dependency
 
 
-    @GetMapping("/invoice")
-    public String getInvoice(HttpServletResponse response){
+    @GetMapping("/invoice") //https://stackoverflow.com/questions/21039471/spring-getoutputstream-has-already-been-called-for-this-response
+    public String getInvoice(HttpServletResponse response,  Model model){
 
         if(miniCache.getCompleteServiceOrder() == null){
             throw  new SelectOrderException("No order selected");
         }
 
-
-
         invoiceService.getInvoiceFromDataBase(miniCache.getCompleteServiceOrder(), response);
-        return "redirect:/app/main";
+
+
+        model.addAttribute("serviceOrderIdAndStatus", orderService.allServiceOrderIdAndStatus());
+        return null; // bug fix -> returnez null in loc de view ca sa pot dll factura:DDDDD ca altfel o ia razna
     }
 
 

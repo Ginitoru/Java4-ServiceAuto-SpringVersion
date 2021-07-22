@@ -1,4 +1,4 @@
-package com.gini.iordache.exceptionhadlers.user;
+package com.gini.iordache.exceptionhadnlers.user;
 
 import com.gini.errors.user.*;
 import org.springframework.security.authentication.BadCredentialsException;

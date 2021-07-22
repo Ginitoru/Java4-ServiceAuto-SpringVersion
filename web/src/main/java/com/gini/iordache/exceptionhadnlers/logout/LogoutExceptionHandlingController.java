@@ -1,4 +1,4 @@
-package com.gini.iordache.exceptionhadlers.logout;
+package com.gini.iordache.exceptionhadnlers.logout;
 
 
 import com.gini.errors.logout.LogoutException;

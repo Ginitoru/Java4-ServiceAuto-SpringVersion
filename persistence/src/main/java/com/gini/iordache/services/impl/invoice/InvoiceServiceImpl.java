@@ -82,7 +82,7 @@ public class InvoiceServiceImpl implements InvoiceService {
     }
 
 
-//    @Override  ---------> deprecated
+//    @Override  -------> deprecated -> it can be deleted
 //    @Transactional
 //    public void getInvoiceFromDataBase(ServiceOrder serviceOrder){
 //
@@ -113,6 +113,8 @@ public class InvoiceServiceImpl implements InvoiceService {
                                     .orElseThrow(() -> new InvoiceException("Invoice not found"));
 
         byte [] pdfBytes = invoice.getInvoice();
+
+
 
 
 

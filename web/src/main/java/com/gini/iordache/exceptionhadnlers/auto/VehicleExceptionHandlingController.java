@@ -1,4 +1,4 @@
-package com.gini.iordache.exceptionhadlers.auto;
+package com.gini.iordache.exceptionhadnlers.auto;
 
 
 import com.gini.errors.auto.VehicleAlreadyExistsException;

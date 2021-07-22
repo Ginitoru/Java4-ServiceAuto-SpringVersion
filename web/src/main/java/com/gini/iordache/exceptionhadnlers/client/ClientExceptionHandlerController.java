@@ -1,4 +1,4 @@
-package com.gini.iordache.exceptionhadlers.client;
+package com.gini.iordache.exceptionhadnlers.client;
 
 import com.gini.errors.client.CompanyAlreadyExistsException;
 import com.gini.errors.client.CompanyNotFoundException;
