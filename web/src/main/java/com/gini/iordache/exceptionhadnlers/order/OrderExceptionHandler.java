@@ -1,4 +1,4 @@
-package com.gini.iordache.controllers.exceptionhadlers.order;
+package com.gini.iordache.exceptionhadlers.order;
 
 import com.gini.errors.invoice.InvoiceException;
 import com.gini.errors.order.*;

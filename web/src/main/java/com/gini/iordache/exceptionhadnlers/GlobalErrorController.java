@@ -1,4 +1,4 @@
-package com.gini.iordache.controllers.exceptionhadlers;
+package com.gini.iordache.exceptionhadlers;
 
 
 
