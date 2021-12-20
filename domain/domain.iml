@@ -16,7 +16,7 @@
         <setting name="provider-name" value="Hibernate" />
         <datasource-mapping>
           <factory-entry name="domain" value="3f4a97cd-96c1-41c1-b311-b4a7334df0fb" />
-          <factory-entry name="entityManagerFactory" value="3f4a97cd-96c1-41c1-b311-b4a7334df0fb" />
+          <factory-entry name="entityManagerFactory" value="49f769d8-2470-4991-a5b3-6590e73412a0" />
         </datasource-mapping>
         <naming-strategy-map />
       </configuration>
@@ -151,5 +151,7 @@
     <orderEntry type="library" name="Maven: org.apache.tomcat.embed:tomcat-embed-websocket:9.0.43" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:5.3.4" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:5.3.4" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: junit:junit:4.13.2" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.hamcrest:hamcrest-core:2.2" level="project" />
   </component>
 </module>

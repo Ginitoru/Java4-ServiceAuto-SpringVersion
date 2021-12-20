@@ -1,4 +1,4 @@
-package com.gini.iordache.exceptionhadnlers.lobor;
+package com.gini.iordache.exceptionhandlers.lobor;
 
 import com.gini.errors.LaborNotFoundException;
 import com.gini.errors.labor.InvalidPriceException;

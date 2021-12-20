@@ -2,7 +2,11 @@ package com.gini.iordache.config;
 
 
 import com.gini.iordache.entity.user.Authorities;
+import org.apache.catalina.connector.Connector;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.web.embedded.tomcat.TomcatConnectorCustomizer;
+import org.springframework.boot.web.embedded.tomcat.TomcatServletWebServerFactory;
+import org.springframework.boot.web.servlet.server.ConfigurableServletWebServerFactory;
 import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -158,6 +162,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                                     .and()
                                     .formLogin()
                                     .loginPage("/login").permitAll();
+
+        http.headers().httpStrictTransportSecurity() //pt invoice dll dar nu merge
+                      .disable();
     }
 
 
@@ -165,4 +172,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public PasswordEncoder passwordEncoder(){
         return new BCryptPasswordEncoder();
     }
+
+//    @Bean
+//    public ConfigurableServletWebServerFactory webServerFactory() {
+//        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+//        factory.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "|{}[]"));
+//        return factory;
+//    }
 }

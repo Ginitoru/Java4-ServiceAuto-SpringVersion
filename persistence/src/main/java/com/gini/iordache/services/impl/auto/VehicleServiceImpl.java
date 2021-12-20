@@ -6,6 +6,7 @@ import com.gini.iordache.dao.iterfaces.VehicleDao;
 import com.gini.iordache.entity.auto.Vehicle;
 import com.gini.iordache.services.interfaces.VehicleService;
 import lombok.AllArgsConstructor;
+import org.hibernate.validator.internal.util.stereotypes.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

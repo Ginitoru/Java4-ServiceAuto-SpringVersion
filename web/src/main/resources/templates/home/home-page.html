@@ -75,9 +75,16 @@
                 </div>
 
                 <div>
-                    <a th:href="@{/app/invoice}"><input type="button" class="btn" value="Invoice" th:onclick="getInvoice()"/></a>
+                    <a th:href="@{/app/invoice}"><input type="button" class="btn" value="Invoice"/></a>
                 </div>
+<!--                <div>-->
+<!--                    <form name="f" th:action="@{/app/invoice}" method="POST">-->
+<!--                        <input type="submit" value="Invoice">-->
+<!--                    </form>-->
+<!--                </div>-->
             </div>
+
+
 
                
 
@@ -283,11 +290,6 @@
             if(orderStatus.toString() !== 'CLOSE'){
                 alert("Close the order first!")
             }
-
-            if(orderStatus.toString() === 'CLOSE'){
-                alert('Invoce nr: ' + orderId + ' was downloaded to: /web/src/main/resources/invoices')
-            }
-
         }
 
     </script>

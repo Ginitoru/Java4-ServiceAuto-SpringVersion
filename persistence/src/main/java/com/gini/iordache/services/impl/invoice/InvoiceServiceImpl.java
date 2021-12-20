@@ -119,8 +119,8 @@ public class InvoiceServiceImpl implements InvoiceService {
 
 
         response.setContentType(MimeTypeUtils.APPLICATION_OCTET_STREAM.getType());
-        response.setHeader("Content-Disposition", "attachment; filename=" + " invoice"+ serviceOrder.getId() + ".pdf");
-        response.setContentLength(pdfBytes.length);
+        response.setHeader("Content-Disposition", "attachment;filename=" + " invoice"+ serviceOrder.getId() + ".pdf");
+       // response.setContentLength(pdfBytes.length);
 
 
         try(OutputStream os = response.getOutputStream()) {

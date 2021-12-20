@@ -10,16 +10,24 @@ import com.gini.iordache.entity.auto.Part;
 import com.gini.iordache.services.interfaces.PartService;
 import lombok.AllArgsConstructor;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Optional;
 
+
 @AllArgsConstructor
 @Service
 public class PartServiceImpl implements PartService {
 
+
     private final PartDao partDao;
+
 
 
     @Override

@@ -73,7 +73,7 @@ public class HomeController {
 
 
     @GetMapping("/invoice") //https://stackoverflow.com/questions/21039471/spring-getoutputstream-has-already-been-called-for-this-response
-    public String getInvoice(HttpServletResponse response,  Model model){
+    public void getInvoice(HttpServletResponse response,  Model model){
 
         if(miniCache.getCompleteServiceOrder() == null){
             throw  new SelectOrderException("No order selected");
@@ -83,7 +83,7 @@ public class HomeController {
 
 
         model.addAttribute("serviceOrderIdAndStatus", orderService.allServiceOrderIdAndStatus());
-        return null; // bug fix -> returnez null in loc de view ca sa pot dll factura:DDDDD ca altfel o ia razna
+        // bug fix -> returnez null in loc de view ca sa pot dll factura:DDDDD ca altfel o ia razna
     }
 
 

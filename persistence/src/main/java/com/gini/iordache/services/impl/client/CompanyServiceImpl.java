@@ -6,6 +6,7 @@ import com.gini.iordache.dao.iterfaces.CompanyDao;
 import com.gini.iordache.entity.clients.Company;
 import com.gini.iordache.services.interfaces.CompanyService;
 import lombok.AllArgsConstructor;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -13,6 +14,7 @@ import java.util.Optional;
 
 @AllArgsConstructor
 @Service
+@Lazy
 public class CompanyServiceImpl implements CompanyService {
 
     private final CompanyDao companyDao;

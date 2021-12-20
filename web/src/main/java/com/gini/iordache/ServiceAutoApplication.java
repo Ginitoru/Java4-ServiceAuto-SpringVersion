@@ -24,6 +24,9 @@ public class ServiceAutoApplication {
     public static void main(String[] args) {
 
         SpringApplication.run(ServiceAutoApplication.class, args);
+       // System.setProperty("tomcat.util.http.parser.HttpParser.requestTargetAllow","{}");
+
+
 
 
 
@@ -31,5 +34,12 @@ public class ServiceAutoApplication {
 
 
     }
+
+//    @Bean
+//    public ConfigurableServletWebServerFactory webServerFactory() {
+//        TomcatServletWebServerFactory factory = new TomcatServletWebServerFactory();
+//        factory.addConnectorCustomizers(connector -> connector.setProperty("relaxedQueryChars", "|{}[]\\"));
+//        return factory;
+//    }
 
 }

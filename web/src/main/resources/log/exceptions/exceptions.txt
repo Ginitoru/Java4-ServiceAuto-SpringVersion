@@ -7,3 +7,9 @@ void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFrom
 void com.gini.iordache.services.impl.order.LaborOrderServiceImpl.deleteLaborFromOrder(int,ServiceOrder) Labor was already deleted from the order! 20-07-2021 18:26:46
 Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Username not found 22-07-2021 18:13:12
 Authentication ro.gini.iordache.security.provider.UserNamePasswordProvider.authenticate(Authentication) Bad Credential Exception 22-07-2021 18:13:17
+void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder,HttpServletResponse) Invoice not found 24-07-2021 18:45:39
+void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder,HttpServletResponse) Invoice not found 24-07-2021 18:46:02
+void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder,HttpServletResponse) Invoice not found 24-07-2021 18:46:04
+void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder,HttpServletResponse) Invoice not found 24-07-2021 18:46:11
+void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder,HttpServletResponse) Invoice not found 24-07-2021 19:35:13
+void com.gini.iordache.services.impl.invoice.InvoiceServiceImpl.getInvoiceFromDataBase(ServiceOrder,HttpServletResponse) Invoice not found 24-07-2021 19:35:35
